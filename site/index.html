@@ -918,7 +918,7 @@
       get(item, 'serving.speculation.type', ''),
       get(item, 'serving.speculation.draft_n', ''),
       get(item, 'serving.thinking', ''),
-      get(item, 'serving.reasoning_budget', ''),
+      effectiveReasoningBudget(item) || '',
       get(item, 'benchmark.prompt_set', ''),
       (item.caveats || []).join(' ')
     ].join(' ').toLowerCase();
@@ -959,6 +959,19 @@
       const draft = get(item, 'serving.speculation.draft_n', null);
       if (!type || type === 'none' || Number(draft || 0) === 0) return 'no MTP';
       return type + (draft ? ' n=' + draft : '');
+    };
+
+    const effectiveReasoningBudget = (item) => {
+      const thinking = get(item, 'serving.thinking', 'unknown');
+      const budget = get(item, 'serving.reasoning_budget', null);
+      if (thinking === 'off' || budget === null || budget === undefined || budget === '') return null;
+      return budget;
+    };
+
+    const formatThinkingLabel = (item) => {
+      const thinking = get(item, 'serving.thinking', 'unknown');
+      const budget = effectiveReasoningBudget(item);
+      return 'thinking ' + thinking + (budget !== null ? ' / budget ' + formatNumber(budget, 0) : '');
     };
 
     const hardwareLaneLabel = (item) => {
@@ -1004,7 +1017,7 @@
       get(item, 'serving.speculation.type', ''),
       get(item, 'serving.speculation.draft_n', ''),
       get(item, 'serving.thinking', ''),
-      get(item, 'serving.reasoning_budget', ''),
+      effectiveReasoningBudget(item) || '',
       get(item, 'promotion_level', ''),
       get(item, 'source.type', ''),
       get(item, 'source.label', '')
@@ -1057,7 +1070,7 @@
       get(item, 'serving.speculation.type', ''),
       get(item, 'serving.speculation.draft_n', ''),
       get(item, 'serving.thinking', ''),
-      get(item, 'serving.reasoning_budget', ''),
+      effectiveReasoningBudget(item) || '',
       get(item, 'benchmark.prompt_set', ''),
       get(item, 'benchmark.configured_context_tokens', ''),
       get(item, 'benchmark.actual_prompt_tokens', ''),
@@ -1253,9 +1266,7 @@
       const context = get(item, 'serving.context_tokens', get(item, 'benchmark.configured_context_tokens', null));
       const level = get(item, 'promotion_level', 'unknown');
       const kv = [get(item, 'serving.kv_cache_k', ''), get(item, 'serving.kv_cache_v', '')].filter(Boolean).join('/') || 'KV n/a';
-      const thinking = get(item, 'serving.thinking', 'unknown');
-      const reasoningBudget = get(item, 'serving.reasoning_budget', null);
-      const thinkingLabel = 'thinking ' + thinking + (reasoningBudget !== null && reasoningBudget !== undefined ? ' / budget ' + formatNumber(reasoningBudget, 0) : '');
+      const thinkingLabel = formatThinkingLabel(item);
       return '<article class="model-card">' +
         '<div class="model-head">' +
           '<div class="model-title"><div class="model">' + escapeHtml(model) + '</div><div class="subline">' + escapeHtml(family) + ' / ' + escapeHtml(quant) + '</div></div>' +
