@@ -40,18 +40,55 @@ Single-card IQ4_XS target plus IQ4_XS DFlash drafter at 32K context also failed 
 
 Single-card Q3_K_XL target plus IQ4_XS DFlash drafter at 32K context loaded, but a request OOMed during CUDA compute. Reducing to 8K context and `-b 512 -ub 128` produced the stable rows above.
 
+## Local Multi-GPU Branch Follow-Up
+
+A local BeeLlama branch was tested after the first pass: `fix/dflash-multigpu-seq-pos`.
+The patch clears the DFlash drafter KV state on the CPU-ring fallback path before
+building the next absolute-position draft batch. This is not upstreamed yet, so treat
+these rows as branch evidence rather than a public recipe.
+
+Test shape:
+
+- Target: Qwen3.6 27B `Q4_K_M`.
+- Drafter: Qwen3.6 27B DFlash `Q4_K_M`.
+- Hardware: 2x RTX 5060 Ti 16GB.
+- Context: 32768.
+- KV: `q4_0/q4_0`.
+- Split: layer split `1,1`.
+- Batch: `-b 1024 -ub 256`.
+
+The useful result is correctness, not a clean speed headline. The original dual-card
+sequence-position failure did not reproduce across the valid branch matrix: no
+`drafter decode failed` or inconsistent sequence-position errors appeared.
+
+| Config | short-chat | code-generate | agent-tool | Notes |
+| --- | ---: | ---: | ---: | --- |
+| no-spec Q4_K_M | 22.29 tok/s | 22.21 tok/s | 22.22 tok/s | Baseline, one measured run per prompt |
+| DFlash `n4/x128` | 26.29 tok/s | 31.40 tok/s | 20.80 tok/s | First branch matrix pass |
+| DFlash `n4/x128` repeat | 20.68 tok/s | 29.50 tok/s | 20.98 tok/s | Two measured runs per prompt |
+| DFlash `n8/x128` rerun | 20.71 tok/s | 26.42 tok/s | 20.53 tok/s | Rerun after the first matrix row was interrupted |
+
+Interpretation:
+
+- The CPU-ring fallback patch is plausibly useful for upstream as a correctness fix.
+- Performance is workload-sensitive and repeat-sensitive. Code generation improves,
+  but short-chat and agent-tool are not consistently above no-spec.
+- This should not be posted as a dual-5060 Ti DFlash speed win. It is better framed
+  as "dual-GPU DFlash can be made correct on this branch, but CPU-ring fallback does
+  not yet deliver a broad speedup."
+
 ## Current Interpretation
 
 BeeLlama DFlash is worth tracking for 5060 Ti users, but the tested useful shape is not yet the headline dual-5060 Ti lane. On this hardware:
 
 - DFlash can materially improve a single-card 27B Q3_K_XL 8K route.
-- The public Reddit-style Q4/Q5 27B DFlash recipe does not directly transfer to split dual-16GB dense 27B serving.
+- The public Reddit-style Q4/Q5 27B DFlash recipe does not directly transfer to split dual-16GB dense 27B serving as a speed result.
 - The single-card 16GB fit margin is tight once the DFlash drafter is added.
-- Code-shaped output benefits more than agent-tool output in the first measured rows.
+- Code-shaped output benefits more than agent-tool output in the measured rows.
 
 Next useful sweeps:
 
 - Test smaller `--spec-draft-n-max` values such as 4 and 8.
 - Try `--spec-dm-adaptive` again after a stable baseline, but keep logs for acceptance and decode failures.
 - Test 16K with Q3_K_XL, lower `-ub`, and `cross_ctx=512`.
-- Revisit dual-GPU DFlash only if BeeLlama adds or documents clean multi-GPU hidden capture for DFlash.
+- For dual-GPU, the next real speed work is GPU-ring hidden capture or a better adaptive policy, not just larger CPU-ring draft depth.
