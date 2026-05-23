@@ -17,6 +17,7 @@ Current headline benchmark files:
 - data/results/seed-qwen36-35b-a3b-iq3xxs-1x5060ti-20260519.json
 - data/results/seed-qwen-mtp-2x5060ti-20260519.json
 - data/results/seed-qwen36-35b-a3b-2x5060ti-20260519.json
+- data/results/seed-beellama-qwen36-27b-20260523.json
 
 Archived provenance:
 
@@ -42,6 +43,9 @@ Best decode results by lane, model, and prompt:
 | 1x5060ti | Qwen3.6-27B | UD-Q3_K_XL | code-generate | off |  | no MTP | 22.68 | 768 |
 | 1x5060ti | Qwen3.6-27B | UD-Q3_K_XL | agent-tool | off |  | no MTP | 22.67 | 512 |
 | 1x5060ti | Qwen3.6-27B | UD-Q3_K_XL | long-retrieval | off |  | no MTP | 20.70 | 17 |
+| 1x5060ti | Qwen3.6-27B | UD-Q3_K_XL | short-chat | off |  | DFlash n=16 | 43.49 | 256 |
+| 1x5060ti | Qwen3.6-27B | UD-Q3_K_XL | code-generate | off |  | DFlash n=16 | 69.34 | 768 |
+| 1x5060ti | Qwen3.6-27B | UD-Q3_K_XL | agent-tool | off |  | DFlash n=16 | 34.85 | 512 |
 | 1x5060ti | Qwen3.6-35B-A3B | IQ3_XXS | short-chat | on | 384 | no MTP | 94.63 | 640 |
 | 1x5060ti | Qwen3.6-35B-A3B | IQ3_XXS | code-generate | on | 384 | no MTP | 94.46 | 1152 |
 | 1x5060ti | Qwen3.6-35B-A3B | IQ3_XXS | agent-tool | on | 384 | no MTP | 94.53 | 896 |
@@ -75,6 +79,7 @@ Qwen3.6 27B MTP Q4_XL is not currently a valid one-card GPU-only preset on this 
 ## Current Comparison Gaps
 
 - Qwen3.6 27B no-MTP on 2x5060ti with the same quant/context as the MTP route, if a clean non-MTP route is available.
+- BeeLlama DFlash needs more sweeps before promotion beyond exploratory rows. The first clean result is single-card Q3_K_XL at 8K; dual-card Q4_K_M DFlash failed with drafter KV-position errors.
 - Qwen3.6 35B A3B NVFP4/MTP belongs in a separate vLLM engine lane, not mixed into the llama.cpp GGUF rows.
 - Reasoning-budget sweeps for Qwen3.6 35B A3B should be added as quality/latency rows once the baseline speed data is stable.
 - Community multi-card submissions should start with the same prompt sets and schema fields so 3x/4x results can sit beside the 1x and 2x lanes.

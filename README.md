@@ -44,7 +44,7 @@ See docs/hardware.md for the full baseline and hardware notes.
 | upstream llama.cpp | Qwen3.5 9B MTP GGUF | Seed recipe | Small long-context route; useful sanity lane for 1x and 2x cards. |
 | upstream llama.cpp | Qwen3.6 35B A3B GGUF | Seed recipe | Strong MoE/active-parameter comparison route. |
 | ik_llama.cpp | Qwen3.6 27B IQ4/IQ5 | Comparison target | Needs controlled CUDA testing before any headline comparison. |
-| BeeLlama | Qwen3.6 27B DFlash/TurboQuant | Comparison target | Only compare with equal target/KV/context settings once the route is testable. |
+| BeeLlama | Qwen3.6 27B DFlash/TurboQuant | Exploratory seed rows | Single-card Q3_K_XL 8K DFlash works; dual-card Q4_K_M DFlash failed with drafter KV-position errors. |
 | vLLM | Qwen3.6 27B NVFP4/MTP | Comparison target | Historical notes exist, but this needs current benchmark JSON before promotion. |
 | vLLM | BNB4/AutoRound routes | Experimental notes | Do not promote CPU-offload health checks as useful recipes. |
 
@@ -111,6 +111,7 @@ If you want a structured result file, generate JSON with scripts/run_openai_benc
 - docs/gpu-compatibility.md - Blackwell baseline, mixed-GPU, and other CUDA architecture notes
 - docs/single-5060ti.md - conservative single-card starter configs
 - docs/vllm-qwen36.md - vLLM NVFP4/MTP notes
+- docs/beellama-dflash.md - BeeLlama DFlash first-pass results and failure notes
 - docs/llamacpp-qwen36.md - llama.cpp Qwen3.6 27B MTP GGUF route
 - docs/llamacpp-qwen35-9b-mtp.md - Qwen3.5 9B native max-context route
 - docs/qwen36-35b-a3b.md - Qwen3.6 35B A3B checks
