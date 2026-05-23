@@ -4,6 +4,18 @@ Practical local LLM recipes, benchmark receipts, and setup notes for RTX 5060 Ti
 
 The project focus is simple: make RTX 5060 Ti local inference more reproducible across one card, two cards, and larger community setups. Some llama.cpp/GGUF notes are useful on other NVIDIA cards too, but non-5060 Ti and mixed-GPU results should be reported as separate hardware lanes. Every useful result should come with the launch shape, hardware context, model details, benchmark method, and caveats needed for someone else to reproduce or improve it.
 
+## Star History
+
+<p align="center">
+  <a href="https://www.star-history.com/?repos=5p00kyy%2Fclub-5060ti&type=date&legend=top-left">
+    <picture>
+      <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/chart?repos=5p00kyy/club-5060ti&type=date&theme=dark&legend=top-left" />
+      <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/chart?repos=5p00kyy/club-5060ti&type=date&legend=top-left" />
+      <img alt="Star History Chart" src="https://api.star-history.com/chart?repos=5p00kyy/club-5060ti&type=date&legend=top-left" />
+    </picture>
+  </a>
+</p>
+
 ## Start Here
 
 | Path | Use this when | Entry point |
