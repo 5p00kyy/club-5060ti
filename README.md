@@ -43,7 +43,7 @@ See docs/hardware.md for the full baseline and hardware notes.
 | upstream llama.cpp | Qwen3.6 27B GGUF | Seed recipe | Dual-card MTP uses Q4_K_XL/q8 KV; single-card high-context uses Q3_K_XL/q8 KV. |
 | upstream llama.cpp | Qwen3.5 9B MTP GGUF | Seed recipe | Small long-context route; useful sanity lane for 1x and 2x cards. |
 | upstream llama.cpp | Qwen3.6 35B A3B GGUF | Seed recipe | Strong MoE/active-parameter comparison route. |
-| ik_llama.cpp | Qwen3.6 27B IQ4/IQ5 | Comparison target | Needs controlled CUDA testing before any headline comparison. |
+| ik_llama.cpp | Qwen3.6 27B IQ4/IQ5 | Exploratory fit check | Single-card 105k q4-KV shape fits; clean benchmark rows need chat-template/no-thinking cleanup. |
 | BeeLlama | Qwen3.6 27B / 35B-A3B DFlash | Exploratory seed rows | Single-card 27B Q3_K_XL 8K DFlash works; branch-fixed dual-card 27B is correct but speed is mixed; single-card 35B-A3B DFlash improves code-shaped output. |
 | vLLM | Qwen3.6 27B NVFP4/MTP | Comparison target | Historical notes exist, but this needs current benchmark JSON before promotion. |
 | vLLM | BNB4/AutoRound routes | Experimental notes | Do not promote CPU-offload health checks as useful recipes. |
@@ -112,6 +112,7 @@ If you want a structured result file, generate JSON with scripts/run_openai_benc
 - docs/single-5060ti.md - conservative single-card starter configs
 - docs/vllm-qwen36.md - vLLM NVFP4/MTP notes
 - docs/beellama-dflash.md - BeeLlama DFlash first-pass results and failure notes
+- docs/ik-llama-cpp.md - ik_llama.cpp first-pass fit and protocol notes
 - docs/llamacpp-qwen36.md - llama.cpp Qwen3.6 27B MTP GGUF route
 - docs/llamacpp-qwen35-9b-mtp.md - Qwen3.5 9B native max-context route
 - docs/qwen36-35b-a3b.md - Qwen3.6 35B A3B checks
