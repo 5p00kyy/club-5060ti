@@ -19,6 +19,20 @@ Small-context text smoke test:
 
 See examples/llamacpp-qwen36-35b-a3b.ini for the sanitized preset.
 
+## BeeLlama DFlash
+
+BeeLlama DFlash has an exploratory single-card 35B-A3B result using the
+`UD-IQ3_XXS` target with q8 KV and a matching 35B-A3B DFlash drafter.
+
+The useful row is workload-specific: at 204800 configured context, DFlash
+`n16/x512` improved code-generate from 89.20 tok/s to 138.26 tok/s on one
+RTX 5060 Ti, while short-chat and agent-tool improved only modestly. A
+27061-token long-retrieval prompt fit at a lower context but was slower with
+DFlash than no-spec because acceptance was low.
+
+See docs/beellama-dflash.md and
+data/results/seed-beellama-qwen36-35b-a3b-dflash-20260523.json.
+
 ## vLLM NVFP4/MTP
 
 The vLLM path uses RedHatAI/Qwen3.6-35B-A3B-NVFP4 with tensor parallel across both cards, fp8 KV cache, FlashInfer MoE, and MTP speculative decoding.

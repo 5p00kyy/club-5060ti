@@ -77,14 +77,68 @@ Interpretation:
   as "dual-GPU DFlash can be made correct on this branch, but CPU-ring fallback does
   not yet deliver a broad speedup."
 
+## Qwen3.6 35B-A3B DFlash Pass
+
+The same branch was also tested with Qwen3.6 35B-A3B on one RTX 5060 Ti.
+This uses a matching 35B-A3B DFlash drafter; the 27B DFlash drafter is not
+shape-compatible with the 35B-A3B target.
+
+Test shape:
+
+- Target: Qwen3.6 35B-A3B `UD-IQ3_XXS`.
+- Drafter: Qwen3.6 35B-A3B DFlash `Q4_K_M`.
+- Hardware: 1x RTX 5060 Ti 16GB.
+- Context: 204800 for the short/code/tool rows.
+- KV: `q8_0/q8_0`.
+- Batch: `-b 2048 -ub 512`.
+- DFlash: `--spec-draft-n-max 16 --spec-dflash-cross-ctx 512`,
+  adaptive depth enabled.
+
+| Config | Context | short-chat | code-generate | agent-tool | Notes |
+| --- | ---: | ---: | ---: | ---: | --- |
+| no-spec `UD-IQ3_XXS` | 204800 | 89.36 tok/s | 89.20 tok/s | 88.73 tok/s | Baseline |
+| DFlash `n16/x512` | 204800 | 96.07 tok/s | 138.26 tok/s | 98.24 tok/s | Acceptance about 0.239 / 0.401 / 0.321 |
+
+This is the first BeeLlama result here that looks genuinely interesting for a
+single 5060 Ti: code-shaped output improved by about 55% over the no-spec
+baseline while keeping q8 KV and a high configured context. Short-chat and
+agent-tool improved more modestly.
+
+Other 35B-A3B DFlash checks were less useful:
+
+- Fixed `n16/x512` with adaptive depth disabled reached 152.47 tok/s on
+  code-generate, but fell behind on short-chat and agent-tool.
+- `n8/x512` adaptive was not better balanced than `n16/x512`.
+- `x1024` GPU-ring cross context OOMed during decode on a 16GB card.
+- A 204800-context long-retrieval prompt with 27061 prompt tokens OOMed during
+  decode after prefill.
+
+A lower-context long-retrieval check avoids the OOM, but it does not favor
+DFlash:
+
+| Config | CLI context | usable slot | Prompt tokens | Decode tok/s | Result |
+| --- | ---: | ---: | ---: | ---: | --- |
+| no-spec `UD-IQ3_XXS` | 65536 | 65536 | 27061 | 58.99 | Returned the needle |
+| DFlash `n16/x512` | 65536 | 32768 | 27061 | 38.24 | Returned the needle, acceptance about 0.090 |
+
+The DFlash long row used a 32768-token slot because this DFlash/recurrent setup
+split the configured context across a backup cell. Treat these long rows as
+short-answer fit/retrieval checks, not sustained decode benchmarks.
+
+The benchmark rows are in
+`data/results/seed-beellama-qwen36-35b-a3b-dflash-20260523.json`.
+
 ## Current Interpretation
 
 BeeLlama DFlash is worth tracking for 5060 Ti users, but the tested useful shape is not yet the headline dual-5060 Ti lane. On this hardware:
 
 - DFlash can materially improve a single-card 27B Q3_K_XL 8K route.
+- A matching 35B-A3B DFlash drafter can materially improve the single-card
+  35B-A3B `UD-IQ3_XXS` code-generation prompt at q8 KV.
 - The public Reddit-style Q4/Q5 27B DFlash recipe does not directly transfer to split dual-16GB dense 27B serving as a speed result.
 - The single-card 16GB fit margin is tight once the DFlash drafter is added.
-- Code-shaped output benefits more than agent-tool output in the measured rows.
+- Code-shaped output benefits more than agent-tool or long-retrieval output in
+  the measured rows.
 
 Next useful sweeps:
 

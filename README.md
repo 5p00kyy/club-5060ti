@@ -44,7 +44,7 @@ See docs/hardware.md for the full baseline and hardware notes.
 | upstream llama.cpp | Qwen3.5 9B MTP GGUF | Seed recipe | Small long-context route; useful sanity lane for 1x and 2x cards. |
 | upstream llama.cpp | Qwen3.6 35B A3B GGUF | Seed recipe | Strong MoE/active-parameter comparison route. |
 | ik_llama.cpp | Qwen3.6 27B IQ4/IQ5 | Comparison target | Needs controlled CUDA testing before any headline comparison. |
-| BeeLlama | Qwen3.6 27B DFlash/TurboQuant | Exploratory seed rows | Single-card Q3_K_XL 8K DFlash works; dual-card Q4_K_M DFlash failed with drafter KV-position errors. |
+| BeeLlama | Qwen3.6 27B / 35B-A3B DFlash | Exploratory seed rows | Single-card 27B Q3_K_XL 8K DFlash works; branch-fixed dual-card 27B is correct but speed is mixed; single-card 35B-A3B DFlash improves code-shaped output. |
 | vLLM | Qwen3.6 27B NVFP4/MTP | Comparison target | Historical notes exist, but this needs current benchmark JSON before promotion. |
 | vLLM | BNB4/AutoRound routes | Experimental notes | Do not promote CPU-offload health checks as useful recipes. |
 
