@@ -10,38 +10,45 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 
-PROMPTS = {
-    "short-chat": {
-        "max_tokens": 256,
-        "text": "Write a practical checklist for validating a local OpenAI-compatible LLM server. Keep it concise.",
-    },
-    "code-generate": {
-        "max_tokens": 768,
-        "text": (
-            "Write a Python module that validates benchmark result dictionaries for required keys, "
-            "normalizes model names into URL-safe slugs, and prints a compact summary table. "
-            "Include type hints and a small __main__ example."
-        ),
-    },
-    "agent-tool": {
-        "max_tokens": 512,
-        "text": (
-            "You are reviewing a local LLM benchmark report for publication. "
-            "Tool output: GPU0 RTX 5060 Ti 16GB x8, GPU1 RTX 5060 Ti 16GB x8, driver 595.58.03, "
-            "runtime llama.cpp, model Qwen3.6 27B, q8 KV, draft-MTP enabled. "
-            "List the missing details that must be captured before this result can be compared publicly."
-        ),
-    },
-    "long-retrieval": {
-        "max_tokens": 96,
-        "text": (
-            "You are checking retrieval from a long synthetic context. "
-            "Remember this key exactly: CLUB-5060TI-NEEDLE-194.\n\n"
-            + ("Filler block: local inference benchmark notes need hardware, runtime, model, quant, context, KV cache, generated tokens, and caveats.\n" * 900)
-            + "\nQuestion: what exact key were you told to remember? Reply with only the key."
-        ),
-    },
-}
+PROMPT_SET_CHOICES = ("short-chat", "code-generate", "agent-tool", "long-retrieval", "custom")
+
+
+def build_prompts(long_retrieval_filler_lines=900, long_retrieval_max_tokens=96):
+    return {
+        "short-chat": {
+            "max_tokens": 256,
+            "text": "Write a practical checklist for validating a local OpenAI-compatible LLM server. Keep it concise.",
+        },
+        "code-generate": {
+            "max_tokens": 768,
+            "text": (
+                "Write a Python module that validates benchmark result dictionaries for required keys, "
+                "normalizes model names into URL-safe slugs, and prints a compact summary table. "
+                "Include type hints and a small __main__ example."
+            ),
+        },
+        "agent-tool": {
+            "max_tokens": 512,
+            "text": (
+                "You are reviewing a local LLM benchmark report for publication. "
+                "Tool output: GPU0 RTX 5060 Ti 16GB x8, GPU1 RTX 5060 Ti 16GB x8, driver 595.58.03, "
+                "runtime llama.cpp, model Qwen3.6 27B, q8 KV, draft-MTP enabled. "
+                "List the missing details that must be captured before this result can be compared publicly."
+            ),
+        },
+        "long-retrieval": {
+            "max_tokens": long_retrieval_max_tokens,
+            "text": (
+                "You are checking retrieval from a long synthetic context. "
+                "Remember this key exactly: CLUB-5060TI-NEEDLE-194.\n\n"
+                + (
+                    "Filler block: local inference benchmark notes need hardware, runtime, model, quant, context, KV cache, generated tokens, and caveats.\n"
+                    * long_retrieval_filler_lines
+                )
+                + "\nQuestion: what exact key were you told to remember? Reply with only the key."
+            ),
+        },
+    }
 
 SOURCE_TYPES = {"seed", "community", "imported", "external"}
 HARDWARE_LANES = {"1x5060ti", "2x5060ti", "multi-5060ti", "mixed-5060ti-cuda", "other-cuda", "unknown"}
@@ -254,10 +261,21 @@ def build_result(args, model_id, status, prompt_set, run_index, response, elapse
     completion_tokens = usage.get("completion_tokens")
     predicted_per_second = timings.get("predicted_per_second")
     prompt_per_second = timings.get("prompt_per_second")
+    draft_n_generated = positive_int_or_none(timings.get("draft_n"))
+    draft_n_accepted = positive_int_or_none(timings.get("draft_n_accepted"))
+    acceptance_rate = None
+    if draft_n_generated and draft_n_accepted is not None and draft_n_generated > 0:
+        acceptance_rate = round(draft_n_accepted / draft_n_generated, 5)
     context_tokens = positive_int_or_none(arg_after(status_args, "--ctx-size", "-c") or args.context_tokens)
     batch_size = positive_int_or_none(arg_after(status_args, "--batch-size", "-b") or args.batch_size)
     ubatch_size = positive_int_or_none(arg_after(status_args, "--ubatch-size", "-ub") or args.ubatch_size)
     draft_n = positive_int_or_none(arg_after(status_args, "--spec-draft-n-max") or args.draft_n)
+    spec_p_min = arg_after(status_args, "--spec-draft-p-min") or args.spec_draft_p_min
+    split_mode = arg_after(status_args, "--split-mode", "-sm") or args.split_mode
+
+    speculation_notes = args.speculation_notes
+    if spec_p_min:
+        speculation_notes = f"{speculation_notes} p-min={spec_p_min}".strip()
 
     quant = args.quant or infer_quant(status)
     result_id = "-".join(
@@ -295,6 +313,7 @@ def build_result(args, model_id, status, prompt_set, run_index, response, elapse
             "engine": args.engine,
             "version": args.runtime_version,
             "commit": args.runtime_commit,
+            "build": args.runtime_build,
             "notes": args.runtime_notes,
         },
         "model": {
@@ -313,11 +332,13 @@ def build_result(args, model_id, status, prompt_set, run_index, response, elapse
             "ubatch_size": ubatch_size,
             "kv_cache_k": arg_after(status_args, "--cache-type-k") or args.kv_cache_k,
             "kv_cache_v": arg_after(status_args, "--cache-type-v") or args.kv_cache_v,
+            "split_mode": split_mode,
             "tensor_parallel": arg_after(status_args, "--tensor-split", "-ts") or args.tensor_parallel,
             "speculation": {
                 "type": arg_after(status_args, "--spec-type") or args.speculation_type,
                 "draft_n": draft_n,
-                "notes": args.speculation_notes,
+                "acceptance_rate": acceptance_rate,
+                "notes": speculation_notes,
             },
             "thinking": args.thinking,
             "reasoning_budget": args.reasoning_budget or status_reasoning_budget(status),
@@ -373,7 +394,35 @@ def main():
     parser.add_argument("--base-url", default="http://127.0.0.1:8080/v1")
     parser.add_argument("--api-key", default=os.environ.get("LLAMA_API_KEY", ""))
     parser.add_argument("--model", action="append", required=True)
-    parser.add_argument("--prompt-set", action="append", choices=sorted(PROMPTS), default=None)
+    parser.add_argument("--prompt-set", action="append", choices=sorted(PROMPT_SET_CHOICES), default=None)
+    parser.add_argument(
+        "--long-retrieval-filler-lines",
+        type=int,
+        default=900,
+        help="Number of filler lines used in the long-retrieval prompt body (default: 900).",
+    )
+    parser.add_argument(
+        "--long-retrieval-max-tokens",
+        type=int,
+        default=96,
+        help="Output token cap for the long-retrieval prompt set (default: 96).",
+    )
+    parser.add_argument(
+        "--custom-prompt-text",
+        default="",
+        help="Literal prompt text for prompt-set=custom.",
+    )
+    parser.add_argument(
+        "--custom-prompt-file",
+        default="",
+        help="Path to UTF-8 prompt text file for prompt-set=custom.",
+    )
+    parser.add_argument(
+        "--custom-max-tokens",
+        type=int,
+        default=512,
+        help="Output token cap for prompt-set=custom (default: 512).",
+    )
     parser.add_argument("--runs", type=int, default=1)
     parser.add_argument("--warmups", type=int, default=1)
     parser.add_argument("--timeout", type=int, default=900)
@@ -397,6 +446,7 @@ def main():
     parser.add_argument("--engine", default="llama.cpp", choices=["llama.cpp", "ik_llama.cpp", "BeeLlama", "vLLM", "SGLang", "other"])
     parser.add_argument("--runtime-version", default="")
     parser.add_argument("--runtime-commit", default="")
+    parser.add_argument("--runtime-build", default="")
     parser.add_argument("--runtime-notes", default="")
     parser.add_argument("--family", default="")
     parser.add_argument("--architecture", default="unknown", choices=["dense", "moe", "hybrid", "unknown"])
@@ -409,9 +459,11 @@ def main():
     parser.add_argument("--ubatch-size", type=int, default=0)
     parser.add_argument("--kv-cache-k", default="unknown")
     parser.add_argument("--kv-cache-v", default="unknown")
+    parser.add_argument("--split-mode", default="", choices=["", "none", "layer", "row", "tensor"])
     parser.add_argument("--tensor-parallel", default="")
     parser.add_argument("--speculation-type", default="none")
     parser.add_argument("--draft-n", type=int, default=0)
+    parser.add_argument("--spec-draft-p-min", default="")
     parser.add_argument("--speculation-notes", default="")
     parser.add_argument("--thinking", default="unknown", choices=["on", "off", "unknown"])
     parser.add_argument("--reasoning-budget", type=int, default=0, help="Add this token budget to prompt-set output caps when thinking is on")
@@ -432,13 +484,34 @@ def main():
             setattr(args, name, sanitize_public_text(getattr(args, name)))
         args.caveat = [sanitize_public_text(item) for item in args.caveat]
 
+    if args.long_retrieval_filler_lines < 1:
+        raise SystemExit("--long-retrieval-filler-lines must be >= 1")
+    if args.long_retrieval_max_tokens < 1:
+        raise SystemExit("--long-retrieval-max-tokens must be >= 1")
+    if args.custom_max_tokens < 1:
+        raise SystemExit("--custom-max-tokens must be >= 1")
+
+    prompts = build_prompts(
+        long_retrieval_filler_lines=args.long_retrieval_filler_lines,
+        long_retrieval_max_tokens=args.long_retrieval_max_tokens,
+    )
+    custom_prompt_text = args.custom_prompt_text
+    if args.custom_prompt_file:
+        custom_prompt_text = Path(args.custom_prompt_file).read_text(encoding="utf-8")
+    if custom_prompt_text:
+        prompts["custom"] = {
+            "max_tokens": args.custom_max_tokens,
+            "text": custom_prompt_text,
+        }
     prompt_sets = args.prompt_set or ["short-chat", "code-generate", "agent-tool"]
+    if "custom" in prompt_sets and "custom" not in prompts:
+        raise SystemExit("prompt-set=custom requires --custom-prompt-text or --custom-prompt-file")
     results = []
 
     for model_id in args.model:
         status = maybe_model_status(args.base_url, model_id, args.api_key)
         for prompt_set in prompt_sets:
-            prompt_config = PROMPTS[prompt_set]
+            prompt_config = prompts[prompt_set]
             for _ in range(args.warmups):
                 run_prompt(args.base_url, model_id, prompt_set, prompt_config, args, status)
             for run_index in range(args.runs):

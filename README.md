@@ -53,7 +53,7 @@ See docs/hardware.md for the full baseline and hardware notes.
 
 | Lane | Model | Evidence | Notes |
 | --- | --- | --- | --- |
-| upstream llama.cpp | Qwen3.6 27B GGUF | Seed recipe | Dual-card MTP uses Q4_K_XL/q8 KV; single-card high-context uses Q3_K_XL/q8 KV. |
+| upstream llama.cpp | Qwen3.6 27B GGUF | Seed recipe | Recommended dual-card practical long-context path uses Q6_K_XL with f16 KV, split-mode tensor, and tensor split 50,50. Treat it as a 96K-class route; the sustained seed row is 87293 prompt tokens / 742 generated tokens. |
 | upstream llama.cpp | Qwen3.5 9B MTP GGUF | Seed recipe | Small long-context route; useful sanity lane for 1x and 2x cards. |
 | upstream llama.cpp | Qwen3.6 35B A3B GGUF | Seed recipe | Strong MoE/active-parameter comparison route. |
 | ik_llama.cpp | Qwen3.6 27B IQ4/IQ5 | Exploratory fit check | Single-card 105k q4-KV shape fits; clean benchmark rows need chat-template/no-thinking cleanup. |
@@ -94,6 +94,8 @@ python3 scripts/run_openai_bench.py \
 The old llm-bench summary rows have been imported into data/results/llm-bench-legacy-import.json as archived historical data. Rerun them under the benchmark protocol before using them for comparisons.
 
 The hosted explorer defaults to one card per model/setup, with prompt-specific benchmark rows inside each card. Generation tok/s is output-token speed; prompt eval tok/s is prompt/prefill processing speed. MTP/speculation and thinking mode are shown on each card and can be filtered directly. Enable "raw runs" in the explorer to inspect repeated measurements.
+
+For the Qwen3.6 27B f16 tensor `50,50` dual-card lane, use the long-context generation row as the sustained decode reference: `87293/742` (`custom`, `21.73 tok/s` decode, `420.14 tok/s` prompt eval). This is the practical 96K-class claim for the seed box. The older `90061/17` long-retrieval row remains a short-answer stability check only, and the `p1k/n512` row (`52.43 tok/s`) is a short-prompt normal-generation comparison point. A >150K prompt-token diagnostic could prefill, but decode collapsed below 1 tok/s and is not promoted as a useful result.
 
 Results are expected to grow over time. New community reports can be added as archived notes, recipe evidence, benchmark rows, or verified reproductions depending on how complete and comparable they are.
 

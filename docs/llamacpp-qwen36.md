@@ -20,16 +20,17 @@ Unsloth's 2026-05-15 update says newer Qwen3.6 MTP GGUF runs can benefit from `-
 
 Merged upstream llama.cpp `9190 (b64739ea3)` accepts `--spec-type draft-mtp`, `--spec-draft-p-min 0.75`, and `--spec-draft-n-max`. Older PR-tip seed results used `--spec-type mtp` on `9032-5d5f1b46e`. Do not mix those flag spellings without recording the build version.
 
-## Working Long-Context Preset
+## Working 96K-Class Preset
 
 ~~~ini
 [Qwen3.6-27B]
 model = /path/to/Qwen3.6-27B-UD-Q6_K_XL.gguf
-ctx-size = 204800
-cache-type-k = q8_0
-cache-type-v = q8_0
+ctx-size = 98304
+cache-type-k = f16
+cache-type-v = f16
 n-gpu-layers = 99
-tensor-split = 1,1
+split-mode = tensor
+tensor-split = 50,50
 temp = 0.7
 top-k = 20
 top-p = 0.95
@@ -39,16 +40,18 @@ batch-size = 2048
 ubatch-size = 512
 spec-type = draft-mtp
 spec-draft-p-min = 0.75
-spec-draft-n-max = 2
+spec-draft-n-max = 3
 jinja = on
 parallel = 1
 ~~~
 
 See examples/llamacpp-qwen36-preset.ini.
 
-This is the public long-context preset shape. The direct tested setup uses Q6, q8 KV, tensor split 1,1, MTP draft 2, and 204800 context on 2x RTX 5060 Ti 16GB.
+This is the recommended public long-context preset shape for the seed dual-card lane. Treat it as a 96K-class practical route: keep the actual prompt around 90-96K tokens, and leave part of that configured window for generated output. The benchmark row below was captured with the same Q6, f16 KV, split-mode tensor, tensor split 50,50, and MTP draft 3 route on 2x RTX 5060 Ti 16GB with upstream llama.cpp `9190 (b64739ea3)`.
 
-For a lower-context serving preset with extra headroom, the example router shape uses 65536 context, mmap disabled, q8 KV, MTP draft 3, p-min 0.75, and tensor split 51,49. See examples/llamacpp-qwen36-router.ini.
+For a lower-context serving preset with extra headroom, the example router shape keeps the same f16 KV + split-mode tensor + 50,50 split and uses 65536 context. See examples/llamacpp-qwen36-router.ini.
+
+On this exact hardware/build lane (2x RTX 5060 Ti 16GB, upstream `9190/b64739ea3`), split `50,50` is the tested tensor route. Split `51,49` currently asserts in tensor mode and should not be treated as equivalent.
 
 ## Observed Q4 vs Q6 Benchmark
 
@@ -83,11 +86,54 @@ After PR 22673 merged, upstream llama.cpp `9190 (b64739ea3)` was checked with Qw
 
 For this Q6 test, draft 3 beat draft 2 and draft 6. The larger draft-6 window generated more draft tokens, but acceptance fell enough to lose throughput.
 
-## Observed Router Result
+## Historical Router Result
 
-A 65536-context router-style shape with q8 KV, tensor split 1,1, and upstream `draft-mtp` produced 32.04 tok/s with draft 2 and 37.48 tok/s with draft 3 over 64 generated tokens. The example router preset uses draft 3 and tensor split 51,49 to leave slightly more headroom on the first GPU.
+Earlier 65536-context router checks on q8 KV + layer-split shapes measured 32.04 tok/s with draft 2 and 37.48 tok/s with draft 3 over 64 generated tokens. Keep those as historical comparison points; the current recommended route for this doc is f16 KV with split-mode tensor and split `50,50`.
 
-## Observed Q6 Context Fit
+## Observed Long-Context Generation Result (f16 Tensor 50,50)
+
+Seed benchmark row on upstream llama.cpp `9190 (b64739ea3)`, Qwen3.6 27B Q6_K_XL, `ctx=184320`, f16 KV, split-mode tensor, split `50,50`, draft-mtp n=3 p-min=0.75:
+
+- Prompt set: `custom` (`long-context-generate`)
+- Actual prompt tokens: `87293`
+- Generated tokens: `742`
+- Prompt eval: `420.14 tok/s`
+- Decode: `21.73 tok/s`
+- Draft acceptance: `0.43582`
+
+This row is the sustained long-context generation reference for this lane because it combines >80k prompt tokens with a multi-hundred-token completion. Use it as the practical 96K-class claim for this hardware, not as evidence that the full configured context remains fast.
+
+## Observed Long-Retrieval Result (f16 Tensor 50,50)
+
+Seed benchmark row on upstream llama.cpp `9190 (b64739ea3)`, Qwen3.6 27B Q6_K_XL, `ctx=184320`, f16 KV, split-mode tensor, split `50,50`, draft-mtp n=3 p-min=0.75:
+
+- Prompt set: `long-retrieval` (scaled synthetic filler)
+- Actual prompt tokens: `90061`
+- Generated tokens: `17`
+- Prompt eval: `514.65 tok/s`
+- Decode: `15.29 tok/s`
+- Draft acceptance: `1.0` (`17/17` in this short-answer run)
+
+This row is a long-context stability/fit check with >80k prompt tokens. Because the retrieval answer is intentionally short, treat decode speed as a short-answer data point only, not a sustained decode ceiling.
+
+## 150K+ Diagnostic
+
+Follow-up diagnostics with prompts around 151K actual prompt tokens could prefill on this f16 tensor route, but sustained decode fell to roughly 0.36-0.43 tok/s. That shape is useful as a fit/failure boundary, not as a public performance result. Do not promote 150K+ prompt-token runs for this lane unless a future runtime or serving shape fixes the decode collapse.
+
+## Observed Normal-Generation Result (same lane)
+
+Seed benchmark fact for the same hardware/runtime/model route, imported from a same-host parent-session run:
+
+- Prompt shape: `p1k/n512` (`custom` prompt set)
+- Actual prompt tokens: `1621`
+- Generated tokens: `512`
+- Prompt eval: `183.84 tok/s`
+- Decode: `52.43 tok/s`
+- Draft acceptance: `0.75159` (draft-mtp n=3, p-min=0.75)
+
+This row is included to represent normal generation throughput and should be compared separately from the short-answer long-retrieval stability row.
+
+## Historical Q6 q8 Context Fit
 
 The Q6 q8/q8 llama.cpp MTP setup loaded and completed chat checks at:
 
@@ -100,7 +146,7 @@ The Q6 q8/q8 llama.cpp MTP setup loaded and completed chat checks at:
 | 180,000 | chat OK |
 | 200,000 | chat OK |
 
-The long-context preset uses 204800 context. Merged upstream llama.cpp `9190 (b64739ea3)` recovered a needle from an 87031-token prompt at both 200000 and 204800 context with q8 KV and `draft-mtp` n=3. The 200000 setting is slightly safer because it gives back about 4800 context slots, though this build rounded it to internal `n_ctx_seq = 200192`. Both are tight: the long runs reached about 15847 MiB on GPU0 and 15825 MiB on GPU1 during the request. Treat 200000/204800 as long-context recipes, not universal defaults for every router/build flag combination.
+Before the f16 tensor migration, merged upstream llama.cpp `9190 (b64739ea3)` recovered a needle from an 87031-token prompt at both 200000 and 204800 context with q8 KV and `draft-mtp` n=3. Those runs reached about 15847 MiB on GPU0 and 15825 MiB on GPU1 during the request. Keep them as historical evidence; current recommendation in this guide is the f16 tensor `50,50` route as a 96K-class practical long-context lane.
 
 ## Caveats
 

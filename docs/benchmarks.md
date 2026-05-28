@@ -67,12 +67,14 @@ Best decode results by lane, model, and prompt:
 | 2x5060ti | Qwen3.6-27B | UD-Q4_K_XL | code-generate | off |  | draft-mtp n=3 | 37.66 | 768 |
 | 2x5060ti | Qwen3.6-27B | UD-Q4_K_XL | agent-tool | off |  | draft-mtp n=3 | 28.95 | 512 |
 | 2x5060ti | Qwen3.6-27B | UD-Q4_K_XL | long-retrieval | off |  | draft-mtp n=3 | 38.37 | 17 |
+| 2x5060ti | Qwen3.6-27B | UD-Q6_K_XL | custom (long-context-generate) | off |  | draft-mtp n=3 | 21.73 | 742 |
 | 2x5060ti | Qwen3.6-35B-A3B | UD-IQ4_XS | short-chat | on | 384 | no MTP | 90.10 | 640 |
 | 2x5060ti | Qwen3.6-35B-A3B | UD-IQ4_XS | code-generate | on | 384 | no MTP | 89.79 | 1152 |
 | 2x5060ti | Qwen3.6-35B-A3B | UD-IQ4_XS | agent-tool | on | 384 | no MTP | 89.64 | 896 |
 | 2x5060ti | Qwen3.6-35B-A3B | UD-IQ4_XS | long-retrieval | on | 384 | no MTP | 70.33 | 172 |
 
 Long-retrieval rows use a synthetic filler prompt and short-answer retrieval target. Treat them as long-prompt fit/retrieval checks, not sustained decode benchmarks.
+For sustained long-context decode in the 2x5060ti Qwen3.6-27B lane, use the `custom (long-context-generate)` row with `87293` prompt tokens and `742` generated tokens as the practical 96K-class reference. Follow-up 150K+ prompt-token diagnostics could prefill, but decode fell below 1 tok/s, so those runs are not promoted as useful benchmark results.
 
 ## Single-GPU Presets
 
