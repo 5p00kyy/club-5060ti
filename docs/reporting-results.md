@@ -23,6 +23,12 @@ Validate before submitting:
 python3 scripts/validate_results.py data/results/community-my-run.json
 ~~~
 
+If you cannot produce structured JSON right away, open a raw result issue and fill what you can.
+Use the copy/paste issue-ready format in [docs/community-result-template.md](community-result-template.md), and the maintainer can normalize missing fields.
+
+For full JSON submissions, keep using
+`.github/ISSUE_TEMPLATE/result-report.md` as the preferred issue format.
+
 If you want a hardware/endpoint report block:
 
 ~~~bash

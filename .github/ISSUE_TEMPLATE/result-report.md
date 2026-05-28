@@ -1,6 +1,6 @@
 ---
 name: Result report
-about: Share a reproducible RTX 5060 Ti local LLM result
+about: Share an RTX 5060 Ti local LLM result
 title: "[result] "
 labels: result
 ---
@@ -8,14 +8,20 @@ labels: result
 ## Privacy Checklist
 
 - [ ] I removed private IPs, hostnames, tokens, and personal paths.
-- [ ] I validated my JSON with python3 scripts/validate_results.py PATH_TO_RESULT_JSON.
-- [ ] I attached or linked the result JSON file.
+- [ ] I validated JSON with `python3 scripts/validate_results.py PATH_TO_RESULT_JSON` when available.
+- [ ] I attached or linked the result JSON when available.
+- [ ] This may be a raw report; maintainers can normalize missing fields.
+
+## Raw or Structured Submission
+
+- [ ] Raw issue report (maintainers can normalize)
+- [ ] Structured JSON report attached/linked
 
 ## Hardware
 
-- Hardware lane:
-- GPU(s):
-- GPU architecture(s), if mixed:
+- Hardware lane: 
+- GPU count:
+- GPU model:
 - VRAM per GPU:
 - Driver:
 - CPU:
@@ -27,33 +33,47 @@ labels: result
 
 ## Runtime
 
-- Runtime:
-- Version/commit:
+- Runtime/engine:
+- Runtime version/commit:
+- Build flags (if known):
 - Model:
 - Quant:
+- Source:
+- Route (server/cli/container):
 - Launch command/config:
 
 ## Settings
 
-- Context length:
-- KV cache:
-- Tensor parallel / tensor split:
+- Context configured:
+- Actual prompt tokens (if known):
+- KV cache dtype (K/V):
+- Tensor parallel:
+- Tensor split / split mode:
+- Launch split settings (`tensor_split`, `split_mode`, etc.):
 - MTP/speculative settings:
 - Thinking/reasoning enabled:
+- Batch size / ubatch size:
 
 ## Result
 
 - Prompt tokens:
 - Generated tokens:
+- Was speed measured as:
+  - [ ] prompt eval / prefill tok/s
+  - [ ] decode tok/s
+  - [ ] end-to-end tok/s
+- Prompt eval tok/s:
 - Decode tok/s:
-- End-to-end tok/s if measured:
+- End-to-end tok/s:
+- Prompt sets:
+- Runs / warmups:
+- TTFT/latency (if available):
 - Notes/warnings:
+- Verified (`yes/no`):
 
 ## Optional Report Output
 
 You can generate a starter report with:
-
-Paste reviewed output from:
 
 ~~~bash
 python3 scripts/run_openai_bench.py \

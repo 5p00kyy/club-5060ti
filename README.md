@@ -26,6 +26,7 @@ The project focus is simple: make RTX 5060 Ti local inference more reproducible 
 | Other CUDA GPUs | You want to adapt the recipes to non-5060 Ti or mixed-architecture NVIDIA setups. | docs/gpu-compatibility.md |
 | Results explorer | You want to compare benchmark receipts and imported legacy data. | https://5p00kyy.github.io/club-5060ti/ |
 | Benchmark protocol | You want to submit or compare a result without mixing methods. | docs/benchmark-protocol.md |
+| Submit a result | You want a quick structured contribution path. | docs/community-result-template.md |
 
 ## Current Direction
 
@@ -108,7 +109,12 @@ The most useful new submissions are:
 
 ## Submit A Result
 
-The preferred path is a GitHub issue using the result report template. Include the hardware lane, exact GPU count, PCIe topology, runtime, model, quant, context, KV cache, generated-token count, prompt eval tok/s, generation tok/s, and caveats.
+The preferred path is a GitHub issue using the result report template.
+
+- Fast path: open an issue and paste the [copy-paste community result template](docs/community-result-template.md).
+- Raw issue reports are also acceptable; include what you can, and maintainers can normalize missing fields.
+
+At minimum include the hardware lane, exact GPU count, PCIe topology, runtime, model, quant, context, KV cache, generated-token count, prompt eval tok/s, decode tok/s, and caveats.
 
 If you want a structured result file, generate JSON with scripts/run_openai_bench.py, validate it with scripts/validate_results.py, and attach or submit the JSON. See docs/reporting-results.md.
 
