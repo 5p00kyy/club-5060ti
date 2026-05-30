@@ -108,7 +108,7 @@ Example partial-offload presets:
 Pin the server to one GPU so the result is clearly single-card:
 
 ~~~bash
-CUDA_VISIBLE_DEVICES=0 llama-server \
+CUDA_VISIBLE_DEVICES=0 llama serve \
   --model /path/to/Qwen3.5-9B-UD-Q4_K_XL.gguf \
   --ctx-size 262144 \
   --cache-type-k q8_0 \

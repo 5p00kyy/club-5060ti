@@ -37,7 +37,7 @@ For one RTX 5060 Ti 16GB, use examples/llamacpp-single-5060ti.ini. The single-ca
 ## Direct Server Shape
 
 ~~~bash
-llama-server \
+llama serve \
   --host 127.0.0.1 \
   --port 18080 \
   --model /path/to/Qwen3.5-9B-UD-Q4_K_XL.gguf \

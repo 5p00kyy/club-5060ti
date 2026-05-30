@@ -30,7 +30,7 @@ That example is only illustrative. Set a semicolon-separated CMake CUDA architec
 Then test a conservative GGUF route before raising context or adding speculative decoding:
 
 ~~~bash
-CUDA_VISIBLE_DEVICES=0,1 ./llama-server \
+CUDA_VISIBLE_DEVICES=0,1 ./llama serve \
   --model /path/to/model.gguf \
   --ctx-size 32768 \
   --cache-type-k q8_0 \

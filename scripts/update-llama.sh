@@ -7,14 +7,14 @@ set -euo pipefail
 # Defaults:
 #   LLAMA_CPP_DIR=$HOME/llama.cpp
 #   LLAMA_CPP_REPO=https://github.com/ggml-org/llama.cpp.git
-#   LLAMA_CPP_REF=b64739ea393b3c9d07cc9907e0a611f707838051
+#   LLAMA_CPP_REF=0821c5fcf (build 9425, unified binary)
 #   CUDA_ARCHITECTURES=120a
 #
 # Use --fresh to move the existing source tree aside before cloning again.
 
 LLAMA_CPP_DIR="${LLAMA_CPP_DIR:-$HOME/llama.cpp}"
 LLAMA_CPP_REPO="${LLAMA_CPP_REPO:-https://github.com/ggml-org/llama.cpp.git}"
-LLAMA_CPP_REF="${LLAMA_CPP_REF:-b64739ea393b3c9d07cc9907e0a611f707838051}"
+LLAMA_CPP_REF="${LLAMA_CPP_REF:-0821c5fcf}"
 INSTALL_PREFIX="${INSTALL_PREFIX:-}"
 JOBS="${JOBS:-12}"
 CUDA_ARCHITECTURES="${CUDA_ARCHITECTURES:-120a}"
@@ -36,7 +36,7 @@ Builds the upstream llama.cpp commit used by the repo examples.
 Environment overrides:
   LLAMA_CPP_DIR           source/build directory, default ~/llama.cpp
   LLAMA_CPP_REPO          llama.cpp remote, default ggml-org/llama.cpp
-  LLAMA_CPP_REF           commit/ref to checkout, default tested commit b64739ea3...
+  LLAMA_CPP_REF           commit/ref to checkout, default 0821c5fcf (build 9425)
   CUDA_ARCHITECTURES      default 120a for RTX 5060 Ti / Blackwell
                           use quoted semicolon lists for mixed builds, for example 86;89;120a
   JOBS                    default 12
@@ -110,17 +110,19 @@ cmake -S "$LLAMA_CPP_DIR" -B "$LLAMA_CPP_DIR/build" \
   -DCMAKE_CUDA_ARCHITECTURES="$CUDA_ARCHITECTURES"
 
 cmake --build "$LLAMA_CPP_DIR/build" --config Release --clean-first -j "$JOBS" \
-  --target llama-server \
-  --target llama-bench \
-  --target llama-fit-params
+  --target llama-app
 
 if [[ -n "$INSTALL_PREFIX" ]]; then
   mkdir -p "$INSTALL_PREFIX"
-  ln -sf "$LLAMA_CPP_DIR/build/bin/llama-server" "$INSTALL_PREFIX/llama-server"
-  ln -sf "$LLAMA_CPP_DIR/build/bin/llama-bench" "$INSTALL_PREFIX/llama-bench"
-  ln -sf "$LLAMA_CPP_DIR/build/bin/llama-fit-params" "$INSTALL_PREFIX/llama-fit-params"
+  ln -sf "$LLAMA_CPP_DIR/build/bin/llama" "$INSTALL_PREFIX/llama"
+  # Legacy wrappers for backward compat (unified binary needs subcommand dispatch)
+  echo '#!/bin/bash' > "$INSTALL_PREFIX/llama-server"
+  echo "exec \"$LLAMA_CPP_DIR/build/bin/llama\" serve \"\$@\"" >> "$INSTALL_PREFIX/llama-server"
+  chmod +x "$INSTALL_PREFIX/llama-server"
+  echo '#!/bin/bash' > "$INSTALL_PREFIX/llama-bench"
+  echo "exec \"$LLAMA_CPP_DIR/build/bin/llama\" bench \"\$@\"" >> "$INSTALL_PREFIX/llama-bench"
+  chmod +x "$INSTALL_PREFIX/llama-bench"
 fi
 
-"$LLAMA_CPP_DIR/build/bin/llama-server" --version 2>&1 | head -1
-"$LLAMA_CPP_DIR/build/bin/llama-bench" --version 2>&1 | head -1
-"$LLAMA_CPP_DIR/build/bin/llama-fit-params" --version 2>&1 | head -1
+"$LLAMA_CPP_DIR/build/bin/llama" version 2>&1 | head -1
+"$LLAMA_CPP_DIR/build/bin/llama" serve --help 2>&1 | head -1
