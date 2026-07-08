@@ -114,7 +114,32 @@
       outline-offset: 2px;
     }
 
-    main { padding: 18px 0 30px; }
+    .hero {
+      padding: 24px 0 14px;
+      border-bottom: 1px solid var(--line);
+      margin-bottom: 14px;
+    }
+
+    .hero h1 {
+      font-family: var(--sans);
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--bright);
+      letter-spacing: -0.02em;
+      margin: 0 0 3px;
+    }
+
+    .hero h1 .accent { color: var(--green); }
+
+    .hero p {
+      font-family: var(--sans);
+      font-size: 12px;
+      color: var(--text-2);
+      margin: 0;
+      max-width: 560px;
+    }
+
+    main { padding: 0 0 30px; }
 
     .hw-bar {
       border: 1px solid var(--line);
@@ -500,6 +525,75 @@
       line-height: 1.2;
     }
 
+    .model-kpi--hero .v {
+      font-size: 26px;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+    }
+
+    .model-kpi--hero .unit {
+      font-size: 11px;
+      font-weight: 400;
+      color: var(--text-3);
+    }
+
+    .model-spark {
+      color: var(--green);
+      opacity: 0.7;
+      flex-shrink: 0;
+    }
+
+    .sparkline { display: block; }
+
+    .model-kpis-row {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      flex-shrink: 0;
+    }
+
+    .badge.tier-recommended { color: #9ff0bb; border-color: #1f6b3a; background: #0e2417; font-weight: 600; }
+    .badge.tier-capable { color: #b5d7ff; border-color: #25598f; background: #0d1b2b; }
+    .badge.tier-experimental { color: #ffd690; border-color: #745111; background: #241a08; }
+
+    .tier-bar {
+      display: flex;
+      gap: 0;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      overflow: hidden;
+      margin-bottom: 12px;
+      background: var(--bg2);
+    }
+    .tier-tab {
+      flex: 1;
+      padding: 8px 12px;
+      font-size: 11px;
+      color: var(--text-2);
+      cursor: pointer;
+      text-align: center;
+      border-right: 1px solid var(--line);
+      transition: background .15s, color .15s;
+      user-select: none;
+    }
+    .tier-tab:last-child { border-right: 0; }
+    .tier-tab:hover { color: var(--bright); background: var(--bg3); }
+    .tier-tab.active { color: var(--bright); background: #141b23; font-weight: 600; }
+    .tier-tab .count {
+      display: inline-block;
+      min-width: 18px;
+      padding: 1px 5px;
+      border-radius: 99px;
+      font-size: 10px;
+      margin-left: 4px;
+      background: var(--bg3);
+      color: var(--text-2);
+    }
+    .tier-tab.active .count { background: var(--green-2); color: #000; }
+    .tier-tab.tier-recommended.active { border-bottom: 2px solid var(--green); }
+    .tier-tab.tier-capable.active { border-bottom: 2px solid var(--blue); }
+    .tier-tab.tier-experimental.active { border-bottom: 2px solid var(--amber); }
+
     .prompt-table {
       width: 100%;
       border-collapse: collapse;
@@ -581,6 +675,7 @@
       .summary-grid { grid-template-columns: 1fr; }
       .model-head { grid-template-columns: 1fr; }
       .model-kpis { justify-content: start; text-align: left; }
+      .model-kpis-row { justify-content: flex-start; }
     }
 
     @media (max-width: 720px) {
@@ -710,6 +805,11 @@
   </header>
 
   <main class="wrap">
+    <div class="hero">
+      <h1>What can you run on <span class="accent">RTX 5060 Ti</span>?</h1>
+      <p>Real benchmark evidence for local LLM inference. Measured speeds, VRAM fit, and serving configs across models, quants, and engines.</p>
+    </div>
+
     <div class="hw-bar">
       <div class="hw-label">hardware lane</div>
       <div class="hw-specs">
@@ -779,6 +879,13 @@
       </div>
       <div class="mode-note" id="mode-note">Default view groups rows by model/setup, then shows prompt results inside each model card. Enable raw runs to inspect repeated measurements.</div>
       <div class="metric-note"><div><strong>Generation tok/s</strong> is output-token speed after the prompt is processed.</div><div><strong>Prompt eval tok/s</strong> is input/prompt processing speed before generation starts. MTP/speculation is shown separately because it changes generation behavior.</div></div>
+    </div>
+
+    <div class="tier-bar" id="tier-bar">
+      <div class="tier-tab tier-recommended active" data-tier="all">all <span class="count" id="tier-count-all">0</span></div>
+      <div class="tier-tab tier-recommended" data-tier="recommended">recommended <span class="count" id="tier-count-recommended">0</span></div>
+      <div class="tier-tab tier-capable" data-tier="capable">capable <span class="count" id="tier-count-capable">0</span></div>
+      <div class="tier-tab tier-experimental" data-tier="experimental">experimental <span class="count" id="tier-count-experimental">0</span></div>
     </div>
 
     <section class="sec">
@@ -855,6 +962,7 @@
     let visibleResults = [];
     let sortKey = 'decode';
     let sortDir = -1;
+    let tierFilter = 'all';
 
     const formatNumber = (value, digits) => {
       if (value === undefined || value === null || Number.isNaN(Number(value))) return 'n/a';
@@ -1206,6 +1314,7 @@
         if (family && get(item, 'model.family', '') !== family) return false;
         if (level && itemLevel !== level) return false;
         if (prompt && get(item, 'benchmark.prompt_set', '') !== prompt) return false;
+        if (tierFilter !== 'all' && get(item, 'tier', '') !== tierFilter) return false;
         return true;
       });
 
@@ -1255,6 +1364,33 @@
         '</tr>';
     }).join('');
 
+    const tierBadgeClass = (tier) => {
+      if (tier === 'recommended') return 'badge tier-recommended';
+      if (tier === 'capable') return 'badge tier-capable';
+      if (tier === 'experimental') return 'badge tier-experimental';
+      return 'badge';
+    };
+
+    const buildSparkline = (values, width = 72, height = 22) => {
+      const valid = values.filter((v) => v > 0);
+      if (valid.length < 2) return '';
+      const max = Math.max(...valid);
+      const min = Math.min(...valid);
+      const range = max - min || 1;
+      const step = width / (values.length - 1);
+      const pts = values.map((v, i) => {
+        const x = i * step;
+        const y = v > 0 ? height - 2 - ((v - min) / range) * (height - 4) : height;
+        return x.toFixed(1) + ',' + y.toFixed(1);
+      }).join(' ');
+      const lastY = pts.split(' ').pop().split(',')[1];
+      const lastX = pts.split(' ').pop().split(',')[0];
+      return '<svg class="sparkline" width="' + width + '" height="' + height + '" viewBox="0 0 ' + width + ' ' + height + '">' +
+        '<polyline points="' + pts + '" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"/>' +
+        '<circle cx="' + lastX + '" cy="' + lastY + '" r="2" fill="currentColor"/>' +
+        '</svg>';
+    };
+
     const renderModelCard = (group, maxDecode, maxPrompt) => {
       const item = group.base;
       const model = get(item, 'model.id', 'unknown');
@@ -1265,22 +1401,24 @@
       const lane = hardwareLaneLabel(item);
       const context = get(item, 'serving.context_tokens', get(item, 'benchmark.configured_context_tokens', null));
       const level = get(item, 'promotion_level', 'unknown');
+      const tier = get(item, 'tier', 'capable');
       const kv = [get(item, 'serving.kv_cache_k', ''), get(item, 'serving.kv_cache_v', '')].filter(Boolean).join('/') || 'KV n/a';
       const thinkingLabel = formatThinkingLabel(item);
       return '<article class="model-card">' +
         '<div class="model-head">' +
-          '<div class="model-title"><div class="model">' + escapeHtml(model) + '</div><div class="subline">' + escapeHtml(family) + ' / ' + escapeHtml(quant) + '</div></div>' +
+          '<div class="model-title"><div class="model">' + escapeHtml(model) + '</div></div>' +
           '<div class="model-tags">' +
+            '<span class="badge ' + tierBadgeClass(tier) + '">' + escapeHtml(tier) + '</span>' +
             '<span class="badge engine">' + escapeHtml(engine) + '</span>' +
             '<span class="badge green">' + escapeHtml(lane) + '</span>' +
-            '<span class="badge">' + escapeHtml(gpu) + '</span>' +
-            '<span class="badge">ctx ' + formatNumber(context, 0) + '</span>' +
-            '<span class="badge">' + escapeHtml(kv) + '</span>' +
             '<span class="badge blue">' + escapeHtml(specLabel(item)) + '</span>' +
             '<span class="badge amber">' + escapeHtml(thinkingLabel) + '</span>' +
-            '<span class="badge ' + badgeClass(level) + '">' + escapeHtml(level) + '</span>' +
           '</div>' +
-          '<div class="model-kpis"><div class="model-kpi"><div class="k">best generation</div><div class="v">' + (group.bestDecode ? formatNumber(group.bestDecode, 1) : 'n/a') + '</div></div><div class="model-kpi"><div class="k">prompt rows</div><div class="v">' + group.rows.length + '</div></div></div>' +
+          '<div class="subline" style="margin-top:3px">' + escapeHtml(family) + ' / ' + escapeHtml(quant) + ' / ctx ' + formatNumber(context, 0) + ' / KV ' + escapeHtml(kv) + ' / ' + escapeHtml(gpu) + '</div>' +
+          '<div class="model-kpis-row">' +
+            '<div class="model-spark">' + buildSparkline(group.rows.map((r) => Number(get(r, 'metrics.decode_tok_s', 0) || 0))) + '</div>' +
+            '<div class="model-kpis"><div class="model-kpi model-kpi--hero"><div class="k">best gen</div><div class="v">' + (group.bestDecode ? formatNumber(group.bestDecode, 1) : 'n/a') + '<span class="unit"> tok/s</span></div></div><div class="model-kpi"><div class="k">prompt rows</div><div class="v">' + group.rows.length + '</div></div></div>' +
+          '</div>' +
         '</div>' +
         '<div class="table-wrap" style="border:0;border-radius:0;">' +
           '<table class="prompt-table"><thead><tr><th>Prompt</th><th>Generation tok/s</th><th>Prompt eval tok/s</th><th>Tokens</th><th>Runs</th><th>Caveat</th></tr></thead><tbody>' + renderPromptRows(group.rows, maxDecode, maxPrompt) + '</tbody></table>' +
@@ -1305,6 +1443,17 @@
       document.getElementById('metric-raw-visible').textContent = filteredResults.length;
       document.getElementById('metric-mtp').textContent = modelGroups.filter((group) => specLabel(group.base) !== 'no MTP').length;
       document.getElementById('metric-archived').textContent = allResults.filter((item) => get(item, 'promotion_level', '') === 'deprecated').length;
+
+      // Tier counts (from all results, not filtered)
+      const tierCounts = { all: allResults.length };
+      for (const item of allResults) {
+        const t = get(item, 'tier', '');
+        tierCounts[t] = (tierCounts[t] || 0) + 1;
+      }
+      document.getElementById('tier-count-all').textContent = tierCounts.all || 0;
+      document.getElementById('tier-count-recommended').textContent = tierCounts.recommended || 0;
+      document.getElementById('tier-count-capable').textContent = tierCounts.capable || 0;
+      document.getElementById('tier-count-experimental').textContent = tierCounts.experimental || 0;
       const maxContext = Math.max(0, ...visibleResults.map((item) => Number(get(item, 'serving.context_tokens', get(item, 'benchmark.configured_context_tokens', 0)) || 0)));
       document.getElementById('metric-context').textContent = maxContext ? formatNumber(maxContext, 0) : 'n/a';
       const bestDecode = Math.max(0, ...visibleResults.map((item) => Number(get(item, 'metrics.decode_tok_s', 0) || 0)));
@@ -1349,6 +1498,15 @@
       document.querySelectorAll('input, select').forEach((element) => element.addEventListener('input', applyFilters));
       document.getElementById('archived-filter').addEventListener('change', applyFilters);
       document.getElementById('raw-filter').addEventListener('change', applyFilters);
+
+      document.querySelectorAll('.tier-tab').forEach((tab) => {
+        tab.addEventListener('click', () => {
+          document.querySelectorAll('.tier-tab').forEach((t) => t.classList.remove('active'));
+          tab.classList.add('active');
+          tierFilter = tab.getAttribute('data-tier');
+          applyFilters();
+        });
+      });
       const sortByHeader = (header) => {
         const next = header.getAttribute('data-sort');
         if (next === sortKey) sortDir *= -1;
