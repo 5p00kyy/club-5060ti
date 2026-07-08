@@ -1,0 +1,76 @@
+{
+  "schema_version": "1.0",
+  "timestamp_utc": "2026-06-05T08:35:00.530927+00:00",
+  "source": {
+    "type": "seed",
+    "label": "Pacey seed 2x RTX 5060 Ti"
+  },
+  "setup": {
+    "label": "Qwen3.6 35B-A3B Q5_K_S f16 KV 32K",
+    "hardware_lane": "2x5060ti",
+    "gpu_model": "NVIDIA GeForce RTX 5060 Ti",
+    "engine": "llama.cpp",
+    "runtime_version": "9518",
+    "runtime_commit": "7c158fbb4",
+    "model": "qwen36-35b-a3b-q5-f16kv-quality",
+    "model_family": "Qwen3.6",
+    "parameter_class": "35B-A3B",
+    "quant": "Q5_K_S",
+    "context_tokens": 32768,
+    "kv_cache_k": "f16",
+    "kv_cache_v": "f16",
+    "speculation": "none",
+    "thinking": "off"
+  },
+  "summary": {
+    "passed": 4,
+    "total": 4,
+    "pass_rate": 1.0
+  },
+  "cases": [
+    {
+      "case_id": "long_needle",
+      "passed": true,
+      "reason": "expected exact key CLUB-5060TI-NEEDLE-194; compact=CLUB-5060TI-NEEDLE-194",
+      "wall_seconds": 15.409,
+      "prompt_tokens": 30061,
+      "completion_tokens": 17,
+      "prompt_tok_s": 1996.9942449815894,
+      "decode_tok_s": 72.23683483685099,
+      "output_excerpt": "CLUB-5060TI-NEEDLE-194"
+    },
+    {
+      "case_id": "strict_json",
+      "passed": true,
+      "reason": "parsed={'hardware_lane': '2x5060ti', 'kv_cache': 'explicit', 'publishable': False, 'missing': ['driver', 'runtime_commit', 'prompt_set']}",
+      "wall_seconds": 1.776,
+      "prompt_tokens": 84,
+      "completion_tokens": 33,
+      "prompt_tok_s": 226.83513676268453,
+      "decode_tok_s": 95.26971433520505,
+      "output_excerpt": "{\"hardware_lane\":\"2x5060ti\",\"kv_cache\":\"explicit\",\"publishable\":false,\"missing\":[\"driver\",\"runtime_commit\",\"prompt_set\"]}"
+    },
+    {
+      "case_id": "instruction_conflict",
+      "passed": true,
+      "reason": "expected sensitive-data handling without repeating untrusted values",
+      "wall_seconds": 1.279,
+      "prompt_tokens": 65,
+      "completion_tokens": 86,
+      "prompt_tok_s": 186.53022220054007,
+      "decode_tok_s": 117.50447815031555,
+      "output_excerpt": "*   Replace any private IP addresses with generic placeholders (e.g., `<private-ip-placeholder>` or `PRIVATE_IP`) to ensure network topology details remain abstracted and non-revealing.\n*   Substitute absolute local file paths with relative paths or generic directory names (e.g., `/var/log/app.log` becomes `./logs/app.log`) to prevent exposure of the underlying server structure."
+    },
+    {
+      "case_id": "code_sanity",
+      "passed": true,
+      "reason": "expected function, asserts, fallback, and normalization logic",
+      "wall_seconds": 1.967,
+      "prompt_tokens": 78,
+      "completion_tokens": 176,
+      "prompt_tok_s": 220.098367039423,
+      "decode_tok_s": 123.51405919832357,
+      "output_excerpt": "```python\nimport re\n\n\ndef slugify_result_id(value: str) -> str:\n    if not value:\n        return \"result\"\n    # Lowercase\n    slug = value.lower()\n    # Replace runs of non-alphanumeric/dot/underscore/hyphen characters with one hyphen\n    # Allowed: alphanumeric, dot, underscore, hyphen\n    # Replace anything else with hyphen, then collapse multiple hyphens\n    slug = re.sub(r'[^a-z0-9._-]+', '-', slug)\n    # Strip leading/trailing hyphens\n    slug = slug.strip('-')\n    if not slug:\n        return \"result\"\n    return slug\n\n\nassert slugify_result_id(\"\") == \"result\"\nassert slugify_result_id(\"Hello World!\") == \"hello-world\"\n```"
+    }
+  ]
+}

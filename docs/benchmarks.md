@@ -6,6 +6,8 @@ Fresh seed results are stored as schema-validated JSON under data/results/ and r
 
 The explorer defaults to one card per model/setup, with prompt-specific benchmark rows inside each card. Repeated runs are collapsed to the highest-generation row for each prompt while keeping averages and the run count visible. MTP/speculation, hardware lane, thinking mode, and reasoning budget are shown on each card.
 
+Quality-proof artifacts for the 2026-06-05 Qwen3.6 KV-cache comparison live under `data/quality/`; see `docs/qwen36-kv-quality-20260605.md`. These are small pass/fail checks beside the speed rows, not headline benchmark rows.
+
 ## 2026-05-19 Focused Seed Data
 
 Current headline benchmark files:
