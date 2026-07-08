@@ -24,7 +24,7 @@ The project focus is simple: make RTX 5060 Ti local inference more reproducible 
 | 1x RTX 5060 Ti | You want the best single-card fits and conservative starter configs. | docs/single-5060ti.md |
 | 2x RTX 5060 Ti | You want dual-16GB recipes for 27B-class and long-context models. | docs/llamacpp-qwen36.md |
 | Other CUDA GPUs | You want to adapt the recipes to non-5060 Ti or mixed-architecture NVIDIA setups. | docs/gpu-compatibility.md |
-| Results explorer | You want to compare benchmark receipts and imported legacy data. | https://5p00kyy.github.io/club-5060ti/ |
+| Results explorer | You want to compare benchmark receipts, filter by tier, and inspect serving configs. | https://5p00kyy.github.io/club-5060ti/ |
 | Benchmark protocol | You want to submit or compare a result without mixing methods. | docs/benchmark-protocol.md |
 | Submit a result | You want a quick structured contribution path. | docs/community-result-template.md |
 
@@ -33,6 +33,16 @@ The project focus is simple: make RTX 5060 Ti local inference more reproducible 
 club-5060ti collects tested RTX 5060 Ti recipes and benchmark receipts. It is a 5060 Ti project first, not specifically a dual-5060 Ti project: single-card, dual-card, and larger 5060 Ti setups are all useful when labeled clearly. It is not meant to claim that only Blackwell cards can use these workflows; it keeps the 5060 Ti lanes clear so community results from other cards remain comparable instead of blended together. The results explorer is built from checked-in JSON under data/results/ so docs, scripts, and the static site all describe the same evidence.
 
 Imported llm-bench rows are archived historical data until they are rerun under the benchmark protocol. They are useful provenance, not headline evidence.
+
+## Tier System
+
+Every benchmark result is assigned a tier to help visitors quickly find useful configs:
+
+- **Recommended** - Best known speed/fit config for the GPU lane. Not a quality endorsement; it means this is the config to try first for that model and hardware.
+- **Capable** - Works well as a solid option. Includes alternative quants, KV cache experiment variants, and fine-tune merges like Qwopus.
+- **Experimental** - Stretch fits, unusual configs, and deprecated legacy imports. Interesting but not daily drivers.
+
+Tiers can be filtered directly in the results explorer.
 
 ## Tested Baseline
 
@@ -53,13 +63,14 @@ See docs/hardware.md for the full baseline and hardware notes.
 
 | Lane | Model | Evidence | Notes |
 | --- | --- | --- | --- |
-| upstream llama.cpp | Qwen3.6 27B GGUF | Seed recipe | Recommended dual-card practical long-context path uses Q6_K_XL with f16 KV, split-mode tensor, and tensor split 50,50. Treat it as a 96K-class route; the sustained seed row is 87293 prompt tokens / 742 generated tokens. |
-| upstream llama.cpp | Qwen3.5 9B MTP GGUF | Seed recipe | Small long-context route; useful sanity lane for 1x and 2x cards. |
-| upstream llama.cpp | Qwen3.6 35B A3B GGUF | Seed recipe | Strong MoE/active-parameter comparison route. |
+| upstream llama.cpp | Qwen3.6 27B GGUF | Seed recipe | Recommended dual-card dense route. Q6_K at 131K ctx with f16 KV and MTP n=3 delivers 45-55 tok/s decode. The sustained long-context reference (87K prompt, 742 tokens generated, 21.7 tok/s decode) used Q6_K_XL at 184K ctx. Q3_K_XL on single card is the recommended budget fit at 204K ctx. |
+| upstream llama.cpp | Qwen3.5 9B GGUF | Seed recipe | Small long-context route; useful sanity lane for 1x and 2x cards. Recommended starter model on single card. |
+| upstream llama.cpp | Qwen3.6 35B-A3B GGUF | Seed recipe | Strong MoE route. Recommended on both 1x (IQ3_XXS) and 2x (Q5_K_S) lanes. Fastest practical model in the dataset. |
+| upstream llama.cpp | Qwen3.5 122B-A10B GGUF | Seed recipe | Stretch/large MoE. IQ4_XS on 2x cards with MTP n=4. Recommended for maximum parameter count. |
+| upstream llama.cpp | Qwopus3.6 27B / 35B-A3B | Seed recipe | Fine-tune merge results. Capable tier; interesting alternative but not primary recs. |
+| BeeLlama | Qwen3.6 27B / 35B-A3B DFlash | Exploratory seed rows | Single-card 27B Q3_K_XL 8K DFlash works; single-card 35B-A3B DFlash improves code-shaped output. Alternative engine, capable tier. |
 | ik_llama.cpp | Qwen3.6 27B IQ4/IQ5 | Exploratory fit check | Single-card 105k q4-KV shape fits; clean benchmark rows need chat-template/no-thinking cleanup. |
-| BeeLlama | Qwen3.6 27B / 35B-A3B DFlash | Exploratory seed rows | Single-card 27B Q3_K_XL 8K DFlash works; branch-fixed dual-card 27B is correct but speed is mixed; single-card 35B-A3B DFlash improves code-shaped output. |
 | vLLM | Qwen3.6 27B NVFP4/MTP | Comparison target | Historical notes exist, but this needs current benchmark JSON before promotion. |
-| vLLM | BNB4/AutoRound routes | Experimental notes | Do not promote CPU-offload health checks as useful recipes. |
 
 ## Results And Data
 
@@ -91,11 +102,11 @@ python3 scripts/run_openai_bench.py \
   --output data/results/my-run.json
 ~~~
 
-The old llm-bench summary rows have been imported into data/results/llm-bench-legacy-import.json as archived historical data. Rerun them under the benchmark protocol before using them for comparisons.
+The old llm-bench summary rows have been imported into data/results/llm-bench-legacy-import.json as archived historical data (experimental tier). Rerun them under the benchmark protocol before using them for comparisons.
 
-The hosted explorer defaults to one card per model/setup, with prompt-specific benchmark rows inside each card. Generation tok/s is output-token speed; prompt eval tok/s is prompt/prefill processing speed. MTP/speculation and thinking mode are shown on each card and can be filtered directly. Enable "raw runs" in the explorer to inspect repeated measurements.
+The hosted explorer shows model cards grouped by model and setup, with tier filtering, sparklines across prompt types, and serving config in the card subline. Generation tok/s is output-token speed; prompt eval tok/s is prompt/prefill processing speed. MTP/speculation and thinking mode are shown on each card and can be filtered. Enable "raw runs" in the explorer to inspect repeated measurements.
 
-For the Qwen3.6 27B f16 tensor `50,50` dual-card lane, use the long-context generation row as the sustained decode reference: `87293/742` (`custom`, `21.73 tok/s` decode, `420.14 tok/s` prompt eval). This is the practical 96K-class claim for the seed box. The older `90061/17` long-retrieval row remains a short-answer stability check only, and the `p1k/n512` row (`52.43 tok/s`) is a short-prompt normal-generation comparison point. A >150K prompt-token diagnostic could prefill, but decode collapsed below 1 tok/s and is not promoted as a useful result.
+For the Qwen3.6 27B Q6_K dual-card config (131K ctx, f16 KV, MTP n=3), benchmark prompt rows show 45-55 tok/s decode. An earlier Q6_K_XL run at 184K ctx sustained 21.7 tok/s decode on an 87K-token prompt (`87293/742`, `420.14 tok/s` prompt eval), confirming the model handles deep context well beyond the standard benchmark window.
 
 Results are expected to grow over time. New community reports can be added as archived notes, recipe evidence, benchmark rows, or verified reproductions depending on how complete and comparable they are.
 
@@ -106,6 +117,7 @@ The most useful new submissions are:
 - 3x/4x+ RTX 5060 Ti results with full PCIe topology.
 - Matched 2x RTX 5060 Ti no-MTP and MTP rows for the same 27B model, quant, context, and KV cache.
 - Qwen3.6 35B A3B rows from different 5060 Ti systems, especially dual-card and larger-card-count setups.
+- Single-card RTX 5060 Ti benchmarks (the 1x lane is growing but needs more coverage).
 - Clearly labeled mixed-GPU or non-5060 Ti CUDA adaptation results.
 - Power, thermal, and PCIe-link notes when they explain performance differences.
 
@@ -136,6 +148,7 @@ If you want a structured result file, generate JSON with scripts/run_openai_benc
 - docs/llamacpp-qwen36.md - llama.cpp Qwen3.6 27B MTP GGUF route
 - docs/llamacpp-qwen35-9b-mtp.md - Qwen3.5 9B native max-context route
 - docs/qwen36-35b-a3b.md - Qwen3.6 35B A3B checks
+- docs/qwen36-kv-quality-20260605.md - Qwen3.6 27B KV cache quality comparison
 - docs/benchmarks.md - current human-readable result notes
 - docs/troubleshooting.md - observed failures and fixes
 - data/ - canonical result data and schemas
