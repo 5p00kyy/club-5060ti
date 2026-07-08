@@ -62,7 +62,8 @@
         "end_to_end_tok_s": 92.626,
         "wall_seconds": 6.91
       },
-      "caveats": []
+      "caveats": [],
+      "tier": "recommended"
     },
     {
       "schema_version": "1.0",
@@ -126,7 +127,8 @@
         "end_to_end_tok_s": 93.568,
         "wall_seconds": 6.84
       },
-      "caveats": []
+      "caveats": [],
+      "tier": "recommended"
     },
     {
       "schema_version": "1.0",
@@ -190,7 +192,8 @@
         "end_to_end_tok_s": 93.187,
         "wall_seconds": 12.362
       },
-      "caveats": []
+      "caveats": [],
+      "tier": "recommended"
     },
     {
       "schema_version": "1.0",
@@ -254,7 +257,8 @@
         "end_to_end_tok_s": 93.69,
         "wall_seconds": 12.296
       },
-      "caveats": []
+      "caveats": [],
+      "tier": "recommended"
     },
     {
       "schema_version": "1.0",
@@ -318,7 +322,8 @@
         "end_to_end_tok_s": 92.696,
         "wall_seconds": 9.666
       },
-      "caveats": []
+      "caveats": [],
+      "tier": "recommended"
     },
     {
       "schema_version": "1.0",
@@ -382,7 +387,8 @@
         "end_to_end_tok_s": 93.732,
         "wall_seconds": 9.559
       },
-      "caveats": []
+      "caveats": [],
+      "tier": "recommended"
     },
     {
       "schema_version": "1.0",
@@ -448,7 +454,8 @@
       },
       "caveats": [
         "Long-prompt short-answer fit check on the 1x5060ti seed system; not a sustained decode benchmark."
-      ]
+      ],
+      "tier": "recommended"
     },
     {
       "schema_version": "1.0",
@@ -514,7 +521,8 @@
       },
       "caveats": [
         "Long-prompt short-answer fit check on the 1x5060ti seed system; not a sustained decode benchmark."
-      ]
+      ],
+      "tier": "recommended"
     }
   ]
 }

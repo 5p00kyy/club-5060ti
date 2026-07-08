@@ -62,7 +62,8 @@
         "end_to_end_tok_s": 89.178,
         "wall_seconds": 7.177
       },
-      "caveats": []
+      "caveats": [],
+      "tier": "capable"
     },
     {
       "schema_version": "1.0",
@@ -126,7 +127,8 @@
         "end_to_end_tok_s": 88.869,
         "wall_seconds": 7.202
       },
-      "caveats": []
+      "caveats": [],
+      "tier": "capable"
     },
     {
       "schema_version": "1.0",
@@ -190,7 +192,8 @@
         "end_to_end_tok_s": 88.52,
         "wall_seconds": 13.014
       },
-      "caveats": []
+      "caveats": [],
+      "tier": "capable"
     },
     {
       "schema_version": "1.0",
@@ -254,7 +257,8 @@
         "end_to_end_tok_s": 89.203,
         "wall_seconds": 12.914
       },
-      "caveats": []
+      "caveats": [],
+      "tier": "capable"
     },
     {
       "schema_version": "1.0",
@@ -318,7 +322,8 @@
         "end_to_end_tok_s": 87.946,
         "wall_seconds": 10.188
       },
-      "caveats": []
+      "caveats": [],
+      "tier": "capable"
     },
     {
       "schema_version": "1.0",
@@ -382,7 +387,8 @@
         "end_to_end_tok_s": 89.07,
         "wall_seconds": 10.06
       },
-      "caveats": []
+      "caveats": [],
+      "tier": "capable"
     },
     {
       "schema_version": "1.0",
@@ -446,7 +452,8 @@
         "end_to_end_tok_s": 63.066,
         "wall_seconds": 2.727
       },
-      "caveats": []
+      "caveats": [],
+      "tier": "capable"
     },
     {
       "schema_version": "1.0",
@@ -510,7 +517,8 @@
         "end_to_end_tok_s": 63.107,
         "wall_seconds": 2.726
       },
-      "caveats": []
+      "caveats": [],
+      "tier": "capable"
     }
   ]
 }

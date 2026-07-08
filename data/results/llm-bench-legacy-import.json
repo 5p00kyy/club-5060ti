@@ -51,7 +51,8 @@
       "caveats": [
         "Legacy import only; redo under docs/benchmark-protocol.md before using in headline comparisons.",
         "Importer keeps only rows selected for the migration pass; the old source repo remains the provenance archive."
-      ]
+      ],
+      "tier": "experimental"
     },
     {
       "schema_version": "1.0",
@@ -103,7 +104,8 @@
       "caveats": [
         "Legacy import only; redo under docs/benchmark-protocol.md before using in headline comparisons.",
         "Importer keeps only rows selected for the migration pass; the old source repo remains the provenance archive."
-      ]
+      ],
+      "tier": "experimental"
     },
     {
       "schema_version": "1.0",
@@ -155,7 +157,8 @@
       "caveats": [
         "Legacy import only; redo under docs/benchmark-protocol.md before using in headline comparisons.",
         "Importer keeps only rows selected for the migration pass; the old source repo remains the provenance archive."
-      ]
+      ],
+      "tier": "experimental"
     },
     {
       "schema_version": "1.0",
@@ -207,7 +210,8 @@
       "caveats": [
         "Legacy import only; redo under docs/benchmark-protocol.md before using in headline comparisons.",
         "Importer keeps only rows selected for the migration pass; the old source repo remains the provenance archive."
-      ]
+      ],
+      "tier": "experimental"
     },
     {
       "schema_version": "1.0",
@@ -260,7 +264,8 @@
       "caveats": [
         "Legacy import only; redo under docs/benchmark-protocol.md before using in headline comparisons.",
         "Importer keeps only rows selected for the migration pass; the old source repo remains the provenance archive."
-      ]
+      ],
+      "tier": "experimental"
     },
     {
       "schema_version": "1.0",
@@ -284,7 +289,7 @@
         "notes": "Legacy llm-bench entry; exact runtime commit may be absent."
       },
       "model": {
-        "id": "Qwen3.5-27B-Q5",
+        "id": "Qwen3.5-27B",
         "family": "Qwen3.5",
         "architecture": "dense",
         "parameter_class": "27B",
@@ -310,7 +315,8 @@
         "Legacy import only; redo under docs/benchmark-protocol.md before using in headline comparisons.",
         "Archived fit-only row; no comparable speed metrics were captured in the imported source.",
         "Importer keeps only rows selected for the migration pass; the old source repo remains the provenance archive."
-      ]
+      ],
+      "tier": "experimental"
     },
     {
       "schema_version": "1.0",
@@ -334,7 +340,7 @@
         "notes": "Legacy llm-bench entry; exact runtime commit may be absent."
       },
       "model": {
-        "id": "Qwen3.5-27B-Q6",
+        "id": "Qwen3.5-27B",
         "family": "Qwen3.5",
         "architecture": "dense",
         "parameter_class": "27B",
@@ -360,7 +366,8 @@
         "Legacy import only; redo under docs/benchmark-protocol.md before using in headline comparisons.",
         "Archived fit-only row; no comparable speed metrics were captured in the imported source.",
         "Importer keeps only rows selected for the migration pass; the old source repo remains the provenance archive."
-      ]
+      ],
+      "tier": "experimental"
     },
     {
       "schema_version": "1.0",
@@ -390,7 +397,7 @@
         "parameter_class": "35B total / 3B active",
         "quant": "Q4_K_XL",
         "file_size_mb": 21211,
-        "notes": "MoE \u2014 faster than 27B dense despite 35B total params. Only 3B active per token."
+        "notes": "MoE — faster than 27B dense despite 35B total params. Only 3B active per token."
       },
       "serving": {
         "route": "server",
@@ -413,7 +420,8 @@
       "caveats": [
         "Legacy import only; redo under docs/benchmark-protocol.md before using in headline comparisons.",
         "Importer keeps only rows selected for the migration pass; the old source repo remains the provenance archive."
-      ]
+      ],
+      "tier": "experimental"
     },
     {
       "schema_version": "1.0",
@@ -437,13 +445,13 @@
         "notes": "Legacy llm-bench entry; exact runtime commit may be absent."
       },
       "model": {
-        "id": "Qwen3.5-35B-A3B-Q5",
+        "id": "Qwen3.5-35B-A3B",
         "family": "Qwen3.5",
         "architecture": "moe",
         "parameter_class": "35B total / 3B active",
         "quant": "Q5_K_M",
         "file_size_mb": 24576,
-        "notes": "Uncensored variant. MoE \u2014 tensor-split unsupported, auto-split ngl=41. Benchmarked with ik_llama.cpp (gen) and llama.cpp (pp). Best gen speed of any 35B+ model tested."
+        "notes": "Uncensored variant. MoE — tensor-split unsupported, auto-split ngl=41. Benchmarked with ik_llama.cpp (gen) and llama.cpp (pp). Best gen speed of any 35B+ model tested."
       },
       "serving": {
         "route": "server",
@@ -465,7 +473,8 @@
       "caveats": [
         "Legacy import only; redo under docs/benchmark-protocol.md before using in headline comparisons.",
         "Importer keeps only rows selected for the migration pass; the old source repo remains the provenance archive."
-      ]
+      ],
+      "tier": "experimental"
     },
     {
       "schema_version": "1.0",
@@ -517,7 +526,8 @@
       "caveats": [
         "Legacy import only; redo under docs/benchmark-protocol.md before using in headline comparisons.",
         "Importer keeps only rows selected for the migration pass; the old source repo remains the provenance archive."
-      ]
+      ],
+      "tier": "experimental"
     },
     {
       "schema_version": "1.0",
@@ -567,7 +577,8 @@
         "Legacy import only; redo under docs/benchmark-protocol.md before using in headline comparisons.",
         "Archived fit-only row; no comparable speed metrics were captured in the imported source.",
         "Importer keeps only rows selected for the migration pass; the old source repo remains the provenance archive."
-      ]
+      ],
+      "tier": "experimental"
     },
     {
       "schema_version": "1.0",
@@ -619,7 +630,8 @@
       "caveats": [
         "Legacy import only; redo under docs/benchmark-protocol.md before using in headline comparisons.",
         "Importer keeps only rows selected for the migration pass; the old source repo remains the provenance archive."
-      ]
+      ],
+      "tier": "experimental"
     }
   ]
 }

@@ -29,8 +29,8 @@
         "build": "CUDA 120a, flash attention on, direct temporary server."
       },
       "model": {
-        "id": "qwen36-27b-q6-f16kv-32k",
-        "family": "unknown",
+        "id": "Qwen3.6-27B",
+        "family": "Qwen3.6",
         "architecture": "hybrid",
         "parameter_class": "27B",
         "quant": "Q6_K_XL",
@@ -69,7 +69,8 @@
       },
       "caveats": [
         "Single run per prompt set; single-run matched f16/q8/q4 comparison row."
-      ]
+      ],
+      "tier": "capable"
     },
     {
       "schema_version": "1.0",
@@ -100,8 +101,8 @@
         "build": "CUDA 120a, flash attention on, direct temporary server."
       },
       "model": {
-        "id": "qwen36-27b-q6-f16kv-32k",
-        "family": "unknown",
+        "id": "Qwen3.6-27B",
+        "family": "Qwen3.6",
         "architecture": "hybrid",
         "parameter_class": "27B",
         "quant": "Q6_K_XL",
@@ -140,7 +141,8 @@
       },
       "caveats": [
         "Single run per prompt set; single-run matched f16/q8/q4 comparison row."
-      ]
+      ],
+      "tier": "capable"
     },
     {
       "schema_version": "1.0",
@@ -171,8 +173,8 @@
         "build": "CUDA 120a, flash attention on, direct temporary server."
       },
       "model": {
-        "id": "qwen36-27b-q6-f16kv-32k",
-        "family": "unknown",
+        "id": "Qwen3.6-27B",
+        "family": "Qwen3.6",
         "architecture": "hybrid",
         "parameter_class": "27B",
         "quant": "Q6_K_XL",
@@ -211,7 +213,8 @@
       },
       "caveats": [
         "Single run per prompt set; single-run matched f16/q8/q4 comparison row."
-      ]
+      ],
+      "tier": "capable"
     },
     {
       "schema_version": "1.0",
@@ -242,8 +245,8 @@
         "build": "CUDA 120a, flash attention on, direct temporary server."
       },
       "model": {
-        "id": "qwen36-27b-q6-f16kv-32k",
-        "family": "unknown",
+        "id": "Qwen3.6-27B",
+        "family": "Qwen3.6",
         "architecture": "hybrid",
         "parameter_class": "27B",
         "quant": "Q6_K_XL",
@@ -283,7 +286,8 @@
       "caveats": [
         "Single run per prompt set; single-run matched f16/q8/q4 comparison row.",
         "Long-retrieval prompt generated fewer than 32 tokens, so it is a short-answer fit check and must not be used as a sustained decode claim."
-      ]
+      ],
+      "tier": "capable"
     },
     {
       "schema_version": "1.0",
@@ -314,8 +318,8 @@
         "build": "CUDA 120a, flash attention on, direct temporary server."
       },
       "model": {
-        "id": "qwen36-27b-q6-q8kv-32k",
-        "family": "unknown",
+        "id": "Qwen3.6-27B",
+        "family": "Qwen3.6",
         "architecture": "hybrid",
         "parameter_class": "27B",
         "quant": "Q6_K_XL",
@@ -354,7 +358,8 @@
       },
       "caveats": [
         "Single run per prompt set; temporary comparison row pending q4 repeat."
-      ]
+      ],
+      "tier": "capable"
     },
     {
       "schema_version": "1.0",
@@ -385,8 +390,8 @@
         "build": "CUDA 120a, flash attention on, direct temporary server."
       },
       "model": {
-        "id": "qwen36-27b-q6-q8kv-32k",
-        "family": "unknown",
+        "id": "Qwen3.6-27B",
+        "family": "Qwen3.6",
         "architecture": "hybrid",
         "parameter_class": "27B",
         "quant": "Q6_K_XL",
@@ -425,7 +430,8 @@
       },
       "caveats": [
         "Single run per prompt set; temporary comparison row pending q4 repeat."
-      ]
+      ],
+      "tier": "capable"
     },
     {
       "schema_version": "1.0",
@@ -456,8 +462,8 @@
         "build": "CUDA 120a, flash attention on, direct temporary server."
       },
       "model": {
-        "id": "qwen36-27b-q6-q8kv-32k",
-        "family": "unknown",
+        "id": "Qwen3.6-27B",
+        "family": "Qwen3.6",
         "architecture": "hybrid",
         "parameter_class": "27B",
         "quant": "Q6_K_XL",
@@ -496,7 +502,8 @@
       },
       "caveats": [
         "Single run per prompt set; temporary comparison row pending q4 repeat."
-      ]
+      ],
+      "tier": "capable"
     },
     {
       "schema_version": "1.0",
@@ -527,8 +534,8 @@
         "build": "CUDA 120a, flash attention on, direct temporary server."
       },
       "model": {
-        "id": "qwen36-27b-q6-q8kv-32k",
-        "family": "unknown",
+        "id": "Qwen3.6-27B",
+        "family": "Qwen3.6",
         "architecture": "hybrid",
         "parameter_class": "27B",
         "quant": "Q6_K_XL",
@@ -568,7 +575,8 @@
       "caveats": [
         "Single run per prompt set; temporary comparison row pending q4 repeat.",
         "Long-retrieval prompt generated fewer than 32 tokens, so it is a short-answer fit check and must not be used as a sustained decode claim."
-      ]
+      ],
+      "tier": "capable"
     },
     {
       "schema_version": "1.0",
@@ -599,8 +607,8 @@
         "build": "CUDA 120a, flash attention on, direct temporary server."
       },
       "model": {
-        "id": "qwen36-27b-q6-q4kv-32k",
-        "family": "unknown",
+        "id": "Qwen3.6-27B",
+        "family": "Qwen3.6",
         "architecture": "hybrid",
         "parameter_class": "27B",
         "quant": "Q6_K_XL",
@@ -639,7 +647,8 @@
       },
       "caveats": [
         "Single run per prompt set; q4 KV needs output inspection before any quality claim."
-      ]
+      ],
+      "tier": "capable"
     },
     {
       "schema_version": "1.0",
@@ -670,8 +679,8 @@
         "build": "CUDA 120a, flash attention on, direct temporary server."
       },
       "model": {
-        "id": "qwen36-27b-q6-q4kv-32k",
-        "family": "unknown",
+        "id": "Qwen3.6-27B",
+        "family": "Qwen3.6",
         "architecture": "hybrid",
         "parameter_class": "27B",
         "quant": "Q6_K_XL",
@@ -710,7 +719,8 @@
       },
       "caveats": [
         "Single run per prompt set; q4 KV needs output inspection before any quality claim."
-      ]
+      ],
+      "tier": "capable"
     },
     {
       "schema_version": "1.0",
@@ -741,8 +751,8 @@
         "build": "CUDA 120a, flash attention on, direct temporary server."
       },
       "model": {
-        "id": "qwen36-27b-q6-q4kv-32k",
-        "family": "unknown",
+        "id": "Qwen3.6-27B",
+        "family": "Qwen3.6",
         "architecture": "hybrid",
         "parameter_class": "27B",
         "quant": "Q6_K_XL",
@@ -781,7 +791,8 @@
       },
       "caveats": [
         "Single run per prompt set; q4 KV needs output inspection before any quality claim."
-      ]
+      ],
+      "tier": "capable"
     },
     {
       "schema_version": "1.0",
@@ -812,8 +823,8 @@
         "build": "CUDA 120a, flash attention on, direct temporary server."
       },
       "model": {
-        "id": "qwen36-27b-q6-q4kv-32k",
-        "family": "unknown",
+        "id": "Qwen3.6-27B",
+        "family": "Qwen3.6",
         "architecture": "hybrid",
         "parameter_class": "27B",
         "quant": "Q6_K_XL",
@@ -854,7 +865,8 @@
         "Single run per prompt set; q4 KV needs output inspection before any quality claim.",
         "Long-retrieval prompt generated fewer than 32 tokens, so it is a short-answer fit check and must not be used as a sustained decode claim.",
         "q4 KV long-retrieval output was manually spot-checked and returned CLUB-5060TI-NEEDLE-194 exactly for the same prompt shape."
-      ]
+      ],
+      "tier": "capable"
     }
   ]
 }

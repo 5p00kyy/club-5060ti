@@ -29,7 +29,8 @@
         "family": "Qwen3.5",
         "architecture": "dense",
         "quant": "UD-Q4_K_XL",
-        "source": "unsloth/Qwen3.5-9B-MTP-GGUF"
+        "source": "unsloth/Qwen3.5-9B-MTP-GGUF",
+        "parameter_class": "9B"
       },
       "serving": {
         "route": "server",
@@ -60,7 +61,8 @@
         "end_to_end_tok_s": 78.423,
         "wall_seconds": 3.264
       },
-      "caveats": []
+      "caveats": [],
+      "tier": "recommended"
     },
     {
       "schema_version": "1.0",
@@ -91,7 +93,8 @@
         "family": "Qwen3.5",
         "architecture": "dense",
         "quant": "UD-Q4_K_XL",
-        "source": "unsloth/Qwen3.5-9B-MTP-GGUF"
+        "source": "unsloth/Qwen3.5-9B-MTP-GGUF",
+        "parameter_class": "9B"
       },
       "serving": {
         "route": "server",
@@ -122,7 +125,8 @@
         "end_to_end_tok_s": 79.646,
         "wall_seconds": 3.214
       },
-      "caveats": []
+      "caveats": [],
+      "tier": "recommended"
     },
     {
       "schema_version": "1.0",
@@ -153,7 +157,8 @@
         "family": "Qwen3.5",
         "architecture": "dense",
         "quant": "UD-Q4_K_XL",
-        "source": "unsloth/Qwen3.5-9B-MTP-GGUF"
+        "source": "unsloth/Qwen3.5-9B-MTP-GGUF",
+        "parameter_class": "9B"
       },
       "serving": {
         "route": "server",
@@ -184,7 +189,8 @@
         "end_to_end_tok_s": 94.317,
         "wall_seconds": 8.143
       },
-      "caveats": []
+      "caveats": [],
+      "tier": "recommended"
     },
     {
       "schema_version": "1.0",
@@ -215,7 +221,8 @@
         "family": "Qwen3.5",
         "architecture": "dense",
         "quant": "UD-Q4_K_XL",
-        "source": "unsloth/Qwen3.5-9B-MTP-GGUF"
+        "source": "unsloth/Qwen3.5-9B-MTP-GGUF",
+        "parameter_class": "9B"
       },
       "serving": {
         "route": "server",
@@ -246,7 +253,8 @@
         "end_to_end_tok_s": 95.027,
         "wall_seconds": 8.082
       },
-      "caveats": []
+      "caveats": [],
+      "tier": "recommended"
     },
     {
       "schema_version": "1.0",
@@ -277,7 +285,8 @@
         "family": "Qwen3.5",
         "architecture": "dense",
         "quant": "UD-Q4_K_XL",
-        "source": "unsloth/Qwen3.5-9B-MTP-GGUF"
+        "source": "unsloth/Qwen3.5-9B-MTP-GGUF",
+        "parameter_class": "9B"
       },
       "serving": {
         "route": "server",
@@ -308,7 +317,8 @@
         "end_to_end_tok_s": 74.365,
         "wall_seconds": 6.885
       },
-      "caveats": []
+      "caveats": [],
+      "tier": "recommended"
     },
     {
       "schema_version": "1.0",
@@ -339,7 +349,8 @@
         "family": "Qwen3.5",
         "architecture": "dense",
         "quant": "UD-Q4_K_XL",
-        "source": "unsloth/Qwen3.5-9B-MTP-GGUF"
+        "source": "unsloth/Qwen3.5-9B-MTP-GGUF",
+        "parameter_class": "9B"
       },
       "serving": {
         "route": "server",
@@ -370,7 +381,8 @@
         "end_to_end_tok_s": 76.567,
         "wall_seconds": 6.687
       },
-      "caveats": []
+      "caveats": [],
+      "tier": "recommended"
     },
     {
       "schema_version": "1.0",
@@ -401,7 +413,8 @@
         "family": "Qwen3.5",
         "architecture": "dense",
         "quant": "UD-Q4_K_XL",
-        "source": "unsloth/Qwen3.5-9B-MTP-GGUF"
+        "source": "unsloth/Qwen3.5-9B-MTP-GGUF",
+        "parameter_class": "9B"
       },
       "serving": {
         "route": "server",
@@ -434,7 +447,8 @@
       },
       "caveats": [
         "Long-prompt short-answer fit check on the 1x5060ti seed system; not a sustained decode benchmark."
-      ]
+      ],
+      "tier": "recommended"
     },
     {
       "schema_version": "1.0",
@@ -465,7 +479,8 @@
         "family": "Qwen3.5",
         "architecture": "dense",
         "quant": "UD-Q4_K_XL",
-        "source": "unsloth/Qwen3.5-9B-MTP-GGUF"
+        "source": "unsloth/Qwen3.5-9B-MTP-GGUF",
+        "parameter_class": "9B"
       },
       "serving": {
         "route": "server",
@@ -498,7 +513,8 @@
       },
       "caveats": [
         "Long-prompt short-answer fit check on the 1x5060ti seed system; not a sustained decode benchmark."
-      ]
+      ],
+      "tier": "recommended"
     }
   ]
 }

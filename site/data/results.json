@@ -52,6 +52,7 @@
         "Legacy import only; redo under docs/benchmark-protocol.md before using in headline comparisons.",
         "Importer keeps only rows selected for the migration pass; the old source repo remains the provenance archive."
       ],
+      "tier": "experimental",
       "_source_file": "data/results/llm-bench-legacy-import.json"
     },
     {
@@ -105,6 +106,7 @@
         "Legacy import only; redo under docs/benchmark-protocol.md before using in headline comparisons.",
         "Importer keeps only rows selected for the migration pass; the old source repo remains the provenance archive."
       ],
+      "tier": "experimental",
       "_source_file": "data/results/llm-bench-legacy-import.json"
     },
     {
@@ -158,6 +160,7 @@
         "Legacy import only; redo under docs/benchmark-protocol.md before using in headline comparisons.",
         "Importer keeps only rows selected for the migration pass; the old source repo remains the provenance archive."
       ],
+      "tier": "experimental",
       "_source_file": "data/results/llm-bench-legacy-import.json"
     },
     {
@@ -211,6 +214,7 @@
         "Legacy import only; redo under docs/benchmark-protocol.md before using in headline comparisons.",
         "Importer keeps only rows selected for the migration pass; the old source repo remains the provenance archive."
       ],
+      "tier": "experimental",
       "_source_file": "data/results/llm-bench-legacy-import.json"
     },
     {
@@ -265,6 +269,7 @@
         "Legacy import only; redo under docs/benchmark-protocol.md before using in headline comparisons.",
         "Importer keeps only rows selected for the migration pass; the old source repo remains the provenance archive."
       ],
+      "tier": "experimental",
       "_source_file": "data/results/llm-bench-legacy-import.json"
     },
     {
@@ -289,7 +294,7 @@
         "notes": "Legacy llm-bench entry; exact runtime commit may be absent."
       },
       "model": {
-        "id": "Qwen3.5-27B-Q5",
+        "id": "Qwen3.5-27B",
         "family": "Qwen3.5",
         "architecture": "dense",
         "parameter_class": "27B",
@@ -316,6 +321,7 @@
         "Archived fit-only row; no comparable speed metrics were captured in the imported source.",
         "Importer keeps only rows selected for the migration pass; the old source repo remains the provenance archive."
       ],
+      "tier": "experimental",
       "_source_file": "data/results/llm-bench-legacy-import.json"
     },
     {
@@ -340,7 +346,7 @@
         "notes": "Legacy llm-bench entry; exact runtime commit may be absent."
       },
       "model": {
-        "id": "Qwen3.5-27B-Q6",
+        "id": "Qwen3.5-27B",
         "family": "Qwen3.5",
         "architecture": "dense",
         "parameter_class": "27B",
@@ -367,6 +373,7 @@
         "Archived fit-only row; no comparable speed metrics were captured in the imported source.",
         "Importer keeps only rows selected for the migration pass; the old source repo remains the provenance archive."
       ],
+      "tier": "experimental",
       "_source_file": "data/results/llm-bench-legacy-import.json"
     },
     {
@@ -421,6 +428,7 @@
         "Legacy import only; redo under docs/benchmark-protocol.md before using in headline comparisons.",
         "Importer keeps only rows selected for the migration pass; the old source repo remains the provenance archive."
       ],
+      "tier": "experimental",
       "_source_file": "data/results/llm-bench-legacy-import.json"
     },
     {
@@ -445,7 +453,7 @@
         "notes": "Legacy llm-bench entry; exact runtime commit may be absent."
       },
       "model": {
-        "id": "Qwen3.5-35B-A3B-Q5",
+        "id": "Qwen3.5-35B-A3B",
         "family": "Qwen3.5",
         "architecture": "moe",
         "parameter_class": "35B total / 3B active",
@@ -474,6 +482,7 @@
         "Legacy import only; redo under docs/benchmark-protocol.md before using in headline comparisons.",
         "Importer keeps only rows selected for the migration pass; the old source repo remains the provenance archive."
       ],
+      "tier": "experimental",
       "_source_file": "data/results/llm-bench-legacy-import.json"
     },
     {
@@ -527,6 +536,7 @@
         "Legacy import only; redo under docs/benchmark-protocol.md before using in headline comparisons.",
         "Importer keeps only rows selected for the migration pass; the old source repo remains the provenance archive."
       ],
+      "tier": "experimental",
       "_source_file": "data/results/llm-bench-legacy-import.json"
     },
     {
@@ -578,6 +588,7 @@
         "Archived fit-only row; no comparable speed metrics were captured in the imported source.",
         "Importer keeps only rows selected for the migration pass; the old source repo remains the provenance archive."
       ],
+      "tier": "experimental",
       "_source_file": "data/results/llm-bench-legacy-import.json"
     },
     {
@@ -631,6 +642,7 @@
         "Legacy import only; redo under docs/benchmark-protocol.md before using in headline comparisons.",
         "Importer keeps only rows selected for the migration pass; the old source repo remains the provenance archive."
       ],
+      "tier": "experimental",
       "_source_file": "data/results/llm-bench-legacy-import.json"
     },
     {
@@ -661,7 +673,7 @@
         "notes": "Built from Anbeeld/beellama.cpp main with CUDA 12.9, GGML_CUDA=ON, GGML_CUDA_FA=ON, GGML_CUDA_FA_ALL_QUANTS=ON, arch 120a."
       },
       "model": {
-        "id": "bee-qwen36-27b-q3kxl-nospec-8k-1gpu",
+        "id": "Qwen3.6-27B",
         "family": "Qwen3.6",
         "architecture": "hybrid",
         "parameter_class": "27B",
@@ -701,6 +713,7 @@
       "caveats": [
         "Exploratory BeeLlama row; lower target quant than the dual-GPU Q4_K_M DFlash attempt."
       ],
+      "tier": "capable",
       "_source_file": "data/results/seed-beellama-qwen36-27b-20260523.json"
     },
     {
@@ -731,7 +744,7 @@
         "notes": "Built from Anbeeld/beellama.cpp main with CUDA 12.9, GGML_CUDA=ON, GGML_CUDA_FA=ON, GGML_CUDA_FA_ALL_QUANTS=ON, arch 120a."
       },
       "model": {
-        "id": "bee-qwen36-27b-q3kxl-nospec-8k-1gpu",
+        "id": "Qwen3.6-27B",
         "family": "Qwen3.6",
         "architecture": "hybrid",
         "parameter_class": "27B",
@@ -771,6 +784,7 @@
       "caveats": [
         "Exploratory BeeLlama row; lower target quant than the dual-GPU Q4_K_M DFlash attempt."
       ],
+      "tier": "capable",
       "_source_file": "data/results/seed-beellama-qwen36-27b-20260523.json"
     },
     {
@@ -801,7 +815,7 @@
         "notes": "Built from Anbeeld/beellama.cpp main with CUDA 12.9, GGML_CUDA=ON, GGML_CUDA_FA=ON, GGML_CUDA_FA_ALL_QUANTS=ON, arch 120a."
       },
       "model": {
-        "id": "bee-qwen36-27b-q3kxl-nospec-8k-1gpu",
+        "id": "Qwen3.6-27B",
         "family": "Qwen3.6",
         "architecture": "hybrid",
         "parameter_class": "27B",
@@ -841,6 +855,7 @@
       "caveats": [
         "Exploratory BeeLlama row; lower target quant than the dual-GPU Q4_K_M DFlash attempt."
       ],
+      "tier": "capable",
       "_source_file": "data/results/seed-beellama-qwen36-27b-20260523.json"
     },
     {
@@ -871,7 +886,7 @@
         "notes": "Built from Anbeeld/beellama.cpp main with CUDA 12.9, GGML_CUDA=ON, GGML_CUDA_FA=ON, GGML_CUDA_FA_ALL_QUANTS=ON, arch 120a."
       },
       "model": {
-        "id": "bee-qwen36-27b-q3kxl-nospec-8k-1gpu",
+        "id": "Qwen3.6-27B",
         "family": "Qwen3.6",
         "architecture": "hybrid",
         "parameter_class": "27B",
@@ -911,6 +926,7 @@
       "caveats": [
         "Exploratory BeeLlama row; lower target quant than the dual-GPU Q4_K_M DFlash attempt."
       ],
+      "tier": "capable",
       "_source_file": "data/results/seed-beellama-qwen36-27b-20260523.json"
     },
     {
@@ -941,7 +957,7 @@
         "notes": "Built from Anbeeld/beellama.cpp main with CUDA 12.9, GGML_CUDA=ON, GGML_CUDA_FA=ON, GGML_CUDA_FA_ALL_QUANTS=ON, arch 120a."
       },
       "model": {
-        "id": "bee-qwen36-27b-q3kxl-nospec-8k-1gpu",
+        "id": "Qwen3.6-27B",
         "family": "Qwen3.6",
         "architecture": "hybrid",
         "parameter_class": "27B",
@@ -981,6 +997,7 @@
       "caveats": [
         "Exploratory BeeLlama row; lower target quant than the dual-GPU Q4_K_M DFlash attempt."
       ],
+      "tier": "capable",
       "_source_file": "data/results/seed-beellama-qwen36-27b-20260523.json"
     },
     {
@@ -1011,7 +1028,7 @@
         "notes": "Built from Anbeeld/beellama.cpp main with CUDA 12.9, GGML_CUDA=ON, GGML_CUDA_FA=ON, GGML_CUDA_FA_ALL_QUANTS=ON, arch 120a."
       },
       "model": {
-        "id": "bee-qwen36-27b-q3kxl-nospec-8k-1gpu",
+        "id": "Qwen3.6-27B",
         "family": "Qwen3.6",
         "architecture": "hybrid",
         "parameter_class": "27B",
@@ -1051,6 +1068,7 @@
       "caveats": [
         "Exploratory BeeLlama row; lower target quant than the dual-GPU Q4_K_M DFlash attempt."
       ],
+      "tier": "capable",
       "_source_file": "data/results/seed-beellama-qwen36-27b-20260523.json"
     },
     {
@@ -1081,7 +1099,7 @@
         "notes": "Built from Anbeeld/beellama.cpp main with CUDA 12.9, GGML_CUDA=ON, GGML_CUDA_FA=ON, GGML_CUDA_FA_ALL_QUANTS=ON, arch 120a."
       },
       "model": {
-        "id": "bee-qwen36-27b-q3kxl-dflash-iq4-8k-1gpu",
+        "id": "Qwen3.6-27B",
         "family": "Qwen3.6",
         "architecture": "hybrid",
         "parameter_class": "27B",
@@ -1123,6 +1141,7 @@
       "caveats": [
         "Exploratory BeeLlama row; lower target quant than the dual-GPU Q4_K_M DFlash attempt."
       ],
+      "tier": "capable",
       "_source_file": "data/results/seed-beellama-qwen36-27b-20260523.json"
     },
     {
@@ -1153,7 +1172,7 @@
         "notes": "Built from Anbeeld/beellama.cpp main with CUDA 12.9, GGML_CUDA=ON, GGML_CUDA_FA=ON, GGML_CUDA_FA_ALL_QUANTS=ON, arch 120a."
       },
       "model": {
-        "id": "bee-qwen36-27b-q3kxl-dflash-iq4-8k-1gpu",
+        "id": "Qwen3.6-27B",
         "family": "Qwen3.6",
         "architecture": "hybrid",
         "parameter_class": "27B",
@@ -1195,6 +1214,7 @@
       "caveats": [
         "Exploratory BeeLlama row; lower target quant than the dual-GPU Q4_K_M DFlash attempt."
       ],
+      "tier": "capable",
       "_source_file": "data/results/seed-beellama-qwen36-27b-20260523.json"
     },
     {
@@ -1225,7 +1245,7 @@
         "notes": "Built from Anbeeld/beellama.cpp main with CUDA 12.9, GGML_CUDA=ON, GGML_CUDA_FA=ON, GGML_CUDA_FA_ALL_QUANTS=ON, arch 120a."
       },
       "model": {
-        "id": "bee-qwen36-27b-q3kxl-dflash-iq4-8k-1gpu",
+        "id": "Qwen3.6-27B",
         "family": "Qwen3.6",
         "architecture": "hybrid",
         "parameter_class": "27B",
@@ -1267,6 +1287,7 @@
       "caveats": [
         "Exploratory BeeLlama row; lower target quant than the dual-GPU Q4_K_M DFlash attempt."
       ],
+      "tier": "capable",
       "_source_file": "data/results/seed-beellama-qwen36-27b-20260523.json"
     },
     {
@@ -1297,7 +1318,7 @@
         "notes": "Built from Anbeeld/beellama.cpp main with CUDA 12.9, GGML_CUDA=ON, GGML_CUDA_FA=ON, GGML_CUDA_FA_ALL_QUANTS=ON, arch 120a."
       },
       "model": {
-        "id": "bee-qwen36-27b-q3kxl-dflash-iq4-8k-1gpu",
+        "id": "Qwen3.6-27B",
         "family": "Qwen3.6",
         "architecture": "hybrid",
         "parameter_class": "27B",
@@ -1339,6 +1360,7 @@
       "caveats": [
         "Exploratory BeeLlama row; lower target quant than the dual-GPU Q4_K_M DFlash attempt."
       ],
+      "tier": "capable",
       "_source_file": "data/results/seed-beellama-qwen36-27b-20260523.json"
     },
     {
@@ -1369,7 +1391,7 @@
         "notes": "Built from Anbeeld/beellama.cpp main with CUDA 12.9, GGML_CUDA=ON, GGML_CUDA_FA=ON, GGML_CUDA_FA_ALL_QUANTS=ON, arch 120a."
       },
       "model": {
-        "id": "bee-qwen36-27b-q3kxl-dflash-iq4-8k-1gpu",
+        "id": "Qwen3.6-27B",
         "family": "Qwen3.6",
         "architecture": "hybrid",
         "parameter_class": "27B",
@@ -1411,6 +1433,7 @@
       "caveats": [
         "Exploratory BeeLlama row; lower target quant than the dual-GPU Q4_K_M DFlash attempt."
       ],
+      "tier": "capable",
       "_source_file": "data/results/seed-beellama-qwen36-27b-20260523.json"
     },
     {
@@ -1441,7 +1464,7 @@
         "notes": "Built from Anbeeld/beellama.cpp main with CUDA 12.9, GGML_CUDA=ON, GGML_CUDA_FA=ON, GGML_CUDA_FA_ALL_QUANTS=ON, arch 120a."
       },
       "model": {
-        "id": "bee-qwen36-27b-q3kxl-dflash-iq4-8k-1gpu",
+        "id": "Qwen3.6-27B",
         "family": "Qwen3.6",
         "architecture": "hybrid",
         "parameter_class": "27B",
@@ -1483,6 +1506,7 @@
       "caveats": [
         "Exploratory BeeLlama row; lower target quant than the dual-GPU Q4_K_M DFlash attempt."
       ],
+      "tier": "capable",
       "_source_file": "data/results/seed-beellama-qwen36-27b-20260523.json"
     },
     {
@@ -1513,7 +1537,7 @@
         "notes": "Built from Anbeeld/beellama.cpp main with CUDA 12.9, GGML_CUDA=ON, GGML_CUDA_FA=ON, GGML_CUDA_FA_ALL_QUANTS=ON, arch 120a."
       },
       "model": {
-        "id": "bee-qwen36-27b-q4km-nospec-32k",
+        "id": "Qwen3.6-27B",
         "family": "Qwen3.6",
         "architecture": "hybrid",
         "parameter_class": "27B",
@@ -1553,6 +1577,7 @@
       "caveats": [
         "Cross-engine comparison against vLLM is not model-equivalent: GGUF Q4_K_M target vs NVFP4 HF checkpoint."
       ],
+      "tier": "capable",
       "_source_file": "data/results/seed-beellama-qwen36-27b-20260523.json"
     },
     {
@@ -1583,7 +1608,7 @@
         "notes": "Built from Anbeeld/beellama.cpp main with CUDA 12.9, GGML_CUDA=ON, GGML_CUDA_FA=ON, GGML_CUDA_FA_ALL_QUANTS=ON, arch 120a."
       },
       "model": {
-        "id": "bee-qwen36-27b-q4km-nospec-32k",
+        "id": "Qwen3.6-27B",
         "family": "Qwen3.6",
         "architecture": "hybrid",
         "parameter_class": "27B",
@@ -1623,6 +1648,7 @@
       "caveats": [
         "Cross-engine comparison against vLLM is not model-equivalent: GGUF Q4_K_M target vs NVFP4 HF checkpoint."
       ],
+      "tier": "capable",
       "_source_file": "data/results/seed-beellama-qwen36-27b-20260523.json"
     },
     {
@@ -1653,7 +1679,7 @@
         "notes": "Built from Anbeeld/beellama.cpp main with CUDA 12.9, GGML_CUDA=ON, GGML_CUDA_FA=ON, GGML_CUDA_FA_ALL_QUANTS=ON, arch 120a."
       },
       "model": {
-        "id": "bee-qwen36-27b-q4km-nospec-32k",
+        "id": "Qwen3.6-27B",
         "family": "Qwen3.6",
         "architecture": "hybrid",
         "parameter_class": "27B",
@@ -1693,6 +1719,7 @@
       "caveats": [
         "Cross-engine comparison against vLLM is not model-equivalent: GGUF Q4_K_M target vs NVFP4 HF checkpoint."
       ],
+      "tier": "capable",
       "_source_file": "data/results/seed-beellama-qwen36-27b-20260523.json"
     },
     {
@@ -1723,7 +1750,7 @@
         "notes": "Built from Anbeeld/beellama.cpp main with CUDA 12.9, GGML_CUDA=ON, GGML_CUDA_FA=ON, GGML_CUDA_FA_ALL_QUANTS=ON, arch 120a."
       },
       "model": {
-        "id": "bee-qwen36-27b-q4km-nospec-32k",
+        "id": "Qwen3.6-27B",
         "family": "Qwen3.6",
         "architecture": "hybrid",
         "parameter_class": "27B",
@@ -1763,6 +1790,7 @@
       "caveats": [
         "Cross-engine comparison against vLLM is not model-equivalent: GGUF Q4_K_M target vs NVFP4 HF checkpoint."
       ],
+      "tier": "capable",
       "_source_file": "data/results/seed-beellama-qwen36-27b-20260523.json"
     },
     {
@@ -1793,7 +1821,7 @@
         "notes": "Built from Anbeeld/beellama.cpp main with CUDA 12.9, GGML_CUDA=ON, GGML_CUDA_FA=ON, GGML_CUDA_FA_ALL_QUANTS=ON, arch 120a."
       },
       "model": {
-        "id": "bee-qwen36-27b-q4km-nospec-32k",
+        "id": "Qwen3.6-27B",
         "family": "Qwen3.6",
         "architecture": "hybrid",
         "parameter_class": "27B",
@@ -1833,6 +1861,7 @@
       "caveats": [
         "Cross-engine comparison against vLLM is not model-equivalent: GGUF Q4_K_M target vs NVFP4 HF checkpoint."
       ],
+      "tier": "capable",
       "_source_file": "data/results/seed-beellama-qwen36-27b-20260523.json"
     },
     {
@@ -1863,7 +1892,7 @@
         "notes": "Built from Anbeeld/beellama.cpp main with CUDA 12.9, GGML_CUDA=ON, GGML_CUDA_FA=ON, GGML_CUDA_FA_ALL_QUANTS=ON, arch 120a."
       },
       "model": {
-        "id": "bee-qwen36-27b-q4km-nospec-32k",
+        "id": "Qwen3.6-27B",
         "family": "Qwen3.6",
         "architecture": "hybrid",
         "parameter_class": "27B",
@@ -1903,6 +1932,7 @@
       "caveats": [
         "Cross-engine comparison against vLLM is not model-equivalent: GGUF Q4_K_M target vs NVFP4 HF checkpoint."
       ],
+      "tier": "capable",
       "_source_file": "data/results/seed-beellama-qwen36-27b-20260523.json"
     },
     {
@@ -1929,7 +1959,7 @@
         "notes": "BeeLlama local branch fix/dflash-multigpu-seq-pos; no-spec baseline"
       },
       "model": {
-        "id": "beellama-qwen36-35b-a3b-iq3-nospec",
+        "id": "Qwen3.6-35B-A3B",
         "family": "Qwen3.6",
         "architecture": "hybrid",
         "parameter_class": "35B-A3B",
@@ -1969,6 +1999,7 @@
       "caveats": [
         "Exploratory BeeLlama branch baseline row."
       ],
+      "tier": "capable",
       "_source_file": "data/results/seed-beellama-qwen36-35b-a3b-dflash-20260523.json"
     },
     {
@@ -1995,7 +2026,7 @@
         "notes": "BeeLlama local branch fix/dflash-multigpu-seq-pos; no-spec baseline"
       },
       "model": {
-        "id": "beellama-qwen36-35b-a3b-iq3-nospec",
+        "id": "Qwen3.6-35B-A3B",
         "family": "Qwen3.6",
         "architecture": "hybrid",
         "parameter_class": "35B-A3B",
@@ -2035,6 +2066,7 @@
       "caveats": [
         "Exploratory BeeLlama branch baseline row."
       ],
+      "tier": "capable",
       "_source_file": "data/results/seed-beellama-qwen36-35b-a3b-dflash-20260523.json"
     },
     {
@@ -2061,7 +2093,7 @@
         "notes": "BeeLlama local branch fix/dflash-multigpu-seq-pos; no-spec baseline"
       },
       "model": {
-        "id": "beellama-qwen36-35b-a3b-iq3-nospec",
+        "id": "Qwen3.6-35B-A3B",
         "family": "Qwen3.6",
         "architecture": "hybrid",
         "parameter_class": "35B-A3B",
@@ -2101,6 +2133,7 @@
       "caveats": [
         "Exploratory BeeLlama branch baseline row."
       ],
+      "tier": "capable",
       "_source_file": "data/results/seed-beellama-qwen36-35b-a3b-dflash-20260523.json"
     },
     {
@@ -2127,7 +2160,7 @@
         "notes": "BeeLlama local branch fix/dflash-multigpu-seq-pos; 35B-A3B DFlash drafter from abhinand/Qwen3.6-35B-A3B-DFlash-GGUF"
       },
       "model": {
-        "id": "beellama-qwen36-35b-a3b-iq3-dflash",
+        "id": "Qwen3.6-35B-A3B",
         "family": "Qwen3.6",
         "architecture": "hybrid",
         "parameter_class": "35B-A3B",
@@ -2170,6 +2203,7 @@
       "caveats": [
         "Exploratory BeeLlama branch row; 35B-A3B DFlash drafter not previously part of public club-5060ti data."
       ],
+      "tier": "capable",
       "_source_file": "data/results/seed-beellama-qwen36-35b-a3b-dflash-20260523.json"
     },
     {
@@ -2196,7 +2230,7 @@
         "notes": "BeeLlama local branch fix/dflash-multigpu-seq-pos; 35B-A3B DFlash drafter from abhinand/Qwen3.6-35B-A3B-DFlash-GGUF"
       },
       "model": {
-        "id": "beellama-qwen36-35b-a3b-iq3-dflash",
+        "id": "Qwen3.6-35B-A3B",
         "family": "Qwen3.6",
         "architecture": "hybrid",
         "parameter_class": "35B-A3B",
@@ -2239,6 +2273,7 @@
       "caveats": [
         "Exploratory BeeLlama branch row; 35B-A3B DFlash drafter not previously part of public club-5060ti data."
       ],
+      "tier": "capable",
       "_source_file": "data/results/seed-beellama-qwen36-35b-a3b-dflash-20260523.json"
     },
     {
@@ -2265,7 +2300,7 @@
         "notes": "BeeLlama local branch fix/dflash-multigpu-seq-pos; 35B-A3B DFlash drafter from abhinand/Qwen3.6-35B-A3B-DFlash-GGUF"
       },
       "model": {
-        "id": "beellama-qwen36-35b-a3b-iq3-dflash",
+        "id": "Qwen3.6-35B-A3B",
         "family": "Qwen3.6",
         "architecture": "hybrid",
         "parameter_class": "35B-A3B",
@@ -2308,6 +2343,7 @@
       "caveats": [
         "Exploratory BeeLlama branch row; 35B-A3B DFlash drafter not previously part of public club-5060ti data."
       ],
+      "tier": "capable",
       "_source_file": "data/results/seed-beellama-qwen36-35b-a3b-dflash-20260523.json"
     },
     {
@@ -2339,7 +2375,7 @@
         "notes": "BeeLlama local branch fix/dflash-multigpu-seq-pos; no DFlash drafter"
       },
       "model": {
-        "id": "beellama-qwen36-35b-a3b-iq3-nospec",
+        "id": "Qwen3.6-35B-A3B",
         "family": "Qwen3.6",
         "architecture": "hybrid",
         "parameter_class": "35B-A3B",
@@ -2381,6 +2417,7 @@
         "Matched lower-context no-spec baseline for the BeeLlama 35B-A3B DFlash long-retrieval check.",
         "Long-retrieval is a short-answer fit/retrieval check, not a sustained decode benchmark."
       ],
+      "tier": "capable",
       "_source_file": "data/results/seed-beellama-qwen36-35b-a3b-dflash-20260523.json"
     },
     {
@@ -2412,7 +2449,7 @@
         "notes": "BeeLlama local branch fix/dflash-multigpu-seq-pos; 35B-A3B DFlash drafter from abhinand/Qwen3.6-35B-A3B-DFlash-GGUF"
       },
       "model": {
-        "id": "beellama-qwen36-35b-a3b-iq3-dflash",
+        "id": "Qwen3.6-35B-A3B",
         "family": "Qwen3.6",
         "architecture": "hybrid",
         "parameter_class": "35B-A3B",
@@ -2457,6 +2494,7 @@
         "DFlash decode was slower than the matched no-spec long-retrieval row because acceptance was low.",
         "Long-retrieval is a short-answer fit/retrieval check, not a sustained decode benchmark."
       ],
+      "tier": "capable",
       "_source_file": "data/results/seed-beellama-qwen36-35b-a3b-dflash-20260523.json"
     },
     {
@@ -2488,7 +2526,8 @@
         "family": "Qwen3.6",
         "architecture": "hybrid",
         "quant": "UD-Q4_K_XL",
-        "source": "unsloth GGUF MTP route"
+        "source": "unsloth GGUF MTP route",
+        "parameter_class": "27B"
       },
       "serving": {
         "route": "server",
@@ -2521,6 +2560,7 @@
         "wall_seconds": 7.858
       },
       "caveats": [],
+      "tier": "capable",
       "_source_file": "data/results/seed-qwen-mtp-2x5060ti-20260519.json"
     },
     {
@@ -2552,7 +2592,8 @@
         "family": "Qwen3.6",
         "architecture": "hybrid",
         "quant": "UD-Q4_K_XL",
-        "source": "unsloth GGUF MTP route"
+        "source": "unsloth GGUF MTP route",
+        "parameter_class": "27B"
       },
       "serving": {
         "route": "server",
@@ -2585,6 +2626,7 @@
         "wall_seconds": 7.742
       },
       "caveats": [],
+      "tier": "capable",
       "_source_file": "data/results/seed-qwen-mtp-2x5060ti-20260519.json"
     },
     {
@@ -2616,7 +2658,8 @@
         "family": "Qwen3.6",
         "architecture": "hybrid",
         "quant": "UD-Q4_K_XL",
-        "source": "unsloth GGUF MTP route"
+        "source": "unsloth GGUF MTP route",
+        "parameter_class": "27B"
       },
       "serving": {
         "route": "server",
@@ -2649,6 +2692,7 @@
         "wall_seconds": 20.859
       },
       "caveats": [],
+      "tier": "capable",
       "_source_file": "data/results/seed-qwen-mtp-2x5060ti-20260519.json"
     },
     {
@@ -2680,7 +2724,8 @@
         "family": "Qwen3.6",
         "architecture": "hybrid",
         "quant": "UD-Q4_K_XL",
-        "source": "unsloth GGUF MTP route"
+        "source": "unsloth GGUF MTP route",
+        "parameter_class": "27B"
       },
       "serving": {
         "route": "server",
@@ -2713,6 +2758,7 @@
         "wall_seconds": 20.605
       },
       "caveats": [],
+      "tier": "capable",
       "_source_file": "data/results/seed-qwen-mtp-2x5060ti-20260519.json"
     },
     {
@@ -2744,7 +2790,8 @@
         "family": "Qwen3.6",
         "architecture": "hybrid",
         "quant": "UD-Q4_K_XL",
-        "source": "unsloth GGUF MTP route"
+        "source": "unsloth GGUF MTP route",
+        "parameter_class": "27B"
       },
       "serving": {
         "route": "server",
@@ -2777,6 +2824,7 @@
         "wall_seconds": 18.13
       },
       "caveats": [],
+      "tier": "capable",
       "_source_file": "data/results/seed-qwen-mtp-2x5060ti-20260519.json"
     },
     {
@@ -2808,7 +2856,8 @@
         "family": "Qwen3.6",
         "architecture": "hybrid",
         "quant": "UD-Q4_K_XL",
-        "source": "unsloth GGUF MTP route"
+        "source": "unsloth GGUF MTP route",
+        "parameter_class": "27B"
       },
       "serving": {
         "route": "server",
@@ -2841,6 +2890,7 @@
         "wall_seconds": 17.835
       },
       "caveats": [],
+      "tier": "capable",
       "_source_file": "data/results/seed-qwen-mtp-2x5060ti-20260519.json"
     },
     {
@@ -2872,7 +2922,8 @@
         "family": "Qwen3.6",
         "architecture": "hybrid",
         "quant": "UD-Q4_K_XL",
-        "source": "unsloth GGUF MTP route"
+        "source": "unsloth GGUF MTP route",
+        "parameter_class": "27B"
       },
       "serving": {
         "route": "server",
@@ -2907,6 +2958,7 @@
       "caveats": [
         "Long-prompt short-answer fit check on the 2x5060ti seed system; not a sustained decode benchmark."
       ],
+      "tier": "capable",
       "_source_file": "data/results/seed-qwen-mtp-2x5060ti-20260519.json"
     },
     {
@@ -2938,7 +2990,8 @@
         "family": "Qwen3.6",
         "architecture": "hybrid",
         "quant": "UD-Q4_K_XL",
-        "source": "unsloth GGUF MTP route"
+        "source": "unsloth GGUF MTP route",
+        "parameter_class": "27B"
       },
       "serving": {
         "route": "server",
@@ -2973,6 +3026,7 @@
       "caveats": [
         "Long-prompt short-answer fit check on the 2x5060ti seed system; not a sustained decode benchmark."
       ],
+      "tier": "capable",
       "_source_file": "data/results/seed-qwen-mtp-2x5060ti-20260519.json"
     },
     {
@@ -3004,7 +3058,8 @@
         "family": "Qwen3.5",
         "architecture": "dense",
         "quant": "UD-Q4_K_XL",
-        "source": "unsloth GGUF MTP route"
+        "source": "unsloth GGUF MTP route",
+        "parameter_class": "9B"
       },
       "serving": {
         "route": "server",
@@ -3036,6 +3091,7 @@
         "wall_seconds": 3.834
       },
       "caveats": [],
+      "tier": "capable",
       "_source_file": "data/results/seed-qwen-mtp-2x5060ti-20260519.json"
     },
     {
@@ -3067,7 +3123,8 @@
         "family": "Qwen3.5",
         "architecture": "dense",
         "quant": "UD-Q4_K_XL",
-        "source": "unsloth GGUF MTP route"
+        "source": "unsloth GGUF MTP route",
+        "parameter_class": "9B"
       },
       "serving": {
         "route": "server",
@@ -3099,6 +3156,7 @@
         "wall_seconds": 3.791
       },
       "caveats": [],
+      "tier": "capable",
       "_source_file": "data/results/seed-qwen-mtp-2x5060ti-20260519.json"
     },
     {
@@ -3130,7 +3188,8 @@
         "family": "Qwen3.5",
         "architecture": "dense",
         "quant": "UD-Q4_K_XL",
-        "source": "unsloth GGUF MTP route"
+        "source": "unsloth GGUF MTP route",
+        "parameter_class": "9B"
       },
       "serving": {
         "route": "server",
@@ -3162,6 +3221,7 @@
         "wall_seconds": 8.84
       },
       "caveats": [],
+      "tier": "capable",
       "_source_file": "data/results/seed-qwen-mtp-2x5060ti-20260519.json"
     },
     {
@@ -3193,7 +3253,8 @@
         "family": "Qwen3.5",
         "architecture": "dense",
         "quant": "UD-Q4_K_XL",
-        "source": "unsloth GGUF MTP route"
+        "source": "unsloth GGUF MTP route",
+        "parameter_class": "9B"
       },
       "serving": {
         "route": "server",
@@ -3225,6 +3286,7 @@
         "wall_seconds": 8.797
       },
       "caveats": [],
+      "tier": "capable",
       "_source_file": "data/results/seed-qwen-mtp-2x5060ti-20260519.json"
     },
     {
@@ -3256,7 +3318,8 @@
         "family": "Qwen3.5",
         "architecture": "dense",
         "quant": "UD-Q4_K_XL",
-        "source": "unsloth GGUF MTP route"
+        "source": "unsloth GGUF MTP route",
+        "parameter_class": "9B"
       },
       "serving": {
         "route": "server",
@@ -3288,6 +3351,7 @@
         "wall_seconds": 7.401
       },
       "caveats": [],
+      "tier": "capable",
       "_source_file": "data/results/seed-qwen-mtp-2x5060ti-20260519.json"
     },
     {
@@ -3319,7 +3383,8 @@
         "family": "Qwen3.5",
         "architecture": "dense",
         "quant": "UD-Q4_K_XL",
-        "source": "unsloth GGUF MTP route"
+        "source": "unsloth GGUF MTP route",
+        "parameter_class": "9B"
       },
       "serving": {
         "route": "server",
@@ -3351,6 +3416,7 @@
         "wall_seconds": 7.305
       },
       "caveats": [],
+      "tier": "capable",
       "_source_file": "data/results/seed-qwen-mtp-2x5060ti-20260519.json"
     },
     {
@@ -3382,7 +3448,8 @@
         "family": "Qwen3.5",
         "architecture": "dense",
         "quant": "UD-Q4_K_XL",
-        "source": "unsloth GGUF MTP route"
+        "source": "unsloth GGUF MTP route",
+        "parameter_class": "9B"
       },
       "serving": {
         "route": "server",
@@ -3416,6 +3483,7 @@
       "caveats": [
         "Long-prompt short-answer fit check on the 2x5060ti seed system; not a sustained decode benchmark."
       ],
+      "tier": "capable",
       "_source_file": "data/results/seed-qwen-mtp-2x5060ti-20260519.json"
     },
     {
@@ -3447,7 +3515,8 @@
         "family": "Qwen3.5",
         "architecture": "dense",
         "quant": "UD-Q4_K_XL",
-        "source": "unsloth GGUF MTP route"
+        "source": "unsloth GGUF MTP route",
+        "parameter_class": "9B"
       },
       "serving": {
         "route": "server",
@@ -3481,7 +3550,309 @@
       "caveats": [
         "Long-prompt short-answer fit check on the 2x5060ti seed system; not a sustained decode benchmark."
       ],
+      "tier": "capable",
       "_source_file": "data/results/seed-qwen-mtp-2x5060ti-20260519.json"
+    },
+    {
+      "schema_version": "1.0",
+      "id": "20260708-124149-qwen3.5-122b-a10b-short-chat-1",
+      "timestamp_utc": "2026-07-08T12:45:59.299482+00:00",
+      "source": {
+        "type": "seed",
+        "label": "Pacey-seed-2x-RTX-5060-Ti",
+        "notes": "Generated by scripts/run_openai_bench.py"
+      },
+      "promotion_level": "benchmark",
+      "hardware": {
+        "lane": "2x5060ti",
+        "gpu_count": 2,
+        "gpu_model": "NVIDIA-GeForce-RTX-5060-Ti",
+        "vram_per_gpu_gb": 16.0,
+        "driver": "595.58.03",
+        "cpu": "2x-Intel-Xeon-E5-2680-v4",
+        "host_ram_gb": 128.0,
+        "inference_ram_gb": 60.0,
+        "pcie": "both-RTX-5060-Ti-cards-run-at-x8-in-this-host",
+        "notes": "Dell-Precision-Tower-7810-seed-dual-card-lane"
+      },
+      "runtime": {
+        "engine": "llama.cpp",
+        "version": "9518",
+        "commit": "7c158fbb4",
+        "build": "CUDA-120a-flash-attention-on"
+      },
+      "model": {
+        "id": "Qwen3.5-122B-A10B",
+        "family": "Qwen3.5",
+        "architecture": "moe",
+        "parameter_class": "122B-A10B",
+        "quant": "IQ4_XS",
+        "source": "unsloth/Qwen3.5-122B-A10B-MTP-GGUF"
+      },
+      "serving": {
+        "route": "server",
+        "context_tokens": 65536,
+        "batch_size": 1024,
+        "ubatch_size": 512,
+        "kv_cache_k": "f16",
+        "kv_cache_v": "f16",
+        "split_mode": "tensor",
+        "tensor_parallel": "3,1",
+        "speculation": {
+          "type": "draft-mtp",
+          "draft_n": 4,
+          "acceptance_rate": 0.5623,
+          "notes": "p-min=0.1"
+        },
+        "thinking": "off",
+        "notes": "Router --models-max 1, 30 MoE experts CPU-offloaded, stretch lane."
+      },
+      "benchmark": {
+        "prompt_set": "short-chat",
+        "configured_context_tokens": 65536,
+        "actual_prompt_tokens": 31,
+        "generated_tokens": 256,
+        "runs": 1,
+        "warmups": 1,
+        "stream": false
+      },
+      "metrics": {
+        "prompt_tok_s": 17.583190469910765,
+        "decode_tok_s": 13.396337985421017,
+        "end_to_end_tok_s": 12.781,
+        "wall_seconds": 20.03
+      },
+      "caveats": [
+        "CPU MoE offload, not a practical daily-driver lane."
+      ],
+      "tier": "recommended",
+      "_source_file": "data/results/seed-qwen35-122b-a10b-iq4xs-2x5060ti-20260708.json"
+    },
+    {
+      "schema_version": "1.0",
+      "id": "20260708-124149-qwen3.5-122b-a10b-code-generate-1",
+      "timestamp_utc": "2026-07-08T12:47:37.655612+00:00",
+      "source": {
+        "type": "seed",
+        "label": "Pacey-seed-2x-RTX-5060-Ti",
+        "notes": "Generated by scripts/run_openai_bench.py"
+      },
+      "promotion_level": "benchmark",
+      "hardware": {
+        "lane": "2x5060ti",
+        "gpu_count": 2,
+        "gpu_model": "NVIDIA-GeForce-RTX-5060-Ti",
+        "vram_per_gpu_gb": 16.0,
+        "driver": "595.58.03",
+        "cpu": "2x-Intel-Xeon-E5-2680-v4",
+        "host_ram_gb": 128.0,
+        "inference_ram_gb": 60.0,
+        "pcie": "both-RTX-5060-Ti-cards-run-at-x8-in-this-host",
+        "notes": "Dell-Precision-Tower-7810-seed-dual-card-lane"
+      },
+      "runtime": {
+        "engine": "llama.cpp",
+        "version": "9518",
+        "commit": "7c158fbb4",
+        "build": "CUDA-120a-flash-attention-on"
+      },
+      "model": {
+        "id": "Qwen3.5-122B-A10B",
+        "family": "Qwen3.5",
+        "architecture": "moe",
+        "parameter_class": "122B-A10B",
+        "quant": "IQ4_XS",
+        "source": "unsloth/Qwen3.5-122B-A10B-MTP-GGUF"
+      },
+      "serving": {
+        "route": "server",
+        "context_tokens": 65536,
+        "batch_size": 1024,
+        "ubatch_size": 512,
+        "kv_cache_k": "f16",
+        "kv_cache_v": "f16",
+        "split_mode": "tensor",
+        "tensor_parallel": "3,1",
+        "speculation": {
+          "type": "draft-mtp",
+          "draft_n": 4,
+          "acceptance_rate": 0.73018,
+          "notes": "p-min=0.1"
+        },
+        "thinking": "off",
+        "notes": "Router --models-max 1, 30 MoE experts CPU-offloaded, stretch lane."
+      },
+      "benchmark": {
+        "prompt_set": "code-generate",
+        "configured_context_tokens": 65536,
+        "actual_prompt_tokens": 53,
+        "generated_tokens": 768,
+        "runs": 1,
+        "warmups": 1,
+        "stream": false
+      },
+      "metrics": {
+        "prompt_tok_s": 17.471368794388198,
+        "decode_tok_s": 16.188000012646874,
+        "end_to_end_tok_s": 15.929,
+        "wall_seconds": 48.214
+      },
+      "caveats": [
+        "CPU MoE offload, not a practical daily-driver lane."
+      ],
+      "tier": "recommended",
+      "_source_file": "data/results/seed-qwen35-122b-a10b-iq4xs-2x5060ti-20260708.json"
+    },
+    {
+      "schema_version": "1.0",
+      "id": "20260708-124149-qwen3.5-122b-a10b-agent-tool-1",
+      "timestamp_utc": "2026-07-08T12:49:04.017338+00:00",
+      "source": {
+        "type": "seed",
+        "label": "Pacey-seed-2x-RTX-5060-Ti",
+        "notes": "Generated by scripts/run_openai_bench.py"
+      },
+      "promotion_level": "benchmark",
+      "hardware": {
+        "lane": "2x5060ti",
+        "gpu_count": 2,
+        "gpu_model": "NVIDIA-GeForce-RTX-5060-Ti",
+        "vram_per_gpu_gb": 16.0,
+        "driver": "595.58.03",
+        "cpu": "2x-Intel-Xeon-E5-2680-v4",
+        "host_ram_gb": 128.0,
+        "inference_ram_gb": 60.0,
+        "pcie": "both-RTX-5060-Ti-cards-run-at-x8-in-this-host",
+        "notes": "Dell-Precision-Tower-7810-seed-dual-card-lane"
+      },
+      "runtime": {
+        "engine": "llama.cpp",
+        "version": "9518",
+        "commit": "7c158fbb4",
+        "build": "CUDA-120a-flash-attention-on"
+      },
+      "model": {
+        "id": "Qwen3.5-122B-A10B",
+        "family": "Qwen3.5",
+        "architecture": "moe",
+        "parameter_class": "122B-A10B",
+        "quant": "IQ4_XS",
+        "source": "unsloth/Qwen3.5-122B-A10B-MTP-GGUF"
+      },
+      "serving": {
+        "route": "server",
+        "context_tokens": 65536,
+        "batch_size": 1024,
+        "ubatch_size": 512,
+        "kv_cache_k": "f16",
+        "kv_cache_v": "f16",
+        "split_mode": "tensor",
+        "tensor_parallel": "3,1",
+        "speculation": {
+          "type": "draft-mtp",
+          "draft_n": 4,
+          "acceptance_rate": 0.48629,
+          "notes": "p-min=0.1"
+        },
+        "thinking": "off",
+        "notes": "Router --models-max 1, 30 MoE experts CPU-offloaded, stretch lane."
+      },
+      "benchmark": {
+        "prompt_set": "agent-tool",
+        "configured_context_tokens": 65536,
+        "actual_prompt_tokens": 111,
+        "generated_tokens": 512,
+        "runs": 1,
+        "warmups": 1,
+        "stream": false
+      },
+      "metrics": {
+        "prompt_tok_s": 17.782361675454116,
+        "decode_tok_s": 12.603079404914098,
+        "end_to_end_tok_s": 12.369,
+        "wall_seconds": 41.393
+      },
+      "caveats": [
+        "CPU MoE offload, not a practical daily-driver lane."
+      ],
+      "tier": "recommended",
+      "_source_file": "data/results/seed-qwen35-122b-a10b-iq4xs-2x5060ti-20260708.json"
+    },
+    {
+      "schema_version": "1.0",
+      "id": "20260708-124149-qwen3.5-122b-a10b-long-retrieval-1",
+      "timestamp_utc": "2026-07-08T12:52:04.035123+00:00",
+      "source": {
+        "type": "seed",
+        "label": "Pacey-seed-2x-RTX-5060-Ti",
+        "notes": "Generated by scripts/run_openai_bench.py"
+      },
+      "promotion_level": "benchmark",
+      "hardware": {
+        "lane": "2x5060ti",
+        "gpu_count": 2,
+        "gpu_model": "NVIDIA-GeForce-RTX-5060-Ti",
+        "vram_per_gpu_gb": 16.0,
+        "driver": "595.58.03",
+        "cpu": "2x-Intel-Xeon-E5-2680-v4",
+        "host_ram_gb": 128.0,
+        "inference_ram_gb": 60.0,
+        "pcie": "both-RTX-5060-Ti-cards-run-at-x8-in-this-host",
+        "notes": "Dell-Precision-Tower-7810-seed-dual-card-lane"
+      },
+      "runtime": {
+        "engine": "llama.cpp",
+        "version": "9518",
+        "commit": "7c158fbb4",
+        "build": "CUDA-120a-flash-attention-on"
+      },
+      "model": {
+        "id": "Qwen3.5-122B-A10B",
+        "family": "Qwen3.5",
+        "architecture": "moe",
+        "parameter_class": "122B-A10B",
+        "quant": "IQ4_XS",
+        "source": "unsloth/Qwen3.5-122B-A10B-MTP-GGUF"
+      },
+      "serving": {
+        "route": "server",
+        "context_tokens": 65536,
+        "batch_size": 1024,
+        "ubatch_size": 512,
+        "kv_cache_k": "f16",
+        "kv_cache_v": "f16",
+        "split_mode": "tensor",
+        "tensor_parallel": "3,1",
+        "speculation": {
+          "type": "draft-mtp",
+          "draft_n": 4,
+          "acceptance_rate": 1.0,
+          "notes": "p-min=0.1"
+        },
+        "thinking": "off",
+        "notes": "Router --models-max 1, 30 MoE experts CPU-offloaded, stretch lane."
+      },
+      "benchmark": {
+        "prompt_set": "long-retrieval",
+        "configured_context_tokens": 65536,
+        "actual_prompt_tokens": 27061,
+        "generated_tokens": 17,
+        "runs": 1,
+        "warmups": 1,
+        "stream": false
+      },
+      "metrics": {
+        "prompt_tok_s": 117.01155216957785,
+        "decode_tok_s": 17.49666019633311,
+        "end_to_end_tok_s": 3.005,
+        "wall_seconds": 5.657
+      },
+      "caveats": [
+        "CPU MoE offload, not a practical daily-driver lane.",
+        "Long-prompt short-answer fit check on the 2x5060ti seed system; not a sustained decode benchmark."
+      ],
+      "tier": "recommended",
+      "_source_file": "data/results/seed-qwen35-122b-a10b-iq4xs-2x5060ti-20260708.json"
     },
     {
       "schema_version": "1.0",
@@ -3512,7 +3883,8 @@
         "family": "Qwen3.5",
         "architecture": "dense",
         "quant": "UD-Q4_K_XL",
-        "source": "unsloth/Qwen3.5-9B-MTP-GGUF"
+        "source": "unsloth/Qwen3.5-9B-MTP-GGUF",
+        "parameter_class": "9B"
       },
       "serving": {
         "route": "server",
@@ -3544,6 +3916,7 @@
         "wall_seconds": 3.264
       },
       "caveats": [],
+      "tier": "recommended",
       "_source_file": "data/results/seed-qwen35-9b-mtp-1x5060ti-20260519.json"
     },
     {
@@ -3575,7 +3948,8 @@
         "family": "Qwen3.5",
         "architecture": "dense",
         "quant": "UD-Q4_K_XL",
-        "source": "unsloth/Qwen3.5-9B-MTP-GGUF"
+        "source": "unsloth/Qwen3.5-9B-MTP-GGUF",
+        "parameter_class": "9B"
       },
       "serving": {
         "route": "server",
@@ -3607,6 +3981,7 @@
         "wall_seconds": 3.214
       },
       "caveats": [],
+      "tier": "recommended",
       "_source_file": "data/results/seed-qwen35-9b-mtp-1x5060ti-20260519.json"
     },
     {
@@ -3638,7 +4013,8 @@
         "family": "Qwen3.5",
         "architecture": "dense",
         "quant": "UD-Q4_K_XL",
-        "source": "unsloth/Qwen3.5-9B-MTP-GGUF"
+        "source": "unsloth/Qwen3.5-9B-MTP-GGUF",
+        "parameter_class": "9B"
       },
       "serving": {
         "route": "server",
@@ -3670,6 +4046,7 @@
         "wall_seconds": 8.143
       },
       "caveats": [],
+      "tier": "recommended",
       "_source_file": "data/results/seed-qwen35-9b-mtp-1x5060ti-20260519.json"
     },
     {
@@ -3701,7 +4078,8 @@
         "family": "Qwen3.5",
         "architecture": "dense",
         "quant": "UD-Q4_K_XL",
-        "source": "unsloth/Qwen3.5-9B-MTP-GGUF"
+        "source": "unsloth/Qwen3.5-9B-MTP-GGUF",
+        "parameter_class": "9B"
       },
       "serving": {
         "route": "server",
@@ -3733,6 +4111,7 @@
         "wall_seconds": 8.082
       },
       "caveats": [],
+      "tier": "recommended",
       "_source_file": "data/results/seed-qwen35-9b-mtp-1x5060ti-20260519.json"
     },
     {
@@ -3764,7 +4143,8 @@
         "family": "Qwen3.5",
         "architecture": "dense",
         "quant": "UD-Q4_K_XL",
-        "source": "unsloth/Qwen3.5-9B-MTP-GGUF"
+        "source": "unsloth/Qwen3.5-9B-MTP-GGUF",
+        "parameter_class": "9B"
       },
       "serving": {
         "route": "server",
@@ -3796,6 +4176,7 @@
         "wall_seconds": 6.885
       },
       "caveats": [],
+      "tier": "recommended",
       "_source_file": "data/results/seed-qwen35-9b-mtp-1x5060ti-20260519.json"
     },
     {
@@ -3827,7 +4208,8 @@
         "family": "Qwen3.5",
         "architecture": "dense",
         "quant": "UD-Q4_K_XL",
-        "source": "unsloth/Qwen3.5-9B-MTP-GGUF"
+        "source": "unsloth/Qwen3.5-9B-MTP-GGUF",
+        "parameter_class": "9B"
       },
       "serving": {
         "route": "server",
@@ -3859,6 +4241,7 @@
         "wall_seconds": 6.687
       },
       "caveats": [],
+      "tier": "recommended",
       "_source_file": "data/results/seed-qwen35-9b-mtp-1x5060ti-20260519.json"
     },
     {
@@ -3890,7 +4273,8 @@
         "family": "Qwen3.5",
         "architecture": "dense",
         "quant": "UD-Q4_K_XL",
-        "source": "unsloth/Qwen3.5-9B-MTP-GGUF"
+        "source": "unsloth/Qwen3.5-9B-MTP-GGUF",
+        "parameter_class": "9B"
       },
       "serving": {
         "route": "server",
@@ -3924,6 +4308,7 @@
       "caveats": [
         "Long-prompt short-answer fit check on the 1x5060ti seed system; not a sustained decode benchmark."
       ],
+      "tier": "recommended",
       "_source_file": "data/results/seed-qwen35-9b-mtp-1x5060ti-20260519.json"
     },
     {
@@ -3955,7 +4340,8 @@
         "family": "Qwen3.5",
         "architecture": "dense",
         "quant": "UD-Q4_K_XL",
-        "source": "unsloth/Qwen3.5-9B-MTP-GGUF"
+        "source": "unsloth/Qwen3.5-9B-MTP-GGUF",
+        "parameter_class": "9B"
       },
       "serving": {
         "route": "server",
@@ -3989,6 +4375,7 @@
       "caveats": [
         "Long-prompt short-answer fit check on the 1x5060ti seed system; not a sustained decode benchmark."
       ],
+      "tier": "recommended",
       "_source_file": "data/results/seed-qwen35-9b-mtp-1x5060ti-20260519.json"
     },
     {
@@ -4020,7 +4407,8 @@
         "family": "Qwen3.5",
         "architecture": "dense",
         "quant": "UD-Q4_K_XL",
-        "source": "unsloth/Qwen3.5-9B-MTP-GGUF"
+        "source": "unsloth/Qwen3.5-9B-MTP-GGUF",
+        "parameter_class": "9B"
       },
       "serving": {
         "route": "server",
@@ -4051,6 +4439,7 @@
         "wall_seconds": 4.162
       },
       "caveats": [],
+      "tier": "capable",
       "_source_file": "data/results/seed-qwen35-9b-nomtp-1x5060ti-20260519.json"
     },
     {
@@ -4082,7 +4471,8 @@
         "family": "Qwen3.5",
         "architecture": "dense",
         "quant": "UD-Q4_K_XL",
-        "source": "unsloth/Qwen3.5-9B-MTP-GGUF"
+        "source": "unsloth/Qwen3.5-9B-MTP-GGUF",
+        "parameter_class": "9B"
       },
       "serving": {
         "route": "server",
@@ -4113,6 +4503,7 @@
         "wall_seconds": 4.111
       },
       "caveats": [],
+      "tier": "capable",
       "_source_file": "data/results/seed-qwen35-9b-nomtp-1x5060ti-20260519.json"
     },
     {
@@ -4144,7 +4535,8 @@
         "family": "Qwen3.5",
         "architecture": "dense",
         "quant": "UD-Q4_K_XL",
-        "source": "unsloth/Qwen3.5-9B-MTP-GGUF"
+        "source": "unsloth/Qwen3.5-9B-MTP-GGUF",
+        "parameter_class": "9B"
       },
       "serving": {
         "route": "server",
@@ -4175,6 +4567,7 @@
         "wall_seconds": 12.262
       },
       "caveats": [],
+      "tier": "capable",
       "_source_file": "data/results/seed-qwen35-9b-nomtp-1x5060ti-20260519.json"
     },
     {
@@ -4206,7 +4599,8 @@
         "family": "Qwen3.5",
         "architecture": "dense",
         "quant": "UD-Q4_K_XL",
-        "source": "unsloth/Qwen3.5-9B-MTP-GGUF"
+        "source": "unsloth/Qwen3.5-9B-MTP-GGUF",
+        "parameter_class": "9B"
       },
       "serving": {
         "route": "server",
@@ -4237,6 +4631,7 @@
         "wall_seconds": 12.207
       },
       "caveats": [],
+      "tier": "capable",
       "_source_file": "data/results/seed-qwen35-9b-nomtp-1x5060ti-20260519.json"
     },
     {
@@ -4268,7 +4663,8 @@
         "family": "Qwen3.5",
         "architecture": "dense",
         "quant": "UD-Q4_K_XL",
-        "source": "unsloth/Qwen3.5-9B-MTP-GGUF"
+        "source": "unsloth/Qwen3.5-9B-MTP-GGUF",
+        "parameter_class": "9B"
       },
       "serving": {
         "route": "server",
@@ -4299,6 +4695,7 @@
         "wall_seconds": 8.254
       },
       "caveats": [],
+      "tier": "capable",
       "_source_file": "data/results/seed-qwen35-9b-nomtp-1x5060ti-20260519.json"
     },
     {
@@ -4330,7 +4727,8 @@
         "family": "Qwen3.5",
         "architecture": "dense",
         "quant": "UD-Q4_K_XL",
-        "source": "unsloth/Qwen3.5-9B-MTP-GGUF"
+        "source": "unsloth/Qwen3.5-9B-MTP-GGUF",
+        "parameter_class": "9B"
       },
       "serving": {
         "route": "server",
@@ -4361,6 +4759,7 @@
         "wall_seconds": 8.152
       },
       "caveats": [],
+      "tier": "capable",
       "_source_file": "data/results/seed-qwen35-9b-nomtp-1x5060ti-20260519.json"
     },
     {
@@ -4392,7 +4791,8 @@
         "family": "Qwen3.5",
         "architecture": "dense",
         "quant": "UD-Q4_K_XL",
-        "source": "unsloth/Qwen3.5-9B-MTP-GGUF"
+        "source": "unsloth/Qwen3.5-9B-MTP-GGUF",
+        "parameter_class": "9B"
       },
       "serving": {
         "route": "server",
@@ -4425,6 +4825,7 @@
       "caveats": [
         "Long-prompt short-answer fit check on the 1x5060ti seed system; not a sustained decode benchmark."
       ],
+      "tier": "capable",
       "_source_file": "data/results/seed-qwen35-9b-nomtp-1x5060ti-20260519.json"
     },
     {
@@ -4456,7 +4857,8 @@
         "family": "Qwen3.5",
         "architecture": "dense",
         "quant": "UD-Q4_K_XL",
-        "source": "unsloth/Qwen3.5-9B-MTP-GGUF"
+        "source": "unsloth/Qwen3.5-9B-MTP-GGUF",
+        "parameter_class": "9B"
       },
       "serving": {
         "route": "server",
@@ -4489,6 +4891,7 @@
       "caveats": [
         "Long-prompt short-answer fit check on the 1x5060ti seed system; not a sustained decode benchmark."
       ],
+      "tier": "capable",
       "_source_file": "data/results/seed-qwen35-9b-nomtp-1x5060ti-20260519.json"
     },
     {
@@ -4567,6 +4970,7 @@
         "Split 50,50 is tested on this build; split 51,49 currently asserts for tensor mode.",
         "Long-retrieval prompt is synthetic and intended for comparability, not quality scoring."
       ],
+      "tier": "capable",
       "_source_file": "data/results/seed-qwen36-27b-f16-tensor-2x5060ti-20260529.json"
     },
     {
@@ -4646,6 +5050,7 @@
         "Long-context synthetic prompt is for comparability and sustained-generation stress, not quality scoring.",
         "Follow-up 150K+ prompt-token diagnostics could prefill, but sustained decode fell below 1 tok/s and is not promoted as a useful benchmark result."
       ],
+      "tier": "capable",
       "_source_file": "data/results/seed-qwen36-27b-f16-tensor-2x5060ti-20260529.json"
     },
     {
@@ -4721,6 +5126,7 @@
         "Imported from same host/build parent session, not rerun in this commit; use as seed evidence with that provenance.",
         "Long-retrieval and p1k/n512 rows measure different workload shapes and should not be interpreted as the same speed regime."
       ],
+      "tier": "capable",
       "_source_file": "data/results/seed-qwen36-27b-f16-tensor-2x5060ti-20260529.json"
     },
     {
@@ -4785,6 +5191,7 @@
         "wall_seconds": 10.657
       },
       "caveats": [],
+      "tier": "capable",
       "_source_file": "data/results/seed-qwen36-27b-iq4xs-1x5060ti-20260519.json"
     },
     {
@@ -4849,6 +5256,7 @@
         "wall_seconds": 10.506
       },
       "caveats": [],
+      "tier": "capable",
       "_source_file": "data/results/seed-qwen36-27b-iq4xs-1x5060ti-20260519.json"
     },
     {
@@ -4913,6 +5321,7 @@
         "wall_seconds": 31.564
       },
       "caveats": [],
+      "tier": "capable",
       "_source_file": "data/results/seed-qwen36-27b-iq4xs-1x5060ti-20260519.json"
     },
     {
@@ -4977,6 +5386,7 @@
         "wall_seconds": 31.392
       },
       "caveats": [],
+      "tier": "capable",
       "_source_file": "data/results/seed-qwen36-27b-iq4xs-1x5060ti-20260519.json"
     },
     {
@@ -5041,6 +5451,7 @@
         "wall_seconds": 21.243
       },
       "caveats": [],
+      "tier": "capable",
       "_source_file": "data/results/seed-qwen36-27b-iq4xs-1x5060ti-20260519.json"
     },
     {
@@ -5105,6 +5516,7 @@
         "wall_seconds": 20.929
       },
       "caveats": [],
+      "tier": "capable",
       "_source_file": "data/results/seed-qwen36-27b-iq4xs-1x5060ti-20260519.json"
     },
     {
@@ -5171,6 +5583,7 @@
       "caveats": [
         "Long-prompt short-answer fit check on the 1x5060ti seed system; not a sustained decode benchmark."
       ],
+      "tier": "capable",
       "_source_file": "data/results/seed-qwen36-27b-iq4xs-1x5060ti-20260519.json"
     },
     {
@@ -5237,6 +5650,7 @@
       "caveats": [
         "Long-prompt short-answer fit check on the 1x5060ti seed system; not a sustained decode benchmark."
       ],
+      "tier": "capable",
       "_source_file": "data/results/seed-qwen36-27b-iq4xs-1x5060ti-20260519.json"
     },
     {
@@ -5305,6 +5719,7 @@
         "end_to_end_tok_s": 22.174,
         "wall_seconds": 11.545
       },
+      "tier": "recommended",
       "_source_file": "data/results/seed-qwen36-27b-q3kxl-1x5060ti-20260519.json"
     },
     {
@@ -5373,6 +5788,7 @@
         "end_to_end_tok_s": 22.495,
         "wall_seconds": 11.38
       },
+      "tier": "recommended",
       "_source_file": "data/results/seed-qwen36-27b-q3kxl-1x5060ti-20260519.json"
     },
     {
@@ -5441,6 +5857,7 @@
         "end_to_end_tok_s": 22.446,
         "wall_seconds": 34.216
       },
+      "tier": "recommended",
       "_source_file": "data/results/seed-qwen36-27b-q3kxl-1x5060ti-20260519.json"
     },
     {
@@ -5509,6 +5926,7 @@
         "end_to_end_tok_s": 22.577,
         "wall_seconds": 34.017
       },
+      "tier": "recommended",
       "_source_file": "data/results/seed-qwen36-27b-q3kxl-1x5060ti-20260519.json"
     },
     {
@@ -5577,6 +5995,7 @@
         "end_to_end_tok_s": 22.228,
         "wall_seconds": 23.034
       },
+      "tier": "recommended",
       "_source_file": "data/results/seed-qwen36-27b-q3kxl-1x5060ti-20260519.json"
     },
     {
@@ -5645,6 +6064,7 @@
         "end_to_end_tok_s": 22.544,
         "wall_seconds": 22.711
       },
+      "tier": "recommended",
       "_source_file": "data/results/seed-qwen36-27b-q3kxl-1x5060ti-20260519.json"
     },
     {
@@ -5716,6 +6136,7 @@
       "caveats": [
         "Long-retrieval is a short-answer fit/retrieval check, not a sustained decode benchmark."
       ],
+      "tier": "recommended",
       "_source_file": "data/results/seed-qwen36-27b-q3kxl-1x5060ti-20260519.json"
     },
     {
@@ -5787,7 +6208,302 @@
       "caveats": [
         "Long-retrieval is a short-answer fit/retrieval check, not a sustained decode benchmark."
       ],
+      "tier": "recommended",
       "_source_file": "data/results/seed-qwen36-27b-q3kxl-1x5060ti-20260519.json"
+    },
+    {
+      "schema_version": "1.0",
+      "id": "20260708-122733-qwen3.6-27b-short-chat-1",
+      "timestamp_utc": "2026-07-08T12:30:14.482810+00:00",
+      "source": {
+        "type": "seed",
+        "label": "Pacey seed 2x RTX 5060 Ti",
+        "notes": "Generated by scripts/run_openai_bench.py"
+      },
+      "promotion_level": "benchmark",
+      "hardware": {
+        "lane": "2x5060ti",
+        "gpu_count": 2,
+        "gpu_model": "NVIDIA GeForce RTX 5060 Ti",
+        "vram_per_gpu_gb": 16.0,
+        "driver": "595.58.03",
+        "cpu": "2x Intel Xeon E5-2680 v4",
+        "host_ram_gb": 128.0,
+        "inference_ram_gb": 60.0,
+        "pcie": "both RTX 5060 Ti cards run at x8 in this host",
+        "notes": "Dell Precision Tower 7810 seed dual-card lane."
+      },
+      "runtime": {
+        "engine": "llama.cpp",
+        "version": "9518",
+        "commit": "7c158fbb4",
+        "build": "CUDA 120a, flash attention on"
+      },
+      "model": {
+        "id": "Qwen3.6-27B",
+        "family": "Qwen3.6",
+        "architecture": "hybrid",
+        "parameter_class": "27B",
+        "quant": "Q6_K",
+        "source": "unsloth/Qwen3.6-27B-MTP-GGUF"
+      },
+      "serving": {
+        "route": "server",
+        "context_tokens": 131072,
+        "batch_size": 2048,
+        "ubatch_size": 512,
+        "kv_cache_k": "f16",
+        "kv_cache_v": "f16",
+        "split_mode": "tensor",
+        "tensor_parallel": "50,50",
+        "speculation": {
+          "type": "draft-mtp",
+          "draft_n": 3,
+          "acceptance_rate": 0.67194,
+          "notes": "p-min=0.1"
+        },
+        "thinking": "off",
+        "notes": "Router with --models-max 1, warmup absorbed model load. Q6_K_XL model file."
+      },
+      "benchmark": {
+        "prompt_set": "short-chat",
+        "configured_context_tokens": 131072,
+        "actual_prompt_tokens": 31,
+        "generated_tokens": 256,
+        "runs": 1,
+        "warmups": 1,
+        "stream": false
+      },
+      "metrics": {
+        "prompt_tok_s": 16.71150921639733,
+        "decode_tok_s": 46.80958828590053,
+        "end_to_end_tok_s": 40.419,
+        "wall_seconds": 6.334
+      },
+      "caveats": [],
+      "tier": "recommended",
+      "_source_file": "data/results/seed-qwen36-27b-q6-2x5060ti-20260708.json"
+    },
+    {
+      "schema_version": "1.0",
+      "id": "20260708-122733-qwen3.6-27b-code-generate-1",
+      "timestamp_utc": "2026-07-08T12:30:44.144001+00:00",
+      "source": {
+        "type": "seed",
+        "label": "Pacey seed 2x RTX 5060 Ti",
+        "notes": "Generated by scripts/run_openai_bench.py"
+      },
+      "promotion_level": "benchmark",
+      "hardware": {
+        "lane": "2x5060ti",
+        "gpu_count": 2,
+        "gpu_model": "NVIDIA GeForce RTX 5060 Ti",
+        "vram_per_gpu_gb": 16.0,
+        "driver": "595.58.03",
+        "cpu": "2x Intel Xeon E5-2680 v4",
+        "host_ram_gb": 128.0,
+        "inference_ram_gb": 60.0,
+        "pcie": "both RTX 5060 Ti cards run at x8 in this host",
+        "notes": "Dell Precision Tower 7810 seed dual-card lane."
+      },
+      "runtime": {
+        "engine": "llama.cpp",
+        "version": "9518",
+        "commit": "7c158fbb4",
+        "build": "CUDA 120a, flash attention on"
+      },
+      "model": {
+        "id": "Qwen3.6-27B",
+        "family": "Qwen3.6",
+        "architecture": "hybrid",
+        "parameter_class": "27B",
+        "quant": "Q6_K",
+        "source": "unsloth/Qwen3.6-27B-MTP-GGUF"
+      },
+      "serving": {
+        "route": "server",
+        "context_tokens": 131072,
+        "batch_size": 2048,
+        "ubatch_size": 512,
+        "kv_cache_k": "f16",
+        "kv_cache_v": "f16",
+        "split_mode": "tensor",
+        "tensor_parallel": "50,50",
+        "speculation": {
+          "type": "draft-mtp",
+          "draft_n": 3,
+          "acceptance_rate": 0.83945,
+          "notes": "p-min=0.1"
+        },
+        "thinking": "off",
+        "notes": "Router with --models-max 1, warmup absorbed model load. Q6_K_XL model file."
+      },
+      "benchmark": {
+        "prompt_set": "code-generate",
+        "configured_context_tokens": 131072,
+        "actual_prompt_tokens": 53,
+        "generated_tokens": 768,
+        "runs": 1,
+        "warmups": 1,
+        "stream": false
+      },
+      "metrics": {
+        "prompt_tok_s": 23.810232447394267,
+        "decode_tok_s": 54.89723352253817,
+        "end_to_end_tok_s": 51.762,
+        "wall_seconds": 14.837
+      },
+      "caveats": [],
+      "tier": "recommended",
+      "_source_file": "data/results/seed-qwen36-27b-q6-2x5060ti-20260708.json"
+    },
+    {
+      "schema_version": "1.0",
+      "id": "20260708-122733-qwen3.6-27b-agent-tool-1",
+      "timestamp_utc": "2026-07-08T12:31:08.659222+00:00",
+      "source": {
+        "type": "seed",
+        "label": "Pacey seed 2x RTX 5060 Ti",
+        "notes": "Generated by scripts/run_openai_bench.py"
+      },
+      "promotion_level": "benchmark",
+      "hardware": {
+        "lane": "2x5060ti",
+        "gpu_count": 2,
+        "gpu_model": "NVIDIA GeForce RTX 5060 Ti",
+        "vram_per_gpu_gb": 16.0,
+        "driver": "595.58.03",
+        "cpu": "2x Intel Xeon E5-2680 v4",
+        "host_ram_gb": 128.0,
+        "inference_ram_gb": 60.0,
+        "pcie": "both RTX 5060 Ti cards run at x8 in this host",
+        "notes": "Dell Precision Tower 7810 seed dual-card lane."
+      },
+      "runtime": {
+        "engine": "llama.cpp",
+        "version": "9518",
+        "commit": "7c158fbb4",
+        "build": "CUDA 120a, flash attention on"
+      },
+      "model": {
+        "id": "Qwen3.6-27B",
+        "family": "Qwen3.6",
+        "architecture": "hybrid",
+        "parameter_class": "27B",
+        "quant": "Q6_K",
+        "source": "unsloth/Qwen3.6-27B-MTP-GGUF"
+      },
+      "serving": {
+        "route": "server",
+        "context_tokens": 131072,
+        "batch_size": 2048,
+        "ubatch_size": 512,
+        "kv_cache_k": "f16",
+        "kv_cache_v": "f16",
+        "split_mode": "tensor",
+        "tensor_parallel": "50,50",
+        "speculation": {
+          "type": "draft-mtp",
+          "draft_n": 3,
+          "acceptance_rate": 0.5614,
+          "notes": "p-min=0.1"
+        },
+        "thinking": "off",
+        "notes": "Router with --models-max 1, warmup absorbed model load. Q6_K_XL model file."
+      },
+      "benchmark": {
+        "prompt_set": "agent-tool",
+        "configured_context_tokens": 131072,
+        "actual_prompt_tokens": 111,
+        "generated_tokens": 512,
+        "runs": 1,
+        "warmups": 1,
+        "stream": false
+      },
+      "metrics": {
+        "prompt_tok_s": 16.79098995479026,
+        "decode_tok_s": 45.095077951510284,
+        "end_to_end_tok_s": 41.788,
+        "wall_seconds": 12.252
+      },
+      "caveats": [],
+      "tier": "recommended",
+      "_source_file": "data/results/seed-qwen36-27b-q6-2x5060ti-20260708.json"
+    },
+    {
+      "schema_version": "1.0",
+      "id": "20260708-122733-qwen3.6-27b-long-retrieval-1",
+      "timestamp_utc": "2026-07-08T12:31:47.794308+00:00",
+      "source": {
+        "type": "seed",
+        "label": "Pacey seed 2x RTX 5060 Ti",
+        "notes": "Generated by scripts/run_openai_bench.py"
+      },
+      "promotion_level": "benchmark",
+      "hardware": {
+        "lane": "2x5060ti",
+        "gpu_count": 2,
+        "gpu_model": "NVIDIA GeForce RTX 5060 Ti",
+        "vram_per_gpu_gb": 16.0,
+        "driver": "595.58.03",
+        "cpu": "2x Intel Xeon E5-2680 v4",
+        "host_ram_gb": 128.0,
+        "inference_ram_gb": 60.0,
+        "pcie": "both RTX 5060 Ti cards run at x8 in this host",
+        "notes": "Dell Precision Tower 7810 seed dual-card lane."
+      },
+      "runtime": {
+        "engine": "llama.cpp",
+        "version": "9518",
+        "commit": "7c158fbb4",
+        "build": "CUDA 120a, flash attention on"
+      },
+      "model": {
+        "id": "Qwen3.6-27B",
+        "family": "Qwen3.6",
+        "architecture": "hybrid",
+        "parameter_class": "27B",
+        "quant": "Q6_K",
+        "source": "unsloth/Qwen3.6-27B-MTP-GGUF"
+      },
+      "serving": {
+        "route": "server",
+        "context_tokens": 131072,
+        "batch_size": 2048,
+        "ubatch_size": 512,
+        "kv_cache_k": "f16",
+        "kv_cache_v": "f16",
+        "split_mode": "tensor",
+        "tensor_parallel": "50,50",
+        "speculation": {
+          "type": "draft-mtp",
+          "draft_n": 3,
+          "acceptance_rate": 1.0,
+          "notes": "p-min=0.1"
+        },
+        "thinking": "off",
+        "notes": "Router with --models-max 1, warmup absorbed model load. Q6_K_XL model file."
+      },
+      "benchmark": {
+        "prompt_set": "long-retrieval",
+        "configured_context_tokens": 131072,
+        "actual_prompt_tokens": 27061,
+        "generated_tokens": 17,
+        "runs": 1,
+        "warmups": 1,
+        "stream": false
+      },
+      "metrics": {
+        "prompt_tok_s": 562.3573672084624,
+        "decode_tok_s": 48.68855933416963,
+        "end_to_end_tok_s": 11.08,
+        "wall_seconds": 1.534
+      },
+      "caveats": [
+        "Long-prompt short-answer fit check on the 2x5060ti seed system; not a sustained decode benchmark."
+      ],
+      "tier": "recommended",
+      "_source_file": "data/results/seed-qwen36-27b-q6-2x5060ti-20260708.json"
     },
     {
       "schema_version": "1.0",
@@ -5818,8 +6534,8 @@
         "build": "CUDA 120a, flash attention on, direct temporary server."
       },
       "model": {
-        "id": "qwen36-27b-q6-f16kv-32k",
-        "family": "unknown",
+        "id": "Qwen3.6-27B",
+        "family": "Qwen3.6",
         "architecture": "hybrid",
         "parameter_class": "27B",
         "quant": "Q6_K_XL",
@@ -5859,6 +6575,7 @@
       "caveats": [
         "Single run per prompt set; single-run matched f16/q8/q4 comparison row."
       ],
+      "tier": "capable",
       "_source_file": "data/results/seed-qwen36-27b-q6-kv32k-20260605.json"
     },
     {
@@ -5890,8 +6607,8 @@
         "build": "CUDA 120a, flash attention on, direct temporary server."
       },
       "model": {
-        "id": "qwen36-27b-q6-f16kv-32k",
-        "family": "unknown",
+        "id": "Qwen3.6-27B",
+        "family": "Qwen3.6",
         "architecture": "hybrid",
         "parameter_class": "27B",
         "quant": "Q6_K_XL",
@@ -5931,6 +6648,7 @@
       "caveats": [
         "Single run per prompt set; single-run matched f16/q8/q4 comparison row."
       ],
+      "tier": "capable",
       "_source_file": "data/results/seed-qwen36-27b-q6-kv32k-20260605.json"
     },
     {
@@ -5962,8 +6680,8 @@
         "build": "CUDA 120a, flash attention on, direct temporary server."
       },
       "model": {
-        "id": "qwen36-27b-q6-f16kv-32k",
-        "family": "unknown",
+        "id": "Qwen3.6-27B",
+        "family": "Qwen3.6",
         "architecture": "hybrid",
         "parameter_class": "27B",
         "quant": "Q6_K_XL",
@@ -6003,6 +6721,7 @@
       "caveats": [
         "Single run per prompt set; single-run matched f16/q8/q4 comparison row."
       ],
+      "tier": "capable",
       "_source_file": "data/results/seed-qwen36-27b-q6-kv32k-20260605.json"
     },
     {
@@ -6034,8 +6753,8 @@
         "build": "CUDA 120a, flash attention on, direct temporary server."
       },
       "model": {
-        "id": "qwen36-27b-q6-f16kv-32k",
-        "family": "unknown",
+        "id": "Qwen3.6-27B",
+        "family": "Qwen3.6",
         "architecture": "hybrid",
         "parameter_class": "27B",
         "quant": "Q6_K_XL",
@@ -6076,6 +6795,7 @@
         "Single run per prompt set; single-run matched f16/q8/q4 comparison row.",
         "Long-retrieval prompt generated fewer than 32 tokens, so it is a short-answer fit check and must not be used as a sustained decode claim."
       ],
+      "tier": "capable",
       "_source_file": "data/results/seed-qwen36-27b-q6-kv32k-20260605.json"
     },
     {
@@ -6107,8 +6827,8 @@
         "build": "CUDA 120a, flash attention on, direct temporary server."
       },
       "model": {
-        "id": "qwen36-27b-q6-q8kv-32k",
-        "family": "unknown",
+        "id": "Qwen3.6-27B",
+        "family": "Qwen3.6",
         "architecture": "hybrid",
         "parameter_class": "27B",
         "quant": "Q6_K_XL",
@@ -6148,6 +6868,7 @@
       "caveats": [
         "Single run per prompt set; temporary comparison row pending q4 repeat."
       ],
+      "tier": "capable",
       "_source_file": "data/results/seed-qwen36-27b-q6-kv32k-20260605.json"
     },
     {
@@ -6179,8 +6900,8 @@
         "build": "CUDA 120a, flash attention on, direct temporary server."
       },
       "model": {
-        "id": "qwen36-27b-q6-q8kv-32k",
-        "family": "unknown",
+        "id": "Qwen3.6-27B",
+        "family": "Qwen3.6",
         "architecture": "hybrid",
         "parameter_class": "27B",
         "quant": "Q6_K_XL",
@@ -6220,6 +6941,7 @@
       "caveats": [
         "Single run per prompt set; temporary comparison row pending q4 repeat."
       ],
+      "tier": "capable",
       "_source_file": "data/results/seed-qwen36-27b-q6-kv32k-20260605.json"
     },
     {
@@ -6251,8 +6973,8 @@
         "build": "CUDA 120a, flash attention on, direct temporary server."
       },
       "model": {
-        "id": "qwen36-27b-q6-q8kv-32k",
-        "family": "unknown",
+        "id": "Qwen3.6-27B",
+        "family": "Qwen3.6",
         "architecture": "hybrid",
         "parameter_class": "27B",
         "quant": "Q6_K_XL",
@@ -6292,6 +7014,7 @@
       "caveats": [
         "Single run per prompt set; temporary comparison row pending q4 repeat."
       ],
+      "tier": "capable",
       "_source_file": "data/results/seed-qwen36-27b-q6-kv32k-20260605.json"
     },
     {
@@ -6323,8 +7046,8 @@
         "build": "CUDA 120a, flash attention on, direct temporary server."
       },
       "model": {
-        "id": "qwen36-27b-q6-q8kv-32k",
-        "family": "unknown",
+        "id": "Qwen3.6-27B",
+        "family": "Qwen3.6",
         "architecture": "hybrid",
         "parameter_class": "27B",
         "quant": "Q6_K_XL",
@@ -6365,6 +7088,7 @@
         "Single run per prompt set; temporary comparison row pending q4 repeat.",
         "Long-retrieval prompt generated fewer than 32 tokens, so it is a short-answer fit check and must not be used as a sustained decode claim."
       ],
+      "tier": "capable",
       "_source_file": "data/results/seed-qwen36-27b-q6-kv32k-20260605.json"
     },
     {
@@ -6396,8 +7120,8 @@
         "build": "CUDA 120a, flash attention on, direct temporary server."
       },
       "model": {
-        "id": "qwen36-27b-q6-q4kv-32k",
-        "family": "unknown",
+        "id": "Qwen3.6-27B",
+        "family": "Qwen3.6",
         "architecture": "hybrid",
         "parameter_class": "27B",
         "quant": "Q6_K_XL",
@@ -6437,6 +7161,7 @@
       "caveats": [
         "Single run per prompt set; q4 KV needs output inspection before any quality claim."
       ],
+      "tier": "capable",
       "_source_file": "data/results/seed-qwen36-27b-q6-kv32k-20260605.json"
     },
     {
@@ -6468,8 +7193,8 @@
         "build": "CUDA 120a, flash attention on, direct temporary server."
       },
       "model": {
-        "id": "qwen36-27b-q6-q4kv-32k",
-        "family": "unknown",
+        "id": "Qwen3.6-27B",
+        "family": "Qwen3.6",
         "architecture": "hybrid",
         "parameter_class": "27B",
         "quant": "Q6_K_XL",
@@ -6509,6 +7234,7 @@
       "caveats": [
         "Single run per prompt set; q4 KV needs output inspection before any quality claim."
       ],
+      "tier": "capable",
       "_source_file": "data/results/seed-qwen36-27b-q6-kv32k-20260605.json"
     },
     {
@@ -6540,8 +7266,8 @@
         "build": "CUDA 120a, flash attention on, direct temporary server."
       },
       "model": {
-        "id": "qwen36-27b-q6-q4kv-32k",
-        "family": "unknown",
+        "id": "Qwen3.6-27B",
+        "family": "Qwen3.6",
         "architecture": "hybrid",
         "parameter_class": "27B",
         "quant": "Q6_K_XL",
@@ -6581,6 +7307,7 @@
       "caveats": [
         "Single run per prompt set; q4 KV needs output inspection before any quality claim."
       ],
+      "tier": "capable",
       "_source_file": "data/results/seed-qwen36-27b-q6-kv32k-20260605.json"
     },
     {
@@ -6612,8 +7339,8 @@
         "build": "CUDA 120a, flash attention on, direct temporary server."
       },
       "model": {
-        "id": "qwen36-27b-q6-q4kv-32k",
-        "family": "unknown",
+        "id": "Qwen3.6-27B",
+        "family": "Qwen3.6",
         "architecture": "hybrid",
         "parameter_class": "27B",
         "quant": "Q6_K_XL",
@@ -6655,6 +7382,7 @@
         "Long-retrieval prompt generated fewer than 32 tokens, so it is a short-answer fit check and must not be used as a sustained decode claim.",
         "q4 KV long-retrieval output was manually spot-checked and returned CLUB-5060TI-NEEDLE-194 exactly for the same prompt shape."
       ],
+      "tier": "capable",
       "_source_file": "data/results/seed-qwen36-27b-q6-kv32k-20260605.json"
     },
     {
@@ -6720,6 +7448,7 @@
         "wall_seconds": 7.177
       },
       "caveats": [],
+      "tier": "capable",
       "_source_file": "data/results/seed-qwen36-35b-a3b-2x5060ti-20260519.json"
     },
     {
@@ -6785,6 +7514,7 @@
         "wall_seconds": 7.202
       },
       "caveats": [],
+      "tier": "capable",
       "_source_file": "data/results/seed-qwen36-35b-a3b-2x5060ti-20260519.json"
     },
     {
@@ -6850,6 +7580,7 @@
         "wall_seconds": 13.014
       },
       "caveats": [],
+      "tier": "capable",
       "_source_file": "data/results/seed-qwen36-35b-a3b-2x5060ti-20260519.json"
     },
     {
@@ -6915,6 +7646,7 @@
         "wall_seconds": 12.914
       },
       "caveats": [],
+      "tier": "capable",
       "_source_file": "data/results/seed-qwen36-35b-a3b-2x5060ti-20260519.json"
     },
     {
@@ -6980,6 +7712,7 @@
         "wall_seconds": 10.188
       },
       "caveats": [],
+      "tier": "capable",
       "_source_file": "data/results/seed-qwen36-35b-a3b-2x5060ti-20260519.json"
     },
     {
@@ -7045,6 +7778,7 @@
         "wall_seconds": 10.06
       },
       "caveats": [],
+      "tier": "capable",
       "_source_file": "data/results/seed-qwen36-35b-a3b-2x5060ti-20260519.json"
     },
     {
@@ -7110,6 +7844,7 @@
         "wall_seconds": 2.727
       },
       "caveats": [],
+      "tier": "capable",
       "_source_file": "data/results/seed-qwen36-35b-a3b-2x5060ti-20260519.json"
     },
     {
@@ -7175,6 +7910,7 @@
         "wall_seconds": 2.726
       },
       "caveats": [],
+      "tier": "capable",
       "_source_file": "data/results/seed-qwen36-35b-a3b-2x5060ti-20260519.json"
     },
     {
@@ -7240,6 +7976,7 @@
         "wall_seconds": 6.91
       },
       "caveats": [],
+      "tier": "recommended",
       "_source_file": "data/results/seed-qwen36-35b-a3b-iq3xxs-1x5060ti-20260519.json"
     },
     {
@@ -7305,6 +8042,7 @@
         "wall_seconds": 6.84
       },
       "caveats": [],
+      "tier": "recommended",
       "_source_file": "data/results/seed-qwen36-35b-a3b-iq3xxs-1x5060ti-20260519.json"
     },
     {
@@ -7370,6 +8108,7 @@
         "wall_seconds": 12.362
       },
       "caveats": [],
+      "tier": "recommended",
       "_source_file": "data/results/seed-qwen36-35b-a3b-iq3xxs-1x5060ti-20260519.json"
     },
     {
@@ -7435,6 +8174,7 @@
         "wall_seconds": 12.296
       },
       "caveats": [],
+      "tier": "recommended",
       "_source_file": "data/results/seed-qwen36-35b-a3b-iq3xxs-1x5060ti-20260519.json"
     },
     {
@@ -7500,6 +8240,7 @@
         "wall_seconds": 9.666
       },
       "caveats": [],
+      "tier": "recommended",
       "_source_file": "data/results/seed-qwen36-35b-a3b-iq3xxs-1x5060ti-20260519.json"
     },
     {
@@ -7565,6 +8306,7 @@
         "wall_seconds": 9.559
       },
       "caveats": [],
+      "tier": "recommended",
       "_source_file": "data/results/seed-qwen36-35b-a3b-iq3xxs-1x5060ti-20260519.json"
     },
     {
@@ -7632,6 +8374,7 @@
       "caveats": [
         "Long-prompt short-answer fit check on the 1x5060ti seed system; not a sustained decode benchmark."
       ],
+      "tier": "recommended",
       "_source_file": "data/results/seed-qwen36-35b-a3b-iq3xxs-1x5060ti-20260519.json"
     },
     {
@@ -7699,7 +8442,302 @@
       "caveats": [
         "Long-prompt short-answer fit check on the 1x5060ti seed system; not a sustained decode benchmark."
       ],
+      "tier": "recommended",
       "_source_file": "data/results/seed-qwen36-35b-a3b-iq3xxs-1x5060ti-20260519.json"
+    },
+    {
+      "schema_version": "1.0",
+      "id": "20260708-123238-qwen3.6-35b-a3b-short-chat-1",
+      "timestamp_utc": "2026-07-08T12:35:05.349587+00:00",
+      "source": {
+        "type": "seed",
+        "label": "Pacey-seed-2x-RTX-5060-Ti",
+        "notes": "Generated by scripts/run_openai_bench.py"
+      },
+      "promotion_level": "benchmark",
+      "hardware": {
+        "lane": "2x5060ti",
+        "gpu_count": 2,
+        "gpu_model": "NVIDIA-GeForce-RTX-5060-Ti",
+        "vram_per_gpu_gb": 16.0,
+        "driver": "595.58.03",
+        "cpu": "2x-Intel-Xeon-E5-2680-v4",
+        "host_ram_gb": 128.0,
+        "inference_ram_gb": 60.0,
+        "pcie": "both-RTX-5060-Ti-cards-run-at-x8-in-this-host",
+        "notes": "Dell-Precision-Tower-7810-seed-dual-card-lane"
+      },
+      "runtime": {
+        "engine": "llama.cpp",
+        "version": "9518",
+        "commit": "7c158fbb4",
+        "build": "CUDA-120a-flash-attention-on"
+      },
+      "model": {
+        "id": "Qwen3.6-35B-A3B",
+        "family": "Qwen3.6",
+        "architecture": "moe",
+        "parameter_class": "35B-A3B",
+        "quant": "Q5_K_S",
+        "source": "unsloth/Qwen3.6-35B-A3B-MTP-GGUF"
+      },
+      "serving": {
+        "route": "server",
+        "context_tokens": 204800,
+        "batch_size": 2048,
+        "ubatch_size": 1024,
+        "kv_cache_k": "f16",
+        "kv_cache_v": "f16",
+        "split_mode": "tensor",
+        "tensor_parallel": "50,50",
+        "speculation": {
+          "type": "draft-mtp",
+          "draft_n": 3,
+          "acceptance_rate": 0.55401,
+          "notes": "p-min=0.1"
+        },
+        "thinking": "off",
+        "notes": "Router --models-max 1, warmup absorbed model load."
+      },
+      "benchmark": {
+        "prompt_set": "short-chat",
+        "configured_context_tokens": 204800,
+        "actual_prompt_tokens": 31,
+        "generated_tokens": 256,
+        "runs": 1,
+        "warmups": 1,
+        "stream": false
+      },
+      "metrics": {
+        "prompt_tok_s": 28.429686278411918,
+        "decode_tok_s": 119.9251966585842,
+        "end_to_end_tok_s": 96.433,
+        "wall_seconds": 2.655
+      },
+      "caveats": [],
+      "tier": "recommended",
+      "_source_file": "data/results/seed-qwen36-35b-a3b-q5-2x5060ti-20260708.json"
+    },
+    {
+      "schema_version": "1.0",
+      "id": "20260708-123238-qwen3.6-35b-a3b-code-generate-1",
+      "timestamp_utc": "2026-07-08T12:35:16.382296+00:00",
+      "source": {
+        "type": "seed",
+        "label": "Pacey-seed-2x-RTX-5060-Ti",
+        "notes": "Generated by scripts/run_openai_bench.py"
+      },
+      "promotion_level": "benchmark",
+      "hardware": {
+        "lane": "2x5060ti",
+        "gpu_count": 2,
+        "gpu_model": "NVIDIA-GeForce-RTX-5060-Ti",
+        "vram_per_gpu_gb": 16.0,
+        "driver": "595.58.03",
+        "cpu": "2x-Intel-Xeon-E5-2680-v4",
+        "host_ram_gb": 128.0,
+        "inference_ram_gb": 60.0,
+        "pcie": "both-RTX-5060-Ti-cards-run-at-x8-in-this-host",
+        "notes": "Dell-Precision-Tower-7810-seed-dual-card-lane"
+      },
+      "runtime": {
+        "engine": "llama.cpp",
+        "version": "9518",
+        "commit": "7c158fbb4",
+        "build": "CUDA-120a-flash-attention-on"
+      },
+      "model": {
+        "id": "Qwen3.6-35B-A3B",
+        "family": "Qwen3.6",
+        "architecture": "moe",
+        "parameter_class": "35B-A3B",
+        "quant": "Q5_K_S",
+        "source": "unsloth/Qwen3.6-35B-A3B-MTP-GGUF"
+      },
+      "serving": {
+        "route": "server",
+        "context_tokens": 204800,
+        "batch_size": 2048,
+        "ubatch_size": 1024,
+        "kv_cache_k": "f16",
+        "kv_cache_v": "f16",
+        "split_mode": "tensor",
+        "tensor_parallel": "50,50",
+        "speculation": {
+          "type": "draft-mtp",
+          "draft_n": 3,
+          "acceptance_rate": 0.81045,
+          "notes": "p-min=0.1"
+        },
+        "thinking": "off",
+        "notes": "Router --models-max 1, warmup absorbed model load."
+      },
+      "benchmark": {
+        "prompt_set": "code-generate",
+        "configured_context_tokens": 204800,
+        "actual_prompt_tokens": 53,
+        "generated_tokens": 768,
+        "runs": 1,
+        "warmups": 1,
+        "stream": false
+      },
+      "metrics": {
+        "prompt_tok_s": 27.512587008556412,
+        "decode_tok_s": 156.20347455103706,
+        "end_to_end_tok_s": 140.577,
+        "wall_seconds": 5.463
+      },
+      "caveats": [],
+      "tier": "recommended",
+      "_source_file": "data/results/seed-qwen36-35b-a3b-q5-2x5060ti-20260708.json"
+    },
+    {
+      "schema_version": "1.0",
+      "id": "20260708-123238-qwen3.6-35b-a3b-agent-tool-1",
+      "timestamp_utc": "2026-07-08T12:35:25.038518+00:00",
+      "source": {
+        "type": "seed",
+        "label": "Pacey-seed-2x-RTX-5060-Ti",
+        "notes": "Generated by scripts/run_openai_bench.py"
+      },
+      "promotion_level": "benchmark",
+      "hardware": {
+        "lane": "2x5060ti",
+        "gpu_count": 2,
+        "gpu_model": "NVIDIA-GeForce-RTX-5060-Ti",
+        "vram_per_gpu_gb": 16.0,
+        "driver": "595.58.03",
+        "cpu": "2x-Intel-Xeon-E5-2680-v4",
+        "host_ram_gb": 128.0,
+        "inference_ram_gb": 60.0,
+        "pcie": "both-RTX-5060-Ti-cards-run-at-x8-in-this-host",
+        "notes": "Dell-Precision-Tower-7810-seed-dual-card-lane"
+      },
+      "runtime": {
+        "engine": "llama.cpp",
+        "version": "9518",
+        "commit": "7c158fbb4",
+        "build": "CUDA-120a-flash-attention-on"
+      },
+      "model": {
+        "id": "Qwen3.6-35B-A3B",
+        "family": "Qwen3.6",
+        "architecture": "moe",
+        "parameter_class": "35B-A3B",
+        "quant": "Q5_K_S",
+        "source": "unsloth/Qwen3.6-35B-A3B-MTP-GGUF"
+      },
+      "serving": {
+        "route": "server",
+        "context_tokens": 204800,
+        "batch_size": 2048,
+        "ubatch_size": 1024,
+        "kv_cache_k": "f16",
+        "kv_cache_v": "f16",
+        "split_mode": "tensor",
+        "tensor_parallel": "50,50",
+        "speculation": {
+          "type": "draft-mtp",
+          "draft_n": 3,
+          "acceptance_rate": 0.65825,
+          "notes": "p-min=0.1"
+        },
+        "thinking": "off",
+        "notes": "Router --models-max 1, warmup absorbed model load."
+      },
+      "benchmark": {
+        "prompt_set": "agent-tool",
+        "configured_context_tokens": 204800,
+        "actual_prompt_tokens": 111,
+        "generated_tokens": 512,
+        "runs": 1,
+        "warmups": 1,
+        "stream": false
+      },
+      "metrics": {
+        "prompt_tok_s": 27.750797835437773,
+        "decode_tok_s": 136.19781455709906,
+        "end_to_end_tok_s": 119.096,
+        "wall_seconds": 4.299
+      },
+      "caveats": [],
+      "tier": "recommended",
+      "_source_file": "data/results/seed-qwen36-35b-a3b-q5-2x5060ti-20260708.json"
+    },
+    {
+      "schema_version": "1.0",
+      "id": "20260708-123238-qwen3.6-35b-a3b-long-retrieval-1",
+      "timestamp_utc": "2026-07-08T12:35:38.710188+00:00",
+      "source": {
+        "type": "seed",
+        "label": "Pacey-seed-2x-RTX-5060-Ti",
+        "notes": "Generated by scripts/run_openai_bench.py"
+      },
+      "promotion_level": "benchmark",
+      "hardware": {
+        "lane": "2x5060ti",
+        "gpu_count": 2,
+        "gpu_model": "NVIDIA-GeForce-RTX-5060-Ti",
+        "vram_per_gpu_gb": 16.0,
+        "driver": "595.58.03",
+        "cpu": "2x-Intel-Xeon-E5-2680-v4",
+        "host_ram_gb": 128.0,
+        "inference_ram_gb": 60.0,
+        "pcie": "both-RTX-5060-Ti-cards-run-at-x8-in-this-host",
+        "notes": "Dell-Precision-Tower-7810-seed-dual-card-lane"
+      },
+      "runtime": {
+        "engine": "llama.cpp",
+        "version": "9518",
+        "commit": "7c158fbb4",
+        "build": "CUDA-120a-flash-attention-on"
+      },
+      "model": {
+        "id": "Qwen3.6-35B-A3B",
+        "family": "Qwen3.6",
+        "architecture": "moe",
+        "parameter_class": "35B-A3B",
+        "quant": "Q5_K_S",
+        "source": "unsloth/Qwen3.6-35B-A3B-MTP-GGUF"
+      },
+      "serving": {
+        "route": "server",
+        "context_tokens": 204800,
+        "batch_size": 2048,
+        "ubatch_size": 1024,
+        "kv_cache_k": "f16",
+        "kv_cache_v": "f16",
+        "split_mode": "tensor",
+        "tensor_parallel": "50,50",
+        "speculation": {
+          "type": "draft-mtp",
+          "draft_n": 3,
+          "acceptance_rate": 1.0,
+          "notes": "p-min=0.1"
+        },
+        "thinking": "off",
+        "notes": "Router --models-max 1, warmup absorbed model load."
+      },
+      "benchmark": {
+        "prompt_set": "long-retrieval",
+        "configured_context_tokens": 204800,
+        "actual_prompt_tokens": 27061,
+        "generated_tokens": 17,
+        "runs": 1,
+        "warmups": 1,
+        "stream": false
+      },
+      "metrics": {
+        "prompt_tok_s": 1724.3982219240124,
+        "decode_tok_s": 98.56900990328641,
+        "end_to_end_tok_s": 16.405,
+        "wall_seconds": 1.036
+      },
+      "caveats": [
+        "Long-prompt short-answer fit check on the 2x5060ti seed system; not a sustained decode benchmark."
+      ],
+      "tier": "recommended",
+      "_source_file": "data/results/seed-qwen36-35b-a3b-q5-2x5060ti-20260708.json"
     },
     {
       "schema_version": "1.0",
@@ -7730,8 +8768,8 @@
         "build": "CUDA 120a, flash attention on, direct temporary server."
       },
       "model": {
-        "id": "qwen36-35b-a3b-q5-f16kv-32k",
-        "family": "unknown",
+        "id": "Qwen3.6-35B-A3B",
+        "family": "Qwen3.6",
         "architecture": "hybrid",
         "parameter_class": "35B-A3B",
         "quant": "Q5_K_S",
@@ -7768,6 +8806,7 @@
       "caveats": [
         "Single run per prompt set; 35B-A3B GGUF row uses no MTP, unlike the 27B Q6 rows."
       ],
+      "tier": "capable",
       "_source_file": "data/results/seed-qwen36-35b-a3b-q5-f16kv32k-20260605.json"
     },
     {
@@ -7799,8 +8838,8 @@
         "build": "CUDA 120a, flash attention on, direct temporary server."
       },
       "model": {
-        "id": "qwen36-35b-a3b-q5-f16kv-32k",
-        "family": "unknown",
+        "id": "Qwen3.6-35B-A3B",
+        "family": "Qwen3.6",
         "architecture": "hybrid",
         "parameter_class": "35B-A3B",
         "quant": "Q5_K_S",
@@ -7837,6 +8876,7 @@
       "caveats": [
         "Single run per prompt set; 35B-A3B GGUF row uses no MTP, unlike the 27B Q6 rows."
       ],
+      "tier": "capable",
       "_source_file": "data/results/seed-qwen36-35b-a3b-q5-f16kv32k-20260605.json"
     },
     {
@@ -7868,8 +8908,8 @@
         "build": "CUDA 120a, flash attention on, direct temporary server."
       },
       "model": {
-        "id": "qwen36-35b-a3b-q5-f16kv-32k",
-        "family": "unknown",
+        "id": "Qwen3.6-35B-A3B",
+        "family": "Qwen3.6",
         "architecture": "hybrid",
         "parameter_class": "35B-A3B",
         "quant": "Q5_K_S",
@@ -7906,6 +8946,7 @@
       "caveats": [
         "Single run per prompt set; 35B-A3B GGUF row uses no MTP, unlike the 27B Q6 rows."
       ],
+      "tier": "capable",
       "_source_file": "data/results/seed-qwen36-35b-a3b-q5-f16kv32k-20260605.json"
     },
     {
@@ -7937,8 +8978,8 @@
         "build": "CUDA 120a, flash attention on, direct temporary server."
       },
       "model": {
-        "id": "qwen36-35b-a3b-q5-f16kv-32k",
-        "family": "unknown",
+        "id": "Qwen3.6-35B-A3B",
+        "family": "Qwen3.6",
         "architecture": "hybrid",
         "parameter_class": "35B-A3B",
         "quant": "Q5_K_S",
@@ -7976,7 +9017,596 @@
         "Single run per prompt set; 35B-A3B GGUF row uses no MTP, unlike the 27B Q6 rows.",
         "Long-retrieval prompt generated fewer than 32 tokens, so it is a short-answer fit check and must not be used as a sustained decode claim."
       ],
+      "tier": "capable",
       "_source_file": "data/results/seed-qwen36-35b-a3b-q5-f16kv32k-20260605.json"
+    },
+    {
+      "schema_version": "1.0",
+      "id": "20260708-123538-qwopus3.6-27b-short-chat-1",
+      "timestamp_utc": "2026-07-08T12:37:41.464462+00:00",
+      "source": {
+        "type": "seed",
+        "label": "Pacey-seed-2x-RTX-5060-Ti",
+        "notes": "Generated by scripts/run_openai_bench.py"
+      },
+      "promotion_level": "benchmark",
+      "hardware": {
+        "lane": "2x5060ti",
+        "gpu_count": 2,
+        "gpu_model": "NVIDIA-GeForce-RTX-5060-Ti",
+        "vram_per_gpu_gb": 16.0,
+        "driver": "595.58.03",
+        "cpu": "2x-Intel-Xeon-E5-2680-v4",
+        "host_ram_gb": 128.0,
+        "inference_ram_gb": 60.0,
+        "pcie": "both-RTX-5060-Ti-cards-run-at-x8-in-this-host",
+        "notes": "Dell-Precision-Tower-7810-seed-dual-card-lane"
+      },
+      "runtime": {
+        "engine": "llama.cpp",
+        "version": "9518",
+        "commit": "7c158fbb4",
+        "build": "CUDA-120a-flash-attention-on"
+      },
+      "model": {
+        "id": "Qwopus3.6-27B",
+        "family": "Qwopus3.6",
+        "architecture": "hybrid",
+        "parameter_class": "27B",
+        "quant": "Q6_K",
+        "source": "Jackrong/Qwopus3.6-27B-v2-MTP-GGUF"
+      },
+      "serving": {
+        "route": "server",
+        "context_tokens": 131072,
+        "batch_size": 4096,
+        "ubatch_size": 1024,
+        "kv_cache_k": "f16",
+        "kv_cache_v": "f16",
+        "split_mode": "tensor",
+        "tensor_parallel": "50,50",
+        "speculation": {
+          "type": "draft-mtp",
+          "draft_n": 4,
+          "acceptance_rate": 0.48696,
+          "notes": "p-min=0.1"
+        },
+        "thinking": "off",
+        "notes": "Router --models-max 1, warmup absorbed model load."
+      },
+      "benchmark": {
+        "prompt_set": "short-chat",
+        "configured_context_tokens": 131072,
+        "actual_prompt_tokens": 31,
+        "generated_tokens": 256,
+        "runs": 1,
+        "warmups": 1,
+        "stream": false
+      },
+      "metrics": {
+        "prompt_tok_s": 16.72450558180374,
+        "decode_tok_s": 42.23621626856558,
+        "end_to_end_tok_s": 36.742,
+        "wall_seconds": 6.968
+      },
+      "caveats": [],
+      "tier": "capable",
+      "_source_file": "data/results/seed-qwopus36-27b-q6-2x5060ti-20260708.json"
+    },
+    {
+      "schema_version": "1.0",
+      "id": "20260708-123538-qwopus3.6-27b-code-generate-1",
+      "timestamp_utc": "2026-07-08T12:38:10.741774+00:00",
+      "source": {
+        "type": "seed",
+        "label": "Pacey-seed-2x-RTX-5060-Ti",
+        "notes": "Generated by scripts/run_openai_bench.py"
+      },
+      "promotion_level": "benchmark",
+      "hardware": {
+        "lane": "2x5060ti",
+        "gpu_count": 2,
+        "gpu_model": "NVIDIA-GeForce-RTX-5060-Ti",
+        "vram_per_gpu_gb": 16.0,
+        "driver": "595.58.03",
+        "cpu": "2x-Intel-Xeon-E5-2680-v4",
+        "host_ram_gb": 128.0,
+        "inference_ram_gb": 60.0,
+        "pcie": "both-RTX-5060-Ti-cards-run-at-x8-in-this-host",
+        "notes": "Dell-Precision-Tower-7810-seed-dual-card-lane"
+      },
+      "runtime": {
+        "engine": "llama.cpp",
+        "version": "9518",
+        "commit": "7c158fbb4",
+        "build": "CUDA-120a-flash-attention-on"
+      },
+      "model": {
+        "id": "Qwopus3.6-27B",
+        "family": "Qwopus3.6",
+        "architecture": "hybrid",
+        "parameter_class": "27B",
+        "quant": "Q6_K",
+        "source": "Jackrong/Qwopus3.6-27B-v2-MTP-GGUF"
+      },
+      "serving": {
+        "route": "server",
+        "context_tokens": 131072,
+        "batch_size": 4096,
+        "ubatch_size": 1024,
+        "kv_cache_k": "f16",
+        "kv_cache_v": "f16",
+        "split_mode": "tensor",
+        "tensor_parallel": "50,50",
+        "speculation": {
+          "type": "draft-mtp",
+          "draft_n": 4,
+          "acceptance_rate": 0.77748,
+          "notes": "p-min=0.1"
+        },
+        "thinking": "off",
+        "notes": "Router --models-max 1, warmup absorbed model load."
+      },
+      "benchmark": {
+        "prompt_set": "code-generate",
+        "configured_context_tokens": 131072,
+        "actual_prompt_tokens": 53,
+        "generated_tokens": 768,
+        "runs": 1,
+        "warmups": 1,
+        "stream": false
+      },
+      "metrics": {
+        "prompt_tok_s": 16.748314700833227,
+        "decode_tok_s": 55.610945247765954,
+        "end_to_end_tok_s": 52.182,
+        "wall_seconds": 14.718
+      },
+      "caveats": [],
+      "tier": "capable",
+      "_source_file": "data/results/seed-qwopus36-27b-q6-2x5060ti-20260708.json"
+    },
+    {
+      "schema_version": "1.0",
+      "id": "20260708-123538-qwopus3.6-27b-agent-tool-1",
+      "timestamp_utc": "2026-07-08T12:38:36.196667+00:00",
+      "source": {
+        "type": "seed",
+        "label": "Pacey-seed-2x-RTX-5060-Ti",
+        "notes": "Generated by scripts/run_openai_bench.py"
+      },
+      "promotion_level": "benchmark",
+      "hardware": {
+        "lane": "2x5060ti",
+        "gpu_count": 2,
+        "gpu_model": "NVIDIA-GeForce-RTX-5060-Ti",
+        "vram_per_gpu_gb": 16.0,
+        "driver": "595.58.03",
+        "cpu": "2x-Intel-Xeon-E5-2680-v4",
+        "host_ram_gb": 128.0,
+        "inference_ram_gb": 60.0,
+        "pcie": "both-RTX-5060-Ti-cards-run-at-x8-in-this-host",
+        "notes": "Dell-Precision-Tower-7810-seed-dual-card-lane"
+      },
+      "runtime": {
+        "engine": "llama.cpp",
+        "version": "9518",
+        "commit": "7c158fbb4",
+        "build": "CUDA-120a-flash-attention-on"
+      },
+      "model": {
+        "id": "Qwopus3.6-27B",
+        "family": "Qwopus3.6",
+        "architecture": "hybrid",
+        "parameter_class": "27B",
+        "quant": "Q6_K",
+        "source": "Jackrong/Qwopus3.6-27B-v2-MTP-GGUF"
+      },
+      "serving": {
+        "route": "server",
+        "context_tokens": 131072,
+        "batch_size": 4096,
+        "ubatch_size": 1024,
+        "kv_cache_k": "f16",
+        "kv_cache_v": "f16",
+        "split_mode": "tensor",
+        "tensor_parallel": "50,50",
+        "speculation": {
+          "type": "draft-mtp",
+          "draft_n": 4,
+          "acceptance_rate": 0.46434,
+          "notes": "p-min=0.1"
+        },
+        "thinking": "off",
+        "notes": "Router --models-max 1, warmup absorbed model load."
+      },
+      "benchmark": {
+        "prompt_set": "agent-tool",
+        "configured_context_tokens": 131072,
+        "actual_prompt_tokens": 111,
+        "generated_tokens": 512,
+        "runs": 1,
+        "warmups": 1,
+        "stream": false
+      },
+      "metrics": {
+        "prompt_tok_s": 23.72465169245734,
+        "decode_tok_s": 43.167375851006454,
+        "end_to_end_tok_s": 40.37,
+        "wall_seconds": 12.683
+      },
+      "caveats": [],
+      "tier": "capable",
+      "_source_file": "data/results/seed-qwopus36-27b-q6-2x5060ti-20260708.json"
+    },
+    {
+      "schema_version": "1.0",
+      "id": "20260708-123538-qwopus3.6-27b-long-retrieval-1",
+      "timestamp_utc": "2026-07-08T12:39:15.423548+00:00",
+      "source": {
+        "type": "seed",
+        "label": "Pacey-seed-2x-RTX-5060-Ti",
+        "notes": "Generated by scripts/run_openai_bench.py"
+      },
+      "promotion_level": "benchmark",
+      "hardware": {
+        "lane": "2x5060ti",
+        "gpu_count": 2,
+        "gpu_model": "NVIDIA-GeForce-RTX-5060-Ti",
+        "vram_per_gpu_gb": 16.0,
+        "driver": "595.58.03",
+        "cpu": "2x-Intel-Xeon-E5-2680-v4",
+        "host_ram_gb": 128.0,
+        "inference_ram_gb": 60.0,
+        "pcie": "both-RTX-5060-Ti-cards-run-at-x8-in-this-host",
+        "notes": "Dell-Precision-Tower-7810-seed-dual-card-lane"
+      },
+      "runtime": {
+        "engine": "llama.cpp",
+        "version": "9518",
+        "commit": "7c158fbb4",
+        "build": "CUDA-120a-flash-attention-on"
+      },
+      "model": {
+        "id": "Qwopus3.6-27B",
+        "family": "Qwopus3.6",
+        "architecture": "hybrid",
+        "parameter_class": "27B",
+        "quant": "Q6_K",
+        "source": "Jackrong/Qwopus3.6-27B-v2-MTP-GGUF"
+      },
+      "serving": {
+        "route": "server",
+        "context_tokens": 131072,
+        "batch_size": 4096,
+        "ubatch_size": 1024,
+        "kv_cache_k": "f16",
+        "kv_cache_v": "f16",
+        "split_mode": "tensor",
+        "tensor_parallel": "50,50",
+        "speculation": {
+          "type": "draft-mtp",
+          "draft_n": 4,
+          "acceptance_rate": 1.0,
+          "notes": "p-min=0.1"
+        },
+        "thinking": "off",
+        "notes": "Router --models-max 1, warmup absorbed model load."
+      },
+      "benchmark": {
+        "prompt_set": "long-retrieval",
+        "configured_context_tokens": 131072,
+        "actual_prompt_tokens": 27061,
+        "generated_tokens": 17,
+        "runs": 1,
+        "warmups": 1,
+        "stream": false
+      },
+      "metrics": {
+        "prompt_tok_s": 589.6459772435657,
+        "decode_tok_s": 36.397971134267834,
+        "end_to_end_tok_s": 6.838,
+        "wall_seconds": 2.486
+      },
+      "caveats": [
+        "Long-prompt short-answer fit check on the 2x5060ti seed system; not a sustained decode benchmark."
+      ],
+      "tier": "capable",
+      "_source_file": "data/results/seed-qwopus36-27b-q6-2x5060ti-20260708.json"
+    },
+    {
+      "schema_version": "1.0",
+      "id": "20260708-123915-qwopus3.6-35b-a3b-short-chat-1",
+      "timestamp_utc": "2026-07-08T12:41:02.937371+00:00",
+      "source": {
+        "type": "seed",
+        "label": "Pacey-seed-2x-RTX-5060-Ti",
+        "notes": "Generated by scripts/run_openai_bench.py"
+      },
+      "promotion_level": "benchmark",
+      "hardware": {
+        "lane": "2x5060ti",
+        "gpu_count": 2,
+        "gpu_model": "NVIDIA-GeForce-RTX-5060-Ti",
+        "vram_per_gpu_gb": 16.0,
+        "driver": "595.58.03",
+        "cpu": "2x-Intel-Xeon-E5-2680-v4",
+        "host_ram_gb": 128.0,
+        "inference_ram_gb": 60.0,
+        "pcie": "both-RTX-5060-Ti-cards-run-at-x8-in-this-host",
+        "notes": "Dell-Precision-Tower-7810-seed-dual-card-lane"
+      },
+      "runtime": {
+        "engine": "llama.cpp",
+        "version": "9518",
+        "commit": "7c158fbb4",
+        "build": "CUDA-120a-flash-attention-on"
+      },
+      "model": {
+        "id": "Qwopus3.6-35B-A3B",
+        "family": "Qwopus3.6",
+        "architecture": "moe",
+        "parameter_class": "35B-A3B",
+        "quant": "Q5_K_M",
+        "source": "Jackrong/Qwopus3.6-35B-A3B-v1-MTP-GGUF"
+      },
+      "serving": {
+        "route": "server",
+        "context_tokens": 204800,
+        "batch_size": 4096,
+        "ubatch_size": 1024,
+        "kv_cache_k": "f16",
+        "kv_cache_v": "f16",
+        "split_mode": "tensor",
+        "tensor_parallel": "50,50",
+        "speculation": {
+          "type": "draft-mtp",
+          "draft_n": 4,
+          "acceptance_rate": 0.44262,
+          "notes": "p-min=0.1"
+        },
+        "thinking": "off",
+        "notes": "Router --models-max 1, warmup absorbed model load."
+      },
+      "benchmark": {
+        "prompt_set": "short-chat",
+        "configured_context_tokens": 204800,
+        "actual_prompt_tokens": 31,
+        "generated_tokens": 256,
+        "runs": 1,
+        "warmups": 1,
+        "stream": false
+      },
+      "metrics": {
+        "prompt_tok_s": 25.104970156466727,
+        "decode_tok_s": 72.4257183725941,
+        "end_to_end_tok_s": 62.836,
+        "wall_seconds": 4.074
+      },
+      "caveats": [],
+      "tier": "capable",
+      "_source_file": "data/results/seed-qwopus36-35b-a3b-q5-2x5060ti-20260708.json"
+    },
+    {
+      "schema_version": "1.0",
+      "id": "20260708-123915-qwopus3.6-35b-a3b-code-generate-1",
+      "timestamp_utc": "2026-07-08T12:41:20.324617+00:00",
+      "source": {
+        "type": "seed",
+        "label": "Pacey-seed-2x-RTX-5060-Ti",
+        "notes": "Generated by scripts/run_openai_bench.py"
+      },
+      "promotion_level": "benchmark",
+      "hardware": {
+        "lane": "2x5060ti",
+        "gpu_count": 2,
+        "gpu_model": "NVIDIA-GeForce-RTX-5060-Ti",
+        "vram_per_gpu_gb": 16.0,
+        "driver": "595.58.03",
+        "cpu": "2x-Intel-Xeon-E5-2680-v4",
+        "host_ram_gb": 128.0,
+        "inference_ram_gb": 60.0,
+        "pcie": "both-RTX-5060-Ti-cards-run-at-x8-in-this-host",
+        "notes": "Dell-Precision-Tower-7810-seed-dual-card-lane"
+      },
+      "runtime": {
+        "engine": "llama.cpp",
+        "version": "9518",
+        "commit": "7c158fbb4",
+        "build": "CUDA-120a-flash-attention-on"
+      },
+      "model": {
+        "id": "Qwopus3.6-35B-A3B",
+        "family": "Qwopus3.6",
+        "architecture": "moe",
+        "parameter_class": "35B-A3B",
+        "quant": "Q5_K_M",
+        "source": "Jackrong/Qwopus3.6-35B-A3B-v1-MTP-GGUF"
+      },
+      "serving": {
+        "route": "server",
+        "context_tokens": 204800,
+        "batch_size": 4096,
+        "ubatch_size": 1024,
+        "kv_cache_k": "f16",
+        "kv_cache_v": "f16",
+        "split_mode": "tensor",
+        "tensor_parallel": "50,50",
+        "speculation": {
+          "type": "draft-mtp",
+          "draft_n": 4,
+          "acceptance_rate": 0.73522,
+          "notes": "p-min=0.1"
+        },
+        "thinking": "off",
+        "notes": "Router --models-max 1, warmup absorbed model load."
+      },
+      "benchmark": {
+        "prompt_set": "code-generate",
+        "configured_context_tokens": 204800,
+        "actual_prompt_tokens": 53,
+        "generated_tokens": 768,
+        "runs": 1,
+        "warmups": 1,
+        "stream": false
+      },
+      "metrics": {
+        "prompt_tok_s": 24.802202435576277,
+        "decode_tok_s": 94.93309441837904,
+        "end_to_end_tok_s": 88.768,
+        "wall_seconds": 8.652
+      },
+      "caveats": [],
+      "tier": "capable",
+      "_source_file": "data/results/seed-qwopus36-35b-a3b-q5-2x5060ti-20260708.json"
+    },
+    {
+      "schema_version": "1.0",
+      "id": "20260708-123915-qwopus3.6-35b-a3b-agent-tool-1",
+      "timestamp_utc": "2026-07-08T12:41:34.484539+00:00",
+      "source": {
+        "type": "seed",
+        "label": "Pacey-seed-2x-RTX-5060-Ti",
+        "notes": "Generated by scripts/run_openai_bench.py"
+      },
+      "promotion_level": "benchmark",
+      "hardware": {
+        "lane": "2x5060ti",
+        "gpu_count": 2,
+        "gpu_model": "NVIDIA-GeForce-RTX-5060-Ti",
+        "vram_per_gpu_gb": 16.0,
+        "driver": "595.58.03",
+        "cpu": "2x-Intel-Xeon-E5-2680-v4",
+        "host_ram_gb": 128.0,
+        "inference_ram_gb": 60.0,
+        "pcie": "both-RTX-5060-Ti-cards-run-at-x8-in-this-host",
+        "notes": "Dell-Precision-Tower-7810-seed-dual-card-lane"
+      },
+      "runtime": {
+        "engine": "llama.cpp",
+        "version": "9518",
+        "commit": "7c158fbb4",
+        "build": "CUDA-120a-flash-attention-on"
+      },
+      "model": {
+        "id": "Qwopus3.6-35B-A3B",
+        "family": "Qwopus3.6",
+        "architecture": "moe",
+        "parameter_class": "35B-A3B",
+        "quant": "Q5_K_M",
+        "source": "Jackrong/Qwopus3.6-35B-A3B-v1-MTP-GGUF"
+      },
+      "serving": {
+        "route": "server",
+        "context_tokens": 204800,
+        "batch_size": 4096,
+        "ubatch_size": 1024,
+        "kv_cache_k": "f16",
+        "kv_cache_v": "f16",
+        "split_mode": "tensor",
+        "tensor_parallel": "50,50",
+        "speculation": {
+          "type": "draft-mtp",
+          "draft_n": 4,
+          "acceptance_rate": 0.44856,
+          "notes": "p-min=0.1"
+        },
+        "thinking": "off",
+        "notes": "Router --models-max 1, warmup absorbed model load."
+      },
+      "benchmark": {
+        "prompt_set": "agent-tool",
+        "configured_context_tokens": 204800,
+        "actual_prompt_tokens": 111,
+        "generated_tokens": 512,
+        "runs": 1,
+        "warmups": 1,
+        "stream": false
+      },
+      "metrics": {
+        "prompt_tok_s": 24.13491417021148,
+        "decode_tok_s": 78.45881149918085,
+        "end_to_end_tok_s": 72.246,
+        "wall_seconds": 7.087
+      },
+      "caveats": [],
+      "tier": "capable",
+      "_source_file": "data/results/seed-qwopus36-35b-a3b-q5-2x5060ti-20260708.json"
+    },
+    {
+      "schema_version": "1.0",
+      "id": "20260708-123915-qwopus3.6-35b-a3b-long-retrieval-1",
+      "timestamp_utc": "2026-07-08T12:41:48.896757+00:00",
+      "source": {
+        "type": "seed",
+        "label": "Pacey-seed-2x-RTX-5060-Ti",
+        "notes": "Generated by scripts/run_openai_bench.py"
+      },
+      "promotion_level": "benchmark",
+      "hardware": {
+        "lane": "2x5060ti",
+        "gpu_count": 2,
+        "gpu_model": "NVIDIA-GeForce-RTX-5060-Ti",
+        "vram_per_gpu_gb": 16.0,
+        "driver": "595.58.03",
+        "cpu": "2x-Intel-Xeon-E5-2680-v4",
+        "host_ram_gb": 128.0,
+        "inference_ram_gb": 60.0,
+        "pcie": "both-RTX-5060-Ti-cards-run-at-x8-in-this-host",
+        "notes": "Dell-Precision-Tower-7810-seed-dual-card-lane"
+      },
+      "runtime": {
+        "engine": "llama.cpp",
+        "version": "9518",
+        "commit": "7c158fbb4",
+        "build": "CUDA-120a-flash-attention-on"
+      },
+      "model": {
+        "id": "Qwopus3.6-35B-A3B",
+        "family": "Qwopus3.6",
+        "architecture": "moe",
+        "parameter_class": "35B-A3B",
+        "quant": "Q5_K_M",
+        "source": "Jackrong/Qwopus3.6-35B-A3B-v1-MTP-GGUF"
+      },
+      "serving": {
+        "route": "server",
+        "context_tokens": 204800,
+        "batch_size": 4096,
+        "ubatch_size": 1024,
+        "kv_cache_k": "f16",
+        "kv_cache_v": "f16",
+        "split_mode": "tensor",
+        "tensor_parallel": "50,50",
+        "speculation": {
+          "type": "draft-mtp",
+          "draft_n": 4,
+          "acceptance_rate": 1.0,
+          "notes": "p-min=0.1"
+        },
+        "thinking": "off",
+        "notes": "Router --models-max 1, warmup absorbed model load."
+      },
+      "benchmark": {
+        "prompt_set": "long-retrieval",
+        "configured_context_tokens": 204800,
+        "actual_prompt_tokens": 27061,
+        "generated_tokens": 17,
+        "runs": 1,
+        "warmups": 1,
+        "stream": false
+      },
+      "metrics": {
+        "prompt_tok_s": 1445.3183215186527,
+        "decode_tok_s": 51.68634294800658,
+        "end_to_end_tok_s": 13.044,
+        "wall_seconds": 1.303
+      },
+      "caveats": [
+        "Long-prompt short-answer fit check on the 2x5060ti seed system; not a sustained decode benchmark."
+      ],
+      "tier": "capable",
+      "_source_file": "data/results/seed-qwopus36-35b-a3b-q5-2x5060ti-20260708.json"
     }
   ]
 }

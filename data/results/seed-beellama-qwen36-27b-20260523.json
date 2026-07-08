@@ -28,7 +28,7 @@
         "notes": "Built from Anbeeld/beellama.cpp main with CUDA 12.9, GGML_CUDA=ON, GGML_CUDA_FA=ON, GGML_CUDA_FA_ALL_QUANTS=ON, arch 120a."
       },
       "model": {
-        "id": "bee-qwen36-27b-q3kxl-nospec-8k-1gpu",
+        "id": "Qwen3.6-27B",
         "family": "Qwen3.6",
         "architecture": "hybrid",
         "parameter_class": "27B",
@@ -67,7 +67,8 @@
       },
       "caveats": [
         "Exploratory BeeLlama row; lower target quant than the dual-GPU Q4_K_M DFlash attempt."
-      ]
+      ],
+      "tier": "capable"
     },
     {
       "schema_version": "1.0",
@@ -97,7 +98,7 @@
         "notes": "Built from Anbeeld/beellama.cpp main with CUDA 12.9, GGML_CUDA=ON, GGML_CUDA_FA=ON, GGML_CUDA_FA_ALL_QUANTS=ON, arch 120a."
       },
       "model": {
-        "id": "bee-qwen36-27b-q3kxl-nospec-8k-1gpu",
+        "id": "Qwen3.6-27B",
         "family": "Qwen3.6",
         "architecture": "hybrid",
         "parameter_class": "27B",
@@ -136,7 +137,8 @@
       },
       "caveats": [
         "Exploratory BeeLlama row; lower target quant than the dual-GPU Q4_K_M DFlash attempt."
-      ]
+      ],
+      "tier": "capable"
     },
     {
       "schema_version": "1.0",
@@ -166,7 +168,7 @@
         "notes": "Built from Anbeeld/beellama.cpp main with CUDA 12.9, GGML_CUDA=ON, GGML_CUDA_FA=ON, GGML_CUDA_FA_ALL_QUANTS=ON, arch 120a."
       },
       "model": {
-        "id": "bee-qwen36-27b-q3kxl-nospec-8k-1gpu",
+        "id": "Qwen3.6-27B",
         "family": "Qwen3.6",
         "architecture": "hybrid",
         "parameter_class": "27B",
@@ -205,7 +207,8 @@
       },
       "caveats": [
         "Exploratory BeeLlama row; lower target quant than the dual-GPU Q4_K_M DFlash attempt."
-      ]
+      ],
+      "tier": "capable"
     },
     {
       "schema_version": "1.0",
@@ -235,7 +238,7 @@
         "notes": "Built from Anbeeld/beellama.cpp main with CUDA 12.9, GGML_CUDA=ON, GGML_CUDA_FA=ON, GGML_CUDA_FA_ALL_QUANTS=ON, arch 120a."
       },
       "model": {
-        "id": "bee-qwen36-27b-q3kxl-nospec-8k-1gpu",
+        "id": "Qwen3.6-27B",
         "family": "Qwen3.6",
         "architecture": "hybrid",
         "parameter_class": "27B",
@@ -274,7 +277,8 @@
       },
       "caveats": [
         "Exploratory BeeLlama row; lower target quant than the dual-GPU Q4_K_M DFlash attempt."
-      ]
+      ],
+      "tier": "capable"
     },
     {
       "schema_version": "1.0",
@@ -304,7 +308,7 @@
         "notes": "Built from Anbeeld/beellama.cpp main with CUDA 12.9, GGML_CUDA=ON, GGML_CUDA_FA=ON, GGML_CUDA_FA_ALL_QUANTS=ON, arch 120a."
       },
       "model": {
-        "id": "bee-qwen36-27b-q3kxl-nospec-8k-1gpu",
+        "id": "Qwen3.6-27B",
         "family": "Qwen3.6",
         "architecture": "hybrid",
         "parameter_class": "27B",
@@ -343,7 +347,8 @@
       },
       "caveats": [
         "Exploratory BeeLlama row; lower target quant than the dual-GPU Q4_K_M DFlash attempt."
-      ]
+      ],
+      "tier": "capable"
     },
     {
       "schema_version": "1.0",
@@ -373,7 +378,7 @@
         "notes": "Built from Anbeeld/beellama.cpp main with CUDA 12.9, GGML_CUDA=ON, GGML_CUDA_FA=ON, GGML_CUDA_FA_ALL_QUANTS=ON, arch 120a."
       },
       "model": {
-        "id": "bee-qwen36-27b-q3kxl-nospec-8k-1gpu",
+        "id": "Qwen3.6-27B",
         "family": "Qwen3.6",
         "architecture": "hybrid",
         "parameter_class": "27B",
@@ -412,7 +417,8 @@
       },
       "caveats": [
         "Exploratory BeeLlama row; lower target quant than the dual-GPU Q4_K_M DFlash attempt."
-      ]
+      ],
+      "tier": "capable"
     },
     {
       "schema_version": "1.0",
@@ -442,7 +448,7 @@
         "notes": "Built from Anbeeld/beellama.cpp main with CUDA 12.9, GGML_CUDA=ON, GGML_CUDA_FA=ON, GGML_CUDA_FA_ALL_QUANTS=ON, arch 120a."
       },
       "model": {
-        "id": "bee-qwen36-27b-q3kxl-dflash-iq4-8k-1gpu",
+        "id": "Qwen3.6-27B",
         "family": "Qwen3.6",
         "architecture": "hybrid",
         "parameter_class": "27B",
@@ -483,7 +489,8 @@
       },
       "caveats": [
         "Exploratory BeeLlama row; lower target quant than the dual-GPU Q4_K_M DFlash attempt."
-      ]
+      ],
+      "tier": "capable"
     },
     {
       "schema_version": "1.0",
@@ -513,7 +520,7 @@
         "notes": "Built from Anbeeld/beellama.cpp main with CUDA 12.9, GGML_CUDA=ON, GGML_CUDA_FA=ON, GGML_CUDA_FA_ALL_QUANTS=ON, arch 120a."
       },
       "model": {
-        "id": "bee-qwen36-27b-q3kxl-dflash-iq4-8k-1gpu",
+        "id": "Qwen3.6-27B",
         "family": "Qwen3.6",
         "architecture": "hybrid",
         "parameter_class": "27B",
@@ -554,7 +561,8 @@
       },
       "caveats": [
         "Exploratory BeeLlama row; lower target quant than the dual-GPU Q4_K_M DFlash attempt."
-      ]
+      ],
+      "tier": "capable"
     },
     {
       "schema_version": "1.0",
@@ -584,7 +592,7 @@
         "notes": "Built from Anbeeld/beellama.cpp main with CUDA 12.9, GGML_CUDA=ON, GGML_CUDA_FA=ON, GGML_CUDA_FA_ALL_QUANTS=ON, arch 120a."
       },
       "model": {
-        "id": "bee-qwen36-27b-q3kxl-dflash-iq4-8k-1gpu",
+        "id": "Qwen3.6-27B",
         "family": "Qwen3.6",
         "architecture": "hybrid",
         "parameter_class": "27B",
@@ -625,7 +633,8 @@
       },
       "caveats": [
         "Exploratory BeeLlama row; lower target quant than the dual-GPU Q4_K_M DFlash attempt."
-      ]
+      ],
+      "tier": "capable"
     },
     {
       "schema_version": "1.0",
@@ -655,7 +664,7 @@
         "notes": "Built from Anbeeld/beellama.cpp main with CUDA 12.9, GGML_CUDA=ON, GGML_CUDA_FA=ON, GGML_CUDA_FA_ALL_QUANTS=ON, arch 120a."
       },
       "model": {
-        "id": "bee-qwen36-27b-q3kxl-dflash-iq4-8k-1gpu",
+        "id": "Qwen3.6-27B",
         "family": "Qwen3.6",
         "architecture": "hybrid",
         "parameter_class": "27B",
@@ -696,7 +705,8 @@
       },
       "caveats": [
         "Exploratory BeeLlama row; lower target quant than the dual-GPU Q4_K_M DFlash attempt."
-      ]
+      ],
+      "tier": "capable"
     },
     {
       "schema_version": "1.0",
@@ -726,7 +736,7 @@
         "notes": "Built from Anbeeld/beellama.cpp main with CUDA 12.9, GGML_CUDA=ON, GGML_CUDA_FA=ON, GGML_CUDA_FA_ALL_QUANTS=ON, arch 120a."
       },
       "model": {
-        "id": "bee-qwen36-27b-q3kxl-dflash-iq4-8k-1gpu",
+        "id": "Qwen3.6-27B",
         "family": "Qwen3.6",
         "architecture": "hybrid",
         "parameter_class": "27B",
@@ -767,7 +777,8 @@
       },
       "caveats": [
         "Exploratory BeeLlama row; lower target quant than the dual-GPU Q4_K_M DFlash attempt."
-      ]
+      ],
+      "tier": "capable"
     },
     {
       "schema_version": "1.0",
@@ -797,7 +808,7 @@
         "notes": "Built from Anbeeld/beellama.cpp main with CUDA 12.9, GGML_CUDA=ON, GGML_CUDA_FA=ON, GGML_CUDA_FA_ALL_QUANTS=ON, arch 120a."
       },
       "model": {
-        "id": "bee-qwen36-27b-q3kxl-dflash-iq4-8k-1gpu",
+        "id": "Qwen3.6-27B",
         "family": "Qwen3.6",
         "architecture": "hybrid",
         "parameter_class": "27B",
@@ -838,7 +849,8 @@
       },
       "caveats": [
         "Exploratory BeeLlama row; lower target quant than the dual-GPU Q4_K_M DFlash attempt."
-      ]
+      ],
+      "tier": "capable"
     },
     {
       "schema_version": "1.0",
@@ -868,7 +880,7 @@
         "notes": "Built from Anbeeld/beellama.cpp main with CUDA 12.9, GGML_CUDA=ON, GGML_CUDA_FA=ON, GGML_CUDA_FA_ALL_QUANTS=ON, arch 120a."
       },
       "model": {
-        "id": "bee-qwen36-27b-q4km-nospec-32k",
+        "id": "Qwen3.6-27B",
         "family": "Qwen3.6",
         "architecture": "hybrid",
         "parameter_class": "27B",
@@ -907,7 +919,8 @@
       },
       "caveats": [
         "Cross-engine comparison against vLLM is not model-equivalent: GGUF Q4_K_M target vs NVFP4 HF checkpoint."
-      ]
+      ],
+      "tier": "capable"
     },
     {
       "schema_version": "1.0",
@@ -937,7 +950,7 @@
         "notes": "Built from Anbeeld/beellama.cpp main with CUDA 12.9, GGML_CUDA=ON, GGML_CUDA_FA=ON, GGML_CUDA_FA_ALL_QUANTS=ON, arch 120a."
       },
       "model": {
-        "id": "bee-qwen36-27b-q4km-nospec-32k",
+        "id": "Qwen3.6-27B",
         "family": "Qwen3.6",
         "architecture": "hybrid",
         "parameter_class": "27B",
@@ -976,7 +989,8 @@
       },
       "caveats": [
         "Cross-engine comparison against vLLM is not model-equivalent: GGUF Q4_K_M target vs NVFP4 HF checkpoint."
-      ]
+      ],
+      "tier": "capable"
     },
     {
       "schema_version": "1.0",
@@ -1006,7 +1020,7 @@
         "notes": "Built from Anbeeld/beellama.cpp main with CUDA 12.9, GGML_CUDA=ON, GGML_CUDA_FA=ON, GGML_CUDA_FA_ALL_QUANTS=ON, arch 120a."
       },
       "model": {
-        "id": "bee-qwen36-27b-q4km-nospec-32k",
+        "id": "Qwen3.6-27B",
         "family": "Qwen3.6",
         "architecture": "hybrid",
         "parameter_class": "27B",
@@ -1045,7 +1059,8 @@
       },
       "caveats": [
         "Cross-engine comparison against vLLM is not model-equivalent: GGUF Q4_K_M target vs NVFP4 HF checkpoint."
-      ]
+      ],
+      "tier": "capable"
     },
     {
       "schema_version": "1.0",
@@ -1075,7 +1090,7 @@
         "notes": "Built from Anbeeld/beellama.cpp main with CUDA 12.9, GGML_CUDA=ON, GGML_CUDA_FA=ON, GGML_CUDA_FA_ALL_QUANTS=ON, arch 120a."
       },
       "model": {
-        "id": "bee-qwen36-27b-q4km-nospec-32k",
+        "id": "Qwen3.6-27B",
         "family": "Qwen3.6",
         "architecture": "hybrid",
         "parameter_class": "27B",
@@ -1114,7 +1129,8 @@
       },
       "caveats": [
         "Cross-engine comparison against vLLM is not model-equivalent: GGUF Q4_K_M target vs NVFP4 HF checkpoint."
-      ]
+      ],
+      "tier": "capable"
     },
     {
       "schema_version": "1.0",
@@ -1144,7 +1160,7 @@
         "notes": "Built from Anbeeld/beellama.cpp main with CUDA 12.9, GGML_CUDA=ON, GGML_CUDA_FA=ON, GGML_CUDA_FA_ALL_QUANTS=ON, arch 120a."
       },
       "model": {
-        "id": "bee-qwen36-27b-q4km-nospec-32k",
+        "id": "Qwen3.6-27B",
         "family": "Qwen3.6",
         "architecture": "hybrid",
         "parameter_class": "27B",
@@ -1183,7 +1199,8 @@
       },
       "caveats": [
         "Cross-engine comparison against vLLM is not model-equivalent: GGUF Q4_K_M target vs NVFP4 HF checkpoint."
-      ]
+      ],
+      "tier": "capable"
     },
     {
       "schema_version": "1.0",
@@ -1213,7 +1230,7 @@
         "notes": "Built from Anbeeld/beellama.cpp main with CUDA 12.9, GGML_CUDA=ON, GGML_CUDA_FA=ON, GGML_CUDA_FA_ALL_QUANTS=ON, arch 120a."
       },
       "model": {
-        "id": "bee-qwen36-27b-q4km-nospec-32k",
+        "id": "Qwen3.6-27B",
         "family": "Qwen3.6",
         "architecture": "hybrid",
         "parameter_class": "27B",
@@ -1252,7 +1269,8 @@
       },
       "caveats": [
         "Cross-engine comparison against vLLM is not model-equivalent: GGUF Q4_K_M target vs NVFP4 HF checkpoint."
-      ]
+      ],
+      "tier": "capable"
     }
   ]
 }

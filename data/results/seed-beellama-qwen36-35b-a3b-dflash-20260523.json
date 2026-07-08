@@ -24,7 +24,7 @@
         "notes": "BeeLlama local branch fix/dflash-multigpu-seq-pos; no-spec baseline"
       },
       "model": {
-        "id": "beellama-qwen36-35b-a3b-iq3-nospec",
+        "id": "Qwen3.6-35B-A3B",
         "family": "Qwen3.6",
         "architecture": "hybrid",
         "parameter_class": "35B-A3B",
@@ -63,7 +63,8 @@
       },
       "caveats": [
         "Exploratory BeeLlama branch baseline row."
-      ]
+      ],
+      "tier": "capable"
     },
     {
       "schema_version": "1.0",
@@ -89,7 +90,7 @@
         "notes": "BeeLlama local branch fix/dflash-multigpu-seq-pos; no-spec baseline"
       },
       "model": {
-        "id": "beellama-qwen36-35b-a3b-iq3-nospec",
+        "id": "Qwen3.6-35B-A3B",
         "family": "Qwen3.6",
         "architecture": "hybrid",
         "parameter_class": "35B-A3B",
@@ -128,7 +129,8 @@
       },
       "caveats": [
         "Exploratory BeeLlama branch baseline row."
-      ]
+      ],
+      "tier": "capable"
     },
     {
       "schema_version": "1.0",
@@ -154,7 +156,7 @@
         "notes": "BeeLlama local branch fix/dflash-multigpu-seq-pos; no-spec baseline"
       },
       "model": {
-        "id": "beellama-qwen36-35b-a3b-iq3-nospec",
+        "id": "Qwen3.6-35B-A3B",
         "family": "Qwen3.6",
         "architecture": "hybrid",
         "parameter_class": "35B-A3B",
@@ -193,7 +195,8 @@
       },
       "caveats": [
         "Exploratory BeeLlama branch baseline row."
-      ]
+      ],
+      "tier": "capable"
     },
     {
       "schema_version": "1.0",
@@ -219,7 +222,7 @@
         "notes": "BeeLlama local branch fix/dflash-multigpu-seq-pos; 35B-A3B DFlash drafter from abhinand/Qwen3.6-35B-A3B-DFlash-GGUF"
       },
       "model": {
-        "id": "beellama-qwen36-35b-a3b-iq3-dflash",
+        "id": "Qwen3.6-35B-A3B",
         "family": "Qwen3.6",
         "architecture": "hybrid",
         "parameter_class": "35B-A3B",
@@ -261,7 +264,8 @@
       },
       "caveats": [
         "Exploratory BeeLlama branch row; 35B-A3B DFlash drafter not previously part of public club-5060ti data."
-      ]
+      ],
+      "tier": "capable"
     },
     {
       "schema_version": "1.0",
@@ -287,7 +291,7 @@
         "notes": "BeeLlama local branch fix/dflash-multigpu-seq-pos; 35B-A3B DFlash drafter from abhinand/Qwen3.6-35B-A3B-DFlash-GGUF"
       },
       "model": {
-        "id": "beellama-qwen36-35b-a3b-iq3-dflash",
+        "id": "Qwen3.6-35B-A3B",
         "family": "Qwen3.6",
         "architecture": "hybrid",
         "parameter_class": "35B-A3B",
@@ -329,7 +333,8 @@
       },
       "caveats": [
         "Exploratory BeeLlama branch row; 35B-A3B DFlash drafter not previously part of public club-5060ti data."
-      ]
+      ],
+      "tier": "capable"
     },
     {
       "schema_version": "1.0",
@@ -355,7 +360,7 @@
         "notes": "BeeLlama local branch fix/dflash-multigpu-seq-pos; 35B-A3B DFlash drafter from abhinand/Qwen3.6-35B-A3B-DFlash-GGUF"
       },
       "model": {
-        "id": "beellama-qwen36-35b-a3b-iq3-dflash",
+        "id": "Qwen3.6-35B-A3B",
         "family": "Qwen3.6",
         "architecture": "hybrid",
         "parameter_class": "35B-A3B",
@@ -397,7 +402,8 @@
       },
       "caveats": [
         "Exploratory BeeLlama branch row; 35B-A3B DFlash drafter not previously part of public club-5060ti data."
-      ]
+      ],
+      "tier": "capable"
     },
     {
       "schema_version": "1.0",
@@ -428,7 +434,7 @@
         "notes": "BeeLlama local branch fix/dflash-multigpu-seq-pos; no DFlash drafter"
       },
       "model": {
-        "id": "beellama-qwen36-35b-a3b-iq3-nospec",
+        "id": "Qwen3.6-35B-A3B",
         "family": "Qwen3.6",
         "architecture": "hybrid",
         "parameter_class": "35B-A3B",
@@ -469,7 +475,8 @@
         "Exploratory BeeLlama branch row; long-retrieval answer text was checked manually after the DFlash run.",
         "Matched lower-context no-spec baseline for the BeeLlama 35B-A3B DFlash long-retrieval check.",
         "Long-retrieval is a short-answer fit/retrieval check, not a sustained decode benchmark."
-      ]
+      ],
+      "tier": "capable"
     },
     {
       "schema_version": "1.0",
@@ -500,7 +507,7 @@
         "notes": "BeeLlama local branch fix/dflash-multigpu-seq-pos; 35B-A3B DFlash drafter from abhinand/Qwen3.6-35B-A3B-DFlash-GGUF"
       },
       "model": {
-        "id": "beellama-qwen36-35b-a3b-iq3-dflash",
+        "id": "Qwen3.6-35B-A3B",
         "family": "Qwen3.6",
         "architecture": "hybrid",
         "parameter_class": "35B-A3B",
@@ -544,7 +551,8 @@
         "Exploratory BeeLlama branch row; 204K/q8 long-retrieval OOMed after a 27k-token prompt on the same hardware.",
         "DFlash decode was slower than the matched no-spec long-retrieval row because acceptance was low.",
         "Long-retrieval is a short-answer fit/retrieval check, not a sustained decode benchmark."
-      ]
+      ],
+      "tier": "capable"
     }
   ]
 }

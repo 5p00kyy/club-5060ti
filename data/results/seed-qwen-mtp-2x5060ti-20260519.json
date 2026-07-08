@@ -29,7 +29,8 @@
         "family": "Qwen3.6",
         "architecture": "hybrid",
         "quant": "UD-Q4_K_XL",
-        "source": "unsloth GGUF MTP route"
+        "source": "unsloth GGUF MTP route",
+        "parameter_class": "27B"
       },
       "serving": {
         "route": "server",
@@ -61,7 +62,8 @@
         "end_to_end_tok_s": 32.578,
         "wall_seconds": 7.858
       },
-      "caveats": []
+      "caveats": [],
+      "tier": "capable"
     },
     {
       "schema_version": "1.0",
@@ -92,7 +94,8 @@
         "family": "Qwen3.6",
         "architecture": "hybrid",
         "quant": "UD-Q4_K_XL",
-        "source": "unsloth GGUF MTP route"
+        "source": "unsloth GGUF MTP route",
+        "parameter_class": "27B"
       },
       "serving": {
         "route": "server",
@@ -124,7 +127,8 @@
         "end_to_end_tok_s": 33.068,
         "wall_seconds": 7.742
       },
-      "caveats": []
+      "caveats": [],
+      "tier": "capable"
     },
     {
       "schema_version": "1.0",
@@ -155,7 +159,8 @@
         "family": "Qwen3.6",
         "architecture": "hybrid",
         "quant": "UD-Q4_K_XL",
-        "source": "unsloth GGUF MTP route"
+        "source": "unsloth GGUF MTP route",
+        "parameter_class": "27B"
       },
       "serving": {
         "route": "server",
@@ -187,7 +192,8 @@
         "end_to_end_tok_s": 36.819,
         "wall_seconds": 20.859
       },
-      "caveats": []
+      "caveats": [],
+      "tier": "capable"
     },
     {
       "schema_version": "1.0",
@@ -218,7 +224,8 @@
         "family": "Qwen3.6",
         "architecture": "hybrid",
         "quant": "UD-Q4_K_XL",
-        "source": "unsloth GGUF MTP route"
+        "source": "unsloth GGUF MTP route",
+        "parameter_class": "27B"
       },
       "serving": {
         "route": "server",
@@ -250,7 +257,8 @@
         "end_to_end_tok_s": 37.273,
         "wall_seconds": 20.605
       },
-      "caveats": []
+      "caveats": [],
+      "tier": "capable"
     },
     {
       "schema_version": "1.0",
@@ -281,7 +289,8 @@
         "family": "Qwen3.6",
         "architecture": "hybrid",
         "quant": "UD-Q4_K_XL",
-        "source": "unsloth GGUF MTP route"
+        "source": "unsloth GGUF MTP route",
+        "parameter_class": "27B"
       },
       "serving": {
         "route": "server",
@@ -313,7 +322,8 @@
         "end_to_end_tok_s": 28.241,
         "wall_seconds": 18.13
       },
-      "caveats": []
+      "caveats": [],
+      "tier": "capable"
     },
     {
       "schema_version": "1.0",
@@ -344,7 +354,8 @@
         "family": "Qwen3.6",
         "architecture": "hybrid",
         "quant": "UD-Q4_K_XL",
-        "source": "unsloth GGUF MTP route"
+        "source": "unsloth GGUF MTP route",
+        "parameter_class": "27B"
       },
       "serving": {
         "route": "server",
@@ -376,7 +387,8 @@
         "end_to_end_tok_s": 28.707,
         "wall_seconds": 17.835
       },
-      "caveats": []
+      "caveats": [],
+      "tier": "capable"
     },
     {
       "schema_version": "1.0",
@@ -407,7 +419,8 @@
         "family": "Qwen3.6",
         "architecture": "hybrid",
         "quant": "UD-Q4_K_XL",
-        "source": "unsloth GGUF MTP route"
+        "source": "unsloth GGUF MTP route",
+        "parameter_class": "27B"
       },
       "serving": {
         "route": "server",
@@ -441,7 +454,8 @@
       },
       "caveats": [
         "Long-prompt short-answer fit check on the 2x5060ti seed system; not a sustained decode benchmark."
-      ]
+      ],
+      "tier": "capable"
     },
     {
       "schema_version": "1.0",
@@ -472,7 +486,8 @@
         "family": "Qwen3.6",
         "architecture": "hybrid",
         "quant": "UD-Q4_K_XL",
-        "source": "unsloth GGUF MTP route"
+        "source": "unsloth GGUF MTP route",
+        "parameter_class": "27B"
       },
       "serving": {
         "route": "server",
@@ -506,7 +521,8 @@
       },
       "caveats": [
         "Long-prompt short-answer fit check on the 2x5060ti seed system; not a sustained decode benchmark."
-      ]
+      ],
+      "tier": "capable"
     },
     {
       "schema_version": "1.0",
@@ -537,7 +553,8 @@
         "family": "Qwen3.5",
         "architecture": "dense",
         "quant": "UD-Q4_K_XL",
-        "source": "unsloth GGUF MTP route"
+        "source": "unsloth GGUF MTP route",
+        "parameter_class": "9B"
       },
       "serving": {
         "route": "server",
@@ -568,7 +585,8 @@
         "end_to_end_tok_s": 66.763,
         "wall_seconds": 3.834
       },
-      "caveats": []
+      "caveats": [],
+      "tier": "capable"
     },
     {
       "schema_version": "1.0",
@@ -599,7 +617,8 @@
         "family": "Qwen3.5",
         "architecture": "dense",
         "quant": "UD-Q4_K_XL",
-        "source": "unsloth GGUF MTP route"
+        "source": "unsloth GGUF MTP route",
+        "parameter_class": "9B"
       },
       "serving": {
         "route": "server",
@@ -630,7 +649,8 @@
         "end_to_end_tok_s": 67.521,
         "wall_seconds": 3.791
       },
-      "caveats": []
+      "caveats": [],
+      "tier": "capable"
     },
     {
       "schema_version": "1.0",
@@ -661,7 +681,8 @@
         "family": "Qwen3.5",
         "architecture": "dense",
         "quant": "UD-Q4_K_XL",
-        "source": "unsloth GGUF MTP route"
+        "source": "unsloth GGUF MTP route",
+        "parameter_class": "9B"
       },
       "serving": {
         "route": "server",
@@ -692,7 +713,8 @@
         "end_to_end_tok_s": 86.882,
         "wall_seconds": 8.84
       },
-      "caveats": []
+      "caveats": [],
+      "tier": "capable"
     },
     {
       "schema_version": "1.0",
@@ -723,7 +745,8 @@
         "family": "Qwen3.5",
         "architecture": "dense",
         "quant": "UD-Q4_K_XL",
-        "source": "unsloth GGUF MTP route"
+        "source": "unsloth GGUF MTP route",
+        "parameter_class": "9B"
       },
       "serving": {
         "route": "server",
@@ -754,7 +777,8 @@
         "end_to_end_tok_s": 87.307,
         "wall_seconds": 8.797
       },
-      "caveats": []
+      "caveats": [],
+      "tier": "capable"
     },
     {
       "schema_version": "1.0",
@@ -785,7 +809,8 @@
         "family": "Qwen3.5",
         "architecture": "dense",
         "quant": "UD-Q4_K_XL",
-        "source": "unsloth GGUF MTP route"
+        "source": "unsloth GGUF MTP route",
+        "parameter_class": "9B"
       },
       "serving": {
         "route": "server",
@@ -816,7 +841,8 @@
         "end_to_end_tok_s": 69.182,
         "wall_seconds": 7.401
       },
-      "caveats": []
+      "caveats": [],
+      "tier": "capable"
     },
     {
       "schema_version": "1.0",
@@ -847,7 +873,8 @@
         "family": "Qwen3.5",
         "architecture": "dense",
         "quant": "UD-Q4_K_XL",
-        "source": "unsloth GGUF MTP route"
+        "source": "unsloth GGUF MTP route",
+        "parameter_class": "9B"
       },
       "serving": {
         "route": "server",
@@ -878,7 +905,8 @@
         "end_to_end_tok_s": 70.092,
         "wall_seconds": 7.305
       },
-      "caveats": []
+      "caveats": [],
+      "tier": "capable"
     },
     {
       "schema_version": "1.0",
@@ -909,7 +937,8 @@
         "family": "Qwen3.5",
         "architecture": "dense",
         "quant": "UD-Q4_K_XL",
-        "source": "unsloth GGUF MTP route"
+        "source": "unsloth GGUF MTP route",
+        "parameter_class": "9B"
       },
       "serving": {
         "route": "server",
@@ -942,7 +971,8 @@
       },
       "caveats": [
         "Long-prompt short-answer fit check on the 2x5060ti seed system; not a sustained decode benchmark."
-      ]
+      ],
+      "tier": "capable"
     },
     {
       "schema_version": "1.0",
@@ -973,7 +1003,8 @@
         "family": "Qwen3.5",
         "architecture": "dense",
         "quant": "UD-Q4_K_XL",
-        "source": "unsloth GGUF MTP route"
+        "source": "unsloth GGUF MTP route",
+        "parameter_class": "9B"
       },
       "serving": {
         "route": "server",
@@ -1006,7 +1037,8 @@
       },
       "caveats": [
         "Long-prompt short-answer fit check on the 2x5060ti seed system; not a sustained decode benchmark."
-      ]
+      ],
+      "tier": "capable"
     }
   ]
 }

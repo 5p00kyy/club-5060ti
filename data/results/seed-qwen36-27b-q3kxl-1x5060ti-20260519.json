@@ -65,7 +65,8 @@
         "decode_tok_s": 22.745634415282154,
         "end_to_end_tok_s": 22.174,
         "wall_seconds": 11.545
-      }
+      },
+      "tier": "recommended"
     },
     {
       "schema_version": "1.0",
@@ -132,7 +133,8 @@
         "decode_tok_s": 22.761671869694407,
         "end_to_end_tok_s": 22.495,
         "wall_seconds": 11.38
-      }
+      },
+      "tier": "recommended"
     },
     {
       "schema_version": "1.0",
@@ -199,7 +201,8 @@
         "decode_tok_s": 22.673285455305848,
         "end_to_end_tok_s": 22.446,
         "wall_seconds": 34.216
-      }
+      },
+      "tier": "recommended"
     },
     {
       "schema_version": "1.0",
@@ -266,7 +269,8 @@
         "decode_tok_s": 22.676316777988287,
         "end_to_end_tok_s": 22.577,
         "wall_seconds": 34.017
-      }
+      },
+      "tier": "recommended"
     },
     {
       "schema_version": "1.0",
@@ -333,7 +337,8 @@
         "decode_tok_s": 22.668173273745552,
         "end_to_end_tok_s": 22.228,
         "wall_seconds": 23.034
-      }
+      },
+      "tier": "recommended"
     },
     {
       "schema_version": "1.0",
@@ -400,7 +405,8 @@
         "decode_tok_s": 22.6651287432434,
         "end_to_end_tok_s": 22.544,
         "wall_seconds": 22.711
-      }
+      },
+      "tier": "recommended"
     },
     {
       "schema_version": "1.0",
@@ -470,7 +476,8 @@
       },
       "caveats": [
         "Long-retrieval is a short-answer fit/retrieval check, not a sustained decode benchmark."
-      ]
+      ],
+      "tier": "recommended"
     },
     {
       "schema_version": "1.0",
@@ -540,7 +547,8 @@
       },
       "caveats": [
         "Long-retrieval is a short-answer fit/retrieval check, not a sustained decode benchmark."
-      ]
+      ],
+      "tier": "recommended"
     }
   ]
 }

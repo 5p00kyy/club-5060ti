@@ -75,7 +75,8 @@
         "Exact runtime/build tested: upstream llama.cpp 9190 (b64739ea3) with this preset shape.",
         "Split 50,50 is tested on this build; split 51,49 currently asserts for tensor mode.",
         "Long-retrieval prompt is synthetic and intended for comparability, not quality scoring."
-      ]
+      ],
+      "tier": "capable"
     },
     {
       "schema_version": "1.0",
@@ -153,7 +154,8 @@
         "Split 50,50 is tested on this build; split 51,49 currently asserts for tensor mode.",
         "Long-context synthetic prompt is for comparability and sustained-generation stress, not quality scoring.",
         "Follow-up 150K+ prompt-token diagnostics could prefill, but sustained decode fell below 1 tok/s and is not promoted as a useful benchmark result."
-      ]
+      ],
+      "tier": "capable"
     },
     {
       "schema_version": "1.0",
@@ -227,7 +229,8 @@
         "Single-machine seed result; throughput and fit behavior are host-specific.",
         "Imported from same host/build parent session, not rerun in this commit; use as seed evidence with that provenance.",
         "Long-retrieval and p1k/n512 rows measure different workload shapes and should not be interpreted as the same speed regime."
-      ]
+      ],
+      "tier": "capable"
     }
   ]
 }
