@@ -6,15 +6,13 @@ The project focus is simple: make RTX 5060 Ti local inference more reproducible 
 
 ## Star History
 
-<p align="center">
-  <a href="https://www.star-history.com/?repos=5p00kyy%2Fclub-5060ti&type=date&legend=top-left">
-    <picture>
-      <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/chart?repos=5p00kyy/club-5060ti&type=date&theme=dark&legend=top-left" />
-      <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/chart?repos=5p00kyy/club-5060ti&type=date&legend=top-left" />
-      <img alt="Star History Chart" src="https://api.star-history.com/chart?repos=5p00kyy/club-5060ti&type=date&legend=top-left" />
-    </picture>
-  </a>
-</p>
+<a href="https://www.star-history.com/?repos=5p00kyy%2Fclub-5060ti&type=date&legend=top-left">
+ <picture>
+ <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/chart?repos=5p00kyy/club-5060ti&type=date&theme=dark&legend=top-left&sealed_token=l_gzVshk3C_9akQK2SeItIrmti-0WmOsHYVDfwf7W3rdRm2MOg-TDSda9pM_DOUNTVRpEExIpsVPe5JukhUbbOjaTa-4uywVGnBUCN2iiRK_vRmNWxxJ_kfDzHv6zY5MGqBdS5zCmnU4SR0n6Tj4PrHv9PujeOEOiHt8Ji7EhzyaCZZ1vHmAwjVfgWk6" />
+ <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/chart?repos=5p00kyy/club-5060ti&type=date&legend=top-left&sealed_token=l_gzVshk3C_9akQK2SeItIrmti-0WmOsHYVDfwf7W3rdRm2MOg-TDSda9pM_DOUNTVRpEExIpsVPe5JukhUbbOjaTa-4uywVGnBUCN2iiRK_vRmNWxxJ_kfDzHv6zY5MGqBdS5zCmnU4SR0n6Tj4PrHv9PujeOEOiHt8Ji7EhzyaCZZ1vHmAwjVfgWk6" />
+ <img alt="Star History Chart" src="https://api.star-history.com/chart?repos=5p00kyy/club-5060ti&type=date&legend=top-left&sealed_token=l_gzVshk3C_9akQK2SeItIrmti-0WmOsHYVDfwf7W3rdRm2MOg-TDSda9pM_DOUNTVRpEExIpsVPe5JukhUbbOjaTa-4uywVGnBUCN2iiRK_vRmNWxxJ_kfDzHv6zY5MGqBdS5zCmnU4SR0n6Tj4PrHv9PujeOEOiHt8Ji7EhzyaCZZ1vHmAwjVfgWk6" />
+ </picture>
+</a>
 
 ## Start Here
 
@@ -63,7 +61,7 @@ See docs/hardware.md for the full baseline and hardware notes.
 
 | Lane | Model | Evidence | Notes |
 | --- | --- | --- | --- |
-| upstream llama.cpp | Qwen3.6 27B GGUF | Seed recipe | Recommended dual-card dense route. Q6_K at 131K ctx with f16 KV and MTP n=3 delivers 45-55 tok/s decode. The sustained long-context reference (87K prompt, 742 tokens generated, 21.7 tok/s decode) used Q6_K_XL at 184K ctx. Q3_K_XL on single card is the recommended budget fit at 204K ctx. |
+| upstream llama.cpp | Qwen3.6 27B GGUF | Seed recipe | Recommended dual-card dense route. Q6_K at 131K ctx with f16 KV and MTP n=3 delivers 45-55 tok/s decode. Q3_K_XL on single card is the recommended budget fit at 204K ctx with q4 KV. |
 | upstream llama.cpp | Qwen3.5 9B GGUF | Seed recipe | Small long-context route; useful sanity lane for 1x and 2x cards. Recommended starter model on single card. |
 | upstream llama.cpp | Qwen3.6 35B-A3B GGUF | Seed recipe | Strong MoE route. Recommended on both 1x (IQ3_XXS) and 2x (Q5_K_S) lanes. Fastest practical model in the dataset. |
 | upstream llama.cpp | Qwen3.5 122B-A10B GGUF | Seed recipe | Stretch/large MoE. IQ4_XS on 2x cards with MTP n=4. Recommended for maximum parameter count. |
@@ -106,7 +104,7 @@ The old llm-bench summary rows have been imported into data/results/llm-bench-le
 
 The hosted explorer shows model cards grouped by model and setup, with tier filtering, sparklines across prompt types, and serving config in the card subline. Generation tok/s is output-token speed; prompt eval tok/s is prompt/prefill processing speed. MTP/speculation and thinking mode are shown on each card and can be filtered. Enable "raw runs" in the explorer to inspect repeated measurements.
 
-For the Qwen3.6 27B Q6_K dual-card config (131K ctx, f16 KV, MTP n=3), benchmark prompt rows show 45-55 tok/s decode. An earlier Q6_K_XL run at 184K ctx sustained 21.7 tok/s decode on an 87K-token prompt (`87293/742`, `420.14 tok/s` prompt eval), confirming the model handles deep context well beyond the standard benchmark window.
+The Qwen3.6 27B Q6_K dual-card config (131K ctx, f16 KV, MTP n=3) benchmarks at 45-55 tok/s decode across standard prompt sets. The single-card Q3_K_XL config runs at 204K ctx with q4 KV cache.
 
 Results are expected to grow over time. New community reports can be added as archived notes, recipe evidence, benchmark rows, or verified reproductions depending on how complete and comparable they are.
 
