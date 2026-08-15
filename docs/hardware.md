@@ -16,7 +16,15 @@ Initial results come from one dual-GPU Linux system.
 | Inference CPU allocation | 16 vCPU |
 | Inference RAM allocation | 60GB |
 | PCIe link width | x8 on both RTX 5060 Ti cards |
+| Seed GPU core/SM clock | Locked to 2300 MHz (2295 MHz driver readback) |
+| GPU power limit | 180 W per card (stock/default) |
 | Runtime style | Linux LXC, CUDA containers for vLLM |
+
+## Seed GPU Operating Point
+
+The reviewed August 2026 preset evidence was measured with both seed cards core/SM-clock locked to 2300 MHz for lower noise, thermals, and a repeatable operating point. The driver reports 2295 MHz because clocks are applied in hardware steps. The cards retained their stock 180 W power limit and did not use a memory overclock.
+
+Treat throughput as specific to this quiet-clock seed baseline. Stock-boost or overclocked cards may differ; context fit and pass/fail evidence remain tied to the exact model, quant, KV cache, runtime, and serving configuration in each bundle. Community results should report their own clock and power state rather than inheriting the seed setting.
 
 ## PCIe Topology Matters
 
@@ -73,6 +81,7 @@ Host RAM:
 Inference/container RAM:
 Motherboard:
 PCIe layout/link width:
+Core/SM clock or lock:
 Power limits:
 Runtime:
 Model:

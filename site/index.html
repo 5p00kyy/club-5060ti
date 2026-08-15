@@ -129,7 +129,7 @@
       margin: 0 0 3px;
     }
 
-    .hero h1 .accent { color: var(--green); }
+    .hero h1 .accent { color: var(--green); white-space: nowrap; }
 
     .hero p {
       font-family: var(--sans);
@@ -232,6 +232,61 @@
       text-overflow: ellipsis;
     }
 
+    .preset-intro {
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      background: linear-gradient(135deg, #101a15 0%, var(--bg2) 48%);
+      padding: 12px;
+      margin-bottom: 14px;
+    }
+
+    .preset-intro-copy {
+      margin: 0 0 10px;
+      color: var(--text-2);
+      font-size: 11px;
+      max-width: 800px;
+    }
+
+    .preset-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 9px;
+    }
+
+    .preset-card {
+      border: 1px solid var(--line-2);
+      border-radius: 5px;
+      overflow: hidden;
+      background: #0d1218;
+    }
+
+    .preset-card-head {
+      padding: 10px;
+      border-bottom: 1px solid var(--line);
+      background: #111922;
+    }
+
+    .preset-card-title {
+      margin: 0 0 5px;
+      color: var(--bright);
+      font-size: 13px;
+      font-weight: 600;
+      line-height: 1.25;
+    }
+
+    .preset-card-body { padding: 10px; }
+    .preset-purpose { color: var(--text-2); margin: 0 0 9px; }
+    .preset-metrics { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px; margin: 9px 0; }
+    .preset-metric { border-left: 2px solid var(--green-2); padding-left: 7px; min-width: 0; }
+    .preset-metric .k { color: var(--text-3); font-size: 9px; text-transform: uppercase; letter-spacing: .04em; }
+    .preset-metric .v { color: var(--bright); font-size: 13px; font-weight: 600; white-space: nowrap; }
+    .preset-links { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 9px; }
+    .preset-links a { color: var(--green); font-size: 11px; min-height: 30px; display: inline-flex; align-items: center; }
+    .preset-links a + a::before { content: '·'; color: var(--text-3); margin-right: 10px; }
+    .preset-links a:hover { text-decoration: underline; }
+    .preset-caveat { color: var(--text-2); font-size: 11px; margin: 8px 0 0; }
+    .preset-empty { color: var(--text-2); padding: 5px 0; }
+
     .panel {
       border: 1px solid var(--line);
       background: var(--bg2);
@@ -243,8 +298,10 @@
     .toolbar {
       display: grid;
       gap: 7px;
-      grid-template-columns: minmax(240px, 1.4fr) repeat(7, minmax(105px, 1fr)) repeat(2, minmax(105px, 0.8fr));
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
     }
+
+    .toolbar > input { grid-column: span 2; }
 
     input, select {
       width: 100%;
@@ -337,7 +394,7 @@
 
     .meta {
       color: var(--text-2);
-      font-size: 11px;
+      font-size: 12px;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
@@ -426,8 +483,8 @@
     }
 
     .subline {
-      color: var(--text-3);
-      font-size: 11px;
+      color: var(--text-2);
+      font-size: 12px;
       word-break: break-word;
     }
 
@@ -682,8 +739,11 @@
       .wrap { width: min(100vw - 18px, 1220px); }
       .topbar { align-items: flex-start; }
       .brand { flex-direction: column; align-items: flex-start; gap: 2px; }
+      nav a { font-size: 12px; padding: 6px 8px; }
+      .meta, .preset-caveat { font-size: 12px; }
       .hw-bar { grid-template-columns: 1fr; gap: 7px; }
       .stat-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .preset-metrics { grid-template-columns: 1fr; }
       .toolbar { grid-template-columns: 1fr; }
       .meta { white-space: normal; }
       .results-wrap {
@@ -796,7 +856,8 @@
         <span class="sub">local LLM recipes and measured benchmark evidence</span>
       </div>
       <nav>
-        <a href="#results">results</a>
+        <a href="#presets">presets</a>
+        <a href="#results">evidence</a>
         <a href="#summaries">summaries</a>
         <a href="https://github.com/5p00kyy/club-5060ti/blob/main/docs/benchmark-protocol.md">protocol</a>
         <a href="https://github.com/5p00kyy/club-5060ti">repo</a>
@@ -807,8 +868,17 @@
   <main class="wrap">
     <div class="hero">
       <h1>What can you run on <span class="accent">RTX 5060 Ti</span>?</h1>
-      <p>Real benchmark evidence for local LLM inference. Measured speeds, VRAM fit, and serving configs across models, quants, and engines.</p>
+      <p>Copyable local LLM presets first, with measured evidence and raw benchmark receipts behind them.</p>
     </div>
+
+    <section class="preset-intro" id="presets" aria-labelledby="preset-heading">
+      <div class="sec-head">
+        <div class="sec-title"><span class="prompt">$</span><h2 id="preset-heading">tested presets</h2></div>
+        <span class="meta">published evidence only</span>
+      </div>
+      <p class="preset-intro-copy">Start with a recipe we would actually run. Each card has its hardware lane, exact configuration, validated context, and compact evidence. The explorer below remains for comparisons, experiments, and archive provenance.</p>
+      <div class="preset-grid" id="preset-list" aria-live="polite"><div class="preset-empty">Loading preset catalogue…</div></div>
+    </section>
 
     <div class="hw-bar">
       <div class="hw-label">hardware lane</div>
@@ -957,7 +1027,10 @@
 
   <script>
     const DATA_URL = 'data/results.json';
+    const PRESET_URL = 'data/presets.json';
+    const GITHUB_BLOB = 'https://github.com/5p00kyy/club-5060ti/blob/main/';
     let allResults = [];
+    let allPresetCards = [];
     let filteredResults = [];
     let visibleResults = [];
     let sortKey = 'decode';
@@ -999,6 +1072,66 @@
       '"': '&quot;',
       "'": '&#39;'
     })[char]);
+
+    const laneLabel = (lane) => ({
+      '1x5060ti': '1× 5060 Ti',
+      '2x5060ti': '2× 5060 Ti',
+      'multi-5060ti': '3×/4×+ 5060 Ti',
+      'mixed-5060ti-cuda': 'mixed 5060 Ti + CUDA',
+      'other-cuda': 'other CUDA',
+    })[lane] || String(lane || 'hardware lane');
+
+    const renderPresetCards = () => {
+      const target = document.getElementById('preset-list');
+      const cards = allPresetCards.filter((card) => card.ready_for_default);
+      if (!cards.length) {
+        target.innerHTML = '<div class="preset-empty">No reviewed presets are published yet. Browse the evidence explorer below while the catalogue is refreshed.</div>';
+        return;
+      }
+      target.innerHTML = cards.map((card) => {
+        const preset = card.preset || {};
+        const evidence = (card.published_evidence || [])[0] || {};
+        const context = evidence.context || {};
+        const metrics = (evidence.evidence || {}).metrics || {};
+        const checks = (evidence.evidence || {}).checks || {};
+        const model = preset.model || {};
+        const runtime = preset.runtime || {};
+        const hardware = preset.hardware || {};
+        const actual = context.actual_prompt_tokens || {};
+      const effective = context.server_effective_tokens;
+      const configured = context.server_configured_tokens;
+        const actualText = typeof actual === 'object'
+          ? [actual.retrieval ? formatNumber(actual.retrieval, 0) + ' retrieval' : '', actual.sustained_generation ? formatNumber(actual.sustained_generation, 0) + ' sustained' : ''].filter(Boolean).join(' / ')
+          : formatNumber(actual, 0);
+        const caveat = (evidence.caveats || preset.caveats || [])[0] || '';
+        const evidencePath = (evidence.source_receipts || [])[0];
+        return '<article class="preset-card">' +
+          '<div class="preset-card-head">' +
+            '<h3 class="preset-card-title">' + escapeHtml(preset.title || preset.id || 'preset') + '</h3>' +
+            '<div class="model-tags">' +
+              '<span class="badge tier-recommended">' + escapeHtml(preset.status || 'reviewed') + '</span>' +
+              '<span class="badge green">' + escapeHtml(laneLabel(hardware.lane)) + '</span>' +
+              '<span class="badge engine">' + escapeHtml(runtime.engine || 'runtime') + '</span>' +
+              '<span class="badge blue">' + escapeHtml(model.quant || 'quant') + '</span>' +
+            '</div>' +
+          '</div>' +
+          '<div class="preset-card-body">' +
+            '<p class="preset-purpose">' + escapeHtml(preset.purpose || '') + '</p>' +
+            '<div class="preset-metrics">' +
+              '<div class="preset-metric"><div class="k">tested context tier</div><div class="v">' + formatNumber(context.highest_useful_tokens, 0) + '</div></div>' +
+              '<div class="preset-metric"><div class="k">prefill median</div><div class="v">' + formatNumber(metrics.median_prefill_tok_s, 1) + ' tok/s</div></div>' +
+              '<div class="preset-metric"><div class="k">sustained decode</div><div class="v">' + formatNumber(metrics.median_decode_tok_s, 1) + ' tok/s</div></div>' +
+            '</div>' +
+            '<div class="subline">' + escapeHtml(actualText) + ' actual prompt tokens · ' + escapeHtml(String(checks.retrieval_repeats || 0)) + ' retrieval + ' + escapeHtml(String(checks.sustained_generation_repeats || 0)) + ' sustained checks' + (effective ? ' · ' + formatNumber(effective, 0) + ' effective / ' + formatNumber(configured, 0) + ' total server context' : '') + '</div>' +
+            '<div class="preset-links">' +
+              (runtime.preset_file ? '<a href="' + GITHUB_BLOB + encodeURI(runtime.preset_file) + '">view preset</a>' : '') +
+              (evidencePath ? '<a href="' + GITHUB_BLOB + encodeURI(evidencePath) + '">inspect receipt</a>' : '') +
+            '</div>' +
+            (caveat ? '<p class="preset-caveat">' + escapeHtml(caveat) + '</p>' : '') +
+          '</div>' +
+        '</article>';
+      }).join('');
+    };
 
     const fillSelect = (id, label, values) => {
       const select = document.getElementById(id);
@@ -1486,6 +1619,14 @@
       if (!response.ok) throw new Error('HTTP ' + response.status + ' loading ' + DATA_URL);
       const data = await response.json();
       allResults = data.results || [];
+      try {
+        const presetResponse = await fetch(PRESET_URL);
+        if (!presetResponse.ok) throw new Error('HTTP ' + presetResponse.status);
+        allPresetCards = (await presetResponse.json()).presets || [];
+      } catch (error) {
+        allPresetCards = [];
+      }
+      renderPresetCards();
 
       fillSelect('gpu-filter', 'all hardware', unique(allResults.map((item) => gpuFilterLabel(item))));
       fillSelect('engine-filter', 'all engines', unique(allResults.map((item) => get(item, 'runtime.engine', ''))));

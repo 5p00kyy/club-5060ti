@@ -1,0 +1,818 @@
+{
+  "presets": [
+    {
+      "preset": {
+        "schema_version": "1.0",
+        "id": "muse-glimmer-30b-q4-dynamic-2x5060ti",
+        "title": "Muse Glimmer 30B dynamic Q4 on two RTX 5060 Ti 16GB cards",
+        "status": "recommended",
+        "provenance": "seed-tested",
+        "purpose": "High-context dual-card Muse route with DFlash speculative decoding.",
+        "hardware": {
+          "lane": "2x5060ti",
+          "gpu_count": 2,
+          "gpu_model": "NVIDIA GeForce RTX 5060 Ti",
+          "vram_per_gpu_gb": 16
+        },
+        "runtime": {
+          "engine": "llama.cpp",
+          "preset_file": "examples/llamacpp-muse-glimmer-30b-dual-5060ti.ini",
+          "preset_section": "Muse-Glimmer-30B-dual-5060ti"
+        },
+        "model": {
+          "id": "Muse-Glimmer-30B",
+          "family": "Muse",
+          "architecture": "dense",
+          "parameter_class": "30B",
+          "quant": "dynamic Q4_K",
+          "source": "meta-models/Muse-Glimmer-30B-GGUF"
+        },
+        "serving": {
+          "kv_cache_k": "runtime default",
+          "kv_cache_v": "runtime default",
+          "batch_size": 2048,
+          "ubatch_size": 512,
+          "tensor_split": "50,50",
+          "split_mode": "tensor",
+          "parallel": 2,
+          "speculation": "draft-dflash (n=2)",
+          "thinking": "on"
+        },
+        "profile": "data/benchmark-profiles/high-context.json",
+        "context": {
+          "target_tokens": 131072,
+          "minimum_useful_tokens": 65536
+        },
+        "known_evidence": [
+          "data/evidence/muse-glimmer-30b-q4-dynamic-2x5060ti-131k.json"
+        ],
+        "caveats": [
+          "Muse emits reasoning before its client-visible final answer. High-context validation uses a sufficient output budget and requires visible final content, not reasoning alone.",
+          "The live service exposes 262144 effective tokens per request through ctx-size 524288 with parallel 2. This evidence validates the conservative 131K tier first."
+        ],
+        "_source_file": "data/presets/muse-glimmer-30b-q4-dynamic-2x5060ti.json"
+      },
+      "published_evidence": [
+        {
+          "schema_version": "1.0",
+          "id": "muse-glimmer-30b-q4-dynamic-2x5060ti-131k",
+          "preset": "muse-glimmer-30b-q4-dynamic-2x5060ti",
+          "status": "published",
+          "provenance": "seed-tested",
+          "context": {
+            "highest_useful_tokens": 131072,
+            "server_effective_tokens": 262144,
+            "server_configured_tokens": 524288,
+            "actual_prompt_tokens": {
+              "retrieval": 115358,
+              "sustained_generation": 91752
+            },
+            "validated_for": "uncached long-context retrieval and sustained visible generation"
+          },
+          "evidence": {
+            "checks": {
+              "retrieval_repeats": 2,
+              "sustained_generation_repeats": 2,
+              "prompt_cache_disabled": true,
+              "unique_leading_request_nonce": true,
+              "thinking_disabled_explicitly": false,
+              "visible_final_content_required": true
+            },
+            "metrics": {
+              "median_prefill_tok_s": 646.951,
+              "median_decode_tok_s": 42.283,
+              "retrieval_decode_tok_s": 49.38,
+              "median_draft_acceptance_rate": 0.515
+            }
+          },
+          "source_receipts": [
+            "data/evidence/receipts/muse-glimmer-30b-q4-dynamic-2x5060ti-131k-20260814.json"
+          ],
+          "caveats": [
+            "Validated at 131K effective per-request context on a server configured with ctx-size 524288 and parallel 2.",
+            "Muse produced substantial reasoning content before its final answer. The profile used 512 retrieval output tokens and 1536 sustained output tokens, and required client-visible content.",
+            "131K is the highest tier tested in this bundle, not a maximum-context claim."
+          ],
+          "_source_file": "data/evidence/muse-glimmer-30b-q4-dynamic-2x5060ti-131k.json"
+        }
+      ],
+      "candidate_evidence": [],
+      "archived_evidence": [],
+      "ready_for_default": true
+    },
+    {
+      "preset": {
+        "schema_version": "1.0",
+        "id": "nail-35b-a3b-iq3xxs-1x5060ti",
+        "title": "Nail 35B-A3B IQ3_XXS on one RTX 5060 Ti 16GB",
+        "status": "recommended",
+        "provenance": "seed-tested",
+        "purpose": "Single-card 131K high-context MoE route on the explicitly non-thinking request path with q8 KV and built-in MTP.",
+        "hardware": {
+          "lane": "1x5060ti",
+          "gpu_count": 1,
+          "gpu_model": "NVIDIA GeForce RTX 5060 Ti",
+          "vram_per_gpu_gb": 16
+        },
+        "runtime": {
+          "engine": "llama.cpp",
+          "preset_file": "examples/llamacpp-single-5060ti-qwen36-35b-a3b-iq3xxs.ini",
+          "preset_section": "Qwen3.6-35B-A3B-IQ3_XXS-single-5060ti"
+        },
+        "model": {
+          "id": "Nail-35B-A3B-IQ3_XXS",
+          "family": "Qwen3.6",
+          "architecture": "moe",
+          "parameter_class": "35B-A3B",
+          "quant": "IQ3_XXS",
+          "source": "peculiar-ragdoll/Nail-Qwen3.6-35B-A3B-GGUF-MTP"
+        },
+        "serving": {
+          "kv_cache_k": "q8_0",
+          "kv_cache_v": "q8_0",
+          "batch_size": 512,
+          "ubatch_size": 128,
+          "speculation": "draft-mtp",
+          "thinking": "off"
+        },
+        "profile": "data/benchmark-profiles/high-context.json",
+        "context": {
+          "target_tokens": 131072,
+          "minimum_useful_tokens": 65536
+        },
+        "known_evidence": [
+          "data/results/seed-nail-qwen36-35b-a3b-iq3xxs-131k-q8-1x5060ti-20260813.json",
+          "data/evidence/nail-35b-a3b-iq3xxs-1x5060ti-131k.json"
+        ],
+        "caveats": [
+          "The Nail project's live canonical deployment uses the dual-GPU Q4_K_XL preset; this IQ3_XXS single-card preset is an alternative high-context route.",
+          "This preset is validated on the explicitly non-thinking request route (thinking disabled at the request level). Thinking-enabled behaviour requires separate evidence.",
+          "The retry receipt directly establishes ~115.4K-token retrieval and ~91.8K-token sustained generation; active/effective server-context metadata was not exposed by the endpoint.",
+          "131K is the configured profile tier here, not a maximum-context claim."
+        ],
+        "_source_file": "data/presets/nail-35b-a3b-iq3xxs-1x5060ti.json"
+      },
+      "published_evidence": [
+        {
+          "schema_version": "1.0",
+          "id": "nail-35b-a3b-iq3xxs-1x5060ti-131k",
+          "preset": "nail-35b-a3b-iq3xxs-1x5060ti",
+          "status": "published",
+          "provenance": "seed-tested",
+          "context": {
+            "highest_useful_tokens": 131072,
+            "server_effective_tokens": null,
+            "server_configured_tokens": null,
+            "actual_prompt_tokens": {
+              "retrieval": 115416,
+              "sustained_generation": 91820
+            },
+            "validated_for": "uncached long-context retrieval and sustained generation"
+          },
+          "evidence": {
+            "checks": {
+              "retrieval_repeats": 2,
+              "sustained_generation_repeats": 2,
+              "prompt_cache_disabled": true,
+              "unique_leading_request_nonce": true,
+              "thinking_disabled_explicitly": true,
+              "visible_final_content_required": true,
+              "sustained_output_tokens": 1536,
+              "minimum_output_fraction": 0.7
+            },
+            "metrics": {
+              "median_prefill_tok_s": 827.228,
+              "median_decode_tok_s": 54.839,
+              "retrieval_decode_tok_s": 87.1,
+              "median_draft_acceptance_rate": 0.803
+            }
+          },
+          "source_receipts": [
+            "data/evidence/receipts/nail-35b-a3b-iq3xxs-1x5060ti-131k-20260814-nonthinking-retry.json",
+            "data/results/seed-nail-qwen36-35b-a3b-iq3xxs-131k-q8-1x5060ti-20260813.json"
+          ],
+          "caveats": [
+            "This evidence is for the explicitly non-thinking request route (thinking disabled at the request level). Thinking-enabled behaviour requires separate evidence.",
+            "Retrieval passed twice at ~115.4K prompt tokens; sustained generation passed twice at ~91.8K prompt tokens with client-visible output required.",
+            "An earlier 2026-08-14 profile run passed retrieval but only one of two sustained repeats produced the required visible output; the promoted receipt is the retry profile that passed every check.",
+            "The retry receipt recorded a 131072-token requested route but the endpoint did not expose active/effective server-context metadata; the evidence directly establishes ~115.4K-token retrieval and ~91.8K-token sustained generation.",
+            "131K is the configured profile tier for this route, not a maximum-context claim.",
+            "Measured with the seed cards' core/SM clock locked at 2300 MHz; throughput is specific to that operating point."
+          ],
+          "_source_file": "data/evidence/nail-35b-a3b-iq3xxs-1x5060ti-131k.json"
+        }
+      ],
+      "candidate_evidence": [],
+      "archived_evidence": [],
+      "ready_for_default": true
+    },
+    {
+      "preset": {
+        "schema_version": "1.0",
+        "id": "nail-35b-a3b-q4-2x5060ti",
+        "title": "Nail 35B-A3B Q4_K_XL on two RTX 5060 Ti 16GB cards",
+        "status": "recommended",
+        "provenance": "seed-tested",
+        "purpose": "High-context dual-card Nail route with tensor split and built-in MTP.",
+        "hardware": {
+          "lane": "2x5060ti",
+          "gpu_count": 2,
+          "gpu_model": "NVIDIA GeForce RTX 5060 Ti",
+          "vram_per_gpu_gb": 16
+        },
+        "runtime": {
+          "engine": "llama.cpp",
+          "preset_file": "examples/llamacpp-nail-35b-a3b-dual-5060ti.ini",
+          "preset_section": "Nail-35B-A3B-Q4-dual-5060ti"
+        },
+        "model": {
+          "id": "Nail-35B-A3B-Q4",
+          "family": "Qwen3.6",
+          "architecture": "moe",
+          "parameter_class": "35B-A3B",
+          "quant": "Q4_K_XL",
+          "source": "peculiar-ragdoll/Nail-Qwen3.6-35B-A3B-GGUF-MTP"
+        },
+        "serving": {
+          "kv_cache_k": "f16",
+          "kv_cache_v": "f16",
+          "batch_size": 2048,
+          "ubatch_size": 512,
+          "tensor_split": "50,50",
+          "split_mode": "tensor",
+          "parallel": 2,
+          "speculation": "draft-mtp",
+          "thinking": "off",
+          "request_chat_template_kwargs": {
+            "enable_thinking": false
+          }
+        },
+        "profile": "data/benchmark-profiles/high-context.json",
+        "context": {
+          "target_tokens": 131072,
+          "minimum_useful_tokens": 65536
+        },
+        "known_evidence": [
+          "data/results/seed-nail-qwen36-35b-a3b-q4-2x5060ti-20260813.json"
+        ],
+        "caveats": [
+          "The live service exposes 262144 effective tokens per request through ctx-size 524288 with parallel 2. This candidate validates the conservative 131K tier first.",
+          "Existing 32K rows are baseline protocol measurements only. Published recommendation evidence is the 131K profile with unique leading nonces and prompt caching disabled."
+        ],
+        "_source_file": "data/presets/nail-35b-a3b-q4-2x5060ti.json"
+      },
+      "published_evidence": [
+        {
+          "schema_version": "1.0",
+          "id": "nail-35b-a3b-q4-2x5060ti-131k",
+          "preset": "nail-35b-a3b-q4-2x5060ti",
+          "status": "published",
+          "provenance": "seed-tested",
+          "context": {
+            "highest_useful_tokens": 131072,
+            "server_effective_tokens": 262144,
+            "server_configured_tokens": 524288,
+            "actual_prompt_tokens": {
+              "retrieval": 115350,
+              "sustained_generation": 91754
+            },
+            "validated_for": "uncached long-context retrieval and sustained generation"
+          },
+          "evidence": {
+            "checks": {
+              "retrieval_repeats": 2,
+              "sustained_generation_repeats": 2,
+              "prompt_cache_disabled": true,
+              "unique_leading_request_nonce": true,
+              "thinking_disabled_explicitly": true
+            },
+            "metrics": {
+              "median_prefill_tok_s": 1579.948,
+              "median_decode_tok_s": 27.806,
+              "retrieval_decode_tok_s": 79.081
+            }
+          },
+          "source_receipts": [
+            "data/evidence/receipts/nail-35b-a3b-q4-2x5060ti-131k-20260814-uncached.json"
+          ],
+          "caveats": [
+            "Validated at 131K effective per-request context on a server configured with ctx-size 524288 and parallel 2.",
+            "This evidence is for the explicitly non-thinking request route. Thinking-enabled behaviour requires separate evidence.",
+            "131K is the highest tier tested in this bundle, not a maximum-context claim."
+          ],
+          "_source_file": "data/evidence/nail-35b-a3b-q4-2x5060ti-131k.json"
+        }
+      ],
+      "candidate_evidence": [],
+      "archived_evidence": [],
+      "ready_for_default": true
+    },
+    {
+      "preset": {
+        "schema_version": "1.0",
+        "id": "qwen38-27b-iq3xxs-1x5060ti",
+        "title": "Qwen3.8 27B IQ3_XXS on one RTX 5060 Ti 16GB",
+        "status": "recommended",
+        "provenance": "seed-tested",
+        "purpose": "Single-card 64K high-context Qwen3.8 route with q8 KV and built-in MTP.",
+        "hardware": {
+          "lane": "1x5060ti",
+          "gpu_count": 1,
+          "gpu_model": "NVIDIA GeForce RTX 5060 Ti",
+          "vram_per_gpu_gb": 16
+        },
+        "runtime": {
+          "engine": "llama.cpp",
+          "preset_file": "examples/llamacpp-qwen38-27b-single-5060ti.ini",
+          "preset_section": "Qwen3.8-27B-IQ3_XXS-single-5060ti"
+        },
+        "model": {
+          "id": "Qwen3.8-27B-IQ3_XXS",
+          "family": "Qwen3.8",
+          "architecture": "hybrid",
+          "parameter_class": "27B",
+          "quant": "IQ3_XXS",
+          "source": "unsloth/Qwen3.8-27B-GGUF"
+        },
+        "serving": {
+          "kv_cache_k": "q8_0",
+          "kv_cache_v": "q8_0",
+          "batch_size": 512,
+          "ubatch_size": 128,
+          "parallel": 1,
+          "speculation": "draft-mtp (n=2, p-min=0.1)",
+          "thinking": "on"
+        },
+        "profile": "data/benchmark-profiles/high-context.json",
+        "context": {
+          "target_tokens": 65536,
+          "minimum_useful_tokens": 32768
+        },
+        "known_evidence": [
+          "data/evidence/qwen38-27b-iq3xxs-1x5060ti-64k.json"
+        ],
+        "caveats": [
+          "One request slot on one GPU. Not a concurrency recommendation.",
+          "The model emits substantial hidden reasoning; sustained evidence was measured with reasoning preserved and a client-visible final answer required.",
+          "64K is the highest useful tier validated on this route. On this exact one-card setup, 64K and 96K f16 KV failed to allocate, and 96K q8 failed while creating the MTP context. Not a maximum-context claim."
+        ],
+        "_source_file": "data/presets/qwen38-27b-iq3xxs-1x5060ti.json"
+      },
+      "published_evidence": [
+        {
+          "schema_version": "1.0",
+          "id": "qwen38-27b-iq3xxs-1x5060ti-64k",
+          "preset": "qwen38-27b-iq3xxs-1x5060ti",
+          "status": "published",
+          "provenance": "seed-tested",
+          "context": {
+            "highest_useful_tokens": 65536,
+            "server_effective_tokens": 65536,
+            "server_configured_tokens": 65536,
+            "actual_prompt_tokens": {
+              "retrieval": 57739,
+              "sustained_generation": 45949
+            },
+            "validated_for": "uncached long-context retrieval and sustained visible generation"
+          },
+          "evidence": {
+            "checks": {
+              "retrieval_repeats": 2,
+              "sustained_generation_repeats": 2,
+              "prompt_cache_disabled": true,
+              "unique_leading_request_nonce": true,
+              "thinking_disabled_explicitly": false,
+              "visible_final_content_required": true,
+              "sustained_output_tokens": 1536,
+              "minimum_output_fraction": 0.7
+            },
+            "metrics": {
+              "median_prefill_tok_s": 562.443,
+              "median_decode_tok_s": 29.786,
+              "retrieval_decode_tok_s": 31.136,
+              "median_draft_acceptance_rate": 0.627
+            }
+          },
+          "source_receipts": [
+            "data/evidence/receipts/qwen38-27b-iq3xxs-1x5060ti-64k-20260815.json"
+          ],
+          "caveats": [
+            "Validated on one RTX 5060 Ti 16GB with IQ3_XXS and q8 KV at 64K, one request slot.",
+            "Measured with the seed cards' core/SM clock locked at 2300 MHz; throughput is specific to that operating point.",
+            "Retrieval passed twice at ~57.7K prompt tokens; sustained generation passed twice at ~45.9K prompt tokens with client-visible output required.",
+            "The model emits substantial hidden reasoning; the profile used the thinking-enabled route and required client-visible final content.",
+            "64K is the highest useful tier validated here. On this exact one-card route, 64K and 96K f16 KV failed to allocate, and 96K q8 failed while creating the MTP context. Not a maximum-context claim."
+          ],
+          "_source_file": "data/evidence/qwen38-27b-iq3xxs-1x5060ti-64k.json"
+        }
+      ],
+      "candidate_evidence": [],
+      "archived_evidence": [],
+      "ready_for_default": true
+    },
+    {
+      "preset": {
+        "schema_version": "1.0",
+        "id": "qwen38-27b-iq3xxs-f16-32k-1x5060ti",
+        "title": "Qwen3.8 27B IQ3_XXS (f16 KV, 32K) on one RTX 5060 Ti 16GB",
+        "status": "experimental",
+        "provenance": "seed-tested",
+        "purpose": "Experimental single-card Qwen3.8 route with f16 KV at 32K, as a quality comparison against the recommended q8 KV 64K route.",
+        "hardware": {
+          "lane": "1x5060ti",
+          "gpu_count": 1,
+          "gpu_model": "NVIDIA GeForce RTX 5060 Ti",
+          "vram_per_gpu_gb": 16
+        },
+        "runtime": {
+          "engine": "llama.cpp",
+          "preset_file": "examples/llamacpp-qwen38-27b-single-5060ti.ini",
+          "preset_section": "Qwen3.8-27B-IQ3_XXS-f16-32k-single-5060ti"
+        },
+        "model": {
+          "id": "Qwen3.8-27B-IQ3_XXS",
+          "family": "Qwen3.8",
+          "architecture": "hybrid",
+          "parameter_class": "27B",
+          "quant": "IQ3_XXS",
+          "source": "unsloth/Qwen3.8-27B-GGUF"
+        },
+        "serving": {
+          "kv_cache_k": "f16",
+          "kv_cache_v": "f16",
+          "batch_size": 512,
+          "ubatch_size": 128,
+          "parallel": 1,
+          "speculation": "draft-mtp (n=2, p-min=0.1)",
+          "thinking": "on"
+        },
+        "profile": "data/benchmark-profiles/high-context.json",
+        "context": {
+          "target_tokens": 32768,
+          "minimum_useful_tokens": 16384
+        },
+        "known_evidence": [
+          "data/evidence/qwen38-27b-iq3xxs-f16-32k-1x5060ti-32k.json"
+        ],
+        "caveats": [
+          "Retrieval fit checks passed and the f16 KV route fit in ~14.3GB, but both sustained runs exhausted the 1536-token output budget in hidden reasoning without reaching the required client-visible output.",
+          "Capable/experimental, not recommended. The q8 KV 64K route is the published single-card Qwen3.8 preset."
+        ],
+        "_source_file": "data/presets/qwen38-27b-iq3xxs-f16-32k-1x5060ti.json"
+      },
+      "published_evidence": [],
+      "candidate_evidence": [
+        {
+          "schema_version": "1.0",
+          "id": "qwen38-27b-iq3xxs-f16-32k-1x5060ti-32k",
+          "preset": "qwen38-27b-iq3xxs-f16-32k-1x5060ti",
+          "status": "candidate",
+          "provenance": "seed-tested",
+          "context": {
+            "highest_useful_tokens": 32768,
+            "server_effective_tokens": 32768,
+            "server_configured_tokens": 32768,
+            "actual_prompt_tokens": {
+              "retrieval": 28905,
+              "sustained_generation": 23006
+            },
+            "validated_for": "uncached long-context retrieval (sustained visible-output gate not met)"
+          },
+          "evidence": {
+            "checks": {
+              "retrieval_repeats": 2,
+              "sustained_generation_repeats": 2,
+              "prompt_cache_disabled": true,
+              "unique_leading_request_nonce": true,
+              "thinking_disabled_explicitly": false,
+              "visible_final_content_required": true,
+              "sustained_output_tokens": 1536,
+              "minimum_output_fraction": 0.7
+            },
+            "metrics": {
+              "median_prefill_tok_s": 645.776,
+              "median_decode_tok_s": 37.256,
+              "retrieval_decode_tok_s": 42.9,
+              "median_draft_acceptance_rate": 0.593
+            }
+          },
+          "source_receipts": [
+            "data/evidence/receipts/qwen38-27b-iq3xxs-f16-32k-1x5060ti-32k-20260815.json"
+          ],
+          "caveats": [
+            "Retrieval checks passed twice at ~28.9K prompt tokens and the f16 KV route fit in ~14.3GB, but both sustained repeats exhausted the 1536-token output budget in hidden reasoning with no client-visible answer. Capable/experimental, not recommended.",
+            "Measured with the seed cards' core/SM clock locked at 2300 MHz; throughput is specific to that operating point.",
+            "The recommended single-card Qwen3.8 route remains q8 KV at 64K."
+          ],
+          "_source_file": "data/evidence/qwen38-27b-iq3xxs-f16-32k-1x5060ti-32k.json"
+        }
+      ],
+      "archived_evidence": [],
+      "ready_for_default": false
+    },
+    {
+      "preset": {
+        "schema_version": "1.0",
+        "id": "qwen38-27b-q6-2x5060ti",
+        "title": "Qwen3.8 27B Q6_K on two RTX 5060 Ti 16GB cards",
+        "status": "experimental",
+        "provenance": "seed-tested",
+        "purpose": "Experimental dual-card 131K Qwen3.8 route with f16 KV and tensor split 50,50.",
+        "hardware": {
+          "lane": "2x5060ti",
+          "gpu_count": 2,
+          "gpu_model": "NVIDIA GeForce RTX 5060 Ti",
+          "vram_per_gpu_gb": 16
+        },
+        "runtime": {
+          "engine": "llama.cpp",
+          "preset_file": "examples/llamacpp-qwen38-27b-dual-5060ti.ini",
+          "preset_section": "Qwen3.8-27B-Q6-dual-5060ti"
+        },
+        "model": {
+          "id": "Qwen3.8-27B-Q6_K",
+          "family": "Qwen3.8",
+          "architecture": "hybrid",
+          "parameter_class": "27B",
+          "quant": "Q6_K",
+          "source": "unsloth/Qwen3.8-27B-GGUF"
+        },
+        "serving": {
+          "kv_cache_k": "f16",
+          "kv_cache_v": "f16",
+          "batch_size": 2048,
+          "ubatch_size": 512,
+          "parallel": 1,
+          "speculation": "draft-mtp (n=2, p-min=0.1)",
+          "tensor_split": "50,50",
+          "thinking": "on"
+        },
+        "profile": "data/benchmark-profiles/high-context.json",
+        "context": {
+          "target_tokens": 131072,
+          "minimum_useful_tokens": 65536
+        },
+        "known_evidence": [
+          "data/evidence/qwen38-27b-q6-2x5060ti-131k.json"
+        ],
+        "caveats": [
+          "Retrieval passed twice at ~115K prompt tokens, but only one of two sustained repeats produced the required client-visible output; the strict gate did not pass. Capable/experimental, not recommended.",
+          "The single-card IQ3_XXS 64K q8 route is the recommended Qwen3.8 preset.",
+          "131K is the highest tier tested here, not a maximum-context claim."
+        ],
+        "_source_file": "data/presets/qwen38-27b-q6-2x5060ti.json"
+      },
+      "published_evidence": [],
+      "candidate_evidence": [
+        {
+          "schema_version": "1.0",
+          "id": "qwen38-27b-q6-2x5060ti-131k",
+          "preset": "qwen38-27b-q6-2x5060ti",
+          "status": "candidate",
+          "provenance": "seed-tested",
+          "context": {
+            "highest_useful_tokens": 131072,
+            "server_effective_tokens": 131072,
+            "server_configured_tokens": 131072,
+            "actual_prompt_tokens": {
+              "retrieval": 115420,
+              "sustained_generation": 91822
+            },
+            "validated_for": "uncached long-context retrieval (sustained visible-output gate not consistently met)"
+          },
+          "evidence": {
+            "checks": {
+              "retrieval_repeats": 2,
+              "sustained_generation_repeats": 2,
+              "prompt_cache_disabled": true,
+              "unique_leading_request_nonce": true,
+              "thinking_disabled_explicitly": false,
+              "visible_final_content_required": true,
+              "sustained_output_tokens": 1536,
+              "minimum_output_fraction": 0.7
+            },
+            "metrics": {
+              "median_prefill_tok_s": 598.063,
+              "median_decode_tok_s": 37.793,
+              "retrieval_decode_tok_s": 42.85,
+              "median_draft_acceptance_rate": 0.603
+            }
+          },
+          "source_receipts": [
+            "data/evidence/receipts/qwen38-27b-q6-2x5060ti-131k-20260815.json"
+          ],
+          "caveats": [
+            "Retrieval passed twice at ~115K prompt tokens on the dual-card f16 KV route, but only one of two sustained repeats produced the required client-visible output; the strict gate did not pass. Capable/experimental, not recommended.",
+            "Measured with the seed cards' core/SM clock locked at 2300 MHz; throughput is specific to that operating point.",
+            "131K is the highest tier tested here, not a maximum-context claim.",
+            "The single-card IQ3_XXS 64K q8 route is the recommended Qwen3.8 preset."
+          ],
+          "_source_file": "data/evidence/qwen38-27b-q6-2x5060ti-131k.json"
+        }
+      ],
+      "archived_evidence": [],
+      "ready_for_default": false
+    },
+    {
+      "preset": {
+        "schema_version": "1.0",
+        "id": "thinkingcap-qwen36-27b-iq3m-1x5060ti",
+        "title": "ThinkingCap Qwen3.6 27B IQ3_M on one RTX 5060 Ti 16GB",
+        "status": "recommended",
+        "provenance": "seed-tested",
+        "purpose": "Single-card 64K high-context ThinkingCap route with q8 KV and built-in MTP.",
+        "hardware": {
+          "lane": "1x5060ti",
+          "gpu_count": 1,
+          "gpu_model": "NVIDIA GeForce RTX 5060 Ti",
+          "vram_per_gpu_gb": 16
+        },
+        "runtime": {
+          "engine": "llama.cpp",
+          "preset_file": "examples/llamacpp-thinkingcap-qwen36-27b-single-5060ti.ini",
+          "preset_section": "ThinkingCap-Qwen3.6-27B-IQ3_M-single-5060ti"
+        },
+        "model": {
+          "id": "ThinkingCap-Qwen3.6-27B-IQ3_M-MTP",
+          "family": "Qwen3.6",
+          "architecture": "hybrid",
+          "parameter_class": "27B",
+          "quant": "IQ3_M",
+          "source": "protoLabsAI/ThinkingCap-Qwen3.6-27B-MTP-GGUF"
+        },
+        "serving": {
+          "kv_cache_k": "q8_0",
+          "kv_cache_v": "q8_0",
+          "batch_size": 512,
+          "ubatch_size": 128,
+          "parallel": 1,
+          "speculation": "draft-mtp (n=3, p-min=0.1)",
+          "thinking": "on"
+        },
+        "profile": "data/benchmark-profiles/high-context.json",
+        "context": {
+          "target_tokens": 65536,
+          "minimum_useful_tokens": 32768
+        },
+        "known_evidence": [
+          "data/results/seed-thinkingcap-qwen36-27b-iq3m-1x5060ti-20260813.json",
+          "data/evidence/thinkingcap-qwen36-27b-iq3m-1x5060ti-64k.json"
+        ],
+        "caveats": [
+          "This is a one-GPU, one-request-slot high-context route. It is not a concurrency recommendation.",
+          "The same IQ3_M plus q8 KV route was too VRAM-tight for practical 131K sustained generation, so 64K is the published tier."
+        ],
+        "_source_file": "data/presets/thinkingcap-qwen36-27b-iq3m-1x5060ti.json"
+      },
+      "published_evidence": [
+        {
+          "schema_version": "1.0",
+          "id": "thinkingcap-qwen36-27b-iq3m-1x5060ti-64k",
+          "preset": "thinkingcap-qwen36-27b-iq3m-1x5060ti",
+          "status": "published",
+          "provenance": "seed-tested",
+          "context": {
+            "highest_useful_tokens": 65536,
+            "server_effective_tokens": 65536,
+            "server_configured_tokens": 65536,
+            "actual_prompt_tokens": {
+              "retrieval": 57744,
+              "sustained_generation": 45939
+            },
+            "validated_for": "uncached long-context retrieval and sustained visible generation"
+          },
+          "evidence": {
+            "checks": {
+              "retrieval_repeats": 2,
+              "sustained_generation_repeats": 2,
+              "prompt_cache_disabled": true,
+              "unique_leading_request_nonce": true,
+              "thinking_disabled_explicitly": false,
+              "visible_final_content_required": true,
+              "sustained_output_tokens": 2048,
+              "minimum_output_fraction": 0.7
+            },
+            "metrics": {
+              "median_prefill_tok_s": 558.077,
+              "median_decode_tok_s": 25.647,
+              "retrieval_decode_tok_s": 32.589,
+              "median_draft_acceptance_rate": 0.507
+            }
+          },
+          "source_receipts": [
+            "data/evidence/receipts/thinkingcap-qwen36-27b-iq3m-1x5060ti-64k-20260814.json"
+          ],
+          "caveats": [
+            "Validated on one RTX 5060 Ti 16GB with IQ3_M and q8 KV at 64K. The direct dedicated server exposed one request slot.",
+            "ThinkingCap generated substantial reasoning before its client-visible final answer. The profile used 512 retrieval output tokens and 2048 sustained output tokens, and required client-visible content.",
+            "A 131K trial with this route became VRAM-tight and sustained decode fell below the useful-speed floor. 64K is the highest useful tier established here, not a maximum-context claim."
+          ],
+          "_source_file": "data/evidence/thinkingcap-qwen36-27b-iq3m-1x5060ti-64k.json"
+        }
+      ],
+      "candidate_evidence": [],
+      "archived_evidence": [],
+      "ready_for_default": true
+    },
+    {
+      "preset": {
+        "schema_version": "1.0",
+        "id": "thinkingcap-qwen36-27b-q6-2x5060ti",
+        "title": "ThinkingCap Qwen3.6 27B Q6_K on two RTX 5060 Ti 16GB cards",
+        "status": "recommended",
+        "provenance": "seed-tested",
+        "purpose": "High-context dual-card ThinkingCap route with built-in MTP and f16 KV.",
+        "hardware": {
+          "lane": "2x5060ti",
+          "gpu_count": 2,
+          "gpu_model": "NVIDIA GeForce RTX 5060 Ti",
+          "vram_per_gpu_gb": 16
+        },
+        "runtime": {
+          "engine": "llama.cpp",
+          "preset_file": "examples/llamacpp-thinkingcap-qwen36-27b-dual-5060ti.ini",
+          "preset_section": "ThinkingCap-Qwen3.6-27B-Q6-dual-5060ti"
+        },
+        "model": {
+          "id": "ThinkingCap-Qwen3.6-27B-Q6_K-MTP",
+          "family": "Qwen3.6",
+          "architecture": "dense",
+          "parameter_class": "27B",
+          "quant": "Q6_K",
+          "source": "protoLabsAI/ThinkingCap-Qwen3.6-27B-MTP-GGUF"
+        },
+        "serving": {
+          "kv_cache_k": "f16",
+          "kv_cache_v": "f16",
+          "batch_size": 4096,
+          "ubatch_size": 1024,
+          "tensor_split": "50,50",
+          "split_mode": "tensor",
+          "parallel": 1,
+          "speculation": "draft-mtp (n=3, p-min=0.1)",
+          "thinking": "on"
+        },
+        "profile": "data/benchmark-profiles/high-context.json",
+        "context": {
+          "target_tokens": 131072,
+          "minimum_useful_tokens": 65536
+        },
+        "known_evidence": [
+          "data/evidence/thinkingcap-qwen36-27b-q6-2x5060ti-131k.json"
+        ],
+        "caveats": [
+          "Evidence is for the thinking-enabled request route, which produces substantial reasoning before its client-visible final answer.",
+          "This preset has one 131K request slot. It is a deep-context route, not a parallel serving recommendation."
+        ],
+        "_source_file": "data/presets/thinkingcap-qwen36-27b-q6-2x5060ti.json"
+      },
+      "published_evidence": [
+        {
+          "schema_version": "1.0",
+          "id": "thinkingcap-qwen36-27b-q6-2x5060ti-131k",
+          "preset": "thinkingcap-qwen36-27b-q6-2x5060ti",
+          "status": "published",
+          "provenance": "seed-tested",
+          "context": {
+            "highest_useful_tokens": 131072,
+            "server_effective_tokens": 131072,
+            "server_configured_tokens": 131072,
+            "actual_prompt_tokens": {
+              "retrieval": 115343,
+              "sustained_generation": 91762
+            },
+            "validated_for": "uncached long-context retrieval and sustained visible generation"
+          },
+          "evidence": {
+            "checks": {
+              "retrieval_repeats": 2,
+              "sustained_generation_repeats": 2,
+              "prompt_cache_disabled": true,
+              "unique_leading_request_nonce": true,
+              "thinking_disabled_explicitly": false,
+              "visible_final_content_required": true
+            },
+            "metrics": {
+              "median_prefill_tok_s": 607.524,
+              "median_decode_tok_s": 34.845,
+              "retrieval_decode_tok_s": 42.459,
+              "median_draft_acceptance_rate": 0.568
+            }
+          },
+          "source_receipts": [
+            "data/evidence/receipts/thinkingcap-qwen36-27b-q6-2x5060ti-131k-20260814.json"
+          ],
+          "caveats": [
+            "The route validated 131K in one request slot with f16 KV and built-in MTP.",
+            "ThinkingCap generated substantial reasoning before its client-visible final answer. The profile used 512 retrieval output tokens and 1536 sustained output tokens, and required client-visible content.",
+            "131K is the highest tier tested in this bundle, not a maximum-context claim."
+          ],
+          "_source_file": "data/evidence/thinkingcap-qwen36-27b-q6-2x5060ti-131k.json"
+        }
+      ],
+      "candidate_evidence": [],
+      "archived_evidence": [],
+      "ready_for_default": true
+    }
+  ]
+}

@@ -1,8 +1,10 @@
 # club-5060ti
 
-Practical local LLM recipes, benchmark receipts, and setup notes for RTX 5060 Ti 16GB systems.
+Practical local LLM presets, reviewed evidence, and setup notes for RTX 5060 Ti 16GB systems.
 
-The project focus is simple: make RTX 5060 Ti local inference more reproducible across one card, two cards, and larger community setups. Some llama.cpp/GGUF notes are useful on other NVIDIA cards too, but non-5060 Ti and mixed-GPU results should be reported as separate hardware lanes. Every useful result should come with the launch shape, hardware context, model details, benchmark method, and caveats needed for someone else to reproduce or improve it.
+The project focus is simple: make RTX 5060 Ti local inference reproducible across one card, two cards, and larger community setups. A **preset** is the thing we recommend someone run. Benchmark receipts prove what that preset can do. Raw experiments remain useful engineering material, but do not become public recommendations merely because a request completed.
+
+The seed system covers 1x and 2x RTX 5060 Ti lanes. The project also welcomes 3x/4x+, mixed 5060 Ti + CUDA, and other-CUDA community recipes when their topology and provenance are recorded clearly.
 
 ## Star History
 
@@ -24,23 +26,41 @@ The project focus is simple: make RTX 5060 Ti local inference more reproducible 
 | Other CUDA GPUs | You want to adapt the recipes to non-5060 Ti or mixed-architecture NVIDIA setups. | docs/gpu-compatibility.md |
 | Results explorer | You want to compare benchmark receipts, filter by tier, and inspect serving configs. | https://5p00kyy.github.io/club-5060ti/ |
 | Benchmark protocol | You want to submit or compare a result without mixing methods. | docs/benchmark-protocol.md |
+| Preset and evidence workflow | You want to test a preset without turning every raw run into a public result. | docs/preset-evidence-workflow.md |
 | Submit a result | You want a quick structured contribution path. | docs/community-result-template.md |
 
 ## Current Direction
 
-club-5060ti collects tested RTX 5060 Ti recipes and benchmark receipts. It is a 5060 Ti project first, not specifically a dual-5060 Ti project: single-card, dual-card, and larger 5060 Ti setups are all useful when labeled clearly. It is not meant to claim that only Blackwell cards can use these workflows; it keeps the 5060 Ti lanes clear so community results from other cards remain comparable instead of blended together. The results explorer is built from checked-in JSON under data/results/ so docs, scripts, and the static site all describe the same evidence.
+club-5060ti is a 5060 Ti project first, not specifically a dual-5060 Ti project. Single-card, dual-card, and larger community lanes are useful when labelled clearly. The public experience is being refreshed around a simple rule:
 
-Imported llm-bench rows are archived historical data until they are rerun under the benchmark protocol. They are useful provenance, not headline evidence.
+1. **Preset:** an exact, copyable configuration with a stated hardware lane and purpose.
+2. **Evidence:** a compact reviewed bundle that validates useful context, retrieval, sustained generation, and caveats.
+3. **Raw receipt:** local or archived diagnostic material, not a front-page recommendation.
 
-## Tier System
+The homepage starts with published presets and retains the results explorer for comparisons, experiments, and historical provenance. Imported llm-bench rows remain archived until they are rerun under the current protocol.
 
-Every benchmark result is assigned a tier to help visitors quickly find useful configs:
+## Published Presets
 
-- **Recommended** - Best known speed/fit config for the GPU lane. Not a quality endorsement; it means this is the config to try first for that model and hardware.
-- **Capable** - Works well as a solid option. Includes alternative quants, KV cache experiment variants, and fine-tune merges like Qwopus.
-- **Experimental** - Stretch fits, unusual configs, and deprecated legacy imports. Interesting but not daily drivers.
+| Lane | Preset | What was validated | Evidence |
+| --- | --- | --- | --- |
+| 2x RTX 5060 Ti | [Nail 35B-A3B Q4_K_XL](examples/llamacpp-nail-35b-a3b-dual-5060ti.ini) | 131K effective-context tier, two uncached 115K-token retrieval checks, and two ~92K-token sustained 512-token generations. | [Evidence bundle](data/evidence/nail-35b-a3b-q4-2x5060ti-131k.json) |
+| 2x RTX 5060 Ti | [Muse Glimmer 30B dynamic Q4](examples/llamacpp-muse-glimmer-30b-dual-5060ti.ini) | 131K effective-context tier, two uncached 115K-token retrieval checks, and two ~92K-token sustained visible-answer generations with DFlash. | [Evidence bundle](data/evidence/muse-glimmer-30b-q4-dynamic-2x5060ti-131k.json) |
+| 2x RTX 5060 Ti | [ThinkingCap Qwen3.6 27B Q6_K](examples/llamacpp-thinkingcap-qwen36-27b-dual-5060ti.ini) | 131K single-slot tier, two uncached 115K-token retrieval checks, and two ~92K-token sustained visible-answer generations with built-in MTP. | [Evidence bundle](data/evidence/thinkingcap-qwen36-27b-q6-2x5060ti-131k.json) |
+| 1x RTX 5060 Ti | [ThinkingCap Qwen3.6 27B IQ3_M](examples/llamacpp-thinkingcap-qwen36-27b-single-5060ti.ini) | 64K tier, two uncached ~57.7K-token retrieval checks, and two ~45.9K-token sustained visible-answer generations with q8 KV and built-in MTP. | [Evidence bundle](data/evidence/thinkingcap-qwen36-27b-iq3m-1x5060ti-64k.json) |
+| 1x RTX 5060 Ti | [Qwen3.8 27B IQ3_XXS](examples/llamacpp-qwen38-27b-single-5060ti.ini) | 64K tier, two uncached ~57.7K-token retrieval checks, and two ~45.9K-token sustained visible-answer generations with q8 KV and built-in MTP. | [Evidence bundle](data/evidence/qwen38-27b-iq3xxs-1x5060ti-64k.json) |
+| 1x RTX 5060 Ti | [Nail 35B-A3B IQ3_XXS](examples/llamacpp-single-5060ti-qwen36-35b-a3b-iq3xxs.ini) | Configured 131K route with two uncached ~115.4K-token retrieval checks and two ~91.8K-token sustained visible-answer generations on the non-thinking request path; the endpoint did not expose active context metadata. | [Evidence bundle](data/evidence/nail-35b-a3b-iq3xxs-1x5060ti-131k.json) |
 
-Tiers can be filtered directly in the results explorer.
+More cards are added only after their preset and evidence bundle meet the same standard.
+
+## Preset Status
+
+- **Recommended:** seed-tested, copyable preset with reviewed published evidence.
+- **Alternative:** a useful documented route with a different trade-off.
+- **Community-verified:** strong community evidence, not yet reproduced on the seed system.
+- **Experimental:** useful but incomplete evidence or an intentionally exploratory trade-off.
+- **Archived:** historical or superseded provenance.
+
+These labels describe a preset. They do not turn every individual raw measurement into a recommendation.
 
 ## Tested Baseline
 
@@ -54,14 +74,18 @@ Seed hardware:
 - Host memory: 128GB DDR4-2133
 - Inference environment: Proxmox LXC with 16 vCPU and 60GB RAM assigned
 - PCIe link width: both RTX 5060 Ti cards run at x8 in this host
+- Seed measurements taken with both cards' core/SM clock locked at 2300 MHz (power limit unchanged); throughput is specific to that operating point
 
 See docs/hardware.md for the full baseline and hardware notes.
 
-## Recipe Index
+## Existing Recipe Index (Migration Inventory)
+
+These older routes are useful source material while they are re-run or mapped to the new preset/evidence standard. Do not treat a row labelled “recommended” here as a replacement for a published preset card above.
 
 | Lane | Model | Evidence | Notes |
 | --- | --- | --- | --- |
 | upstream llama.cpp | Qwen3.6 27B GGUF | Seed recipe | Recommended dual-card dense route. Q6_K at 131K ctx with f16 KV and MTP n=3 delivers 45-55 tok/s decode. Q3_K_XL on single card is the recommended budget fit at 204K ctx with q4 KV. |
+| upstream llama.cpp | Qwen3.8 27B GGUF | Seed receipts | Newest measured family. Single-card IQ3_XXS 64K q8 KV is the recommended route. Dual-card Q6_K 131K f16 KV is experimental: retrieval fit passed at ~115K but sustained visible output was not consistent under the strict gate. See docs/llamacpp-qwen38.md. |
 | upstream llama.cpp | Qwen3.5 9B GGUF | Seed recipe | Small long-context route; useful sanity lane for 1x and 2x cards. Recommended starter model on single card. |
 | upstream llama.cpp | Qwen3.6 35B-A3B GGUF | Seed recipe | Strong MoE route. Recommended on both 1x (IQ3_XXS) and 2x (Q5_K_S) lanes. Fastest practical model in the dataset. |
 | upstream llama.cpp | Qwen3.5 122B-A10B GGUF | Seed recipe | Stretch/large MoE. IQ4_XS on 2x cards with MTP n=4. Recommended for maximum parameter count. |
@@ -72,33 +96,35 @@ See docs/hardware.md for the full baseline and hardware notes.
 
 ## Results And Data
 
-Canonical result files live under data/results/ and follow data/schema/benchmark-result.schema.json.
+Published presets live under `data/presets/`; reviewed evidence lives under `data/evidence/`; historical benchmark rows remain in `data/results/` during the migration. New routine runs belong under `.local/bench/`, not `data/results/`.
 
 Build the static site data:
 
 ~~~bash
+python3 scripts/build_preset_data.py
 python3 scripts/build_site_data.py
 ~~~
 
-Validate result JSON:
+Validate preset, evidence, and historical result data:
 
 ~~~bash
+python3 scripts/validate_presets.py data/presets
+python3 scripts/validate_evidence.py data/evidence
 python3 scripts/validate_results.py data/results
 ~~~
 
-Run a protocol-shaped OpenAI-compatible benchmark:
+Run the high-context profile against an already-started preset route:
 
 ~~~bash
-python3 scripts/run_openai_bench.py \
+python3 scripts/run_high_context_profile.py \
   --base-url http://127.0.0.1:8080/v1 \
-  --model Qwen3.6-27B \
-  --prompt-set short-chat \
-  --prompt-set code-generate \
-  --prompt-set agent-tool \
-  --runs 1 \
-  --no-thinking \
-  --output data/results/my-run.json
+  --model Nail-35B-A3B \
+  --preset nail-35b-a3b-q4-2x5060ti \
+  --context-tokens 131072 \
+  --disable-thinking
 ~~~
+
+It writes a local receipt. Review it before deliberately promoting compact evidence. See [the preset and evidence workflow](docs/preset-evidence-workflow.md).
 
 The old llm-bench summary rows have been imported into data/results/llm-bench-legacy-import.json as archived historical data (experimental tier). Rerun them under the benchmark protocol before using them for comparisons.
 
@@ -106,7 +132,7 @@ The hosted explorer shows model cards grouped by model and setup, with tier filt
 
 The Qwen3.6 27B Q6_K dual-card config (131K ctx, f16 KV, MTP n=3) benchmarks at 45-55 tok/s decode across standard prompt sets. The single-card Q3_K_XL config runs at 204K ctx with q4 KV cache.
 
-Results are expected to grow over time. New community reports can be added as archived notes, recipe evidence, benchmark rows, or verified reproductions depending on how complete and comparable they are.
+The public catalogue grows by tested presets and compact evidence bundles, not by count of successful requests. Community reports can become a raw issue receipt, a reproduction of an existing preset, a new preset candidate, or archived provenance depending on completeness and comparability.
 
 ## Useful Next Data
 
@@ -115,6 +141,7 @@ The most useful new submissions are:
 - 3x/4x+ RTX 5060 Ti results with full PCIe topology.
 - Matched 2x RTX 5060 Ti no-MTP and MTP rows for the same 27B model, quant, context, and KV cache.
 - Qwen3.6 35B A3B rows from different 5060 Ti systems, especially dual-card and larger-card-count setups.
+- Qwen3.8 27B sustained visible-output repeats for the dual-card 131K route, and single-card f16 KV 32K sustained-output checks.
 - Single-card RTX 5060 Ti benchmarks (the 1x lane is growing but needs more coverage).
 - Clearly labeled mixed-GPU or non-5060 Ti CUDA adaptation results.
 - Power, thermal, and PCIe-link notes when they explain performance differences.
@@ -128,11 +155,12 @@ The preferred path is a GitHub issue using the result report template.
 
 At minimum include the hardware lane, exact GPU count, PCIe topology, runtime, model, quant, context, KV cache, generated-token count, prompt eval tok/s, decode tok/s, and caveats.
 
-If you want a structured result file, generate JSON with scripts/run_openai_bench.py, validate it with scripts/validate_results.py, and attach or submit the JSON. See docs/reporting-results.md.
+For a new preset candidate, use the appropriate workflow profile and attach the local receipt/review rather than committing routine rows into `data/results/`. See docs/preset-evidence-workflow.md and docs/reporting-results.md.
 
 ## Repo Map
 
 - docs/benchmark-protocol.md - comparable-result rules, prompt sets, context tiers, and promotion levels
+- docs/preset-evidence-workflow.md - canonical preset manifests, raw receipts, robust high-context fitting, and review
 - docs/FAQ.md - short answers to common setup questions
 - docs/community-goals.md - project goals and contribution priorities
 - docs/client-examples.md - OpenAI-compatible client examples
@@ -149,7 +177,9 @@ If you want a structured result file, generate JSON with scripts/run_openai_benc
 - docs/qwen36-kv-quality-20260605.md - Qwen3.6 27B KV cache quality comparison
 - docs/benchmarks.md - current human-readable result notes
 - docs/troubleshooting.md - observed failures and fixes
-- data/ - canonical result data and schemas
+- data/presets/ - canonical copyable preset manifests
+- data/evidence/ - reviewed compact evidence bundles and public-safe receipts
+- data/results/ - historical and explorer benchmark rows during migration
 - examples/ - sanitized launch/config snippets
 - scripts/ - validation, report, smoke, import, and benchmark helpers
 - site/ - static results explorer generated from data/
@@ -195,7 +225,10 @@ Start with CONTRIBUTING.md and docs/benchmark-protocol.md.
 ~~~bash
 python3 -m py_compile scripts/*.py
 bash -n scripts/*.sh examples/*.sh
+python3 scripts/validate_presets.py data/presets
+python3 scripts/validate_evidence.py data/evidence
 python3 scripts/validate_results.py data/results
+python3 scripts/build_preset_data.py
 python3 scripts/build_site_data.py
 ./scripts/check_repo.sh
 ~~~
