@@ -13,6 +13,7 @@ python3 scripts/run_openai_bench.py \
   --prompt-set agent-tool \
   --runs 1 \
   --no-thinking \
+  --tier capable \
   --output data/results/community-my-run.json \
   --report-output my-result.md
 ~~~
@@ -22,6 +23,8 @@ Validate before submitting:
 ~~~bash
 python3 scripts/validate_results.py data/results/community-my-run.json
 ~~~
+
+New measured results default to the `capable` tier. `recommended` is a maintainer decision for the best current speed/fit recipe in a lane, while `experimental` is for incomplete or unusual work.
 
 If you cannot produce structured JSON right away, open a raw result issue and fill what you can.
 Use the copy/paste issue-ready format in [docs/community-result-template.md](community-result-template.md), and the maintainer can normalize missing fields.

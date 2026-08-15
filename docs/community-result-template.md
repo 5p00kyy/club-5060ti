@@ -4,6 +4,7 @@ Use this template directly in a GitHub issue for fast submissions. Raw issue rep
 
 - Submission type: Raw issue report (maintainers can normalize)
 - Verification status: `not verified`
+- Suggested tier: `capable` (`recommended` is maintainer-curated; use `experimental` for incomplete or unusual work)
 
 ## Basic Result Metadata
 
@@ -63,6 +64,7 @@ Use this template directly in a GitHub issue for fast submissions. Raw issue rep
 
 - Submission type: Raw issue report (maintainers can normalize)
 - Verification status: not verified
+- Suggested tier: capable
 
 Hardware lane: `2x5060ti`
 - GPU count: `2`

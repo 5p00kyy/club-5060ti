@@ -12,6 +12,7 @@ REQUIRED_TOP = {
     "timestamp_utc",
     "source",
     "promotion_level",
+    "tier",
     "hardware",
     "runtime",
     "model",
@@ -21,6 +22,7 @@ REQUIRED_TOP = {
 }
 
 PROMOTION_LEVELS = {"exploratory", "recipe", "benchmark", "verified", "deprecated"}
+TIERS = {"recommended", "capable", "experimental"}
 SOURCE_TYPES = {"seed", "community", "imported", "external"}
 ENGINES = {"llama.cpp", "ik_llama.cpp", "BeeLlama", "vLLM", "SGLang", "other"}
 PROMPT_SETS = {
@@ -90,6 +92,7 @@ def validate_result(result, label, allow_private=False):
     require(not missing, errors, f"{label}: missing required fields: {', '.join(missing)}")
     require(result.get("schema_version") == "1.0", errors, f"{label}: schema_version must be 1.0")
     require(result.get("promotion_level") in PROMOTION_LEVELS, errors, f"{label}: invalid promotion_level")
+    require(result.get("tier") in TIERS, errors, f"{label}: tier must be recommended, capable, or experimental")
 
     source = result.get("source") or {}
     require(isinstance(source, dict), errors, f"{label}: source must be an object")
@@ -209,7 +212,10 @@ def validate_dataset(results):
                 seen_ids[result_id] = label
 
         level = result.get("promotion_level")
+        tier = result.get("tier")
         benchmark = result.get("benchmark") or {}
+        if level == "deprecated" and tier != "experimental":
+            errors.append(f"{label}: deprecated rows must use the experimental tier")
         prompt_set = benchmark.get("prompt_set")
         notes = combined_notes(result)
 

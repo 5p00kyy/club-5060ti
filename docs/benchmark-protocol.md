@@ -55,6 +55,10 @@ Do not compare results from different prompt sets as if they are one benchmark.
 
 For thinking/reasoning models, the request token cap must include both reasoning tokens and final answer tokens. The default output values above describe the target final-answer shape; benchmark runners should add the configured reasoning budget on top when thinking is enabled.
 
+## Presets Before Rows
+
+A benchmark row is not automatically a community recommendation. New work should begin with an exact, copyable preset and use `docs/preset-evidence-workflow.md` to keep raw receipts separate from reviewed public evidence. This protocol remains the common measurement language for seed and community lanes, including 3x/4x+ and mixed-GPU setups.
+
 ## Context Tiers
 
 Use these configured context tiers when practical:

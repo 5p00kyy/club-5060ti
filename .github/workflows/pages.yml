@@ -34,7 +34,11 @@ jobs:
         run: python3 scripts/validate_results.py data/results
 
       - name: Build site data
-        run: python3 scripts/build_site_data.py --results-dir data/results --output site/data/results.json
+        run: |
+          python3 scripts/validate_presets.py data/presets
+          python3 scripts/validate_evidence.py data/evidence
+          python3 scripts/build_preset_data.py --presets-dir data/presets --evidence-dir data/evidence --output site/data/presets.json
+          python3 scripts/build_site_data.py --results-dir data/results --output site/data/results.json
 
       - name: Configure Pages
         uses: actions/configure-pages@v5

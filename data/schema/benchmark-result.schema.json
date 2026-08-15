@@ -9,6 +9,7 @@
     "timestamp_utc",
     "source",
     "promotion_level",
+    "tier",
     "hardware",
     "runtime",
     "model",
@@ -52,6 +53,10 @@
     "promotion_level": {
       "type": "string",
       "enum": ["exploratory", "recipe", "benchmark", "verified", "deprecated"]
+    },
+    "tier": {
+      "type": "string",
+      "enum": ["recommended", "capable", "experimental"]
     },
     "hardware": {
       "type": "object",

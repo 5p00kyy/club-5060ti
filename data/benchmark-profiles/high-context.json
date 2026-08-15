@@ -1,0 +1,24 @@
+{
+  "schema_version": "1.0",
+  "id": "high-context",
+  "description": "Find and validate the highest useful context tier for one unchanged serving preset.",
+  "context_ladder": [32768, 65536, 98304, 131072, 184320, 204800, 262144],
+  "fit": {
+    "prompt_fraction": 0.88,
+    "minimum_prompt_fraction": 0.80,
+    "retrieval_output_tokens": 512,
+    "retrieval_repeats": 2,
+    "sustained_prompt_fraction": 0.70,
+    "sustained_output_tokens": 1536,
+    "sustained_repeats": 2,
+    "minimum_visible_output_characters": 800,
+    "minimum_output_fraction": 0.7,
+    "calibration_margin_tokens": 64,
+    "minimum_decode_tok_s": 5.0
+  },
+  "policy": {
+    "disable_prompt_cache": true,
+    "stop_after_first_unusable_tier": true,
+    "allow_undeclared_runtime_changes": false
+  }
+}
