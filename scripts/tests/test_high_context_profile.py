@@ -22,7 +22,7 @@ class Handler(BaseHTTPRequestHandler):
 
     def do_GET(self):
         if self.path == "/v1/models":
-            self._send({"data": [{"id": "test-model", "status": {"args": ["--ctx-size", "8192"]}}]})
+            self._send({"data": [{"id": "test-model", "status": {"args": ["--ctx-size", "16384"]}}]})
             return
         self.send_error(404)
 
@@ -41,7 +41,7 @@ class Handler(BaseHTTPRequestHandler):
         message = {"content": NEEDLE} if retrieval else {"content": "A" * 2000}
         self._send({
             "choices": [{"message": message}],
-            "usage": {"prompt_tokens": prompt_tokens, "completion_tokens": 32 if retrieval else 512},
+            "usage": {"prompt_tokens": prompt_tokens, "completion_tokens": 32 if retrieval else 1200},
             "timings": {"prompt_per_second": 300.0, "predicted_per_second": 20.0, "draft_n": 20, "draft_n_accepted": 15},
         })
 
@@ -57,9 +57,9 @@ class Handler(BaseHTTPRequestHandler):
 def run(server, output, disable_thinking=False):
     command = [
         sys.executable, str(SCRIPT), "--base-url", f"http://127.0.0.1:{server.server_port}/v1",
-        "--model", "test-model", "--preset", "test-preset", "--context-tokens", "8192",
+        "--model", "test-model", "--preset", "test-preset", "--context-tokens", "16384",
         "--output", str(output), "--timeout", "5",
-        "--retrieval-output-tokens", "32", "--sustained-output-tokens", "512",
+        "--retrieval-output-tokens", "32", "--sustained-output-tokens", "3072",
     ]
     if disable_thinking:
         command.append("--disable-thinking")
@@ -80,9 +80,12 @@ def main():
             for receipt in (first, second):
                 assert receipt["summary"]["useful"] is True
                 assert receipt["summary"]["prompt_coverage_passed"] is True
-                assert receipt["effective_request_context_tokens"] == 8192
+                assert receipt["effective_request_context_tokens"] == 16384
                 assert receipt["summary"]["median_sustained_draft_acceptance_rate"] == 0.75
                 assert receipt["requested_context_matches_server"] is True
+                assert receipt["policy"]["sustained_output_tokens"] == 3072
+                assert receipt["policy"]["minimum_generated_tokens"] == 1076
+                assert receipt["policy"]["minimum_output_fraction"] is None
                 assert len(receipt["cases"]) == 4
                 assert len({case["request_nonce"] for case in receipt["cases"]}) == 4
                 assert receipt["calibration"]["retrieval"]["filler_lines"] is not None

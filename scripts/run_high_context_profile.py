@@ -90,8 +90,12 @@ def call(args, kind, lines, output_tokens):
     usage, timings = response.get("usage") or {}, response.get("timings") or {}
     visible, reasoning = response_parts(response)
     completion = usage.get("completion_tokens") or 0
+    if args.minimum_generated_tokens is not None:
+        minimum_completion = min(output_tokens, args.minimum_generated_tokens)
+    else:
+        minimum_completion = math.ceil(output_tokens * args.minimum_output_fraction)
     passed = (visible.strip() == NEEDLE if kind == "retrieval" else
-              (completion >= math.ceil(output_tokens * args.minimum_output_fraction) and
+              (completion >= minimum_completion and
                len(visible.strip()) >= args.minimum_visible_output_characters))
     return {
         "kind": kind, "lines": lines, "request_nonce": nonce, "passed": passed,
@@ -151,7 +155,9 @@ def main():
     parser.add_argument("--sustained-output-tokens", type=int, default=None)
     parser.add_argument("--minimum-prompt-fraction", type=float, default=None)
     parser.add_argument("--minimum-output-fraction", type=float, default=None,
-                        help="Required fraction of requested sustained output; defaults to the profile policy.")
+                        help="Legacy sustained-output threshold as a fraction of the allowance.")
+    parser.add_argument("--minimum-generated-tokens", type=int, default=None,
+                        help="Minimum generated tokens for sustained checks, independent of the larger output allowance.")
     parser.add_argument("--minimum-visible-output-characters", type=int, default=None,
                         help="Minimum client-visible response size for sustained generation; reasoning alone does not qualify.")
     parser.add_argument("--disable-thinking", action="store_true", help="Send chat_template_kwargs.enable_thinking=false for a deterministic non-thinking preset route.")
@@ -171,11 +177,17 @@ def main():
     args.minimum_visible_output_characters = (args.minimum_visible_output_characters
                                                if args.minimum_visible_output_characters is not None
                                                else fit["minimum_visible_output_characters"])
+    args.minimum_generated_tokens = (args.minimum_generated_tokens
+                                     if args.minimum_generated_tokens is not None
+                                     else fit.get("minimum_generated_tokens"))
     args.minimum_output_fraction = (args.minimum_output_fraction
                                     if args.minimum_output_fraction is not None
-                                    else fit["minimum_output_fraction"])
-    if not 0 < args.minimum_output_fraction <= 1:
-        raise SystemExit("minimum output fraction must be in (0, 1]")
+                                    else fit.get("minimum_output_fraction"))
+    if args.minimum_generated_tokens is not None and args.minimum_generated_tokens < 1:
+        raise SystemExit("minimum generated tokens must be positive")
+    if args.minimum_generated_tokens is None:
+        if args.minimum_output_fraction is None or not 0 < args.minimum_output_fraction <= 1:
+            raise SystemExit("profile requires minimum_generated_tokens or a minimum output fraction in (0, 1]")
     calibration_margin = fit.get("calibration_margin_tokens", 0)
     if not isinstance(calibration_margin, int) or calibration_margin < 0:
         raise SystemExit("profile calibration_margin_tokens must be a non-negative integer")
@@ -232,7 +244,7 @@ def main():
         "active_server_parallel": parallel,
         "effective_request_context_tokens": effective_context,
         "requested_context_matches_server": effective_context == args.context_tokens if effective_context else None,
-        "policy": {"prompt_cache_disabled": True, "unique_leading_request_nonce": True, "disable_thinking": args.disable_thinking, "minimum_decode_tok_s": args.minimum_decode_tok_s, "minimum_output_fraction": args.minimum_output_fraction, "calibration_margin_tokens": calibration_margin, "profile": args.profile},
+        "policy": {"prompt_cache_disabled": True, "unique_leading_request_nonce": True, "disable_thinking": args.disable_thinking, "minimum_decode_tok_s": args.minimum_decode_tok_s, "sustained_output_tokens": args.sustained_output_tokens, "minimum_generated_tokens": args.minimum_generated_tokens, "minimum_output_fraction": args.minimum_output_fraction, "calibration_margin_tokens": calibration_margin, "profile": args.profile},
         "calibration": calibration,
         "summary": {"useful": useful, "retrieval_passed": retrieval_ok, "sustained_passed": sustained_ok, "prompt_coverage_passed": coverage, "median_sustained_decode_tok_s": decode, "median_prompt_tok_s": median(case.get("prompt_tok_s") for case in cases), "median_sustained_draft_acceptance_rate": median(case.get("draft_acceptance_rate") for case in sustained)},
         "cases": cases,

@@ -51,6 +51,8 @@ spends its whole output budget reasoning and produces no final answer has not
 passed retrieval or useful sustained generation. Never silently hide reasoning
 merely to make retrieval look clean.
 
+The sustained output allowance is deliberately larger than the minimum generated-work threshold. This gives thinking-heavy models enough room to finish hidden reasoning and still return a client-visible answer without forcing concise models to consume the entire allowance.
+
 ## Run A Profile
 
 First validate the preset manifest:
