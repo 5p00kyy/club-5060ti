@@ -1,0 +1,44 @@
+{
+  "schema_version": "1.0",
+  "id": "qwen38-27b-q6-2x5060ti-131k",
+  "preset": "qwen38-27b-q6-2x5060ti",
+  "status": "candidate",
+  "provenance": "seed-tested",
+  "context": {
+    "highest_useful_tokens": 131072,
+    "server_effective_tokens": 131072,
+    "server_configured_tokens": 131072,
+    "actual_prompt_tokens": {
+      "retrieval": 115420,
+      "sustained_generation": 91822
+    },
+    "validated_for": "uncached long-context retrieval (sustained visible-output gate not consistently met)"
+  },
+  "evidence": {
+    "checks": {
+      "retrieval_repeats": 2,
+      "sustained_generation_repeats": 2,
+      "prompt_cache_disabled": true,
+      "unique_leading_request_nonce": true,
+      "thinking_disabled_explicitly": false,
+      "visible_final_content_required": true,
+      "sustained_output_tokens": 1536,
+      "minimum_output_fraction": 0.7
+    },
+    "metrics": {
+      "median_prefill_tok_s": 598.063,
+      "median_decode_tok_s": 37.793,
+      "retrieval_decode_tok_s": 42.85,
+      "median_draft_acceptance_rate": 0.603
+    }
+  },
+  "source_receipts": [
+    "data/evidence/receipts/qwen38-27b-q6-2x5060ti-131k-20260815.json"
+  ],
+  "caveats": [
+    "Retrieval passed twice at ~115K prompt tokens on the dual-card f16 KV route, but only one of two sustained repeats produced the required client-visible output; the strict gate did not pass. Capable/experimental, not recommended.",
+    "Measured with the seed cards' core/SM clock locked at 2300 MHz; throughput is specific to that operating point.",
+    "131K is the highest tier tested here, not a maximum-context claim.",
+    "The single-card IQ3_XXS 64K q8 route is the recommended Qwen3.8 preset."
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "qwen38-27b-iq3xxs-1x5060ti-64k",
+  "preset": "qwen38-27b-iq3xxs-1x5060ti",
+  "status": "published",
+  "provenance": "seed-tested",
+  "context": {
+    "highest_useful_tokens": 65536,
+    "server_effective_tokens": 65536,
+    "server_configured_tokens": 65536,
+    "actual_prompt_tokens": {
+      "retrieval": 57739,
+      "sustained_generation": 45949
+    },
+    "validated_for": "uncached long-context retrieval and sustained visible generation"
+  },
+  "evidence": {
+    "checks": {
+      "retrieval_repeats": 2,
+      "sustained_generation_repeats": 2,
+      "prompt_cache_disabled": true,
+      "unique_leading_request_nonce": true,
+      "thinking_disabled_explicitly": false,
+      "visible_final_content_required": true,
+      "sustained_output_tokens": 1536,
+      "minimum_output_fraction": 0.7
+    },
+    "metrics": {
+      "median_prefill_tok_s": 562.443,
+      "median_decode_tok_s": 29.786,
+      "retrieval_decode_tok_s": 31.136,
+      "median_draft_acceptance_rate": 0.627
+    }
+  },
+  "source_receipts": [
+    "data/evidence/receipts/qwen38-27b-iq3xxs-1x5060ti-64k-20260815.json"
+  ],
+  "caveats": [
+    "Validated on one RTX 5060 Ti 16GB with IQ3_XXS and q8 KV at 64K, one request slot.",
+    "Measured with the seed cards' core/SM clock locked at 2300 MHz; throughput is specific to that operating point.",
+    "Retrieval passed twice at ~57.7K prompt tokens; sustained generation passed twice at ~45.9K prompt tokens with client-visible output required.",
+    "The model emits substantial hidden reasoning; the profile used the thinking-enabled route and required client-visible final content.",
+    "64K is the highest useful tier validated here. On this exact one-card route, 64K and 96K f16 KV failed to allocate, and 96K q8 failed while creating the MTP context. Not a maximum-context claim."
+  ]
+}

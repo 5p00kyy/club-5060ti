@@ -76,6 +76,17 @@ Recommended examples:
 - examples/llamacpp-single-5060ti-qwen36-27b-iq4xs.ini
 - examples/llamacpp-single-5060ti-qwen36-35b-a3b-iq3xxs.ini
 
+## Qwen3.8 Single-Card Recipes
+
+Tested on one RTX 5060 Ti 16GB with build `10431 (1692f9e50)`, batch 512, ubatch 128, MTP n=2 p-min=0.1. Qwen3.8 emits substantial hidden reasoning; the published evidence used the thinking-enabled route and required a client-visible final answer.
+
+| Model | Quant | KV | Context | Result |
+| --- | --- | --- | --- | --- |
+| Qwen3.8 27B | IQ3_XXS | q8 | 65536 | recommended: 2x ~57.7K-token retrieval checks passed, 2x ~45.9K-token sustained visible-answer generations passed; ~562 tok/s prefill, ~29.8 tok/s decode, peak VRAM ~14.8GB |
+| Qwen3.8 27B | IQ3_XXS | f16 | 32768 | experimental: 2x ~28.9K-token retrieval checks passed (~14.3GB), but both sustained runs exhausted the 1536-token output budget in hidden reasoning without a client-visible answer |
+
+Recommended example: examples/llamacpp-qwen38-27b-single-5060ti.ini (the f16 32K variant is the second section in the same file). See docs/llamacpp-qwen38.md for the full Qwen3.8 routes and evidence.
+
 ## Larger-Quant Fallbacks
 
 Higher-quality/larger GGUF quants need partial CPU offload or fail on a single 16GB card.

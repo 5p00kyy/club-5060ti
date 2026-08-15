@@ -1,0 +1,43 @@
+{
+  "schema_version": "1.0",
+  "id": "qwen38-27b-iq3xxs-f16-32k-1x5060ti-32k",
+  "preset": "qwen38-27b-iq3xxs-f16-32k-1x5060ti",
+  "status": "candidate",
+  "provenance": "seed-tested",
+  "context": {
+    "highest_useful_tokens": 32768,
+    "server_effective_tokens": 32768,
+    "server_configured_tokens": 32768,
+    "actual_prompt_tokens": {
+      "retrieval": 28905,
+      "sustained_generation": 23006
+    },
+    "validated_for": "uncached long-context retrieval (sustained visible-output gate not met)"
+  },
+  "evidence": {
+    "checks": {
+      "retrieval_repeats": 2,
+      "sustained_generation_repeats": 2,
+      "prompt_cache_disabled": true,
+      "unique_leading_request_nonce": true,
+      "thinking_disabled_explicitly": false,
+      "visible_final_content_required": true,
+      "sustained_output_tokens": 1536,
+      "minimum_output_fraction": 0.7
+    },
+    "metrics": {
+      "median_prefill_tok_s": 645.776,
+      "median_decode_tok_s": 37.256,
+      "retrieval_decode_tok_s": 42.9,
+      "median_draft_acceptance_rate": 0.593
+    }
+  },
+  "source_receipts": [
+    "data/evidence/receipts/qwen38-27b-iq3xxs-f16-32k-1x5060ti-32k-20260815.json"
+  ],
+  "caveats": [
+    "Retrieval checks passed twice at ~28.9K prompt tokens and the f16 KV route fit in ~14.3GB, but both sustained repeats exhausted the 1536-token output budget in hidden reasoning with no client-visible answer. Capable/experimental, not recommended.",
+    "Measured with the seed cards' core/SM clock locked at 2300 MHz; throughput is specific to that operating point.",
+    "The recommended single-card Qwen3.8 route remains q8 KV at 64K."
+  ]
+}

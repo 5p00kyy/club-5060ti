@@ -1,0 +1,48 @@
+{
+  "schema_version": "1.0",
+  "id": "qwen38-27b-iq3xxs-f16-32k-1x5060ti",
+  "title": "Qwen3.8 27B IQ3_XXS (f16 KV, 32K) on one RTX 5060 Ti 16GB",
+  "status": "experimental",
+  "provenance": "seed-tested",
+  "purpose": "Experimental single-card Qwen3.8 route with f16 KV at 32K, as a quality comparison against the recommended q8 KV 64K route.",
+  "hardware": {
+    "lane": "1x5060ti",
+    "gpu_count": 1,
+    "gpu_model": "NVIDIA GeForce RTX 5060 Ti",
+    "vram_per_gpu_gb": 16
+  },
+  "runtime": {
+    "engine": "llama.cpp",
+    "preset_file": "examples/llamacpp-qwen38-27b-single-5060ti.ini",
+    "preset_section": "Qwen3.8-27B-IQ3_XXS-f16-32k-single-5060ti"
+  },
+  "model": {
+    "id": "Qwen3.8-27B-IQ3_XXS",
+    "family": "Qwen3.8",
+    "architecture": "hybrid",
+    "parameter_class": "27B",
+    "quant": "IQ3_XXS",
+    "source": "unsloth/Qwen3.8-27B-GGUF"
+  },
+  "serving": {
+    "kv_cache_k": "f16",
+    "kv_cache_v": "f16",
+    "batch_size": 512,
+    "ubatch_size": 128,
+    "parallel": 1,
+    "speculation": "draft-mtp (n=2, p-min=0.1)",
+    "thinking": "on"
+  },
+  "profile": "data/benchmark-profiles/high-context.json",
+  "context": {
+    "target_tokens": 32768,
+    "minimum_useful_tokens": 16384
+  },
+  "known_evidence": [
+    "data/evidence/qwen38-27b-iq3xxs-f16-32k-1x5060ti-32k.json"
+  ],
+  "caveats": [
+    "Retrieval fit checks passed and the f16 KV route fit in ~14.3GB, but both sustained runs exhausted the 1536-token output budget in hidden reasoning without reaching the required client-visible output.",
+    "Capable/experimental, not recommended. The q8 KV 64K route is the published single-card Qwen3.8 preset."
+  ]
+}
