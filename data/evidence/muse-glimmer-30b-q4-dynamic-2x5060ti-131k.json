@@ -1,0 +1,41 @@
+{
+  "schema_version": "1.0",
+  "id": "muse-glimmer-30b-q4-dynamic-2x5060ti-131k",
+  "preset": "muse-glimmer-30b-q4-dynamic-2x5060ti",
+  "status": "published",
+  "provenance": "seed-tested",
+  "context": {
+    "highest_useful_tokens": 131072,
+    "server_effective_tokens": 262144,
+    "server_configured_tokens": 524288,
+    "actual_prompt_tokens": {
+      "retrieval": 115358,
+      "sustained_generation": 91752
+    },
+    "validated_for": "uncached long-context retrieval and sustained visible generation"
+  },
+  "evidence": {
+    "checks": {
+      "retrieval_repeats": 2,
+      "sustained_generation_repeats": 2,
+      "prompt_cache_disabled": true,
+      "unique_leading_request_nonce": true,
+      "thinking_disabled_explicitly": false,
+      "visible_final_content_required": true
+    },
+    "metrics": {
+      "median_prefill_tok_s": 646.951,
+      "median_decode_tok_s": 42.283,
+      "retrieval_decode_tok_s": 49.38,
+      "median_draft_acceptance_rate": 0.515
+    }
+  },
+  "source_receipts": [
+    "data/evidence/receipts/muse-glimmer-30b-q4-dynamic-2x5060ti-131k-20260814.json"
+  ],
+  "caveats": [
+    "Validated at 131K effective per-request context on a server configured with ctx-size 524288 and parallel 2.",
+    "Muse produced substantial reasoning content before its final answer. The profile used 512 retrieval output tokens and 1536 sustained output tokens, and required client-visible content.",
+    "131K is the highest tier tested in this bundle, not a maximum-context claim."
+  ]
+}

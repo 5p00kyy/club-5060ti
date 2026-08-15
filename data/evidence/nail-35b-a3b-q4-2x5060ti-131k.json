@@ -1,0 +1,39 @@
+{
+  "schema_version": "1.0",
+  "id": "nail-35b-a3b-q4-2x5060ti-131k",
+  "preset": "nail-35b-a3b-q4-2x5060ti",
+  "status": "published",
+  "provenance": "seed-tested",
+  "context": {
+    "highest_useful_tokens": 131072,
+    "server_effective_tokens": 262144,
+    "server_configured_tokens": 524288,
+    "actual_prompt_tokens": {
+      "retrieval": 115350,
+      "sustained_generation": 91754
+    },
+    "validated_for": "uncached long-context retrieval and sustained generation"
+  },
+  "evidence": {
+    "checks": {
+      "retrieval_repeats": 2,
+      "sustained_generation_repeats": 2,
+      "prompt_cache_disabled": true,
+      "unique_leading_request_nonce": true,
+      "thinking_disabled_explicitly": true
+    },
+    "metrics": {
+      "median_prefill_tok_s": 1579.948,
+      "median_decode_tok_s": 27.806,
+      "retrieval_decode_tok_s": 79.081
+    }
+  },
+  "source_receipts": [
+    "data/evidence/receipts/nail-35b-a3b-q4-2x5060ti-131k-20260814-uncached.json"
+  ],
+  "caveats": [
+    "Validated at 131K effective per-request context on a server configured with ctx-size 524288 and parallel 2.",
+    "This evidence is for the explicitly non-thinking request route. Thinking-enabled behaviour requires separate evidence.",
+    "131K is the highest tier tested in this bundle, not a maximum-context claim."
+  ]
+}

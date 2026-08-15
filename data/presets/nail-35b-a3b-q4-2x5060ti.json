@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "id": "nail-35b-a3b-q4-2x5060ti",
+  "title": "Nail 35B-A3B Q4_K_XL on two RTX 5060 Ti 16GB cards",
+  "status": "recommended",
+  "provenance": "seed-tested",
+  "purpose": "High-context dual-card Nail route with tensor split and built-in MTP.",
+  "hardware": {
+    "lane": "2x5060ti",
+    "gpu_count": 2,
+    "gpu_model": "NVIDIA GeForce RTX 5060 Ti",
+    "vram_per_gpu_gb": 16
+  },
+  "runtime": {
+    "engine": "llama.cpp",
+    "preset_file": "examples/llamacpp-nail-35b-a3b-dual-5060ti.ini",
+    "preset_section": "Nail-35B-A3B-Q4-dual-5060ti"
+  },
+  "model": {
+    "id": "Nail-35B-A3B-Q4",
+    "family": "Qwen3.6",
+    "architecture": "moe",
+    "parameter_class": "35B-A3B",
+    "quant": "Q4_K_XL",
+    "source": "peculiar-ragdoll/Nail-Qwen3.6-35B-A3B-GGUF-MTP"
+  },
+  "serving": {
+    "kv_cache_k": "f16",
+    "kv_cache_v": "f16",
+    "batch_size": 2048,
+    "ubatch_size": 512,
+    "tensor_split": "50,50",
+    "split_mode": "tensor",
+    "parallel": 2,
+    "speculation": "draft-mtp",
+    "thinking": "off",
+    "request_chat_template_kwargs": {
+      "enable_thinking": false
+    }
+  },
+  "profile": "data/benchmark-profiles/high-context.json",
+  "context": {
+    "target_tokens": 131072,
+    "minimum_useful_tokens": 65536
+  },
+  "known_evidence": [
+    "data/results/seed-nail-qwen36-35b-a3b-q4-2x5060ti-20260813.json"
+  ],
+  "caveats": [
+    "The live service exposes 262144 effective tokens per request through ctx-size 524288 with parallel 2. This candidate validates the conservative 131K tier first.",
+    "Existing 32K rows are baseline protocol measurements only. Published recommendation evidence is the 131K profile with unique leading nonces and prompt caching disabled."
+  ]
+}

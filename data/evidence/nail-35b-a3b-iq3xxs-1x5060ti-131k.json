@@ -1,0 +1,47 @@
+{
+  "schema_version": "1.0",
+  "id": "nail-35b-a3b-iq3xxs-1x5060ti-131k",
+  "preset": "nail-35b-a3b-iq3xxs-1x5060ti",
+  "status": "published",
+  "provenance": "seed-tested",
+  "context": {
+    "highest_useful_tokens": 131072,
+    "server_effective_tokens": null,
+    "server_configured_tokens": null,
+    "actual_prompt_tokens": {
+      "retrieval": 115416,
+      "sustained_generation": 91820
+    },
+    "validated_for": "uncached long-context retrieval and sustained generation"
+  },
+  "evidence": {
+    "checks": {
+      "retrieval_repeats": 2,
+      "sustained_generation_repeats": 2,
+      "prompt_cache_disabled": true,
+      "unique_leading_request_nonce": true,
+      "thinking_disabled_explicitly": true,
+      "visible_final_content_required": true,
+      "sustained_output_tokens": 1536,
+      "minimum_output_fraction": 0.7
+    },
+    "metrics": {
+      "median_prefill_tok_s": 827.228,
+      "median_decode_tok_s": 54.839,
+      "retrieval_decode_tok_s": 87.1,
+      "median_draft_acceptance_rate": 0.803
+    }
+  },
+  "source_receipts": [
+    "data/evidence/receipts/nail-35b-a3b-iq3xxs-1x5060ti-131k-20260814-nonthinking-retry.json",
+    "data/results/seed-nail-qwen36-35b-a3b-iq3xxs-131k-q8-1x5060ti-20260813.json"
+  ],
+  "caveats": [
+    "This evidence is for the explicitly non-thinking request route (thinking disabled at the request level). Thinking-enabled behaviour requires separate evidence.",
+    "Retrieval passed twice at ~115.4K prompt tokens; sustained generation passed twice at ~91.8K prompt tokens with client-visible output required.",
+    "An earlier 2026-08-14 profile run passed retrieval but only one of two sustained repeats produced the required visible output; the promoted receipt is the retry profile that passed every check.",
+    "The retry receipt recorded a 131072-token requested route but the endpoint did not expose active/effective server-context metadata; the evidence directly establishes ~115.4K-token retrieval and ~91.8K-token sustained generation.",
+    "131K is the configured profile tier for this route, not a maximum-context claim.",
+    "Measured with the seed cards' core/SM clock locked at 2300 MHz; throughput is specific to that operating point."
+  ]
+}

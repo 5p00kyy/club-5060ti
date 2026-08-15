@@ -1,0 +1,50 @@
+{
+  "schema_version": "1.0",
+  "id": "thinkingcap-qwen36-27b-q6-2x5060ti",
+  "title": "ThinkingCap Qwen3.6 27B Q6_K on two RTX 5060 Ti 16GB cards",
+  "status": "recommended",
+  "provenance": "seed-tested",
+  "purpose": "High-context dual-card ThinkingCap route with built-in MTP and f16 KV.",
+  "hardware": {
+    "lane": "2x5060ti",
+    "gpu_count": 2,
+    "gpu_model": "NVIDIA GeForce RTX 5060 Ti",
+    "vram_per_gpu_gb": 16
+  },
+  "runtime": {
+    "engine": "llama.cpp",
+    "preset_file": "examples/llamacpp-thinkingcap-qwen36-27b-dual-5060ti.ini",
+    "preset_section": "ThinkingCap-Qwen3.6-27B-Q6-dual-5060ti"
+  },
+  "model": {
+    "id": "ThinkingCap-Qwen3.6-27B-Q6_K-MTP",
+    "family": "Qwen3.6",
+    "architecture": "dense",
+    "parameter_class": "27B",
+    "quant": "Q6_K",
+    "source": "protoLabsAI/ThinkingCap-Qwen3.6-27B-MTP-GGUF"
+  },
+  "serving": {
+    "kv_cache_k": "f16",
+    "kv_cache_v": "f16",
+    "batch_size": 4096,
+    "ubatch_size": 1024,
+    "tensor_split": "50,50",
+    "split_mode": "tensor",
+    "parallel": 1,
+    "speculation": "draft-mtp (n=3, p-min=0.1)",
+    "thinking": "on"
+  },
+  "profile": "data/benchmark-profiles/high-context.json",
+  "context": {
+    "target_tokens": 131072,
+    "minimum_useful_tokens": 65536
+  },
+  "known_evidence": [
+    "data/evidence/thinkingcap-qwen36-27b-q6-2x5060ti-131k.json"
+  ],
+  "caveats": [
+    "Evidence is for the thinking-enabled request route, which produces substantial reasoning before its client-visible final answer.",
+    "This preset has one 131K request slot. It is a deep-context route, not a parallel serving recommendation."
+  ]
+}

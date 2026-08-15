@@ -1,0 +1,43 @@
+{
+  "schema_version": "1.0",
+  "id": "thinkingcap-qwen36-27b-iq3m-1x5060ti-64k",
+  "preset": "thinkingcap-qwen36-27b-iq3m-1x5060ti",
+  "status": "published",
+  "provenance": "seed-tested",
+  "context": {
+    "highest_useful_tokens": 65536,
+    "server_effective_tokens": 65536,
+    "server_configured_tokens": 65536,
+    "actual_prompt_tokens": {
+      "retrieval": 57744,
+      "sustained_generation": 45939
+    },
+    "validated_for": "uncached long-context retrieval and sustained visible generation"
+  },
+  "evidence": {
+    "checks": {
+      "retrieval_repeats": 2,
+      "sustained_generation_repeats": 2,
+      "prompt_cache_disabled": true,
+      "unique_leading_request_nonce": true,
+      "thinking_disabled_explicitly": false,
+      "visible_final_content_required": true,
+      "sustained_output_tokens": 2048,
+      "minimum_output_fraction": 0.7
+    },
+    "metrics": {
+      "median_prefill_tok_s": 558.077,
+      "median_decode_tok_s": 25.647,
+      "retrieval_decode_tok_s": 32.589,
+      "median_draft_acceptance_rate": 0.507
+    }
+  },
+  "source_receipts": [
+    "data/evidence/receipts/thinkingcap-qwen36-27b-iq3m-1x5060ti-64k-20260814.json"
+  ],
+  "caveats": [
+    "Validated on one RTX 5060 Ti 16GB with IQ3_M and q8 KV at 64K. The direct dedicated server exposed one request slot.",
+    "ThinkingCap generated substantial reasoning before its client-visible final answer. The profile used 512 retrieval output tokens and 2048 sustained output tokens, and required client-visible content.",
+    "A 131K trial with this route became VRAM-tight and sustained decode fell below the useful-speed floor. 64K is the highest useful tier established here, not a maximum-context claim."
+  ]
+}
