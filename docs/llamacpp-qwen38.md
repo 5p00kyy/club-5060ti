@@ -49,9 +49,9 @@ Preset: `qwen38-27b-iq3xxs-f16-32k-1x5060ti` (experimental). Evidence: `data/evi
 
 Use the same INI with `ctx-size = 32768`, `cache-type-k = f16`, `cache-type-v = f16`. The f16 KV route fit in ~14.3GB and passed two retrieval checks at ~28.9K prompt tokens (~646 tok/s prefill, ~42.9 tok/s retrieval decode), but both sustained runs exhausted the 1536-token output budget in hidden reasoning without reaching the required client-visible answer. Capable/experimental, not recommended; the q8 KV 64K route is the published single-card preset.
 
-## Experimental Route: Dual Card 131K Q6_K
+## Recommended Dual-Card Route: 131K Q6_K
 
-Preset: `qwen38-27b-q6-2x5060ti` (alternative). Evidence: `data/evidence/qwen38-27b-q6-2x5060ti-131k.json` (published).
+Preset: `qwen38-27b-q6-2x5060ti` (recommended). Evidence: `data/evidence/qwen38-27b-q6-2x5060ti-131k.json` (published).
 
 ~~~ini
 [Qwen3.8-27B-Q6-dual-5060ti]
