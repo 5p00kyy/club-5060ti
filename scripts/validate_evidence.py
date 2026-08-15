@@ -80,12 +80,19 @@ def main():
                 errors.append(f"{path}: source receipt is missing: {receipt!r}")
                 continue
             try:
-                forbidden = find_forbidden_receipt_fields(load(receipt_path))
+                receipt_value = load(receipt_path)
+                forbidden = find_forbidden_receipt_fields(receipt_value)
             except Exception as exc:
                 errors.append(f"{path}: source receipt is invalid JSON: {receipt!r}: {exc}")
                 continue
             if forbidden:
                 errors.append(f"{path}: source receipt contains private/raw fields: {receipt!r}: {', '.join(forbidden)}")
+            receipt_preset = receipt_value.get("preset") if isinstance(receipt_value, dict) else None
+            if receipt_preset and receipt_preset != value.get("preset"):
+                errors.append(
+                    f"{path}: source receipt preset mismatch: {receipt!r}: "
+                    f"expected {value.get('preset')!r}, found {receipt_preset!r}"
+                )
     if errors:
         print("\n".join(errors), file=sys.stderr)
         return 1
