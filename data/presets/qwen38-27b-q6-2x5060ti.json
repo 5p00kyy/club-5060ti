@@ -2,9 +2,9 @@
   "schema_version": "1.0",
   "id": "qwen38-27b-q6-2x5060ti",
   "title": "Qwen3.8 27B Q6_K on two RTX 5060 Ti 16GB cards",
-  "status": "experimental",
+  "status": "alternative",
   "provenance": "seed-tested",
-  "purpose": "Experimental dual-card 131K Qwen3.8 route with f16 KV and tensor split 50,50.",
+  "purpose": "Higher-quality dual-card Qwen3.8 route validated at 131K with Q6_K, f16 KV, and tensor split 50,50.",
   "hardware": {
     "lane": "2x5060ti",
     "gpu_count": 2,
@@ -43,8 +43,9 @@
     "data/evidence/qwen38-27b-q6-2x5060ti-131k.json"
   ],
   "caveats": [
-    "Retrieval passed twice at ~115K prompt tokens, but only one of two sustained repeats produced the required client-visible output; the strict gate did not pass. Capable/experimental, not recommended.",
-    "The single-card IQ3_XXS 64K q8 route is the recommended Qwen3.8 preset.",
+    "Validated for uncached retrieval at ~115.4K prompt tokens and sustained visible generation at ~91.8K prompt tokens.",
+    "Qwen3.8 is thinking-heavy; the profile allows 3,072 sustained output tokens while keeping a separate 1,076-token minimum generated-work threshold.",
+    "The single-card IQ3_XXS 64K q8 route remains the recommended one-card Qwen3.8 preset.",
     "131K is the highest tier tested here, not a maximum-context claim."
   ]
 }

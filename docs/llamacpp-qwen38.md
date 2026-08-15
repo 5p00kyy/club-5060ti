@@ -51,7 +51,7 @@ Use the same INI with `ctx-size = 32768`, `cache-type-k = f16`, `cache-type-v = 
 
 ## Experimental Route: Dual Card 131K Q6_K
 
-Preset: `qwen38-27b-q6-2x5060ti` (experimental). Evidence: `data/evidence/qwen38-27b-q6-2x5060ti-131k.json` (candidate).
+Preset: `qwen38-27b-q6-2x5060ti` (alternative). Evidence: `data/evidence/qwen38-27b-q6-2x5060ti-131k.json` (published).
 
 ~~~ini
 [Qwen3.8-27B-Q6-dual-5060ti]

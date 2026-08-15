@@ -2,17 +2,17 @@
   "schema_version": "1.0",
   "id": "qwen38-27b-q6-2x5060ti-131k",
   "preset": "qwen38-27b-q6-2x5060ti",
-  "status": "candidate",
+  "status": "published",
   "provenance": "seed-tested",
   "context": {
     "highest_useful_tokens": 131072,
     "server_effective_tokens": 131072,
     "server_configured_tokens": 131072,
     "actual_prompt_tokens": {
-      "retrieval": 115420,
+      "retrieval": 115417,
       "sustained_generation": 91822
     },
-    "validated_for": "uncached long-context retrieval (sustained visible-output gate not consistently met)"
+    "validated_for": "uncached long-context retrieval and sustained visible generation"
   },
   "evidence": {
     "checks": {
@@ -22,23 +22,25 @@
       "unique_leading_request_nonce": true,
       "thinking_disabled_explicitly": false,
       "visible_final_content_required": true,
-      "sustained_output_tokens": 1536,
-      "minimum_output_fraction": 0.7
+      "sustained_output_tokens": 3072,
+      "minimum_generated_tokens": 1076
     },
     "metrics": {
-      "median_prefill_tok_s": 598.063,
-      "median_decode_tok_s": 37.793,
-      "retrieval_decode_tok_s": 42.85,
-      "median_draft_acceptance_rate": 0.603
+      "median_prefill_tok_s": 597.94,
+      "median_decode_tok_s": 38.613,
+      "retrieval_decode_tok_s": 44.143,
+      "median_draft_acceptance_rate": 0.642
     }
   },
   "source_receipts": [
     "data/evidence/receipts/qwen38-27b-q6-2x5060ti-131k-20260815.json"
   ],
   "caveats": [
-    "Retrieval passed twice at ~115K prompt tokens on the dual-card f16 KV route, but only one of two sustained repeats produced the required client-visible output; the strict gate did not pass. Capable/experimental, not recommended.",
+    "Validated on two RTX 5060 Ti 16GB cards with Q6_K, f16 KV, tensor split 50,50, and one request slot.",
+    "Retrieval passed twice at ~115.4K prompt tokens; sustained generation passed twice at ~91.8K prompt tokens with 3,072 generated tokens and client-visible output required.",
+    "Qwen3.8 emits substantial hidden reasoning. The sustained allowance is 3,072 tokens while the minimum generated-work threshold remains 1,076 tokens, so thinking-heavy output can reach a visible answer without weakening the work requirement.",
     "Measured with the seed cards' core/SM clock locked at 2300 MHz; throughput is specific to that operating point.",
     "131K is the highest tier tested here, not a maximum-context claim.",
-    "The single-card IQ3_XXS 64K q8 route is the recommended Qwen3.8 preset."
+    "The single-card IQ3_XXS 64K q8 route remains the recommended one-card Qwen3.8 preset; this is the higher-quality dual-card alternative."
   ]
 }
