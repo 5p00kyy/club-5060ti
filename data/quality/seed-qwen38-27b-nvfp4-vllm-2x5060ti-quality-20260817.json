@@ -1,0 +1,35 @@
+{
+  "schema_version": "1.0",
+  "id": "seed-qwen38-27b-nvfp4-vllm-2x5060ti-quality-20260817",
+  "timestamp_utc": "2026-08-17T13:15:34Z",
+  "preset": "qwen38-27b-nvfp4-vllm-2x5060ti",
+  "runtime": "vLLM 0.27.2rc1.dev110+gacb0f1dcd",
+  "checks": [
+    {
+      "name": "openai-tool-call",
+      "passed": true,
+      "seconds": 1.167,
+      "expected": {"name": "lookup_weather", "arguments": {"city": "Rockhampton", "units": "celsius"}},
+      "observed": {"name": "lookup_weather", "arguments": {"city": "Rockhampton", "units": "celsius"}, "finish_reason": "tool_calls"}
+    },
+    {
+      "name": "long-context-three-needle-retrieval",
+      "passed": true,
+      "seconds": 40.322,
+      "prompt_tokens": 49125,
+      "completion_tokens": 128,
+      "expected": {"alpha": "PINE-7319", "middle": "CORAL-2846", "omega": "EMBER-9052"},
+      "observed_text": "ALPHA: PINE-7319; MIDDLE: CORAL-2846; OMEGA: EMBER-9052",
+      "notes": "Markers were placed near 8%, 50%, and 92% of the synthetic archive. ignore_eos=true was required because the first raw completion ended immediately with an EOS token."
+    },
+    {
+      "name": "post-gate-health",
+      "passed": true,
+      "observed": "HTTP 200"
+    }
+  ],
+  "caveats": [
+    "This is a bounded smoke gate, not a general quality benchmark.",
+    "The retrieval gate used about 49K prompt tokens; the 118,660-token performance workload verified fit and sustained decode but was not itself a semantic retrieval test."
+  ]
+}

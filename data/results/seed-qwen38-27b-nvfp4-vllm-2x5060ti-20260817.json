@@ -1,0 +1,86 @@
+{
+  "results": [
+    {
+      "schema_version": "1.0",
+      "id": "20260817-qwen38-vllm-122880-long-prefill-median",
+      "timestamp_utc": "2026-08-17T13:15:34Z",
+      "source": {
+        "type": "seed",
+        "label": "Pacey seed 2x RTX 5060 Ti",
+        "notes": "Median of three consecutive deterministic 118,660-token streamed completion runs after one warmup."
+      },
+      "promotion_level": "verified",
+      "tier": "recommended",
+      "hardware": {
+        "lane": "2x5060ti",
+        "gpu_count": 2,
+        "gpu_model": "NVIDIA GeForce RTX 5060 Ti",
+        "vram_per_gpu_gb": 16,
+        "driver": "595.58.03",
+        "cpu": "2x Intel Xeon E5-2680 v4",
+        "host_ram_gb": 128,
+        "inference_ram_gb": 120,
+        "pcie": "both RTX 5060 Ti cards run at x8 in this host",
+        "notes": "SM clocks observed around 2280-2295 MHz; default 170 W power limit."
+      },
+      "runtime": {
+        "engine": "vLLM",
+        "version": "0.27.2rc1.dev110+gacb0f1dcd",
+        "commit": "acb0f1dcd",
+        "build": "pinned vllm-openai image sha256:6b084be85c1806afcb69df24d853ebf240b9f0dfca3eaa2252d0096a46a12c58",
+        "notes": "CUDA compile cache persisted; cached compile time 1.95 s."
+      },
+      "model": {
+        "id": "Qwen3.8-27B-NVFP4",
+        "family": "Qwen3.8",
+        "architecture": "hybrid",
+        "parameter_class": "27B",
+        "quant": "NVFP4",
+        "source": "unsloth/Qwen3.8-27B-NVFP4"
+      },
+      "serving": {
+        "route": "container",
+        "context_tokens": 122880,
+        "batch_size": 2048,
+        "kv_cache_k": "fp8",
+        "kv_cache_v": "fp8",
+        "tensor_parallel": "2",
+        "speculation": {
+          "type": "MTP",
+          "draft_n": 3,
+          "notes": "Native Qwen3.8 MTP head."
+        },
+        "thinking": "on",
+        "launch": "examples/vllm-qwen38-27b-nvfp4.sh",
+        "notes": "max-num-seqs=1; explicit 2500000000-byte KV allocation per GPU; max CUDA graph capture size 4; prefix caching off."
+      },
+      "benchmark": {
+        "prompt_set": "custom",
+        "configured_context_tokens": 122880,
+        "actual_prompt_tokens": 118660,
+        "generated_tokens": 512,
+        "runs": 3,
+        "warmups": 1,
+        "stream": true,
+        "notes": "Runs: prefill 952.497/953.005/952.177 tok/s; decode 67.414/66.988/67.293 tok/s."
+      },
+      "metrics": {
+        "prompt_tok_s": 952.497,
+        "decode_tok_s": 67.293,
+        "wall_seconds": 132.158044,
+        "ttft_seconds": 124.577852,
+        "load_seconds": 131.881,
+        "vram_used_mb": [15613, 15613]
+      },
+      "caveats": [
+        "This is a sustained long-prefill/decode row, not a multi-user throughput test.",
+        "Configured full-context concurrency is one sequence and measured KV capacity is exactly 122,880 tokens.",
+        "The experimental 1,000 tok/s MTP3 prefill target was not reached; larger 4,096-token chunks OOMed under real load."
+      ],
+      "artifacts": [
+        "data/quality/seed-qwen38-27b-nvfp4-vllm-2x5060ti-quality-20260817.json",
+        "examples/vllm-qwen38-27b-nvfp4.sh"
+      ]
+    }
+  ]
+}

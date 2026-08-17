@@ -78,6 +78,12 @@ Best decode results by lane, model, and prompt:
 Long-retrieval rows use a synthetic filler prompt and short-answer retrieval target. Treat them as long-prompt fit/retrieval checks, not sustained decode benchmarks.
 For sustained long-context decode in the 2x5060ti Qwen3.6-27B lane, use the `custom (long-context-generate)` row with `87293` prompt tokens and `742` generated tokens as the practical 96K-class reference. Follow-up 150K+ prompt-token diagnostics could prefill, but decode fell below 1 tok/s, so those runs are not promoted as useful benchmark results.
 
+## 2026-08-17 Qwen3.8 vLLM NVFP4
+
+The recommended vLLM profile uses two cards, 122,880 context, FP8 KV, MTP n=3, a 2,048-token prefill chunk, one sequence, and an explicit 2,500,000,000-byte KV allocation per GPU.
+
+Three consecutive 118,660-prompt-token, 512-output-token runs produced 952.18–953.01 tok/s prefill (952.50 median) and 66.99–67.41 tok/s decode (67.29 median). A tool-call schema gate and a three-marker 49,125-token retrieval gate passed. Larger 4,096-token chunks repeatedly OOMed under real load and are not published as a preset. See `docs/vllm-qwen38.md` and `data/results/seed-qwen38-27b-nvfp4-vllm-2x5060ti-20260817.json`.
+
 ## Single-GPU Presets
 
 Current single-card examples:

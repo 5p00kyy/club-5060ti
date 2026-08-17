@@ -8,7 +8,7 @@ Use one served model name per endpoint and keep it stable in your client config.
 
 | Runtime | Example base URL | Example model name | Notes |
 | --- | --- | --- | --- |
-| vLLM | `http://your-host:8000/v1` | `qwen36-27b-nvfp4-mtp` | Best-tested dual-card OpenAI-compatible serving path. |
+| vLLM | `http://your-host:8000/v1` | `qwen3.8-27b-nvfp4` | Recommended dual-card OpenAI-compatible serving path; 122,880 context and one active sequence. |
 | llama.cpp router | `http://your-host:8080/v1` | `Qwen3.6-27B` | Useful for GGUF presets and model switching. |
 | llama.cpp direct test server | `http://your-host:18080/v1` | `qwen35-9b-mtp-q4-single` | Good for one-off benchmarks; do not leave exposed. |
 
@@ -20,7 +20,7 @@ If a client asks for an API key and your local server does not enforce one, use 
 curl -s http://127.0.0.1:8000/v1/chat/completions \
   -H 'Content-Type: application/json' \
   -d '{
-    "model": "qwen36-27b-nvfp4-mtp",
+    "model": "qwen3.8-27b-nvfp4",
     "messages": [{"role": "user", "content": "Say 5060 Ti ready."}],
     "temperature": 0,
     "max_tokens": 128
@@ -35,7 +35,7 @@ from openai import OpenAI
 client = OpenAI(base_url="http://127.0.0.1:8000/v1", api_key="not-used")
 
 response = client.chat.completions.create(
-    model="qwen36-27b-nvfp4-mtp",
+    model="qwen3.8-27b-nvfp4",
     messages=[{"role": "user", "content": "Say 5060 Ti ready."}],
     temperature=0,
     max_tokens=128,
@@ -52,7 +52,7 @@ Most OpenAI-compatible clients ask for the same pieces under slightly different 
 | --- | --- |
 | API base URL / OpenAI base URL | `http://your-host:8000/v1` for vLLM, or `http://your-host:8080/v1` for llama.cpp |
 | API key | Placeholder if unauthenticated, otherwise your local server key |
-| Model | The served model name, for example `qwen36-27b-nvfp4-mtp` or `Qwen3.6-27B` |
+| Model | The served model name, for example `qwen3.8-27b-nvfp4` or `Qwen3.6-27B` |
 | Chat endpoint | `/v1/chat/completions` |
 | Streaming | Test both on and off; some clients fail only on streaming/tool output |
 | Max output tokens | Start at 4096 for coding; raise to 8192+ for thinking/reasoning models |
@@ -63,7 +63,7 @@ Use an OpenAI-compatible connection:
 
 - API base URL: http://your-host:8000/v1
 - API key: any placeholder if your server does not enforce auth
-- Model: qwen36-27b-nvfp4-mtp or your served model name
+- Model: qwen3.8-27b-nvfp4 or your served model name
 
 ## Coding Agents
 
@@ -103,10 +103,10 @@ Example `opencode.json`:
         "apiKey": "not-used"
       },
       "models": {
-        "qwen36-27b-nvfp4-mtp": {
-          "name": "Qwen3.6 27B NVFP4/MTP",
+        "qwen3.8-27b-nvfp4": {
+          "name": "Qwen3.8 27B NVFP4/MTP",
           "limit": {
-            "context": 200000,
+            "context": 122880,
             "output": 8192
           }
         }
@@ -130,7 +130,7 @@ Example `opencode.json`:
       }
     }
   },
-  "model": "club5060ti-vllm/qwen36-27b-nvfp4-mtp"
+  "model": "club5060ti-vllm/qwen3.8-27b-nvfp4"
 }
 ~~~
 
@@ -151,7 +151,7 @@ Practical starting config:
 Provider: OpenAI-compatible / custom OpenAI
 Base URL: http://your-host:8000/v1
 API key: not-used
-Model: qwen36-27b-nvfp4-mtp
+Model: qwen3.8-27b-nvfp4
 Max output tokens: 4096-8192
 Streaming: on, then retest off if tool calls disconnect
 ~~~

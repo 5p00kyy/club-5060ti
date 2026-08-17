@@ -93,7 +93,7 @@ These older routes are useful source material while they are re-run or mapped to
 | upstream llama.cpp | Qwopus3.6 27B / 35B-A3B | Seed recipe | Fine-tune merge results. Capable tier; interesting alternative but not primary recs. |
 | BeeLlama | Qwen3.6 27B / 35B-A3B DFlash | Exploratory seed rows | Single-card 27B Q3_K_XL 8K DFlash works; single-card 35B-A3B DFlash improves code-shaped output. Alternative engine, capable tier. |
 | ik_llama.cpp | Qwen3.6 27B IQ4/IQ5 | Exploratory fit check | Single-card 105k q4-KV shape fits; clean benchmark rows need chat-template/no-thinking cleanup. |
-| vLLM | Qwen3.6 27B NVFP4/MTP | Comparison target | Historical notes exist, but this needs current benchmark JSON before promotion. |
+| vLLM | Qwen3.8 27B NVFP4/MTP | Published evidence | Recommended OpenAI-compatible dual-card lane: 122,880 context, FP8 KV, MTP n=3, 952.50 tok/s median long prefill and 67.29 tok/s median decode. See docs/vllm-qwen38.md. |
 
 ## Results And Data
 
@@ -169,7 +169,8 @@ For a new preset candidate, use the appropriate workflow profile and attach the 
 - docs/hardware-lanes.md - how 1x, 2x, multi-5060 Ti, and other CUDA GPU results are separated
 - docs/gpu-compatibility.md - Blackwell baseline, mixed-GPU, and other CUDA architecture notes
 - docs/single-5060ti.md - conservative single-card starter configs
-- docs/vllm-qwen36.md - vLLM NVFP4/MTP notes
+- docs/vllm-qwen38.md - current Qwen3.8 vLLM NVFP4/MTP preset and evidence
+- docs/vllm-qwen36.md - historical Qwen3.6 vLLM notes
 - docs/beellama-dflash.md - BeeLlama DFlash first-pass results and failure notes
 - docs/ik-llama-cpp.md - ik_llama.cpp first-pass fit and protocol notes
 - docs/llamacpp-qwen36.md - llama.cpp Qwen3.6 27B MTP GGUF route
