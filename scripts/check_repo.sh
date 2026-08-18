@@ -8,6 +8,8 @@ python3 scripts/validate_presets.py data/presets
 python3 scripts/validate_evidence.py data/evidence
 python3 scripts/tests/test_high_context_profile.py
 python3 scripts/tests/test_context_ladder.py
+python3 scripts/tests/test_openai_bench.py
+python3 scripts/tests/test_stack_quality.py
 python3 scripts/build_preset_data.py
 python3 scripts/build_site_data.py
 
