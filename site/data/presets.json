@@ -556,6 +556,7 @@
           "minimum_useful_tokens": 65536
         },
         "known_evidence": [
+          "data/evidence/qwen38-27b-nvfp4-vllm-2x5060ti-122k.json",
           "data/results/seed-qwen38-27b-nvfp4-vllm-2x5060ti-20260817.json",
           "data/quality/seed-qwen38-27b-nvfp4-vllm-2x5060ti-quality-20260817.json"
         ],
@@ -567,10 +568,60 @@
         ],
         "_source_file": "data/presets/qwen38-27b-nvfp4-vllm-2x5060ti.json"
       },
-      "published_evidence": [],
+      "published_evidence": [
+        {
+          "schema_version": "1.0",
+          "id": "qwen38-27b-nvfp4-vllm-2x5060ti-122k",
+          "preset": "qwen38-27b-nvfp4-vllm-2x5060ti",
+          "status": "published",
+          "provenance": "seed-tested",
+          "context": {
+            "highest_useful_tokens": 122880,
+            "server_effective_tokens": 122880,
+            "server_configured_tokens": 122880,
+            "actual_prompt_tokens": {
+              "retrieval": 49125,
+              "sustained_generation": 118660
+            },
+            "validated_for": "OpenAI-compatible tool calls, long-context marker retrieval, and sustained streamed generation"
+          },
+          "evidence": {
+            "checks": {
+              "retrieval_repeats": 1,
+              "sustained_generation_repeats": 3,
+              "prompt_cache_disabled": true,
+              "unique_leading_request_nonce": false,
+              "thinking_disabled_explicitly": false,
+              "visible_final_content_required": true,
+              "sustained_output_tokens": 512,
+              "minimum_generated_tokens": 512,
+              "tool_call_schema_passed": true
+            },
+            "metrics": {
+              "median_prefill_tok_s": 952.497,
+              "median_decode_tok_s": 67.293,
+              "median_ttft_seconds": 124.578,
+              "median_wall_seconds": 132.158,
+              "vram_used_mb_per_gpu": 15613
+            }
+          },
+          "source_receipts": [
+            "data/results/seed-qwen38-27b-nvfp4-vllm-2x5060ti-20260817.json",
+            "data/quality/seed-qwen38-27b-nvfp4-vllm-2x5060ti-quality-20260817.json"
+          ],
+          "caveats": [
+            "Full-context concurrency is one sequence. This is a high-context single-request profile, not multi-user throughput evidence.",
+            "The 49,125-token marker-retrieval check passed once; the three sustained runs established speed repeatability at 118,660 prompt tokens and 512 generated tokens.",
+            "NVFP4 weights and FP8 KV are not quality-equivalent to the separate Qwen3.8 Q6_K/f16-KV llama.cpp preset.",
+            "The explicit 2.50 GB KV allocation per GPU is required with the persistent vLLM compile cache; automatic sizing over-allocated KV and could OOM on a real long prefill.",
+            "The experimental 1,000 tok/s prefill target was not reached. The stable retained result is 952.50 tok/s median prefill and 67.29 tok/s median decode."
+          ],
+          "_source_file": "data/evidence/qwen38-27b-nvfp4-vllm-2x5060ti-122k.json"
+        }
+      ],
       "candidate_evidence": [],
       "archived_evidence": [],
-      "ready_for_default": false
+      "ready_for_default": true
     },
     {
       "preset": {

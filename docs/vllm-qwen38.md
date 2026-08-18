@@ -62,7 +62,27 @@ NVFP4 weights with FP8 KV are not quality-equivalent to the separate llama.cpp Q
 - vLLM: much faster prefill, MTP3 decode, OpenAI-compatible tool serving
 - llama.cpp: GGUF portability and the separately verified Q6_K/f16-KV route
 
+## Repeatable harness coverage
+
+The shared OpenAI-compatible runner supports this lane with SSE streaming, authenticated requests, model-profile discovery, and a real function-call contract. It records actual OpenAI usage and clearly labels client observations; it does **not** call prompt tokens divided by TTFT server prefill throughput. With an optional vLLM Prometheus endpoint, isolated request deltas from `request_prefill_kv_computed_tokens`, `request_prefill_time_seconds`, `request_generation_tokens`, `request_decode_time_seconds`, and `time_to_first_token_seconds` provide server prefill, decode, and TTFT metrics.
+
+```bash
+VLLM_API_KEY=... python3 scripts/run_openai_bench.py \
+  --base-url http://127.0.0.1:8092/v1 \
+  --api-key "$VLLM_API_KEY" \
+  --model qwen3.8-27b-nvfp4 \
+  --engine vLLM --stream --cache-policy no-reuse \
+  --preset qwen38-27b-nvfp4-vllm-2x5060ti \
+  --context-tokens 122880 --quant NVFP4 \
+  --prompt-set short-chat --prompt-set code-generate --prompt-set tool-call \
+  --runs 3 --warmups 1 \
+  --output .local/bench/qwen38-vllm-openai.json
+```
+
+The result links the canonical preset and `/v1/models` `max_model_len` when vLLM exposes it. `--cache-policy no-reuse` adds a fresh per-run nonce at the start of long-context prompts, sends `cache_prompt=false` for compatible servers, and emits an explicit cache-policy header. Long-context calibration is bounded by server-reported `usage.prompt_tokens`; use `--min-prompt-tokens` or `--target-prompt-tokens` when a target is required. Client observations remain distinct from server timings. For isolated server prefill, decode, and TTFT deltas, add `--metrics-url http://127.0.0.1:8092/metrics`; concurrent traffic can contaminate process-wide Prometheus deltas, so comparison runs must use an otherwise idle endpoint.
+
 Evidence:
 
+- `data/evidence/qwen38-27b-nvfp4-vllm-2x5060ti-122k.json`
 - `data/results/seed-qwen38-27b-nvfp4-vllm-2x5060ti-20260817.json`
 - `data/quality/seed-qwen38-27b-nvfp4-vllm-2x5060ti-quality-20260817.json`

@@ -29,6 +29,7 @@ PROMPT_SETS = {
     "short-chat",
     "code-generate",
     "agent-tool",
+    "tool-call",
     "long-retrieval",
     "vision-smoke",
     "legacy",
@@ -118,15 +119,27 @@ def validate_result(result, label, allow_private=False):
 
     benchmark = result.get("benchmark") or {}
     require(benchmark.get("prompt_set") in PROMPT_SETS, errors, f"{label}: benchmark.prompt_set is invalid")
+    if benchmark.get("cache_policy") is not None:
+        require(benchmark.get("cache_policy") in {"server-default", "no-reuse"}, errors, f"{label}: benchmark.cache_policy is invalid")
+    if benchmark.get("prompt_set") == "tool-call":
+        require(benchmark.get("tool_call_validated") is True, errors, f"{label}: tool-call rows must be validated")
+    calibration = benchmark.get("prompt_calibration") or {}
+    if calibration:
+        require(calibration.get("method") == "server-reported usage.prompt_tokens", errors, f"{label}: unsupported prompt calibration method")
 
     serving = result.get("serving") or {}
-    for field in ("context_tokens", "batch_size", "ubatch_size"):
+    for field in ("context_tokens", "batch_size", "ubatch_size", "server_max_model_len"):
         if field in serving:
             require(isinstance(serving[field], int), errors, f"{label}: serving.{field} must be an integer")
             require(serving[field] > 0, errors, f"{label}: serving.{field} must be greater than 0")
 
+    if serving.get("context_tokens") and serving.get("server_max_model_len"):
+        require(serving["context_tokens"] <= serving["server_max_model_len"], errors, f"{label}: serving.context_tokens exceeds server_max_model_len")
+    benchmark_server_max = benchmark.get("server_max_context_tokens")
+    if benchmark_server_max is not None:
+        require(isinstance(benchmark_server_max, int) and benchmark_server_max > 0, errors, f"{label}: benchmark.server_max_context_tokens must be positive")
     metrics = result.get("metrics") or {}
-    metric_names = {"prompt_tok_s", "decode_tok_s", "end_to_end_tok_s", "wall_seconds", "ttft_seconds", "load_seconds", "quality_score"}
+    metric_names = {"prompt_tok_s", "decode_tok_s", "end_to_end_tok_s", "wall_seconds", "ttft_seconds", "client_ttft_seconds", "client_decode_tok_s", "client_end_to_end_tok_s", "server_prefill_tok_s", "server_decode_tok_s", "server_ttft_seconds", "load_seconds", "quality_score"}
     for name in metric_names:
         if name in metrics and metrics[name] is not None:
             require(isinstance(metrics[name], (int, float)), errors, f"{label}: metrics.{name} must be numeric")
@@ -192,6 +205,8 @@ def setup_group_key(result):
         benchmark.get("generated_tokens"),
         benchmark.get("warmups"),
         benchmark.get("stream"),
+        benchmark.get("cache_policy"),
+        benchmark.get("preset_id"),
         result.get("promotion_level"),
         (result.get("source") or {}).get("type"),
         (result.get("source") or {}).get("label"),

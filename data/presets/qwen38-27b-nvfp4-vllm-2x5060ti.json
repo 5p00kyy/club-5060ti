@@ -43,6 +43,7 @@
     "minimum_useful_tokens": 65536
   },
   "known_evidence": [
+    "data/evidence/qwen38-27b-nvfp4-vllm-2x5060ti-122k.json",
     "data/results/seed-qwen38-27b-nvfp4-vllm-2x5060ti-20260817.json",
     "data/quality/seed-qwen38-27b-nvfp4-vllm-2x5060ti-quality-20260817.json"
   ],

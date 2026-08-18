@@ -152,6 +152,10 @@
         },
         "notes": {
           "type": "string"
+        },
+        "server_max_context_tokens": {
+          "type": "integer",
+          "minimum": 1
         }
       },
       "additionalProperties": false
@@ -221,6 +225,10 @@
         },
         "notes": {
           "type": "string"
+        },
+        "server_max_model_len": {
+          "type": "integer",
+          "minimum": 1
         }
       },
       "additionalProperties": false
@@ -231,7 +239,7 @@
       "properties": {
         "prompt_set": {
           "type": "string",
-          "enum": ["short-chat", "code-generate", "agent-tool", "long-retrieval", "vision-smoke", "legacy", "custom"]
+          "enum": ["short-chat", "code-generate", "agent-tool", "tool-call", "long-retrieval", "vision-smoke", "legacy", "custom"]
         },
         "configured_context_tokens": {
           "type": "integer"
@@ -255,7 +263,22 @@
         },
         "notes": {
           "type": "string"
-        }
+        },
+        "preset_id": {"type": "string"},
+        "cache_policy": {"type": "string", "enum": ["server-default", "no-reuse"]},
+        "run_nonce": {"type": "string"},
+        "server_max_context_tokens": {"type": "integer", "minimum": 1},
+        "prompt_calibration": {
+          "type": "object",
+          "properties": {
+            "method": {"type": "string"},
+            "target_tokens": {"type": "integer", "minimum": 1},
+            "tolerance_tokens": {"type": "integer", "minimum": 0},
+            "filler_lines": {"type": "integer", "minimum": 1}
+          },
+          "additionalProperties": false
+        },
+        "tool_call_validated": {"type": "boolean"}
       },
       "additionalProperties": false
     },
@@ -277,6 +300,12 @@
         "ttft_seconds": {
           "type": "number"
         },
+        "client_ttft_seconds": {"type": "number"},
+        "client_decode_tok_s": {"type": "number"},
+        "client_end_to_end_tok_s": {"type": "number"},
+        "server_prefill_tok_s": {"type": "number"},
+        "server_decode_tok_s": {"type": "number"},
+        "server_ttft_seconds": {"type": "number"},
         "load_seconds": {
           "type": "number"
         },
