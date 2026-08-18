@@ -1,0 +1,140 @@
+{
+  "schema_version": "2.0",
+  "id": "seed-qwen38-stack-comparison-quality-20260818",
+  "timestamp_utc": "2026-08-18T00:00:00Z",
+  "status": "reviewed",
+  "suite": {
+    "id": "qwen38-stack-quality",
+    "version": "2.0",
+    "evidence_semantics_version": "2.0",
+    "total_cases_per_stack": 68,
+    "grader": "deterministic answer, completion-contract, JSON, privacy, tool, and marker checks; no LLM judge",
+    "raw_responses_published": false
+  },
+  "comparison": {
+    "scope": "matched complete serving-stack comparison, not quantization-only proof",
+    "model_family": "Qwen3.8 27B",
+    "hardware_lane": "2x RTX 5060 Ti 16GB",
+    "one_stack_loaded_at_a_time": true,
+    "active_request_slots": 1,
+    "temperature": 0.0,
+    "thinking_temperature": 1.0,
+    "seed": 1234,
+    "thinking_seeds": [2234, 2235],
+    "repeats": 2,
+    "thinking_repeats": 2,
+    "long_context_cache_policy": "no reuse; fresh nonce per request",
+    "generated_code_execution": false
+  },
+  "stacks": [
+    {
+      "id": "vllm-nvfp4-fp8kv-mtp3-v2",
+      "runtime": "vLLM 0.27.2rc1.dev110+gacb0f1dcd",
+      "model": "Qwen3.8 27B NVFP4",
+      "weights": "NVFP4",
+      "kv_cache": "FP8",
+      "serving": "tensor parallel 2; MTP3; max batched tokens 2048; max sequences 1; context 122880",
+      "summary": {
+        "answer_correct": 65,
+        "completion_contract": 64,
+        "combined_exact_contract_pass": 61,
+        "total": 68
+      },
+      "by_category": {
+        "arithmetic": {"answer_correct": 6, "completion_contract": 6, "combined_exact_contract_pass": 6, "total": 6},
+        "code_reasoning": {"answer_correct": 8, "completion_contract": 8, "combined_exact_contract_pass": 8, "total": 8},
+        "instruction": {"answer_correct": 2, "completion_contract": 4, "combined_exact_contract_pass": 2, "total": 4},
+        "knowledge": {"answer_correct": 6, "completion_contract": 6, "combined_exact_contract_pass": 6, "total": 6},
+        "logic": {"answer_correct": 4, "completion_contract": 4, "combined_exact_contract_pass": 4, "total": 4},
+        "long_context": {"answer_correct": 10, "completion_contract": 6, "combined_exact_contract_pass": 6, "total": 10},
+        "math": {"answer_correct": 4, "completion_contract": 4, "combined_exact_contract_pass": 4, "total": 4},
+        "robustness_privacy": {"answer_correct": 4, "completion_contract": 4, "combined_exact_contract_pass": 4, "total": 4},
+        "structured_output": {"answer_correct": 4, "completion_contract": 4, "combined_exact_contract_pass": 4, "total": 4},
+        "thinking_reasoning": {"answer_correct": 15, "completion_contract": 16, "combined_exact_contract_pass": 15, "total": 16},
+        "tool_call": {"answer_correct": 2, "completion_contract": 2, "combined_exact_contract_pass": 2, "total": 2}
+      }
+    },
+    {
+      "id": "llamacpp-q6-f16kv-mtp2-v2",
+      "runtime": "llama.cpp build 10451, commit 10bf611e5",
+      "model": "Qwen3.8 27B Q6_K",
+      "weights": "Q6_K",
+      "kv_cache": "f16",
+      "serving": "tensor split 50,50; draft-MTP2; p-min 0.1; parallel 1; batch 2048; ubatch 512; context 131072",
+      "summary": {
+        "answer_correct": 66,
+        "completion_contract": 68,
+        "combined_exact_contract_pass": 66,
+        "total": 68
+      },
+      "by_category": {
+        "arithmetic": {"answer_correct": 6, "completion_contract": 6, "combined_exact_contract_pass": 6, "total": 6},
+        "code_reasoning": {"answer_correct": 8, "completion_contract": 8, "combined_exact_contract_pass": 8, "total": 8},
+        "instruction": {"answer_correct": 2, "completion_contract": 4, "combined_exact_contract_pass": 2, "total": 4},
+        "knowledge": {"answer_correct": 6, "completion_contract": 6, "combined_exact_contract_pass": 6, "total": 6},
+        "logic": {"answer_correct": 4, "completion_contract": 4, "combined_exact_contract_pass": 4, "total": 4},
+        "long_context": {"answer_correct": 10, "completion_contract": 10, "combined_exact_contract_pass": 10, "total": 10},
+        "math": {"answer_correct": 4, "completion_contract": 4, "combined_exact_contract_pass": 4, "total": 4},
+        "robustness_privacy": {"answer_correct": 4, "completion_contract": 4, "combined_exact_contract_pass": 4, "total": 4},
+        "structured_output": {"answer_correct": 4, "completion_contract": 4, "combined_exact_contract_pass": 4, "total": 4},
+        "thinking_reasoning": {"answer_correct": 16, "completion_contract": 16, "combined_exact_contract_pass": 16, "total": 16},
+        "tool_call": {"answer_correct": 2, "completion_contract": 2, "combined_exact_contract_pass": 2, "total": 2}
+      }
+    }
+  ],
+  "failure_diagnostics": {
+    "shared_answer_failures": [
+      {
+        "case_id": "instruction_no_e",
+        "records_per_stack": 2,
+        "stacks": "both",
+        "answer_correct": false,
+        "completion_contract": true,
+        "explanation": "Both stacks returned contract-shaped responses, but they violated the no-letter-e answer constraint."
+      }
+    ],
+    "vllm_answer_failures": [
+      {
+        "case_id": "thinking_python",
+        "records": 1,
+        "answer_correct": false,
+        "completion_contract": true,
+        "explanation": "The exact answer was wrong (expected 31; returned 28) while the FINAL-only output contract held."
+      }
+    ],
+    "vllm_formatting_only_failures": {
+      "records": 4,
+      "case_ids": ["context_8000", "context_32000", "context_96000", "context_96000"],
+      "answer_correct": 4,
+      "completion_contract": 0,
+      "explanation": "The three-marker arrays were correct, but the responses were JSON-fenced rather than bare JSON."
+    }
+  },
+  "long_context": {
+    "answer_correct": "10/10 per stack",
+    "combined_exact_contract_pass": {"vllm": "6/10", "llamacpp": "10/10"},
+    "actual_prompt_tokens_are_authoritative": true,
+    "bands": [
+      {"target_tokens": 8000, "vllm_actual_prompt_tokens": [8003, 8003], "llamacpp_actual_prompt_tokens": [8003, 8005], "answer_correct": "2/2 each"},
+      {"target_tokens": 32000, "vllm_actual_prompt_tokens": [32012, 32013], "llamacpp_actual_prompt_tokens": [32006, 32012], "answer_correct": "2/2 each"},
+      {"target_tokens": 64000, "vllm_actual_prompt_tokens": [64005, 64007], "llamacpp_actual_prompt_tokens": [64003, 64004], "answer_correct": "2/2 each"},
+      {"target_tokens": 96000, "vllm_actual_prompt_tokens": [95998, 96014], "llamacpp_actual_prompt_tokens": [95996, 95998], "answer_correct": "2/2 each"},
+      {"target_tokens": 115000, "vllm_actual_prompt_tokens": [115007, 115008], "llamacpp_actual_prompt_tokens": [115006, 115008], "answer_correct": "2/2 each"}
+    ],
+    "interpretation": "Both stacks were answer-correct on all 10 long-context marker cases at closely matched actual prompt-token counts; this is marker retrieval evidence, not a maximum-context or sustained-throughput claim."
+  },
+  "quality_policy": {
+    "thinking_enabled_for": "arithmetic, math, logic, code reasoning, knowledge, and dedicated reasoning cases",
+    "thinking_disabled_for": "contract-only and long-context cases",
+    "thinking_max_tokens": 8192,
+    "matched_cap_applied_to_both_stacks": true,
+    "diagnostic_semantics": "answer_correct and completion_contract are independent; combined_exact_contract_pass requires both"
+  },
+  "caveats": [
+    "This is evidence about two retained complete serving stacks: weights, KV precision, engine/runtime, and speculation all change together.",
+    "The exact totals are bounded contract evidence and regression signals, not a broad model-quality score.",
+    "The harness output caps can cause a required answer or marker to be absent even when a response is otherwise informative; no cap was silently converted into a pass.",
+    "Do not infer NVFP4-versus-Q6_K quality attribution from this comparison.",
+    "Complete-stack-not-quant-only caveat: this does not isolate weight quantization from runtime, KV type, engine, or speculative decoding."
+  ]
+}

@@ -62,6 +62,8 @@ NVFP4 weights with FP8 KV are not quality-equivalent to the separate llama.cpp Q
 - vLLM: much faster prefill, MTP3 decode, OpenAI-compatible tool serving
 - llama.cpp: GGUF portability and the separately verified Q6_K/f16-KV route
 
+The matched V2 68-case quality run is documented in [`docs/qwen38-stack-quality-comparison-20260818.md`](qwen38-stack-quality-comparison-20260818.md), with compact evidence in [`data/quality/seed-qwen38-stack-comparison-quality-20260818.json`](../data/quality/seed-qwen38-stack-comparison-quality-20260818.json). It reports answer correctness, completion-contract shape, and combined exact-contract passes separately. This compares the retained stacks as complete serving recipes; it is not quantization-only proof.
+
 ## Repeatable harness coverage
 
 The shared OpenAI-compatible runner supports this lane with SSE streaming, authenticated requests, model-profile discovery, and a real function-call contract. It records actual OpenAI usage and clearly labels client observations; it does **not** call prompt tokens divided by TTFT server prefill throughput. With an optional vLLM Prometheus endpoint, isolated request deltas from `request_prefill_kv_computed_tokens`, `request_prefill_time_seconds`, `request_generation_tokens`, `request_decode_time_seconds`, and `time_to_first_token_seconds` provide server prefill, decode, and TTFT metrics.
@@ -86,3 +88,4 @@ Evidence:
 - `data/evidence/qwen38-27b-nvfp4-vllm-2x5060ti-122k.json`
 - `data/results/seed-qwen38-27b-nvfp4-vllm-2x5060ti-20260817.json`
 - `data/quality/seed-qwen38-27b-nvfp4-vllm-2x5060ti-quality-20260817.json`
+- `data/quality/seed-qwen38-stack-comparison-quality-20260818.json` (matched V2 comparison)

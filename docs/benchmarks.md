@@ -84,6 +84,10 @@ The recommended vLLM profile uses two cards, 122,880 context, FP8 KV, MTP n=3, a
 
 Three consecutive 118,660-prompt-token, 512-output-token runs produced 952.18–953.01 tok/s prefill (952.50 median) and 66.99–67.41 tok/s decode (67.29 median). A tool-call schema gate and a three-marker 49,125-token retrieval gate passed. Larger 4,096-token chunks repeatedly OOMed under real load and are not published as a preset. See `docs/vllm-qwen38.md` and `data/results/seed-qwen38-27b-nvfp4-vllm-2x5060ti-20260817.json`.
 
+## 2026-08-18 Qwen3.8 matched stack quality — V2
+
+The matched V2 68-case run reports separate measures: vLLM NVFP4/FP8-KV/MTP3 reached **65/68 answer-correct**, **64/68 completion-contract**, and **61/68 combined exact-contract**; llama.cpp Q6_K/f16-KV/draft-MTP2 reached **66/68**, **68/68**, and **66/68** respectively. Both stacks were answer-correct on all 10 long-context marker checks at closely matched actual prompt-token counts. See the [comparison note](qwen38-stack-quality-comparison-20260818.md) and [compact V2 evidence](../data/quality/seed-qwen38-stack-comparison-quality-20260818.json). This is complete serving-stack evidence, not quantization-only proof; the bounded caps and contracts make it a regression signal, not a broad model-quality score.
+
 ## Single-GPU Presets
 
 Current single-card examples:

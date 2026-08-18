@@ -26,6 +26,7 @@ The seed system covers 1x and 2x RTX 5060 Ti lanes. The project also welcomes 3x
 | Other CUDA GPUs | You want to adapt the recipes to non-5060 Ti or mixed-architecture NVIDIA setups. | docs/gpu-compatibility.md |
 | Results explorer | You want to compare benchmark receipts, filter by tier, and inspect serving configs. | https://5p00kyy.github.io/club-5060ti/ |
 | Benchmark protocol | You want to submit or compare a result without mixing methods. | docs/benchmark-protocol.md |
+| Qwen3.8 stack quality comparison | You want the matched V2 68-case NVFP4/vLLM versus Q6_K/llama.cpp evidence, with separate answer, completion-contract, and combined exact-contract totals. | [Comparison note](docs/qwen38-stack-quality-comparison-20260818.md) |
 | Preset and evidence workflow | You want to test a preset without turning every raw run into a public result. | docs/preset-evidence-workflow.md |
 | Submit a result | You want a quick structured contribution path. | docs/community-result-template.md |
 
@@ -171,6 +172,8 @@ For a new preset candidate, use the appropriate workflow profile and attach the 
 - docs/gpu-compatibility.md - Blackwell baseline, mixed-GPU, and other CUDA architecture notes
 - docs/single-5060ti.md - conservative single-card starter configs
 - docs/vllm-qwen38.md - current Qwen3.8 vLLM NVFP4/MTP preset and evidence
+- docs/qwen38-stack-quality-comparison-20260818.md - matched Qwen3.8 V2 serving-stack quality evidence and caveats
+- data/quality/seed-qwen38-stack-comparison-quality-20260818.json - compact sanitized V2 quality evidence
 - docs/vllm-qwen36.md - historical Qwen3.6 vLLM notes
 - docs/beellama-dflash.md - BeeLlama DFlash first-pass results and failure notes
 - docs/ik-llama-cpp.md - ik_llama.cpp first-pass fit and protocol notes

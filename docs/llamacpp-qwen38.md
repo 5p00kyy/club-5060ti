@@ -81,9 +81,11 @@ reasoning = on
 Measured on the seed dual-card lane with f16 KV and tensor split 50,50 at 131K:
 
 - Two uncached retrieval checks passed at ~115.4K prompt tokens (~598 tok/s prefill).
-- Only one of two sustained repeats produced the required client-visible output (~37.8 tok/s decode); the strict gate did not pass.
+- Two sustained repeats passed at ~91.8K prompt tokens with 3,072 generated tokens and client-visible output (~38.6 tok/s median decode, MTP acceptance 0.642).
 - 131K is the highest tier tested here, not a maximum-context claim.
 
 ## Measurement Caveats
+
+The matched V2 68-case serving-stack quality comparison against the retained vLLM NVFP4 route is documented in [`qwen38-stack-quality-comparison-20260818.md`](qwen38-stack-quality-comparison-20260818.md), with compact evidence in [`data/quality/seed-qwen38-stack-comparison-quality-20260818.json`](../data/quality/seed-qwen38-stack-comparison-quality-20260818.json). It reports answer correctness, completion-contract shape, and combined exact-contract passes separately. It is a complete-stack comparison, not quantization-only proof.
 
 All Qwen3.8 seed runs were text-only (no image projector) and measured with the seed cards' core/SM clock locked at 2300 MHz; throughput figures are specific to that operating point. See docs/hardware.md for the full seed baseline.
