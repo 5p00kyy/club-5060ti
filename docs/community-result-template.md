@@ -25,7 +25,7 @@ Use this template directly in a GitHub issue for fast submissions. Raw issue rep
 
 ## Runtime & Model
 
-- Runtime/engine:
+- Runtime/engine: (llama.cpp / ik_llama.cpp / BeeLlama / vLLM / SGLang / Ollama / other)
 - Runtime version or commit:
 - Build flags (if known):
 - Model id:

@@ -736,7 +736,7 @@ def main():
     parser.add_argument("--inference-ram-gb", type=float, default=None)
     parser.add_argument("--pcie", default="")
     parser.add_argument("--hardware-notes", default="")
-    parser.add_argument("--engine", default="llama.cpp", choices=["llama.cpp", "ik_llama.cpp", "BeeLlama", "vLLM", "SGLang", "other"])
+    parser.add_argument("--engine", default="llama.cpp", choices=["llama.cpp", "ik_llama.cpp", "BeeLlama", "vLLM", "SGLang", "Ollama", "other"])
     parser.add_argument("--runtime-version", default="")
     parser.add_argument("--runtime-commit", default="")
     parser.add_argument("--runtime-build", default="")

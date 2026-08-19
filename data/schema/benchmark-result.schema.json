@@ -104,7 +104,7 @@
       "properties": {
         "engine": {
           "type": "string",
-          "enum": ["llama.cpp", "ik_llama.cpp", "BeeLlama", "vLLM", "SGLang", "other"]
+          "enum": ["llama.cpp", "ik_llama.cpp", "BeeLlama", "vLLM", "SGLang", "Ollama", "other"]
         },
         "version": {
           "type": "string"

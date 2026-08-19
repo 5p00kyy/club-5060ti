@@ -21,7 +21,8 @@ Primary engine lanes:
 - upstream llama.cpp;
 - ik_llama.cpp;
 - BeeLlama;
-- vLLM.
+- vLLM;
+- Ollama (including its bundled llama.cpp backend; keep it distinct from raw llama.cpp CLI/server rows).
 
 ## Required Fields
 
@@ -108,8 +109,11 @@ Prioritize missing benchmark rows that are most useful for current 16GB and dual
 | --- | --- |
 | exploratory | local experiment, useful but incomplete |
 | recipe | reproducible launch and basic smoke passed |
-| benchmark | schema-complete speed result with protocol fields |
-| verified | repeated run or community reproduction on comparable hardware |
+| benchmark | schema-complete, protocol-complete speed result with the measured setup and caveats recorded |
+| verified | independently reproduced by a maintainer or another comparable community run; community submission alone is not verification |
 | deprecated | retained for history but hidden from headline views |
+
+`recommended` is a separate curation label, not a benchmark promotion level: it is
+reserved for maintainer-selected recipes and is never implied by a successful run.
 
 The site should default to recipe, benchmark, and verified results. Exploratory and deprecated data should be visible only when a user enables it.

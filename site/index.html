@@ -1073,6 +1073,15 @@
       "'": '&#39;'
     })[char]);
 
+    const safeHttpUrl = (value) => {
+      try {
+        const url = new URL(String(value || ''));
+        return ['http:', 'https:'].includes(url.protocol) ? url.href : '';
+      } catch {
+        return '';
+      }
+    };
+
     const laneLabel = (lane) => ({
       '1x5060ti': '1× 5060 Ti',
       '2x5060ti': '2× 5060 Ti',
@@ -1504,6 +1513,14 @@
       return 'badge';
     };
 
+    const levelBadgeClass = (level) => {
+      if (level === 'verified') return 'green';
+      if (level === 'benchmark') return 'blue';
+      if (level === 'recipe') return 'amber';
+      if (level === 'deprecated') return 'red';
+      return '';
+    };
+
     const buildSparkline = (values, width = 72, height = 22) => {
       const valid = values.filter((v) => v > 0);
       if (valid.length < 2) return '';
@@ -1535,6 +1552,14 @@
       const context = get(item, 'serving.context_tokens', get(item, 'benchmark.configured_context_tokens', null));
       const level = get(item, 'promotion_level', 'unknown');
       const tier = get(item, 'tier', 'capable');
+      const sourceType = get(item, 'source.type', 'unknown');
+      const sourceLabel = get(item, 'source.label', sourceType);
+      const sourceUrl = safeHttpUrl(get(item, 'source.url', ''));
+      const sourceMeta = sourceType === 'community'
+        ? ' / ' + (sourceUrl
+          ? '<a href="' + escapeHtml(sourceUrl) + '" target="_blank" rel="noopener noreferrer">source: ' + escapeHtml(sourceLabel) + '</a>'
+          : 'source: ' + escapeHtml(sourceLabel))
+        : '';
       const kv = [get(item, 'serving.kv_cache_k', ''), get(item, 'serving.kv_cache_v', '')].filter(Boolean).join('/') || 'KV n/a';
       const thinkingLabel = formatThinkingLabel(item);
       return '<article class="model-card">' +
@@ -1542,12 +1567,13 @@
           '<div class="model-title"><div class="model">' + escapeHtml(model) + '</div></div>' +
           '<div class="model-tags">' +
             '<span class="badge ' + tierBadgeClass(tier) + '">' + escapeHtml(tier) + '</span>' +
+            '<span class="badge ' + levelBadgeClass(level) + '">' + escapeHtml(level) + '</span>' +
             '<span class="badge engine">' + escapeHtml(engine) + '</span>' +
             '<span class="badge green">' + escapeHtml(lane) + '</span>' +
             '<span class="badge blue">' + escapeHtml(specLabel(item)) + '</span>' +
             '<span class="badge amber">' + escapeHtml(thinkingLabel) + '</span>' +
           '</div>' +
-          '<div class="subline" style="margin-top:3px">' + escapeHtml(family) + ' / ' + escapeHtml(quant) + ' / ctx ' + formatNumber(context, 0) + ' / KV ' + escapeHtml(kv) + ' / ' + escapeHtml(gpu) + '</div>' +
+          '<div class="subline" style="margin-top:3px">' + escapeHtml(family) + ' / ' + escapeHtml(quant) + ' / ctx ' + formatNumber(context, 0) + ' / KV ' + escapeHtml(kv) + ' / ' + escapeHtml(gpu) + sourceMeta + '</div>' +
           '<div class="model-kpis-row">' +
             '<div class="model-spark">' + buildSparkline(group.rows.map((r) => Number(get(r, 'metrics.decode_tok_s', 0) || 0))) + '</div>' +
             '<div class="model-kpis"><div class="model-kpi model-kpi--hero"><div class="k">best gen</div><div class="v">' + (group.bestDecode ? formatNumber(group.bestDecode, 1) : 'n/a') + '<span class="unit"> tok/s</span></div></div><div class="model-kpi"><div class="k">prompt rows</div><div class="v">' + group.rows.length + '</div></div></div>' +

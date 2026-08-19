@@ -24,7 +24,7 @@ REQUIRED_TOP = {
 PROMOTION_LEVELS = {"exploratory", "recipe", "benchmark", "verified", "deprecated"}
 TIERS = {"recommended", "capable", "experimental"}
 SOURCE_TYPES = {"seed", "community", "imported", "external"}
-ENGINES = {"llama.cpp", "ik_llama.cpp", "BeeLlama", "vLLM", "SGLang", "other"}
+ENGINES = {"llama.cpp", "ik_llama.cpp", "BeeLlama", "vLLM", "SGLang", "Ollama", "other"}
 PROMPT_SETS = {
     "short-chat",
     "code-generate",

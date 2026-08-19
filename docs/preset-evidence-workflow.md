@@ -15,9 +15,12 @@ promotes an evidence bundle.
 | `data/presets/` | Canonical preset manifests | Yes, after site migration |
 | `.local/bench/` | Raw runs, retries, failures, and local reviews | No |
 | `data/evidence/` | Reviewed evidence candidates and promoted bundles | Yes, after promotion |
-| `data/results/` | Existing benchmark corpus and historical provenance | Current explorer only during migration |
+| `data/results/` | Accepted published benchmark submissions and historical provenance | Current explorer only during migration |
 
-Do not write a new routine run into `data/results/` just because it completed.
+Do not write a new routine maintainer run into `data/results/` just because it
+completed. Accepted community submissions may be published there once their
+validated result data and provenance are reviewed; publication does not mean
+the maintainer reproduced the run.
 
 ## High-Context Fit
 
@@ -121,7 +124,9 @@ local. `scripts/build_preset_data.py` builds compact preset cards from those
 manifests without reading routine benchmark rows.
 
 `recommended` is never assigned by the benchmark runner. Community submissions
-may be raw receipts, reproduction evidence, or new preset candidates. Multi-GPU
+may be published benchmark rows, reproduction evidence, or new preset candidates;
+`verified` requires independent reproduction, while `recommended` is curated by
+maintainers. Multi-GPU
 community lanes are welcome, including 3x/4x+ and mixed CUDA systems, but must
 record PCIe topology and tensor/TP configuration and are not presented as
 seed-system reproductions.

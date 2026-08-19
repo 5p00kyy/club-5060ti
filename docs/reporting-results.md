@@ -24,7 +24,7 @@ Validate before submitting:
 python3 scripts/validate_results.py data/results/community-my-run.json
 ~~~
 
-New measured results default to the `capable` tier. `recommended` is a maintainer decision for the best current speed/fit recipe in a lane, while `experimental` is for incomplete or unusual work.
+New measured results default to the `capable` tier. `recommended` is a maintainer decision for the best current speed/fit recipe in a lane, while `experimental` is for incomplete or unusual work. A submitted row can be published in the results catalogue when it is accepted and schema/protocol complete; `verified` means independently reproduced, and `recommended` remains curated. Routine maintainer runs stay under `.local/bench/` until deliberately accepted for publication.
 
 If you cannot produce structured JSON right away, open a raw result issue and fill what you can.
 Use the copy/paste issue-ready format in [docs/community-result-template.md](community-result-template.md), and the maintainer can normalize missing fields.
@@ -49,7 +49,7 @@ report.sh redacts common secrets, private IPs, and URL hosts from command output
 - CPU, host RAM, inference/container RAM allocation, and motherboard/system model
 - PCIe slot layout and negotiated link width/gen per GPU
 - OS/container setup
-- runtime and version
+- runtime and version (including Ollama, which is a distinct engine lane from raw llama.cpp)
 - model and quant
 - launch command or config
 - context length

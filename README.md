@@ -59,7 +59,7 @@ More cards are added only after their preset and evidence bundle meet the same s
 
 - **Recommended:** seed-tested, copyable preset with reviewed published evidence.
 - **Alternative:** a useful documented route with a different trade-off.
-- **Community-verified:** strong community evidence, not yet reproduced on the seed system.
+- **Community-verified:** strong community evidence independently reproduced by another comparable run; this is distinct from a published benchmark submission.
 - **Experimental:** useful but incomplete evidence or an intentionally exploratory trade-off.
 - **Archived:** historical or superseded provenance.
 
@@ -95,10 +95,11 @@ These older routes are useful source material while they are re-run or mapped to
 | upstream llama.cpp | Qwopus3.6 27B / 35B-A3B | Seed recipe | Fine-tune merge results. Capable tier; interesting alternative but not primary recs. |
 | BeeLlama | Qwen3.6 27B / 35B-A3B DFlash | Exploratory seed rows | Single-card 27B Q3_K_XL 8K DFlash works; single-card 35B-A3B DFlash improves code-shaped output. Alternative engine, capable tier. |
 | ik_llama.cpp | Qwen3.6 27B IQ4/IQ5 | Exploratory fit check | Single-card 105k q4-KV shape fits; clean benchmark rows need chat-template/no-thinking cleanup. |
+| Ollama | Qwen3.8 27B Q8_0 | Community benchmark submission | 3x RTX 5060 Ti, 204K context, 100% GPU-resident community lane; published as benchmark/capable data, not independently verified or recommended. |
 
 ## Results And Data
 
-Published presets live under `data/presets/`; reviewed evidence lives under `data/evidence/`; historical benchmark rows remain in `data/results/` during the migration. New routine runs belong under `.local/bench/`, not `data/results/`.
+Published presets live under `data/presets/`; reviewed evidence lives under `data/evidence/`; accepted community benchmark submissions and historical rows live in `data/results/` during the migration. New routine maintainer runs belong under `.local/bench/`, not `data/results/`.
 
 Build the static site data:
 
@@ -134,7 +135,7 @@ The hosted explorer shows model cards grouped by model and setup, with tier filt
 
 The Qwen3.6 27B Q6_K dual-card config (131K ctx, f16 KV, MTP n=3) benchmarks at 45-55 tok/s decode across standard prompt sets. The single-card Q3_K_XL config runs at 204K ctx with q4 KV cache.
 
-The public catalogue grows by tested presets and compact evidence bundles, not by count of successful requests. Community reports can become a raw issue receipt, a reproduction of an existing preset, a new preset candidate, or archived provenance depending on completeness and comparability.
+The public catalogue grows by tested presets and compact evidence bundles, not by count of successful requests. Accepted, schema/protocol-complete community submissions can also be published as benchmark receipts with attribution; routine maintainer runs remain local. Community reports can become a raw issue receipt, a reproduction of an existing preset, a new preset candidate, or archived provenance depending on completeness and comparability.
 
 ## Useful Next Data
 
