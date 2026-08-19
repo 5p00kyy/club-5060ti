@@ -11,7 +11,7 @@ Use this template directly in a GitHub issue for fast submissions. Raw issue rep
 - Contributor (optional):
 - Source/label:
 - Submission date:
-- Hardware lane: (1x5060ti / 2x5060ti / multi-5060ti / mixed-5060ti-cuda / other-cuda)
+- Hardware lane: (1x RTX 5060 Ti / 2x RTX 5060 Ti / 3x+ RTX 5060 Ti / mixed 5060 Ti + CUDA / other CUDA)
 - GPU count:
 - GPU model:
 - VRAM per GPU:

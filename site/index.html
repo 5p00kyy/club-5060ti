@@ -1055,8 +1055,9 @@
     const resultLabels = ['Model', 'Engine', 'Hardware', 'Context', 'Prompt Set', 'Decode', 'Prompt', 'Runs', 'Evidence', 'Caveat'];
 
     const normalizeGpuModel = (model) => String(model || 'GPU')
-      .replace(/^NVIDIA\s+(GeForce\s+)?/i, '')
+      .replace(/[-_]+/g, ' ')
       .replace(/\s+/g, ' ')
+      .replace(/^NVIDIA\s+(GeForce\s+)?/i, '')
       .trim();
 
     const gpuFilterLabel = (item) => {
@@ -1085,7 +1086,7 @@
     const laneLabel = (lane) => ({
       '1x5060ti': '1× 5060 Ti',
       '2x5060ti': '2× 5060 Ti',
-      'multi-5060ti': '3×/4×+ 5060 Ti',
+      'multi-5060ti': '3×+ 5060 Ti',
       'mixed-5060ti-cuda': 'mixed 5060 Ti + CUDA',
       'other-cuda': 'other CUDA',
     })[lane] || String(lane || 'hardware lane');
@@ -1229,17 +1230,17 @@
       const labels = {
         '1x5060ti': '1x 5060 Ti',
         '2x5060ti': '2x 5060 Ti',
-        'multi-5060ti': 'multi 5060 Ti',
+        'multi-5060ti': '3x+ 5060 Ti',
         'mixed-5060ti-cuda': 'mixed 5060 Ti + CUDA',
         'other-cuda': 'other CUDA',
         'unknown': 'unknown lane',
       };
       if (lane) return labels[lane] || lane.replaceAll('-', ' ');
       const count = Number(get(item, 'hardware.gpu_count', 0) || 0);
-      const model = String(get(item, 'hardware.gpu_model', 'GPU'));
+      const model = normalizeGpuModel(get(item, 'hardware.gpu_model', 'GPU'));
       if (model.includes('5060 Ti') && count === 1) return '1x 5060 Ti';
       if (model.includes('5060 Ti') && count === 2) return '2x 5060 Ti';
-      if (model.includes('5060 Ti') && count >= 3) return 'multi 5060 Ti';
+      if (model.includes('5060 Ti') && count >= 3) return '3x+ 5060 Ti';
       return 'other CUDA';
     };
 

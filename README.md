@@ -4,7 +4,7 @@ Practical local LLM presets, reviewed evidence, and setup notes for RTX 5060 Ti 
 
 The project focus is simple: make RTX 5060 Ti local inference reproducible across one card, two cards, and larger community setups. A **preset** is the thing we recommend someone run. Benchmark receipts prove what that preset can do. Raw experiments remain useful engineering material, but do not become public recommendations merely because a request completed.
 
-The seed system covers 1x and 2x RTX 5060 Ti lanes. The project also welcomes 3x/4x+, mixed 5060 Ti + CUDA, and other-CUDA community recipes when their topology and provenance are recorded clearly.
+The seed system covers 1x and 2x RTX 5060 Ti lanes. The project also welcomes 3x+, mixed 5060 Ti + CUDA, and other-CUDA community recipes when their topology and provenance are recorded clearly.
 
 ## Star History
 
@@ -20,7 +20,7 @@ The seed system covers 1x and 2x RTX 5060 Ti lanes. The project also welcomes 3x
 
 | Path | Use this when | Entry point |
 | --- | --- | --- |
-| Hardware lanes | You want to understand how 1x, 2x, 4x/multi, and other CUDA GPU results are separated. | docs/hardware-lanes.md |
+| Hardware lanes | You want to understand how 1x, 2x, 3x+, and other CUDA GPU results are separated. | docs/hardware-lanes.md |
 | 1x RTX 5060 Ti | You want the best single-card fits and conservative starter configs. | docs/single-5060ti.md |
 | 2x RTX 5060 Ti | You want dual-16GB GGUF or OpenAI-compatible vLLM recipes for 27B-class and long-context models. | docs/vllm-qwen38.md |
 | Other CUDA GPUs | You want to adapt the recipes to non-5060 Ti or mixed-architecture NVIDIA setups. | docs/gpu-compatibility.md |
@@ -32,7 +32,7 @@ The seed system covers 1x and 2x RTX 5060 Ti lanes. The project also welcomes 3x
 
 ## Current Direction
 
-club-5060ti is a 5060 Ti project first, not specifically a dual-5060 Ti project. Single-card, dual-card, and larger community lanes are useful when labelled clearly. The public experience is being refreshed around a simple rule:
+club-5060ti is a 5060 Ti project first, not specifically a dual-5060 Ti project. Single-card, dual-card, and 3x+ community lanes are useful when labelled clearly. The public experience is being refreshed around a simple rule:
 
 1. **Preset:** an exact, copyable configuration with a stated hardware lane and purpose.
 2. **Evidence:** a compact reviewed bundle that validates useful context, retrieval, sustained generation, and caveats.
@@ -141,7 +141,7 @@ The public catalogue grows by tested presets and compact evidence bundles, not b
 
 The most useful new submissions are:
 
-- 3x/4x+ RTX 5060 Ti results with full PCIe topology.
+- 3x+ RTX 5060 Ti results with full PCIe topology.
 - Matched 2x RTX 5060 Ti no-MTP and MTP rows for the same 27B model, quant, context, and KV cache.
 - Qwen3.6 35B A3B rows from different 5060 Ti systems, especially dual-card and larger-card-count setups.
 - Matched Qwen3.8 vLLM MTP3/no-MTP rows at 8K, 32K, and 122K, with client-measured TTFT and streamed decode.
@@ -169,7 +169,7 @@ For a new preset candidate, use the appropriate workflow profile and attach the 
 - docs/community-goals.md - project goals and contribution priorities
 - docs/client-examples.md - OpenAI-compatible client examples
 - docs/reporting-results.md - how to capture a useful result report
-- docs/hardware-lanes.md - how 1x, 2x, multi-5060 Ti, and other CUDA GPU results are separated
+- docs/hardware-lanes.md - how 1x, 2x, 3x+, and other CUDA GPU results are separated
 - docs/gpu-compatibility.md - Blackwell baseline, mixed-GPU, and other CUDA architecture notes
 - docs/single-5060ti.md - conservative single-card starter configs
 - docs/vllm-qwen38.md - current Qwen3.8 vLLM NVFP4/MTP preset and evidence

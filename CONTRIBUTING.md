@@ -7,7 +7,7 @@ If you do not have all fields, include what you have and maintainers can normali
 
 Please include:
 
-- hardware lane: 1x 5060 Ti, 2x 5060 Ti, 3x/4x+ 5060 Ti, mixed 5060 Ti plus other CUDA GPUs, or other CUDA GPU comparison
+- hardware lane: 1x 5060 Ti, 2x 5060 Ti, 3x+ 5060 Ti, mixed 5060 Ti plus other CUDA GPUs, or other CUDA GPU comparison
 - GPU model and VRAM, including whether it is one card or multiple cards
 - CPU, host RAM, inference/container RAM allocation, motherboard, and PCIe slot/link details if long context or multi-GPU performance matters
 - driver version

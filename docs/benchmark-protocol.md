@@ -10,7 +10,7 @@ Primary hardware lanes:
 
 - 1x RTX 5060 Ti 16GB;
 - 2x RTX 5060 Ti 16GB;
-- 3x/4x+ RTX 5060 Ti 16GB community multi-card setups;
+- 3x+ RTX 5060 Ti 16GB community setups;
 - mixed RTX 5060 Ti plus other CUDA GPUs;
 - other CUDA GPUs only when clearly labeled as comparison/adaptation data.
 
@@ -58,7 +58,7 @@ For thinking/reasoning models, the request token cap must include both reasoning
 
 ## Presets Before Rows
 
-A benchmark row is not automatically a community recommendation. New work should begin with an exact, copyable preset and use `docs/preset-evidence-workflow.md` to keep raw receipts separate from reviewed public evidence. This protocol remains the common measurement language for seed and community lanes, including 3x/4x+ and mixed-GPU setups.
+A benchmark row is not automatically a community recommendation. New work should begin with an exact, copyable preset and use `docs/preset-evidence-workflow.md` to keep raw receipts separate from reviewed public evidence. This protocol remains the common measurement language for seed and community lanes, including 3x+ and mixed-GPU setups.
 
 ## Context Tiers
 

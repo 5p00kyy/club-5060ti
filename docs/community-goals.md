@@ -23,7 +23,7 @@ The goal is to keep those reports searchable, comparable, and easy to reproduce.
 ## What Would Be Useful Next
 
 - Dual 5060 Ti results from different CPUs/motherboards.
-- Quad and other multi-5060 Ti results with full PCIe topology.
+- 3x+ RTX 5060 Ti results with full PCIe topology.
 - Clearly labeled mixed-GPU and non-5060 Ti CUDA results.
 - PCIe lane layout notes.
 - Power limit and thermal notes.

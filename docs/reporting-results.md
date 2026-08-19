@@ -42,7 +42,7 @@ report.sh redacts common secrets, private IPs, and URL hosts from command output
 
 ## Include These Details
 
-- hardware lane: 1x 5060 Ti, 2x 5060 Ti, 3x/4x+ 5060 Ti, mixed 5060 Ti plus other CUDA GPUs, or other CUDA GPU comparison
+- hardware lane: 1x 5060 Ti, 2x 5060 Ti, 3x+ 5060 Ti, mixed 5060 Ti plus other CUDA GPUs, or other CUDA GPU comparison
 - GPU model and count
 - VRAM per GPU
 - driver version

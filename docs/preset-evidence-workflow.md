@@ -127,6 +127,6 @@ manifests without reading routine benchmark rows.
 may be published benchmark rows, reproduction evidence, or new preset candidates;
 `verified` requires independent reproduction, while `recommended` is curated by
 maintainers. Multi-GPU
-community lanes are welcome, including 3x/4x+ and mixed CUDA systems, but must
+community lanes are welcome, including 3x+ and mixed CUDA systems, but must
 record PCIe topology and tensor/TP configuration and are not presented as
 seed-system reproductions.

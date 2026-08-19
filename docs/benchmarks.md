@@ -105,7 +105,7 @@ Qwen3.6 27B MTP Q4_XL is not currently a valid one-card GPU-only preset on this 
 - BeeLlama DFlash still needs careful framing. The first clean 27B result is single-card Q3_K_XL at 8K; the local dual-card branch fixes the sequence-position failure but does not yet give a broad speedup. The new 35B-A3B DFlash row is strongest on code-generate and weaker on long-retrieval.
 - Qwen3.6 35B A3B NVFP4/MTP belongs in a separate vLLM engine lane, not mixed into the llama.cpp GGUF rows.
 - Reasoning-budget sweeps for Qwen3.6 35B A3B should be added as quality/latency rows once the baseline speed data is stable.
-- Community multi-card submissions should start with the same prompt sets and schema fields so 3x/4x results can sit beside the 1x and 2x lanes.
+- Community 3x+ submissions should start with the same prompt sets and schema fields so they can sit beside the 1x and 2x lanes.
 
 ## Benchmark Hygiene
 
