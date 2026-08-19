@@ -1052,6 +1052,19 @@
     };
 
     const unique = (items) => Array.from(new Set(items.filter(Boolean))).sort((a, b) => String(a).localeCompare(String(b)));
+    const displayMetric = (item, key) => {
+      const normalized = get(item, '_display_metrics.' + key, null);
+      if (typeof normalized === 'number') return normalized;
+      const legacy = get(item, 'metrics.' + key, null);
+      return typeof legacy === 'number' ? legacy : null;
+    };
+    const decodeTokS = (item) => displayMetric(item, 'decode_tok_s');
+    const promptTokS = (item) => displayMetric(item, 'prompt_tok_s');
+    const metricSourceNote = (item, key) => ({
+      client: 'client measured',
+      server: 'server measured',
+      'client-ttft-derived': 'derived from uncached client TTFT',
+    })[get(item, '_display_metrics.' + key + '_source', '')] || '';
     const resultLabels = ['Model', 'Engine', 'Hardware', 'Context', 'Prompt Set', 'Decode', 'Prompt', 'Runs', 'Evidence', 'Caveat'];
 
     const normalizeGpuModel = (model) => String(model || 'GPU')
@@ -1180,8 +1193,8 @@
       if (key === 'gpus') return get(item, 'hardware.gpu_count', 0);
       if (key === 'context') return get(item, 'serving.context_tokens', get(item, 'benchmark.configured_context_tokens', 0));
       if (key === 'prompt') return get(item, 'benchmark.prompt_set', '');
-      if (key === 'decode') return get(item, 'metrics.decode_tok_s', 0);
-      if (key === 'prompt_speed') return get(item, 'metrics.prompt_tok_s', 0);
+      if (key === 'decode') return decodeTokS(item) || 0;
+      if (key === 'prompt_speed') return promptTokS(item) || 0;
       if (key === 'runs') return item._run_count || 1;
       if (key === 'level') return get(item, 'promotion_level', '');
       return '';
@@ -1289,8 +1302,8 @@
         group.rows.sort((a, b) => (promptOrder[get(a, 'benchmark.prompt_set', '')] || 99) - (promptOrder[get(b, 'benchmark.prompt_set', '')] || 99) || String(a.id || '').localeCompare(String(b.id || '')));
         const base = group.rows[0];
         group.base = base;
-        group.bestDecode = Math.max(0, ...group.rows.map((item) => Number(get(item, 'metrics.decode_tok_s', 0) || 0)));
-        group.bestPrompt = Math.max(0, ...group.rows.map((item) => Number(get(item, 'metrics.prompt_tok_s', 0) || 0)));
+        group.bestDecode = Math.max(0, ...group.rows.map((item) => Number(decodeTokS(item) || 0)));
+        group.bestPrompt = Math.max(0, ...group.rows.map((item) => Number(promptTokS(item) || 0)));
         group.maxContext = Math.max(0, ...group.rows.map((item) => Number(get(item, 'serving.context_tokens', get(item, 'benchmark.configured_context_tokens', 0)) || 0)));
         group.rawRuns = group.rows.reduce((sum, item) => sum + (item._run_count || 1), 0);
         return group;
@@ -1324,7 +1337,7 @@
       effectiveReasoningBudget(item) || '',
       get(item, 'benchmark.prompt_set', ''),
       get(item, 'benchmark.configured_context_tokens', ''),
-      get(item, 'benchmark.actual_prompt_tokens', ''),
+      get(item, '_repeat_prompt_key', get(item, 'benchmark.actual_prompt_tokens', '')),
       get(item, 'benchmark.generated_tokens', ''),
       get(item, 'benchmark.warmups', ''),
       get(item, 'benchmark.stream', ''),
@@ -1343,10 +1356,10 @@
       }
 
       return Array.from(groups.values()).map((runs) => {
-        const sorted = [...runs].sort((a, b) => Number(get(b, 'metrics.decode_tok_s', 0) || 0) - Number(get(a, 'metrics.decode_tok_s', 0) || 0));
+        const sorted = [...runs].sort((a, b) => Number(decodeTokS(b) || 0) - Number(decodeTokS(a) || 0));
         const best = JSON.parse(JSON.stringify(sorted[0]));
-        const decodeValues = runs.map((item) => Number(get(item, 'metrics.decode_tok_s', 0) || 0)).filter((value) => value > 0);
-        const promptValues = runs.map((item) => Number(get(item, 'metrics.prompt_tok_s', 0) || 0)).filter((value) => value > 0);
+        const decodeValues = runs.map((item) => Number(decodeTokS(item) || 0)).filter((value) => value > 0);
+        const promptValues = runs.map((item) => Number(promptTokS(item) || 0)).filter((value) => value > 0);
         best._run_count = runs.length;
         best._raw_ids = runs.map((item) => item.id).filter(Boolean);
         best._avg_decode_tok_s = decodeValues.length ? decodeValues.reduce((sum, value) => sum + value, 0) / decodeValues.length : null;
@@ -1397,7 +1410,7 @@
         const map = new Map();
         for (const item of visibleResults) {
           const key = get(item, keyPath, 'unknown') || 'unknown';
-          const decode = Number(get(item, 'metrics.decode_tok_s', 0) || 0);
+          const decode = Number(decodeTokS(item) || 0);
           const context = Number(get(item, 'serving.context_tokens', get(item, 'benchmark.configured_context_tokens', 0)) || 0);
           const row = map.get(key) || { key, rows: 0, bestDecode: 0, bestContext: 0 };
           row.rows += 1;
@@ -1494,13 +1507,17 @@
       const runCount = item._run_count || 1;
       const avgDecode = item._avg_decode_tok_s;
       const avgPrompt = item._avg_prompt_tok_s;
-      const generationLabel = runCount > 1 && avgDecode ? 'selected ' + formatNumber(get(item, 'metrics.decode_tok_s', null), 1) + ' / avg ' + formatNumber(avgDecode, 1) : formatNumber(get(item, 'metrics.decode_tok_s', null), 1);
-      const promptLabel = runCount > 1 && avgPrompt ? 'same run ' + formatNumber(get(item, 'metrics.prompt_tok_s', null), 1) + ' / avg ' + formatNumber(avgPrompt, 1) : formatNumber(get(item, 'metrics.prompt_tok_s', null), 1);
+      const decode = decodeTokS(item);
+      const promptSpeed = promptTokS(item);
+      const decodeSource = metricSourceNote(item, 'decode');
+      const promptSource = metricSourceNote(item, 'prompt');
+      const generationLabel = (runCount > 1 && avgDecode ? 'selected ' + formatNumber(decode, 1) + ' / avg ' + formatNumber(avgDecode, 1) : formatNumber(decode, 1)) + (decodeSource ? ' · ' + decodeSource : '');
+      const promptLabel = (runCount > 1 && avgPrompt ? 'same run ' + formatNumber(promptSpeed, 1) + ' / avg ' + formatNumber(avgPrompt, 1) : formatNumber(promptSpeed, 1)) + (promptSource ? ' · ' + promptSource : '');
       const tokenText = (actualPrompt ? formatNumber(actualPrompt, 0) + ' in' : 'n/a in') + ' / ' + (generated ? formatNumber(generated, 0) + ' out' : 'n/a out');
       return '<tr>' +
         '<td data-label="Prompt"><span class="badge">' + escapeHtml(prompt) + '</span></td>' +
-        '<td data-label="Generation tok/s">' + renderBar(get(item, 'metrics.decode_tok_s', null), maxDecode) + '<div class="subline">' + escapeHtml(generationLabel) + '</div></td>' +
-        '<td data-label="Prompt eval tok/s">' + renderBar(get(item, 'metrics.prompt_tok_s', null), maxPrompt) + '<div class="subline">' + escapeHtml(promptLabel) + '</div></td>' +
+        '<td data-label="Generation tok/s">' + renderBar(decode, maxDecode) + '<div class="subline">' + escapeHtml(generationLabel) + '</div></td>' +
+        '<td data-label="Prompt eval tok/s">' + renderBar(promptSpeed, maxPrompt) + '<div class="subline">' + escapeHtml(promptLabel) + '</div></td>' +
         '<td data-label="Tokens" class="num">' + escapeHtml(tokenText) + '</td>' +
         '<td data-label="Runs"><span class="badge">' + escapeHtml(promptRunLabel(item)) + '</span></td>' +
         '<td data-label="Caveat" class="muted">' + escapeHtml(caveat) + '</td>' +
@@ -1576,7 +1593,7 @@
           '</div>' +
           '<div class="subline" style="margin-top:3px">' + escapeHtml(family) + ' / ' + escapeHtml(quant) + ' / ctx ' + formatNumber(context, 0) + ' / KV ' + escapeHtml(kv) + ' / ' + escapeHtml(gpu) + sourceMeta + '</div>' +
           '<div class="model-kpis-row">' +
-            '<div class="model-spark">' + buildSparkline(group.rows.map((r) => Number(get(r, 'metrics.decode_tok_s', 0) || 0))) + '</div>' +
+            '<div class="model-spark">' + buildSparkline(group.rows.map((r) => Number(decodeTokS(r) || 0))) + '</div>' +
             '<div class="model-kpis"><div class="model-kpi model-kpi--hero"><div class="k">best gen</div><div class="v">' + (group.bestDecode ? formatNumber(group.bestDecode, 1) : 'n/a') + '<span class="unit"> tok/s</span></div></div><div class="model-kpi"><div class="k">prompt rows</div><div class="v">' + group.rows.length + '</div></div></div>' +
           '</div>' +
         '</div>' +
@@ -1590,8 +1607,8 @@
       const body = document.getElementById('results-list');
       const modelGroups = buildModelCards(visibleResults);
       buildHardwareLane(filteredResults);
-      const maxDecode = Math.max(1, ...visibleResults.map((item) => Number(get(item, 'metrics.decode_tok_s', 0) || 0)));
-      const maxPrompt = Math.max(1, ...visibleResults.map((item) => Number(get(item, 'metrics.prompt_tok_s', 0) || 0)));
+      const maxDecode = Math.max(1, ...visibleResults.map((item) => Number(decodeTokS(item) || 0)));
+      const maxPrompt = Math.max(1, ...visibleResults.map((item) => Number(promptTokS(item) || 0)));
       if (!modelGroups.length) {
         body.innerHTML = '<div class="model-card"><div class="model-head"><div class="muted">No rows match the current filters. Clear the search or broaden the selected filters.</div></div></div>';
       } else {
@@ -1616,7 +1633,7 @@
       document.getElementById('tier-count-experimental').textContent = tierCounts.experimental || 0;
       const maxContext = Math.max(0, ...visibleResults.map((item) => Number(get(item, 'serving.context_tokens', get(item, 'benchmark.configured_context_tokens', 0)) || 0)));
       document.getElementById('metric-context').textContent = maxContext ? formatNumber(maxContext, 0) : 'n/a';
-      const bestDecode = Math.max(0, ...visibleResults.map((item) => Number(get(item, 'metrics.decode_tok_s', 0) || 0)));
+      const bestDecode = Math.max(0, ...visibleResults.map((item) => Number(decodeTokS(item) || 0)));
       document.getElementById('metric-best-decode').textContent = bestDecode ? formatNumber(bestDecode, 1) : 'n/a';
       updateSortHeaders();
       document.getElementById('mode-note').textContent = document.getElementById('raw-filter').checked

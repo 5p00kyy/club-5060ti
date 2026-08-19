@@ -84,7 +84,11 @@
       "artifacts": [
         "https://github.com/user-attachments/files/31199900/community-3x5060ti-qwen38-27b-q8_0-204k.json"
       ],
-      "_source_file": "data/results/community-3x5060ti-qwen38-27b-q8_0-204k.json"
+      "_source_file": "data/results/community-3x5060ti-qwen38-27b-q8_0-204k.json",
+      "_display_metrics": {
+        "decode_tok_s": 30.456,
+        "decode_source": "client"
+      }
     },
     {
       "schema_version": "1.0",
@@ -170,7 +174,11 @@
       "artifacts": [
         "https://github.com/user-attachments/files/31199900/community-3x5060ti-qwen38-27b-q8_0-204k.json"
       ],
-      "_source_file": "data/results/community-3x5060ti-qwen38-27b-q8_0-204k.json"
+      "_source_file": "data/results/community-3x5060ti-qwen38-27b-q8_0-204k.json",
+      "_display_metrics": {
+        "decode_tok_s": 30.465,
+        "decode_source": "client"
+      }
     },
     {
       "schema_version": "1.0",
@@ -258,7 +266,14 @@
       "artifacts": [
         "https://github.com/user-attachments/files/31199900/community-3x5060ti-qwen38-27b-q8_0-204k.json"
       ],
-      "_source_file": "data/results/community-3x5060ti-qwen38-27b-q8_0-204k.json"
+      "_source_file": "data/results/community-3x5060ti-qwen38-27b-q8_0-204k.json",
+      "_display_metrics": {
+        "decode_tok_s": 24.171,
+        "decode_source": "client",
+        "prompt_tok_s": 479.584,
+        "prompt_source": "client-ttft-derived"
+      },
+      "_repeat_prompt_key": "calibrated|server-reported usage.prompt_tokens||256|5850"
     },
     {
       "schema_version": "1.0",
@@ -346,7 +361,14 @@
       "artifacts": [
         "https://github.com/user-attachments/files/31199900/community-3x5060ti-qwen38-27b-q8_0-204k.json"
       ],
-      "_source_file": "data/results/community-3x5060ti-qwen38-27b-q8_0-204k.json"
+      "_source_file": "data/results/community-3x5060ti-qwen38-27b-q8_0-204k.json",
+      "_display_metrics": {
+        "decode_tok_s": 24.263,
+        "decode_source": "client",
+        "prompt_tok_s": 479.541,
+        "prompt_source": "client-ttft-derived"
+      },
+      "_repeat_prompt_key": "calibrated|server-reported usage.prompt_tokens||256|5850"
     },
     {
       "schema_version": "1.0",
