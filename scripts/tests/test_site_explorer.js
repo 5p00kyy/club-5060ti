@@ -33,7 +33,7 @@ const closeEnough = (actual, expected) => Math.abs(actual - expected) < 0.0001;
 
 eval(code + `
   const hardwareLabels = [...new Set(allRows.map(gpuFilterLabel))].sort();
-  const expectedHardware = ['1x RTX 5060 Ti', '2x RTX 5060 Ti', '3x RTX 5060 Ti'];
+  const expectedHardware = ['1x RTX 5060 Ti', '2x RTX 5060 Ti', '3x RTX 5060 Ti', 'Mixed 5060 Ti + CUDA'];
   if (JSON.stringify(hardwareLabels) !== JSON.stringify(expectedHardware)) {
     throw new Error('hardware filters do not normalize: ' + JSON.stringify(hardwareLabels));
   }

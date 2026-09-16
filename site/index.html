@@ -1074,6 +1074,8 @@
       .trim();
 
     const gpuFilterLabel = (item) => {
+      const lane = get(item, 'hardware.lane', '');
+      if (lane === 'mixed-5060ti-cuda') return 'Mixed 5060 Ti + CUDA';
       const count = get(item, 'hardware.gpu_count', '');
       const model = normalizeGpuModel(get(item, 'hardware.gpu_model', 'GPU'));
       return String(count || '?') + 'x ' + model;

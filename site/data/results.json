@@ -2,6 +2,3095 @@
   "results": [
     {
       "schema_version": "1.0",
+      "id": "20260907-ninfer-windows-tp2-base_mtp0_r1",
+      "timestamp_utc": "2026-09-07T16:42:08+00:00",
+      "source": {
+        "type": "community",
+        "label": "community-2x5060ti-ivanov84-ninfer-windows-tp2",
+        "url": "https://github.com/5p00kyy/club-5060ti/issues/8",
+        "notes": "Normalized by the maintainer from the contributor fork raw CSV and methodology at commit eb01f69; submitted by an AI agent on behalf of Dmitriy Ivanov."
+      },
+      "promotion_level": "benchmark",
+      "tier": "capable",
+      "hardware": {
+        "lane": "2x5060ti",
+        "gpu_count": 2,
+        "gpu_model": "RTX 5060 Ti",
+        "vram_per_gpu_gb": 16.0,
+        "driver": "581.57",
+        "cpu": "Intel Core i3-12100F",
+        "host_ram_gb": 64.0,
+        "pcie": "GPU0 CPU-attached PCIe 5.0 x8 under load; GPU1 chipset PCIe 3.0 x4; no CUDA P2P",
+        "notes": "MSI PRO Z690-A; native Windows 11 x64 under WDDM."
+      },
+      "runtime": {
+        "engine": "other",
+        "version": "NInfer Windows-TP2 experiment",
+        "commit": "eb01f69c5880ca20658e9fd0645ed20d18cc0e05",
+        "notes": "NInfer TP2 with CUDA-graph decode and pinned write-back host-memory peer mailbox; canonical post-revert binary."
+      },
+      "model": {
+        "id": "qwen3_8_27b_nvfp4.ninfer",
+        "family": "Qwen3.8",
+        "architecture": "hybrid",
+        "parameter_class": "27B",
+        "quant": "NVFP4",
+        "source": "Published NInfer Qwen3.8-27B NVFP4 artifact, SHA-256 verified by contributor."
+      },
+      "serving": {
+        "route": "cli",
+        "context_tokens": 8192,
+        "kv_cache_k": "bf16",
+        "kv_cache_v": "bf16",
+        "tensor_parallel": "2",
+        "speculation": {
+          "type": "mtp",
+          "draft_n": 0
+        },
+        "thinking": "off",
+        "launch": "--tp 2 --devices 0,1 --max-context 8192 --kv-capacity auto --no-thinking --ignore-eos",
+        "notes": "CUDA graphs enabled. Small fixed-shape allreduces use the pinned-host mailbox; eager/prefill and oversized payloads retain the staged fallback."
+      },
+      "benchmark": {
+        "prompt_set": "custom",
+        "configured_context_tokens": 8192,
+        "actual_prompt_tokens": 19,
+        "generated_tokens": 512,
+        "runs": 1,
+        "warmups": 0,
+        "stream": false,
+        "cache_policy": "server-default",
+        "notes": "Engine-committed decode throughput; greedy temperature 0; output-limit finish. Raw run id: base_mtp0_r1."
+      },
+      "metrics": {
+        "decode_tok_s": 35.73,
+        "prompt_tok_s": 45.05,
+        "wall_seconds": 14.32
+      },
+      "caveats": [
+        "Community-submitted Windows 11 result; not independently reproduced by the maintainer.",
+        "Single request with a short synthetic prompt; decode speed and MTP acceptance are workload-dependent.",
+        "Native Windows/WDDM mailbox transport result; no matched Linux comparison was measured on this machine.",
+        "Prefill numbers use a tiny prompt and should not be treated as sustained long-prompt throughput."
+      ],
+      "artifacts": [
+        "https://github.com/ivanov84/ninfer-windows-tp2/blob/eb01f69c5880ca20658e9fd0645ed20d18cc0e05/benchmarks/windows-tp2-phase2c.csv",
+        "https://github.com/ivanov84/ninfer-windows-tp2/blob/eb01f69c5880ca20658e9fd0645ed20d18cc0e05/benchmarks/windows-tp2-benchmarks.md",
+        "https://github.com/ivanov84/ninfer-windows-tp2/blob/eb01f69c5880ca20658e9fd0645ed20d18cc0e05/docs/windows-peer-mailbox.md"
+      ],
+      "_source_file": "data/results/community-2x5060ti-ninfer-windows-tp2.json"
+    },
+    {
+      "schema_version": "1.0",
+      "id": "20260907-ninfer-windows-tp2-base_mtp0_r2",
+      "timestamp_utc": "2026-09-07T16:42:08+00:00",
+      "source": {
+        "type": "community",
+        "label": "community-2x5060ti-ivanov84-ninfer-windows-tp2",
+        "url": "https://github.com/5p00kyy/club-5060ti/issues/8",
+        "notes": "Normalized by the maintainer from the contributor fork raw CSV and methodology at commit eb01f69; submitted by an AI agent on behalf of Dmitriy Ivanov."
+      },
+      "promotion_level": "benchmark",
+      "tier": "capable",
+      "hardware": {
+        "lane": "2x5060ti",
+        "gpu_count": 2,
+        "gpu_model": "RTX 5060 Ti",
+        "vram_per_gpu_gb": 16.0,
+        "driver": "581.57",
+        "cpu": "Intel Core i3-12100F",
+        "host_ram_gb": 64.0,
+        "pcie": "GPU0 CPU-attached PCIe 5.0 x8 under load; GPU1 chipset PCIe 3.0 x4; no CUDA P2P",
+        "notes": "MSI PRO Z690-A; native Windows 11 x64 under WDDM."
+      },
+      "runtime": {
+        "engine": "other",
+        "version": "NInfer Windows-TP2 experiment",
+        "commit": "eb01f69c5880ca20658e9fd0645ed20d18cc0e05",
+        "notes": "NInfer TP2 with CUDA-graph decode and pinned write-back host-memory peer mailbox; canonical post-revert binary."
+      },
+      "model": {
+        "id": "qwen3_8_27b_nvfp4.ninfer",
+        "family": "Qwen3.8",
+        "architecture": "hybrid",
+        "parameter_class": "27B",
+        "quant": "NVFP4",
+        "source": "Published NInfer Qwen3.8-27B NVFP4 artifact, SHA-256 verified by contributor."
+      },
+      "serving": {
+        "route": "cli",
+        "context_tokens": 8192,
+        "kv_cache_k": "bf16",
+        "kv_cache_v": "bf16",
+        "tensor_parallel": "2",
+        "speculation": {
+          "type": "mtp",
+          "draft_n": 0
+        },
+        "thinking": "off",
+        "launch": "--tp 2 --devices 0,1 --max-context 8192 --kv-capacity auto --no-thinking --ignore-eos",
+        "notes": "CUDA graphs enabled. Small fixed-shape allreduces use the pinned-host mailbox; eager/prefill and oversized payloads retain the staged fallback."
+      },
+      "benchmark": {
+        "prompt_set": "custom",
+        "configured_context_tokens": 8192,
+        "actual_prompt_tokens": 19,
+        "generated_tokens": 512,
+        "runs": 1,
+        "warmups": 0,
+        "stream": false,
+        "cache_policy": "server-default",
+        "notes": "Engine-committed decode throughput; greedy temperature 0; output-limit finish. Raw run id: base_mtp0_r2."
+      },
+      "metrics": {
+        "decode_tok_s": 35.77,
+        "prompt_tok_s": 45.05,
+        "wall_seconds": 14.3
+      },
+      "caveats": [
+        "Community-submitted Windows 11 result; not independently reproduced by the maintainer.",
+        "Single request with a short synthetic prompt; decode speed and MTP acceptance are workload-dependent.",
+        "Native Windows/WDDM mailbox transport result; no matched Linux comparison was measured on this machine.",
+        "Prefill numbers use a tiny prompt and should not be treated as sustained long-prompt throughput."
+      ],
+      "artifacts": [
+        "https://github.com/ivanov84/ninfer-windows-tp2/blob/eb01f69c5880ca20658e9fd0645ed20d18cc0e05/benchmarks/windows-tp2-phase2c.csv",
+        "https://github.com/ivanov84/ninfer-windows-tp2/blob/eb01f69c5880ca20658e9fd0645ed20d18cc0e05/benchmarks/windows-tp2-benchmarks.md",
+        "https://github.com/ivanov84/ninfer-windows-tp2/blob/eb01f69c5880ca20658e9fd0645ed20d18cc0e05/docs/windows-peer-mailbox.md"
+      ],
+      "_source_file": "data/results/community-2x5060ti-ninfer-windows-tp2.json"
+    },
+    {
+      "schema_version": "1.0",
+      "id": "20260907-ninfer-windows-tp2-base_mtp1",
+      "timestamp_utc": "2026-09-07T16:42:08+00:00",
+      "source": {
+        "type": "community",
+        "label": "community-2x5060ti-ivanov84-ninfer-windows-tp2",
+        "url": "https://github.com/5p00kyy/club-5060ti/issues/8",
+        "notes": "Normalized by the maintainer from the contributor fork raw CSV and methodology at commit eb01f69; submitted by an AI agent on behalf of Dmitriy Ivanov."
+      },
+      "promotion_level": "benchmark",
+      "tier": "capable",
+      "hardware": {
+        "lane": "2x5060ti",
+        "gpu_count": 2,
+        "gpu_model": "RTX 5060 Ti",
+        "vram_per_gpu_gb": 16.0,
+        "driver": "581.57",
+        "cpu": "Intel Core i3-12100F",
+        "host_ram_gb": 64.0,
+        "pcie": "GPU0 CPU-attached PCIe 5.0 x8 under load; GPU1 chipset PCIe 3.0 x4; no CUDA P2P",
+        "notes": "MSI PRO Z690-A; native Windows 11 x64 under WDDM."
+      },
+      "runtime": {
+        "engine": "other",
+        "version": "NInfer Windows-TP2 experiment",
+        "commit": "eb01f69c5880ca20658e9fd0645ed20d18cc0e05",
+        "notes": "NInfer TP2 with CUDA-graph decode and pinned write-back host-memory peer mailbox; canonical post-revert binary."
+      },
+      "model": {
+        "id": "qwen3_8_27b_nvfp4.ninfer",
+        "family": "Qwen3.8",
+        "architecture": "hybrid",
+        "parameter_class": "27B",
+        "quant": "NVFP4",
+        "source": "Published NInfer Qwen3.8-27B NVFP4 artifact, SHA-256 verified by contributor."
+      },
+      "serving": {
+        "route": "cli",
+        "context_tokens": 8192,
+        "kv_cache_k": "bf16",
+        "kv_cache_v": "bf16",
+        "tensor_parallel": "2",
+        "speculation": {
+          "type": "mtp",
+          "draft_n": 1,
+          "acceptance_rate": 87.5
+        },
+        "thinking": "off",
+        "launch": "--tp 2 --devices 0,1 --max-context 8192 --kv-capacity auto --no-thinking --ignore-eos",
+        "notes": "CUDA graphs enabled. Small fixed-shape allreduces use the pinned-host mailbox; eager/prefill and oversized payloads retain the staged fallback."
+      },
+      "benchmark": {
+        "prompt_set": "custom",
+        "configured_context_tokens": 8192,
+        "actual_prompt_tokens": 19,
+        "generated_tokens": 512,
+        "runs": 1,
+        "warmups": 0,
+        "stream": false,
+        "cache_policy": "server-default",
+        "notes": "Engine-committed decode throughput; greedy temperature 0; output-limit finish. Raw run id: base_mtp1."
+      },
+      "metrics": {
+        "decode_tok_s": 57.71,
+        "prompt_tok_s": 50.25,
+        "wall_seconds": 8.86
+      },
+      "caveats": [
+        "Community-submitted Windows 11 result; not independently reproduced by the maintainer.",
+        "Single request with a short synthetic prompt; decode speed and MTP acceptance are workload-dependent.",
+        "Native Windows/WDDM mailbox transport result; no matched Linux comparison was measured on this machine.",
+        "Prefill numbers use a tiny prompt and should not be treated as sustained long-prompt throughput."
+      ],
+      "artifacts": [
+        "https://github.com/ivanov84/ninfer-windows-tp2/blob/eb01f69c5880ca20658e9fd0645ed20d18cc0e05/benchmarks/windows-tp2-phase2c.csv",
+        "https://github.com/ivanov84/ninfer-windows-tp2/blob/eb01f69c5880ca20658e9fd0645ed20d18cc0e05/benchmarks/windows-tp2-benchmarks.md",
+        "https://github.com/ivanov84/ninfer-windows-tp2/blob/eb01f69c5880ca20658e9fd0645ed20d18cc0e05/docs/windows-peer-mailbox.md"
+      ],
+      "_source_file": "data/results/community-2x5060ti-ninfer-windows-tp2.json"
+    },
+    {
+      "schema_version": "1.0",
+      "id": "20260907-ninfer-windows-tp2-base_mtp2_r1",
+      "timestamp_utc": "2026-09-07T16:42:08+00:00",
+      "source": {
+        "type": "community",
+        "label": "community-2x5060ti-ivanov84-ninfer-windows-tp2",
+        "url": "https://github.com/5p00kyy/club-5060ti/issues/8",
+        "notes": "Normalized by the maintainer from the contributor fork raw CSV and methodology at commit eb01f69; submitted by an AI agent on behalf of Dmitriy Ivanov."
+      },
+      "promotion_level": "benchmark",
+      "tier": "capable",
+      "hardware": {
+        "lane": "2x5060ti",
+        "gpu_count": 2,
+        "gpu_model": "RTX 5060 Ti",
+        "vram_per_gpu_gb": 16.0,
+        "driver": "581.57",
+        "cpu": "Intel Core i3-12100F",
+        "host_ram_gb": 64.0,
+        "pcie": "GPU0 CPU-attached PCIe 5.0 x8 under load; GPU1 chipset PCIe 3.0 x4; no CUDA P2P",
+        "notes": "MSI PRO Z690-A; native Windows 11 x64 under WDDM."
+      },
+      "runtime": {
+        "engine": "other",
+        "version": "NInfer Windows-TP2 experiment",
+        "commit": "eb01f69c5880ca20658e9fd0645ed20d18cc0e05",
+        "notes": "NInfer TP2 with CUDA-graph decode and pinned write-back host-memory peer mailbox; canonical post-revert binary."
+      },
+      "model": {
+        "id": "qwen3_8_27b_nvfp4.ninfer",
+        "family": "Qwen3.8",
+        "architecture": "hybrid",
+        "parameter_class": "27B",
+        "quant": "NVFP4",
+        "source": "Published NInfer Qwen3.8-27B NVFP4 artifact, SHA-256 verified by contributor."
+      },
+      "serving": {
+        "route": "cli",
+        "context_tokens": 8192,
+        "kv_cache_k": "bf16",
+        "kv_cache_v": "bf16",
+        "tensor_parallel": "2",
+        "speculation": {
+          "type": "mtp",
+          "draft_n": 2,
+          "acceptance_rate": 65.76
+        },
+        "thinking": "off",
+        "launch": "--tp 2 --devices 0,1 --max-context 8192 --kv-capacity auto --no-thinking --ignore-eos",
+        "notes": "CUDA graphs enabled. Small fixed-shape allreduces use the pinned-host mailbox; eager/prefill and oversized payloads retain the staged fallback."
+      },
+      "benchmark": {
+        "prompt_set": "custom",
+        "configured_context_tokens": 8192,
+        "actual_prompt_tokens": 19,
+        "generated_tokens": 512,
+        "runs": 1,
+        "warmups": 0,
+        "stream": false,
+        "cache_policy": "server-default",
+        "notes": "Engine-committed decode throughput; greedy temperature 0; output-limit finish. Raw run id: base_mtp2_r1."
+      },
+      "metrics": {
+        "decode_tok_s": 63.18,
+        "prompt_tok_s": 50.25,
+        "wall_seconds": 8.08
+      },
+      "caveats": [
+        "Community-submitted Windows 11 result; not independently reproduced by the maintainer.",
+        "Single request with a short synthetic prompt; decode speed and MTP acceptance are workload-dependent.",
+        "Native Windows/WDDM mailbox transport result; no matched Linux comparison was measured on this machine.",
+        "Prefill numbers use a tiny prompt and should not be treated as sustained long-prompt throughput."
+      ],
+      "artifacts": [
+        "https://github.com/ivanov84/ninfer-windows-tp2/blob/eb01f69c5880ca20658e9fd0645ed20d18cc0e05/benchmarks/windows-tp2-phase2c.csv",
+        "https://github.com/ivanov84/ninfer-windows-tp2/blob/eb01f69c5880ca20658e9fd0645ed20d18cc0e05/benchmarks/windows-tp2-benchmarks.md",
+        "https://github.com/ivanov84/ninfer-windows-tp2/blob/eb01f69c5880ca20658e9fd0645ed20d18cc0e05/docs/windows-peer-mailbox.md"
+      ],
+      "_source_file": "data/results/community-2x5060ti-ninfer-windows-tp2.json"
+    },
+    {
+      "schema_version": "1.0",
+      "id": "20260907-ninfer-windows-tp2-base_mtp2_r2",
+      "timestamp_utc": "2026-09-07T16:42:08+00:00",
+      "source": {
+        "type": "community",
+        "label": "community-2x5060ti-ivanov84-ninfer-windows-tp2",
+        "url": "https://github.com/5p00kyy/club-5060ti/issues/8",
+        "notes": "Normalized by the maintainer from the contributor fork raw CSV and methodology at commit eb01f69; submitted by an AI agent on behalf of Dmitriy Ivanov."
+      },
+      "promotion_level": "benchmark",
+      "tier": "capable",
+      "hardware": {
+        "lane": "2x5060ti",
+        "gpu_count": 2,
+        "gpu_model": "RTX 5060 Ti",
+        "vram_per_gpu_gb": 16.0,
+        "driver": "581.57",
+        "cpu": "Intel Core i3-12100F",
+        "host_ram_gb": 64.0,
+        "pcie": "GPU0 CPU-attached PCIe 5.0 x8 under load; GPU1 chipset PCIe 3.0 x4; no CUDA P2P",
+        "notes": "MSI PRO Z690-A; native Windows 11 x64 under WDDM."
+      },
+      "runtime": {
+        "engine": "other",
+        "version": "NInfer Windows-TP2 experiment",
+        "commit": "eb01f69c5880ca20658e9fd0645ed20d18cc0e05",
+        "notes": "NInfer TP2 with CUDA-graph decode and pinned write-back host-memory peer mailbox; canonical post-revert binary."
+      },
+      "model": {
+        "id": "qwen3_8_27b_nvfp4.ninfer",
+        "family": "Qwen3.8",
+        "architecture": "hybrid",
+        "parameter_class": "27B",
+        "quant": "NVFP4",
+        "source": "Published NInfer Qwen3.8-27B NVFP4 artifact, SHA-256 verified by contributor."
+      },
+      "serving": {
+        "route": "cli",
+        "context_tokens": 8192,
+        "kv_cache_k": "bf16",
+        "kv_cache_v": "bf16",
+        "tensor_parallel": "2",
+        "speculation": {
+          "type": "mtp",
+          "draft_n": 2
+        },
+        "thinking": "off",
+        "launch": "--tp 2 --devices 0,1 --max-context 8192 --kv-capacity auto --no-thinking --ignore-eos",
+        "notes": "CUDA graphs enabled. Small fixed-shape allreduces use the pinned-host mailbox; eager/prefill and oversized payloads retain the staged fallback."
+      },
+      "benchmark": {
+        "prompt_set": "custom",
+        "configured_context_tokens": 8192,
+        "actual_prompt_tokens": 19,
+        "generated_tokens": 512,
+        "runs": 1,
+        "warmups": 0,
+        "stream": false,
+        "cache_policy": "server-default",
+        "notes": "Engine-committed decode throughput; greedy temperature 0; output-limit finish. Raw run id: base_mtp2_r2."
+      },
+      "metrics": {
+        "decode_tok_s": 63.11,
+        "prompt_tok_s": 50.25,
+        "wall_seconds": 8.09
+      },
+      "caveats": [
+        "Community-submitted Windows 11 result; not independently reproduced by the maintainer.",
+        "Single request with a short synthetic prompt; decode speed and MTP acceptance are workload-dependent.",
+        "Native Windows/WDDM mailbox transport result; no matched Linux comparison was measured on this machine.",
+        "Prefill numbers use a tiny prompt and should not be treated as sustained long-prompt throughput."
+      ],
+      "artifacts": [
+        "https://github.com/ivanov84/ninfer-windows-tp2/blob/eb01f69c5880ca20658e9fd0645ed20d18cc0e05/benchmarks/windows-tp2-phase2c.csv",
+        "https://github.com/ivanov84/ninfer-windows-tp2/blob/eb01f69c5880ca20658e9fd0645ed20d18cc0e05/benchmarks/windows-tp2-benchmarks.md",
+        "https://github.com/ivanov84/ninfer-windows-tp2/blob/eb01f69c5880ca20658e9fd0645ed20d18cc0e05/docs/windows-peer-mailbox.md"
+      ],
+      "_source_file": "data/results/community-2x5060ti-ninfer-windows-tp2.json"
+    },
+    {
+      "schema_version": "1.0",
+      "id": "20260907-ninfer-windows-tp2-base_mtp3_r1",
+      "timestamp_utc": "2026-09-07T16:42:08+00:00",
+      "source": {
+        "type": "community",
+        "label": "community-2x5060ti-ivanov84-ninfer-windows-tp2",
+        "url": "https://github.com/5p00kyy/club-5060ti/issues/8",
+        "notes": "Normalized by the maintainer from the contributor fork raw CSV and methodology at commit eb01f69; submitted by an AI agent on behalf of Dmitriy Ivanov."
+      },
+      "promotion_level": "benchmark",
+      "tier": "capable",
+      "hardware": {
+        "lane": "2x5060ti",
+        "gpu_count": 2,
+        "gpu_model": "RTX 5060 Ti",
+        "vram_per_gpu_gb": 16.0,
+        "driver": "581.57",
+        "cpu": "Intel Core i3-12100F",
+        "host_ram_gb": 64.0,
+        "pcie": "GPU0 CPU-attached PCIe 5.0 x8 under load; GPU1 chipset PCIe 3.0 x4; no CUDA P2P",
+        "notes": "MSI PRO Z690-A; native Windows 11 x64 under WDDM."
+      },
+      "runtime": {
+        "engine": "other",
+        "version": "NInfer Windows-TP2 experiment",
+        "commit": "eb01f69c5880ca20658e9fd0645ed20d18cc0e05",
+        "notes": "NInfer TP2 with CUDA-graph decode and pinned write-back host-memory peer mailbox; canonical post-revert binary."
+      },
+      "model": {
+        "id": "qwen3_8_27b_nvfp4.ninfer",
+        "family": "Qwen3.8",
+        "architecture": "hybrid",
+        "parameter_class": "27B",
+        "quant": "NVFP4",
+        "source": "Published NInfer Qwen3.8-27B NVFP4 artifact, SHA-256 verified by contributor."
+      },
+      "serving": {
+        "route": "cli",
+        "context_tokens": 8192,
+        "kv_cache_k": "bf16",
+        "kv_cache_v": "bf16",
+        "tensor_parallel": "2",
+        "speculation": {
+          "type": "mtp",
+          "draft_n": 3,
+          "acceptance_rate": 57.75
+        },
+        "thinking": "off",
+        "launch": "--tp 2 --devices 0,1 --max-context 8192 --kv-capacity auto --no-thinking --ignore-eos",
+        "notes": "CUDA graphs enabled. Small fixed-shape allreduces use the pinned-host mailbox; eager/prefill and oversized payloads retain the staged fallback."
+      },
+      "benchmark": {
+        "prompt_set": "custom",
+        "configured_context_tokens": 8192,
+        "actual_prompt_tokens": 19,
+        "generated_tokens": 512,
+        "runs": 1,
+        "warmups": 0,
+        "stream": false,
+        "cache_policy": "server-default",
+        "notes": "Engine-committed decode throughput; greedy temperature 0; output-limit finish. Raw run id: base_mtp3_r1."
+      },
+      "metrics": {
+        "decode_tok_s": 66.71,
+        "prompt_tok_s": 50.25,
+        "wall_seconds": 7.66
+      },
+      "caveats": [
+        "Community-submitted Windows 11 result; not independently reproduced by the maintainer.",
+        "Single request with a short synthetic prompt; decode speed and MTP acceptance are workload-dependent.",
+        "Native Windows/WDDM mailbox transport result; no matched Linux comparison was measured on this machine.",
+        "Prefill numbers use a tiny prompt and should not be treated as sustained long-prompt throughput."
+      ],
+      "artifacts": [
+        "https://github.com/ivanov84/ninfer-windows-tp2/blob/eb01f69c5880ca20658e9fd0645ed20d18cc0e05/benchmarks/windows-tp2-phase2c.csv",
+        "https://github.com/ivanov84/ninfer-windows-tp2/blob/eb01f69c5880ca20658e9fd0645ed20d18cc0e05/benchmarks/windows-tp2-benchmarks.md",
+        "https://github.com/ivanov84/ninfer-windows-tp2/blob/eb01f69c5880ca20658e9fd0645ed20d18cc0e05/docs/windows-peer-mailbox.md"
+      ],
+      "_source_file": "data/results/community-2x5060ti-ninfer-windows-tp2.json"
+    },
+    {
+      "schema_version": "1.0",
+      "id": "20260907-ninfer-windows-tp2-base_mtp3_r2",
+      "timestamp_utc": "2026-09-07T16:42:08+00:00",
+      "source": {
+        "type": "community",
+        "label": "community-2x5060ti-ivanov84-ninfer-windows-tp2",
+        "url": "https://github.com/5p00kyy/club-5060ti/issues/8",
+        "notes": "Normalized by the maintainer from the contributor fork raw CSV and methodology at commit eb01f69; submitted by an AI agent on behalf of Dmitriy Ivanov."
+      },
+      "promotion_level": "benchmark",
+      "tier": "capable",
+      "hardware": {
+        "lane": "2x5060ti",
+        "gpu_count": 2,
+        "gpu_model": "RTX 5060 Ti",
+        "vram_per_gpu_gb": 16.0,
+        "driver": "581.57",
+        "cpu": "Intel Core i3-12100F",
+        "host_ram_gb": 64.0,
+        "pcie": "GPU0 CPU-attached PCIe 5.0 x8 under load; GPU1 chipset PCIe 3.0 x4; no CUDA P2P",
+        "notes": "MSI PRO Z690-A; native Windows 11 x64 under WDDM."
+      },
+      "runtime": {
+        "engine": "other",
+        "version": "NInfer Windows-TP2 experiment",
+        "commit": "eb01f69c5880ca20658e9fd0645ed20d18cc0e05",
+        "notes": "NInfer TP2 with CUDA-graph decode and pinned write-back host-memory peer mailbox; canonical post-revert binary."
+      },
+      "model": {
+        "id": "qwen3_8_27b_nvfp4.ninfer",
+        "family": "Qwen3.8",
+        "architecture": "hybrid",
+        "parameter_class": "27B",
+        "quant": "NVFP4",
+        "source": "Published NInfer Qwen3.8-27B NVFP4 artifact, SHA-256 verified by contributor."
+      },
+      "serving": {
+        "route": "cli",
+        "context_tokens": 8192,
+        "kv_cache_k": "bf16",
+        "kv_cache_v": "bf16",
+        "tensor_parallel": "2",
+        "speculation": {
+          "type": "mtp",
+          "draft_n": 3
+        },
+        "thinking": "off",
+        "launch": "--tp 2 --devices 0,1 --max-context 8192 --kv-capacity auto --no-thinking --ignore-eos",
+        "notes": "CUDA graphs enabled. Small fixed-shape allreduces use the pinned-host mailbox; eager/prefill and oversized payloads retain the staged fallback."
+      },
+      "benchmark": {
+        "prompt_set": "custom",
+        "configured_context_tokens": 8192,
+        "actual_prompt_tokens": 19,
+        "generated_tokens": 512,
+        "runs": 1,
+        "warmups": 0,
+        "stream": false,
+        "cache_policy": "server-default",
+        "notes": "Engine-committed decode throughput; greedy temperature 0; output-limit finish. Raw run id: base_mtp3_r2."
+      },
+      "metrics": {
+        "decode_tok_s": 66.86,
+        "prompt_tok_s": 50.25,
+        "wall_seconds": 7.64
+      },
+      "caveats": [
+        "Community-submitted Windows 11 result; not independently reproduced by the maintainer.",
+        "Single request with a short synthetic prompt; decode speed and MTP acceptance are workload-dependent.",
+        "Native Windows/WDDM mailbox transport result; no matched Linux comparison was measured on this machine.",
+        "Prefill numbers use a tiny prompt and should not be treated as sustained long-prompt throughput."
+      ],
+      "artifacts": [
+        "https://github.com/ivanov84/ninfer-windows-tp2/blob/eb01f69c5880ca20658e9fd0645ed20d18cc0e05/benchmarks/windows-tp2-phase2c.csv",
+        "https://github.com/ivanov84/ninfer-windows-tp2/blob/eb01f69c5880ca20658e9fd0645ed20d18cc0e05/benchmarks/windows-tp2-benchmarks.md",
+        "https://github.com/ivanov84/ninfer-windows-tp2/blob/eb01f69c5880ca20658e9fd0645ed20d18cc0e05/docs/windows-peer-mailbox.md"
+      ],
+      "_source_file": "data/results/community-2x5060ti-ninfer-windows-tp2.json"
+    },
+    {
+      "schema_version": "1.0",
+      "id": "20260907-ninfer-windows-tp2-base_mtp4_r1",
+      "timestamp_utc": "2026-09-07T16:42:08+00:00",
+      "source": {
+        "type": "community",
+        "label": "community-2x5060ti-ivanov84-ninfer-windows-tp2",
+        "url": "https://github.com/5p00kyy/club-5060ti/issues/8",
+        "notes": "Normalized by the maintainer from the contributor fork raw CSV and methodology at commit eb01f69; submitted by an AI agent on behalf of Dmitriy Ivanov."
+      },
+      "promotion_level": "benchmark",
+      "tier": "capable",
+      "hardware": {
+        "lane": "2x5060ti",
+        "gpu_count": 2,
+        "gpu_model": "RTX 5060 Ti",
+        "vram_per_gpu_gb": 16.0,
+        "driver": "581.57",
+        "cpu": "Intel Core i3-12100F",
+        "host_ram_gb": 64.0,
+        "pcie": "GPU0 CPU-attached PCIe 5.0 x8 under load; GPU1 chipset PCIe 3.0 x4; no CUDA P2P",
+        "notes": "MSI PRO Z690-A; native Windows 11 x64 under WDDM."
+      },
+      "runtime": {
+        "engine": "other",
+        "version": "NInfer Windows-TP2 experiment",
+        "commit": "eb01f69c5880ca20658e9fd0645ed20d18cc0e05",
+        "notes": "NInfer TP2 with CUDA-graph decode and pinned write-back host-memory peer mailbox; canonical post-revert binary."
+      },
+      "model": {
+        "id": "qwen3_8_27b_nvfp4.ninfer",
+        "family": "Qwen3.8",
+        "architecture": "hybrid",
+        "parameter_class": "27B",
+        "quant": "NVFP4",
+        "source": "Published NInfer Qwen3.8-27B NVFP4 artifact, SHA-256 verified by contributor."
+      },
+      "serving": {
+        "route": "cli",
+        "context_tokens": 8192,
+        "kv_cache_k": "bf16",
+        "kv_cache_v": "bf16",
+        "tensor_parallel": "2",
+        "speculation": {
+          "type": "mtp",
+          "draft_n": 4,
+          "acceptance_rate": 53.06
+        },
+        "thinking": "off",
+        "launch": "--tp 2 --devices 0,1 --max-context 8192 --kv-capacity auto --no-thinking --ignore-eos",
+        "notes": "CUDA graphs enabled. Small fixed-shape allreduces use the pinned-host mailbox; eager/prefill and oversized payloads retain the staged fallback."
+      },
+      "benchmark": {
+        "prompt_set": "custom",
+        "configured_context_tokens": 8192,
+        "actual_prompt_tokens": 19,
+        "generated_tokens": 512,
+        "runs": 1,
+        "warmups": 0,
+        "stream": false,
+        "cache_policy": "server-default",
+        "notes": "Engine-committed decode throughput; greedy temperature 0; output-limit finish. Raw run id: base_mtp4_r1."
+      },
+      "metrics": {
+        "decode_tok_s": 68.53,
+        "prompt_tok_s": 45.2,
+        "wall_seconds": 7.44
+      },
+      "caveats": [
+        "Community-submitted Windows 11 result; not independently reproduced by the maintainer.",
+        "Single request with a short synthetic prompt; decode speed and MTP acceptance are workload-dependent.",
+        "Native Windows/WDDM mailbox transport result; no matched Linux comparison was measured on this machine.",
+        "Prefill numbers use a tiny prompt and should not be treated as sustained long-prompt throughput."
+      ],
+      "artifacts": [
+        "https://github.com/ivanov84/ninfer-windows-tp2/blob/eb01f69c5880ca20658e9fd0645ed20d18cc0e05/benchmarks/windows-tp2-phase2c.csv",
+        "https://github.com/ivanov84/ninfer-windows-tp2/blob/eb01f69c5880ca20658e9fd0645ed20d18cc0e05/benchmarks/windows-tp2-benchmarks.md",
+        "https://github.com/ivanov84/ninfer-windows-tp2/blob/eb01f69c5880ca20658e9fd0645ed20d18cc0e05/docs/windows-peer-mailbox.md"
+      ],
+      "_source_file": "data/results/community-2x5060ti-ninfer-windows-tp2.json"
+    },
+    {
+      "schema_version": "1.0",
+      "id": "20260907-ninfer-windows-tp2-base_mtp4_r2",
+      "timestamp_utc": "2026-09-07T16:42:08+00:00",
+      "source": {
+        "type": "community",
+        "label": "community-2x5060ti-ivanov84-ninfer-windows-tp2",
+        "url": "https://github.com/5p00kyy/club-5060ti/issues/8",
+        "notes": "Normalized by the maintainer from the contributor fork raw CSV and methodology at commit eb01f69; submitted by an AI agent on behalf of Dmitriy Ivanov."
+      },
+      "promotion_level": "benchmark",
+      "tier": "capable",
+      "hardware": {
+        "lane": "2x5060ti",
+        "gpu_count": 2,
+        "gpu_model": "RTX 5060 Ti",
+        "vram_per_gpu_gb": 16.0,
+        "driver": "581.57",
+        "cpu": "Intel Core i3-12100F",
+        "host_ram_gb": 64.0,
+        "pcie": "GPU0 CPU-attached PCIe 5.0 x8 under load; GPU1 chipset PCIe 3.0 x4; no CUDA P2P",
+        "notes": "MSI PRO Z690-A; native Windows 11 x64 under WDDM."
+      },
+      "runtime": {
+        "engine": "other",
+        "version": "NInfer Windows-TP2 experiment",
+        "commit": "eb01f69c5880ca20658e9fd0645ed20d18cc0e05",
+        "notes": "NInfer TP2 with CUDA-graph decode and pinned write-back host-memory peer mailbox; canonical post-revert binary."
+      },
+      "model": {
+        "id": "qwen3_8_27b_nvfp4.ninfer",
+        "family": "Qwen3.8",
+        "architecture": "hybrid",
+        "parameter_class": "27B",
+        "quant": "NVFP4",
+        "source": "Published NInfer Qwen3.8-27B NVFP4 artifact, SHA-256 verified by contributor."
+      },
+      "serving": {
+        "route": "cli",
+        "context_tokens": 8192,
+        "kv_cache_k": "bf16",
+        "kv_cache_v": "bf16",
+        "tensor_parallel": "2",
+        "speculation": {
+          "type": "mtp",
+          "draft_n": 4,
+          "acceptance_rate": 53.06
+        },
+        "thinking": "off",
+        "launch": "--tp 2 --devices 0,1 --max-context 8192 --kv-capacity auto --no-thinking --ignore-eos",
+        "notes": "CUDA graphs enabled. Small fixed-shape allreduces use the pinned-host mailbox; eager/prefill and oversized payloads retain the staged fallback."
+      },
+      "benchmark": {
+        "prompt_set": "custom",
+        "configured_context_tokens": 8192,
+        "actual_prompt_tokens": 19,
+        "generated_tokens": 512,
+        "runs": 1,
+        "warmups": 0,
+        "stream": false,
+        "cache_policy": "server-default",
+        "notes": "Engine-committed decode throughput; greedy temperature 0; output-limit finish. Raw run id: base_mtp4_r2."
+      },
+      "metrics": {
+        "decode_tok_s": 68.87,
+        "prompt_tok_s": 45.2,
+        "wall_seconds": 7.4
+      },
+      "caveats": [
+        "Community-submitted Windows 11 result; not independently reproduced by the maintainer.",
+        "Single request with a short synthetic prompt; decode speed and MTP acceptance are workload-dependent.",
+        "Native Windows/WDDM mailbox transport result; no matched Linux comparison was measured on this machine.",
+        "Prefill numbers use a tiny prompt and should not be treated as sustained long-prompt throughput."
+      ],
+      "artifacts": [
+        "https://github.com/ivanov84/ninfer-windows-tp2/blob/eb01f69c5880ca20658e9fd0645ed20d18cc0e05/benchmarks/windows-tp2-phase2c.csv",
+        "https://github.com/ivanov84/ninfer-windows-tp2/blob/eb01f69c5880ca20658e9fd0645ed20d18cc0e05/benchmarks/windows-tp2-benchmarks.md",
+        "https://github.com/ivanov84/ninfer-windows-tp2/blob/eb01f69c5880ca20658e9fd0645ed20d18cc0e05/docs/windows-peer-mailbox.md"
+      ],
+      "_source_file": "data/results/community-2x5060ti-ninfer-windows-tp2.json"
+    },
+    {
+      "schema_version": "1.0",
+      "id": "20260907-ninfer-windows-tp2-base_mtp5",
+      "timestamp_utc": "2026-09-07T16:42:08+00:00",
+      "source": {
+        "type": "community",
+        "label": "community-2x5060ti-ivanov84-ninfer-windows-tp2",
+        "url": "https://github.com/5p00kyy/club-5060ti/issues/8",
+        "notes": "Normalized by the maintainer from the contributor fork raw CSV and methodology at commit eb01f69; submitted by an AI agent on behalf of Dmitriy Ivanov."
+      },
+      "promotion_level": "benchmark",
+      "tier": "capable",
+      "hardware": {
+        "lane": "2x5060ti",
+        "gpu_count": 2,
+        "gpu_model": "RTX 5060 Ti",
+        "vram_per_gpu_gb": 16.0,
+        "driver": "581.57",
+        "cpu": "Intel Core i3-12100F",
+        "host_ram_gb": 64.0,
+        "pcie": "GPU0 CPU-attached PCIe 5.0 x8 under load; GPU1 chipset PCIe 3.0 x4; no CUDA P2P",
+        "notes": "MSI PRO Z690-A; native Windows 11 x64 under WDDM."
+      },
+      "runtime": {
+        "engine": "other",
+        "version": "NInfer Windows-TP2 experiment",
+        "commit": "eb01f69c5880ca20658e9fd0645ed20d18cc0e05",
+        "notes": "NInfer TP2 with CUDA-graph decode and pinned write-back host-memory peer mailbox; canonical post-revert binary."
+      },
+      "model": {
+        "id": "qwen3_8_27b_nvfp4.ninfer",
+        "family": "Qwen3.8",
+        "architecture": "hybrid",
+        "parameter_class": "27B",
+        "quant": "NVFP4",
+        "source": "Published NInfer Qwen3.8-27B NVFP4 artifact, SHA-256 verified by contributor."
+      },
+      "serving": {
+        "route": "cli",
+        "context_tokens": 8192,
+        "kv_cache_k": "bf16",
+        "kv_cache_v": "bf16",
+        "tensor_parallel": "2",
+        "speculation": {
+          "type": "mtp",
+          "draft_n": 5,
+          "acceptance_rate": 40.52
+        },
+        "thinking": "off",
+        "launch": "--tp 2 --devices 0,1 --max-context 8192 --kv-capacity auto --no-thinking --ignore-eos",
+        "notes": "CUDA graphs enabled. Small fixed-shape allreduces use the pinned-host mailbox; eager/prefill and oversized payloads retain the staged fallback."
+      },
+      "benchmark": {
+        "prompt_set": "custom",
+        "configured_context_tokens": 8192,
+        "actual_prompt_tokens": 19,
+        "generated_tokens": 512,
+        "runs": 1,
+        "warmups": 0,
+        "stream": false,
+        "cache_policy": "server-default",
+        "notes": "Engine-committed decode throughput; greedy temperature 0; output-limit finish. Raw run id: base_mtp5."
+      },
+      "metrics": {
+        "decode_tok_s": 60.82,
+        "prompt_tok_s": 97.83,
+        "end_to_end_tok_s": 59.57,
+        "wall_seconds": 8.6
+      },
+      "caveats": [
+        "Community-submitted Windows 11 result; not independently reproduced by the maintainer.",
+        "Single request with a short synthetic prompt; decode speed and MTP acceptance are workload-dependent.",
+        "Native Windows/WDDM mailbox transport result; no matched Linux comparison was measured on this machine.",
+        "Prefill numbers use a tiny prompt and should not be treated as sustained long-prompt throughput.",
+        "MTP5 was rejected by the contributor because acceptance fell and throughput regressed."
+      ],
+      "artifacts": [
+        "https://github.com/ivanov84/ninfer-windows-tp2/blob/eb01f69c5880ca20658e9fd0645ed20d18cc0e05/benchmarks/windows-tp2-phase2c.csv",
+        "https://github.com/ivanov84/ninfer-windows-tp2/blob/eb01f69c5880ca20658e9fd0645ed20d18cc0e05/benchmarks/windows-tp2-benchmarks.md",
+        "https://github.com/ivanov84/ninfer-windows-tp2/blob/eb01f69c5880ca20658e9fd0645ed20d18cc0e05/docs/windows-peer-mailbox.md"
+      ],
+      "_source_file": "data/results/community-2x5060ti-ninfer-windows-tp2.json"
+    },
+    {
+      "schema_version": "1.0",
+      "id": "20260907-ninfer-windows-tp2-final_mtp4_512",
+      "timestamp_utc": "2026-09-07T16:42:08+00:00",
+      "source": {
+        "type": "community",
+        "label": "community-2x5060ti-ivanov84-ninfer-windows-tp2",
+        "url": "https://github.com/5p00kyy/club-5060ti/issues/8",
+        "notes": "Normalized by the maintainer from the contributor fork raw CSV and methodology at commit eb01f69; submitted by an AI agent on behalf of Dmitriy Ivanov."
+      },
+      "promotion_level": "benchmark",
+      "tier": "capable",
+      "hardware": {
+        "lane": "2x5060ti",
+        "gpu_count": 2,
+        "gpu_model": "RTX 5060 Ti",
+        "vram_per_gpu_gb": 16.0,
+        "driver": "581.57",
+        "cpu": "Intel Core i3-12100F",
+        "host_ram_gb": 64.0,
+        "pcie": "GPU0 CPU-attached PCIe 5.0 x8 under load; GPU1 chipset PCIe 3.0 x4; no CUDA P2P",
+        "notes": "MSI PRO Z690-A; native Windows 11 x64 under WDDM."
+      },
+      "runtime": {
+        "engine": "other",
+        "version": "NInfer Windows-TP2 experiment",
+        "commit": "eb01f69c5880ca20658e9fd0645ed20d18cc0e05",
+        "notes": "NInfer TP2 with CUDA-graph decode and pinned write-back host-memory peer mailbox; canonical post-revert binary."
+      },
+      "model": {
+        "id": "qwen3_8_27b_nvfp4.ninfer",
+        "family": "Qwen3.8",
+        "architecture": "hybrid",
+        "parameter_class": "27B",
+        "quant": "NVFP4",
+        "source": "Published NInfer Qwen3.8-27B NVFP4 artifact, SHA-256 verified by contributor."
+      },
+      "serving": {
+        "route": "cli",
+        "context_tokens": 8192,
+        "kv_cache_k": "bf16",
+        "kv_cache_v": "bf16",
+        "tensor_parallel": "2",
+        "speculation": {
+          "type": "mtp",
+          "draft_n": 4,
+          "acceptance_rate": 53.06
+        },
+        "thinking": "off",
+        "launch": "--tp 2 --devices 0,1 --max-context 8192 --kv-capacity auto --no-thinking --ignore-eos",
+        "notes": "CUDA graphs enabled. Small fixed-shape allreduces use the pinned-host mailbox; eager/prefill and oversized payloads retain the staged fallback."
+      },
+      "benchmark": {
+        "prompt_set": "custom",
+        "configured_context_tokens": 8192,
+        "actual_prompt_tokens": 19,
+        "generated_tokens": 512,
+        "runs": 1,
+        "warmups": 0,
+        "stream": false,
+        "cache_policy": "server-default",
+        "notes": "Engine-committed decode throughput; greedy temperature 0; output-limit finish. Raw run id: final_mtp4_512."
+      },
+      "metrics": {
+        "decode_tok_s": 68.68,
+        "prompt_tok_s": 46.9,
+        "end_to_end_tok_s": 67.53,
+        "wall_seconds": 7.79
+      },
+      "caveats": [
+        "Community-submitted Windows 11 result; not independently reproduced by the maintainer.",
+        "Single request with a short synthetic prompt; decode speed and MTP acceptance are workload-dependent.",
+        "Native Windows/WDDM mailbox transport result; no matched Linux comparison was measured on this machine.",
+        "Prefill numbers use a tiny prompt and should not be treated as sustained long-prompt throughput."
+      ],
+      "artifacts": [
+        "https://github.com/ivanov84/ninfer-windows-tp2/blob/eb01f69c5880ca20658e9fd0645ed20d18cc0e05/benchmarks/windows-tp2-phase2c.csv",
+        "https://github.com/ivanov84/ninfer-windows-tp2/blob/eb01f69c5880ca20658e9fd0645ed20d18cc0e05/benchmarks/windows-tp2-benchmarks.md",
+        "https://github.com/ivanov84/ninfer-windows-tp2/blob/eb01f69c5880ca20658e9fd0645ed20d18cc0e05/docs/windows-peer-mailbox.md"
+      ],
+      "_source_file": "data/results/community-2x5060ti-ninfer-windows-tp2.json"
+    },
+    {
+      "schema_version": "1.0",
+      "id": "20260907-ninfer-windows-tp2-final_mtp4_1024",
+      "timestamp_utc": "2026-09-07T16:42:08+00:00",
+      "source": {
+        "type": "community",
+        "label": "community-2x5060ti-ivanov84-ninfer-windows-tp2",
+        "url": "https://github.com/5p00kyy/club-5060ti/issues/8",
+        "notes": "Normalized by the maintainer from the contributor fork raw CSV and methodology at commit eb01f69; submitted by an AI agent on behalf of Dmitriy Ivanov."
+      },
+      "promotion_level": "benchmark",
+      "tier": "capable",
+      "hardware": {
+        "lane": "2x5060ti",
+        "gpu_count": 2,
+        "gpu_model": "RTX 5060 Ti",
+        "vram_per_gpu_gb": 16.0,
+        "driver": "581.57",
+        "cpu": "Intel Core i3-12100F",
+        "host_ram_gb": 64.0,
+        "pcie": "GPU0 CPU-attached PCIe 5.0 x8 under load; GPU1 chipset PCIe 3.0 x4; no CUDA P2P",
+        "notes": "MSI PRO Z690-A; native Windows 11 x64 under WDDM."
+      },
+      "runtime": {
+        "engine": "other",
+        "version": "NInfer Windows-TP2 experiment",
+        "commit": "eb01f69c5880ca20658e9fd0645ed20d18cc0e05",
+        "notes": "NInfer TP2 with CUDA-graph decode and pinned write-back host-memory peer mailbox; canonical post-revert binary."
+      },
+      "model": {
+        "id": "qwen3_8_27b_nvfp4.ninfer",
+        "family": "Qwen3.8",
+        "architecture": "hybrid",
+        "parameter_class": "27B",
+        "quant": "NVFP4",
+        "source": "Published NInfer Qwen3.8-27B NVFP4 artifact, SHA-256 verified by contributor."
+      },
+      "serving": {
+        "route": "cli",
+        "context_tokens": 8192,
+        "kv_cache_k": "bf16",
+        "kv_cache_v": "bf16",
+        "tensor_parallel": "2",
+        "speculation": {
+          "type": "mtp",
+          "draft_n": 4
+        },
+        "thinking": "off",
+        "launch": "--tp 2 --devices 0,1 --max-context 8192 --kv-capacity auto --no-thinking --ignore-eos",
+        "notes": "CUDA graphs enabled. Small fixed-shape allreduces use the pinned-host mailbox; eager/prefill and oversized payloads retain the staged fallback."
+      },
+      "benchmark": {
+        "prompt_set": "custom",
+        "configured_context_tokens": 8192,
+        "actual_prompt_tokens": 19,
+        "generated_tokens": 1024,
+        "runs": 1,
+        "warmups": 0,
+        "stream": false,
+        "cache_policy": "server-default",
+        "notes": "Engine-committed decode throughput; greedy temperature 0; output-limit finish. Raw run id: final_mtp4_1024."
+      },
+      "metrics": {
+        "decode_tok_s": 70.57,
+        "prompt_tok_s": 46.9,
+        "wall_seconds": 14.83
+      },
+      "caveats": [
+        "Community-submitted Windows 11 result; not independently reproduced by the maintainer.",
+        "Single request with a short synthetic prompt; decode speed and MTP acceptance are workload-dependent.",
+        "Native Windows/WDDM mailbox transport result; no matched Linux comparison was measured on this machine.",
+        "Prefill numbers use a tiny prompt and should not be treated as sustained long-prompt throughput."
+      ],
+      "artifacts": [
+        "https://github.com/ivanov84/ninfer-windows-tp2/blob/eb01f69c5880ca20658e9fd0645ed20d18cc0e05/benchmarks/windows-tp2-phase2c.csv",
+        "https://github.com/ivanov84/ninfer-windows-tp2/blob/eb01f69c5880ca20658e9fd0645ed20d18cc0e05/benchmarks/windows-tp2-benchmarks.md",
+        "https://github.com/ivanov84/ninfer-windows-tp2/blob/eb01f69c5880ca20658e9fd0645ed20d18cc0e05/docs/windows-peer-mailbox.md"
+      ],
+      "_source_file": "data/results/community-2x5060ti-ninfer-windows-tp2.json"
+    },
+    {
+      "schema_version": "1.0",
+      "id": "20260907-ninfer-windows-tp2-final_mtp4_2048",
+      "timestamp_utc": "2026-09-07T16:42:08+00:00",
+      "source": {
+        "type": "community",
+        "label": "community-2x5060ti-ivanov84-ninfer-windows-tp2",
+        "url": "https://github.com/5p00kyy/club-5060ti/issues/8",
+        "notes": "Normalized by the maintainer from the contributor fork raw CSV and methodology at commit eb01f69; submitted by an AI agent on behalf of Dmitriy Ivanov."
+      },
+      "promotion_level": "benchmark",
+      "tier": "capable",
+      "hardware": {
+        "lane": "2x5060ti",
+        "gpu_count": 2,
+        "gpu_model": "RTX 5060 Ti",
+        "vram_per_gpu_gb": 16.0,
+        "driver": "581.57",
+        "cpu": "Intel Core i3-12100F",
+        "host_ram_gb": 64.0,
+        "pcie": "GPU0 CPU-attached PCIe 5.0 x8 under load; GPU1 chipset PCIe 3.0 x4; no CUDA P2P",
+        "notes": "MSI PRO Z690-A; native Windows 11 x64 under WDDM."
+      },
+      "runtime": {
+        "engine": "other",
+        "version": "NInfer Windows-TP2 experiment",
+        "commit": "eb01f69c5880ca20658e9fd0645ed20d18cc0e05",
+        "notes": "NInfer TP2 with CUDA-graph decode and pinned write-back host-memory peer mailbox; canonical post-revert binary."
+      },
+      "model": {
+        "id": "qwen3_8_27b_nvfp4.ninfer",
+        "family": "Qwen3.8",
+        "architecture": "hybrid",
+        "parameter_class": "27B",
+        "quant": "NVFP4",
+        "source": "Published NInfer Qwen3.8-27B NVFP4 artifact, SHA-256 verified by contributor."
+      },
+      "serving": {
+        "route": "cli",
+        "context_tokens": 8192,
+        "kv_cache_k": "bf16",
+        "kv_cache_v": "bf16",
+        "tensor_parallel": "2",
+        "speculation": {
+          "type": "mtp",
+          "draft_n": 4,
+          "acceptance_rate": 62.33
+        },
+        "thinking": "off",
+        "launch": "--tp 2 --devices 0,1 --max-context 8192 --kv-capacity auto --no-thinking --ignore-eos",
+        "notes": "CUDA graphs enabled. Small fixed-shape allreduces use the pinned-host mailbox; eager/prefill and oversized payloads retain the staged fallback."
+      },
+      "benchmark": {
+        "prompt_set": "custom",
+        "configured_context_tokens": 8192,
+        "actual_prompt_tokens": 19,
+        "generated_tokens": 2048,
+        "runs": 1,
+        "warmups": 0,
+        "stream": false,
+        "cache_policy": "server-default",
+        "notes": "Engine-committed decode throughput; greedy temperature 0; output-limit finish. Raw run id: final_mtp4_2048."
+      },
+      "metrics": {
+        "decode_tok_s": 76.65,
+        "prompt_tok_s": 46.9,
+        "end_to_end_tok_s": 75.54,
+        "wall_seconds": 27.13
+      },
+      "caveats": [
+        "Community-submitted Windows 11 result; not independently reproduced by the maintainer.",
+        "Single request with a short synthetic prompt; decode speed and MTP acceptance are workload-dependent.",
+        "Native Windows/WDDM mailbox transport result; no matched Linux comparison was measured on this machine.",
+        "Prefill numbers use a tiny prompt and should not be treated as sustained long-prompt throughput.",
+        "The 2048-token run rose to 62.33% MTP acceptance on repetitive markdown; 76.65 tok/s is not a general decode-speed claim."
+      ],
+      "artifacts": [
+        "https://github.com/ivanov84/ninfer-windows-tp2/blob/eb01f69c5880ca20658e9fd0645ed20d18cc0e05/benchmarks/windows-tp2-phase2c.csv",
+        "https://github.com/ivanov84/ninfer-windows-tp2/blob/eb01f69c5880ca20658e9fd0645ed20d18cc0e05/benchmarks/windows-tp2-benchmarks.md",
+        "https://github.com/ivanov84/ninfer-windows-tp2/blob/eb01f69c5880ca20658e9fd0645ed20d18cc0e05/docs/windows-peer-mailbox.md"
+      ],
+      "_source_file": "data/results/community-2x5060ti-ninfer-windows-tp2.json"
+    },
+    {
+      "schema_version": "1.0",
+      "id": "20260904-140652-qwen3.8-27b-nvfp4-rtx5090-agent-tool-1",
+      "timestamp_utc": "2026-09-04T14:07:32.293281+00:00",
+      "source": {
+        "type": "community",
+        "label": "community-2x5060ti-rhambus",
+        "notes": "Generated by scripts/run_openai_bench.py; accepted community submission from @rhambus via GitHub issue #7",
+        "url": "https://github.com/5p00kyy/club-5060ti/issues/7"
+      },
+      "promotion_level": "benchmark",
+      "tier": "capable",
+      "hardware": {
+        "lane": "2x5060ti",
+        "gpu_count": 2,
+        "gpu_model": "RTX 5060 Ti",
+        "vram_per_gpu_gb": 16.0,
+        "driver": "595.84",
+        "cpu": "AMD Ryzen 7 7800X3D",
+        "host_ram_gb": 60.0,
+        "pcie": "PCIe 5.0 x8 per card (x16 physical, x8/x8 bifurcation), measured under load; PHB via CPU host bridge, no NVLink (NCCL_P2P_DISABLE=1)",
+        "motherboard": "ASRock X870 Taichi Creator",
+        "inference_ram_gb": 11.7,
+        "os": "Linux Mint 22.3 (Ubuntu 24.04 base), kernel 7.0.0-29-generic, bare metal"
+      },
+      "runtime": {
+        "engine": "vLLM",
+        "version": "0.27.1",
+        "notes": "Stock vLLM 0.27.1 plus two REQUIRED local patches: (1) sm_120 GDN prefill gate - vLLM enables the FlashInfer Gated-DeltaNet prefill kernel only for device family 100, so on sm_120 it falls back to a Triton/FLA kernel that HANGS at startup; (2) the DSpark drafter markov_head NVFP4 exclusion does not match vLLM prefixed layer names (only needed for the DSpark variant). Also NCCL_P2P_DISABLE=1 and PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True."
+      },
+      "model": {
+        "id": "Qwen3.8-27B-NVFP4-RTX5090",
+        "server_max_context_tokens": 131072,
+        "family": "Qwen3.8",
+        "architecture": "hybrid",
+        "parameter_class": "27B",
+        "quant": "NVFP4 W4A4 (NVIDIA ModelOpt, group 16), FP8 KV",
+        "source": "gittensor-model-hub/Qwen3.8-27B-NVFP4-RTX5090 rev 35fd99fb (pre-final branch, MTP head present)"
+      },
+      "serving": {
+        "route": "server",
+        "context_tokens": 8192,
+        "server_max_model_len": 131072,
+        "kv_cache_k": "fp8",
+        "kv_cache_v": "fp8",
+        "tensor_parallel": "2",
+        "speculation": {
+          "type": "mtp",
+          "draft_n": 2
+        },
+        "thinking": "on",
+        "reasoning_budget": 1024,
+        "notes": "reasoning_effort=medium via --default-chat-template-kwargs; CUDA graphs on (--max-cudagraph-capture-size 4); explicit --kv-cache-memory 3221225472; --enable-prefix-caching --mamba-cache-mode align (vLLM disables prefix caching by default on this Gated-DeltaNet hybrid); VLLM_USE_V2_MODEL_RUNNER=1 (required for multimodal + cudagraphs)"
+      },
+      "benchmark": {
+        "prompt_set": "agent-tool",
+        "configured_context_tokens": 8192,
+        "actual_prompt_tokens": 109,
+        "generated_tokens": 1536,
+        "runs": 1,
+        "warmups": 1,
+        "stream": true,
+        "cache_policy": "no-reuse",
+        "server_max_context_tokens": 131072,
+        "prompt_calibration": {
+          "method": "server-reported usage.prompt_tokens",
+          "tolerance_tokens": 256
+        },
+        "tool_call_validated": false
+      },
+      "metrics": {
+        "end_to_end_tok_s": 77.502,
+        "wall_seconds": 19.819,
+        "client_ttft_seconds": 0.094,
+        "client_decode_tok_s": 77.87,
+        "client_end_to_end_tok_s": 77.502,
+        "server_prefill_tok_s": 1535.28,
+        "server_decode_tok_s": 77.87,
+        "server_ttft_seconds": 0.092
+      },
+      "caveats": [],
+      "artifacts": [
+        "https://github.com/user-attachments/files/31840481/community-2x5060ti-qwen38-27b-nvfp4-mtp-vision-131k.json"
+      ],
+      "_source_file": "data/results/community-2x5060ti-qwen38-27b-nvfp4-mtp-vision-131k.json",
+      "_display_metrics": {
+        "decode_tok_s": 77.87,
+        "decode_source": "client",
+        "prompt_tok_s": 1535.28,
+        "prompt_source": "server"
+      }
+    },
+    {
+      "schema_version": "1.0",
+      "id": "20260904-140652-qwen3.8-27b-nvfp4-rtx5090-agent-tool-2",
+      "timestamp_utc": "2026-09-04T14:07:52.128078+00:00",
+      "source": {
+        "type": "community",
+        "label": "community-2x5060ti-rhambus",
+        "notes": "Generated by scripts/run_openai_bench.py; accepted community submission from @rhambus via GitHub issue #7",
+        "url": "https://github.com/5p00kyy/club-5060ti/issues/7"
+      },
+      "promotion_level": "benchmark",
+      "tier": "capable",
+      "hardware": {
+        "lane": "2x5060ti",
+        "gpu_count": 2,
+        "gpu_model": "RTX 5060 Ti",
+        "vram_per_gpu_gb": 16.0,
+        "driver": "595.84",
+        "cpu": "AMD Ryzen 7 7800X3D",
+        "host_ram_gb": 60.0,
+        "pcie": "PCIe 5.0 x8 per card (x16 physical, x8/x8 bifurcation), measured under load; PHB via CPU host bridge, no NVLink (NCCL_P2P_DISABLE=1)",
+        "motherboard": "ASRock X870 Taichi Creator",
+        "inference_ram_gb": 11.7,
+        "os": "Linux Mint 22.3 (Ubuntu 24.04 base), kernel 7.0.0-29-generic, bare metal"
+      },
+      "runtime": {
+        "engine": "vLLM",
+        "version": "0.27.1",
+        "notes": "Stock vLLM 0.27.1 plus two REQUIRED local patches: (1) sm_120 GDN prefill gate - vLLM enables the FlashInfer Gated-DeltaNet prefill kernel only for device family 100, so on sm_120 it falls back to a Triton/FLA kernel that HANGS at startup; (2) the DSpark drafter markov_head NVFP4 exclusion does not match vLLM prefixed layer names (only needed for the DSpark variant). Also NCCL_P2P_DISABLE=1 and PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True."
+      },
+      "model": {
+        "id": "Qwen3.8-27B-NVFP4-RTX5090",
+        "server_max_context_tokens": 131072,
+        "family": "Qwen3.8",
+        "architecture": "hybrid",
+        "parameter_class": "27B",
+        "quant": "NVFP4 W4A4 (NVIDIA ModelOpt, group 16), FP8 KV",
+        "source": "gittensor-model-hub/Qwen3.8-27B-NVFP4-RTX5090 rev 35fd99fb (pre-final branch, MTP head present)"
+      },
+      "serving": {
+        "route": "server",
+        "context_tokens": 8192,
+        "server_max_model_len": 131072,
+        "kv_cache_k": "fp8",
+        "kv_cache_v": "fp8",
+        "tensor_parallel": "2",
+        "speculation": {
+          "type": "mtp",
+          "draft_n": 2
+        },
+        "thinking": "on",
+        "reasoning_budget": 1024,
+        "notes": "reasoning_effort=medium via --default-chat-template-kwargs; CUDA graphs on (--max-cudagraph-capture-size 4); explicit --kv-cache-memory 3221225472; --enable-prefix-caching --mamba-cache-mode align (vLLM disables prefix caching by default on this Gated-DeltaNet hybrid); VLLM_USE_V2_MODEL_RUNNER=1 (required for multimodal + cudagraphs)"
+      },
+      "benchmark": {
+        "prompt_set": "agent-tool",
+        "configured_context_tokens": 8192,
+        "actual_prompt_tokens": 109,
+        "generated_tokens": 1536,
+        "runs": 1,
+        "warmups": 1,
+        "stream": true,
+        "cache_policy": "no-reuse",
+        "server_max_context_tokens": 131072,
+        "prompt_calibration": {
+          "method": "server-reported usage.prompt_tokens",
+          "tolerance_tokens": 256
+        },
+        "tool_call_validated": false
+      },
+      "metrics": {
+        "end_to_end_tok_s": 77.471,
+        "wall_seconds": 19.827,
+        "client_ttft_seconds": 0.093,
+        "client_decode_tok_s": 77.836,
+        "client_end_to_end_tok_s": 77.471,
+        "server_prefill_tok_s": 1544.336,
+        "server_decode_tok_s": 77.836,
+        "server_ttft_seconds": 0.092
+      },
+      "caveats": [],
+      "artifacts": [
+        "https://github.com/user-attachments/files/31840481/community-2x5060ti-qwen38-27b-nvfp4-mtp-vision-131k.json"
+      ],
+      "_source_file": "data/results/community-2x5060ti-qwen38-27b-nvfp4-mtp-vision-131k.json",
+      "_display_metrics": {
+        "decode_tok_s": 77.836,
+        "decode_source": "client",
+        "prompt_tok_s": 1544.336,
+        "prompt_source": "server"
+      }
+    },
+    {
+      "schema_version": "1.0",
+      "id": "20260904-140652-qwen3.8-27b-nvfp4-rtx5090-agent-tool-3",
+      "timestamp_utc": "2026-09-04T14:08:11.963004+00:00",
+      "source": {
+        "type": "community",
+        "label": "community-2x5060ti-rhambus",
+        "notes": "Generated by scripts/run_openai_bench.py; accepted community submission from @rhambus via GitHub issue #7",
+        "url": "https://github.com/5p00kyy/club-5060ti/issues/7"
+      },
+      "promotion_level": "benchmark",
+      "tier": "capable",
+      "hardware": {
+        "lane": "2x5060ti",
+        "gpu_count": 2,
+        "gpu_model": "RTX 5060 Ti",
+        "vram_per_gpu_gb": 16.0,
+        "driver": "595.84",
+        "cpu": "AMD Ryzen 7 7800X3D",
+        "host_ram_gb": 60.0,
+        "pcie": "PCIe 5.0 x8 per card (x16 physical, x8/x8 bifurcation), measured under load; PHB via CPU host bridge, no NVLink (NCCL_P2P_DISABLE=1)",
+        "motherboard": "ASRock X870 Taichi Creator",
+        "inference_ram_gb": 11.7,
+        "os": "Linux Mint 22.3 (Ubuntu 24.04 base), kernel 7.0.0-29-generic, bare metal"
+      },
+      "runtime": {
+        "engine": "vLLM",
+        "version": "0.27.1",
+        "notes": "Stock vLLM 0.27.1 plus two REQUIRED local patches: (1) sm_120 GDN prefill gate - vLLM enables the FlashInfer Gated-DeltaNet prefill kernel only for device family 100, so on sm_120 it falls back to a Triton/FLA kernel that HANGS at startup; (2) the DSpark drafter markov_head NVFP4 exclusion does not match vLLM prefixed layer names (only needed for the DSpark variant). Also NCCL_P2P_DISABLE=1 and PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True."
+      },
+      "model": {
+        "id": "Qwen3.8-27B-NVFP4-RTX5090",
+        "server_max_context_tokens": 131072,
+        "family": "Qwen3.8",
+        "architecture": "hybrid",
+        "parameter_class": "27B",
+        "quant": "NVFP4 W4A4 (NVIDIA ModelOpt, group 16), FP8 KV",
+        "source": "gittensor-model-hub/Qwen3.8-27B-NVFP4-RTX5090 rev 35fd99fb (pre-final branch, MTP head present)"
+      },
+      "serving": {
+        "route": "server",
+        "context_tokens": 8192,
+        "server_max_model_len": 131072,
+        "kv_cache_k": "fp8",
+        "kv_cache_v": "fp8",
+        "tensor_parallel": "2",
+        "speculation": {
+          "type": "mtp",
+          "draft_n": 2
+        },
+        "thinking": "on",
+        "reasoning_budget": 1024,
+        "notes": "reasoning_effort=medium via --default-chat-template-kwargs; CUDA graphs on (--max-cudagraph-capture-size 4); explicit --kv-cache-memory 3221225472; --enable-prefix-caching --mamba-cache-mode align (vLLM disables prefix caching by default on this Gated-DeltaNet hybrid); VLLM_USE_V2_MODEL_RUNNER=1 (required for multimodal + cudagraphs)"
+      },
+      "benchmark": {
+        "prompt_set": "agent-tool",
+        "configured_context_tokens": 8192,
+        "actual_prompt_tokens": 109,
+        "generated_tokens": 1536,
+        "runs": 1,
+        "warmups": 1,
+        "stream": true,
+        "cache_policy": "no-reuse",
+        "server_max_context_tokens": 131072,
+        "prompt_calibration": {
+          "method": "server-reported usage.prompt_tokens",
+          "tolerance_tokens": 256
+        },
+        "tool_call_validated": false
+      },
+      "metrics": {
+        "end_to_end_tok_s": 77.47,
+        "wall_seconds": 19.827,
+        "client_ttft_seconds": 0.093,
+        "client_decode_tok_s": 77.836,
+        "client_end_to_end_tok_s": 77.47,
+        "server_prefill_tok_s": 1538.355,
+        "server_decode_tok_s": 77.837,
+        "server_ttft_seconds": 0.092
+      },
+      "caveats": [],
+      "artifacts": [
+        "https://github.com/user-attachments/files/31840481/community-2x5060ti-qwen38-27b-nvfp4-mtp-vision-131k.json"
+      ],
+      "_source_file": "data/results/community-2x5060ti-qwen38-27b-nvfp4-mtp-vision-131k.json",
+      "_display_metrics": {
+        "decode_tok_s": 77.836,
+        "decode_source": "client",
+        "prompt_tok_s": 1538.355,
+        "prompt_source": "server"
+      }
+    },
+    {
+      "schema_version": "1.0",
+      "id": "20260904-140529-qwen3.8-27b-nvfp4-rtx5090-code-generate-1",
+      "timestamp_utc": "2026-09-04T14:06:11.227583+00:00",
+      "source": {
+        "type": "community",
+        "label": "community-2x5060ti-rhambus",
+        "notes": "Generated by scripts/run_openai_bench.py; accepted community submission from @rhambus via GitHub issue #7",
+        "url": "https://github.com/5p00kyy/club-5060ti/issues/7"
+      },
+      "promotion_level": "benchmark",
+      "tier": "capable",
+      "hardware": {
+        "lane": "2x5060ti",
+        "gpu_count": 2,
+        "gpu_model": "RTX 5060 Ti",
+        "vram_per_gpu_gb": 16.0,
+        "driver": "595.84",
+        "cpu": "AMD Ryzen 7 7800X3D",
+        "host_ram_gb": 60.0,
+        "pcie": "PCIe 5.0 x8 per card (x16 physical, x8/x8 bifurcation), measured under load; PHB via CPU host bridge, no NVLink (NCCL_P2P_DISABLE=1)",
+        "motherboard": "ASRock X870 Taichi Creator",
+        "inference_ram_gb": 11.7,
+        "os": "Linux Mint 22.3 (Ubuntu 24.04 base), kernel 7.0.0-29-generic, bare metal"
+      },
+      "runtime": {
+        "engine": "vLLM",
+        "version": "0.27.1",
+        "notes": "Stock vLLM 0.27.1 plus two REQUIRED local patches: (1) sm_120 GDN prefill gate - vLLM enables the FlashInfer Gated-DeltaNet prefill kernel only for device family 100, so on sm_120 it falls back to a Triton/FLA kernel that HANGS at startup; (2) the DSpark drafter markov_head NVFP4 exclusion does not match vLLM prefixed layer names (only needed for the DSpark variant). Also NCCL_P2P_DISABLE=1 and PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True."
+      },
+      "model": {
+        "id": "Qwen3.8-27B-NVFP4-RTX5090",
+        "server_max_context_tokens": 131072,
+        "family": "Qwen3.8",
+        "architecture": "hybrid",
+        "parameter_class": "27B",
+        "quant": "NVFP4 W4A4 (NVIDIA ModelOpt, group 16), FP8 KV",
+        "source": "gittensor-model-hub/Qwen3.8-27B-NVFP4-RTX5090 rev 35fd99fb (pre-final branch, MTP head present)"
+      },
+      "serving": {
+        "route": "server",
+        "context_tokens": 8192,
+        "server_max_model_len": 131072,
+        "kv_cache_k": "fp8",
+        "kv_cache_v": "fp8",
+        "tensor_parallel": "2",
+        "speculation": {
+          "type": "mtp",
+          "draft_n": 2
+        },
+        "thinking": "on",
+        "reasoning_budget": 1024,
+        "notes": "reasoning_effort=medium via --default-chat-template-kwargs; CUDA graphs on (--max-cudagraph-capture-size 4); explicit --kv-cache-memory 3221225472; --enable-prefix-caching --mamba-cache-mode align (vLLM disables prefix caching by default on this Gated-DeltaNet hybrid); VLLM_USE_V2_MODEL_RUNNER=1 (required for multimodal + cudagraphs)"
+      },
+      "benchmark": {
+        "prompt_set": "code-generate",
+        "configured_context_tokens": 8192,
+        "actual_prompt_tokens": 51,
+        "generated_tokens": 1792,
+        "runs": 1,
+        "warmups": 1,
+        "stream": true,
+        "cache_policy": "no-reuse",
+        "server_max_context_tokens": 131072,
+        "prompt_calibration": {
+          "method": "server-reported usage.prompt_tokens",
+          "tolerance_tokens": 256
+        },
+        "tool_call_validated": false
+      },
+      "metrics": {
+        "end_to_end_tok_s": 86.671,
+        "wall_seconds": 20.676,
+        "client_ttft_seconds": 0.092,
+        "client_decode_tok_s": 87.058,
+        "client_end_to_end_tok_s": 86.671,
+        "server_prefill_tok_s": 734.822,
+        "server_decode_tok_s": 87.058,
+        "server_ttft_seconds": 0.091
+      },
+      "caveats": [],
+      "artifacts": [
+        "https://github.com/user-attachments/files/31840481/community-2x5060ti-qwen38-27b-nvfp4-mtp-vision-131k.json"
+      ],
+      "_source_file": "data/results/community-2x5060ti-qwen38-27b-nvfp4-mtp-vision-131k.json",
+      "_display_metrics": {
+        "decode_tok_s": 87.058,
+        "decode_source": "client",
+        "prompt_tok_s": 734.822,
+        "prompt_source": "server"
+      }
+    },
+    {
+      "schema_version": "1.0",
+      "id": "20260904-140529-qwen3.8-27b-nvfp4-rtx5090-code-generate-2",
+      "timestamp_utc": "2026-09-04T14:06:31.912340+00:00",
+      "source": {
+        "type": "community",
+        "label": "community-2x5060ti-rhambus",
+        "notes": "Generated by scripts/run_openai_bench.py; accepted community submission from @rhambus via GitHub issue #7",
+        "url": "https://github.com/5p00kyy/club-5060ti/issues/7"
+      },
+      "promotion_level": "benchmark",
+      "tier": "capable",
+      "hardware": {
+        "lane": "2x5060ti",
+        "gpu_count": 2,
+        "gpu_model": "RTX 5060 Ti",
+        "vram_per_gpu_gb": 16.0,
+        "driver": "595.84",
+        "cpu": "AMD Ryzen 7 7800X3D",
+        "host_ram_gb": 60.0,
+        "pcie": "PCIe 5.0 x8 per card (x16 physical, x8/x8 bifurcation), measured under load; PHB via CPU host bridge, no NVLink (NCCL_P2P_DISABLE=1)",
+        "motherboard": "ASRock X870 Taichi Creator",
+        "inference_ram_gb": 11.7,
+        "os": "Linux Mint 22.3 (Ubuntu 24.04 base), kernel 7.0.0-29-generic, bare metal"
+      },
+      "runtime": {
+        "engine": "vLLM",
+        "version": "0.27.1",
+        "notes": "Stock vLLM 0.27.1 plus two REQUIRED local patches: (1) sm_120 GDN prefill gate - vLLM enables the FlashInfer Gated-DeltaNet prefill kernel only for device family 100, so on sm_120 it falls back to a Triton/FLA kernel that HANGS at startup; (2) the DSpark drafter markov_head NVFP4 exclusion does not match vLLM prefixed layer names (only needed for the DSpark variant). Also NCCL_P2P_DISABLE=1 and PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True."
+      },
+      "model": {
+        "id": "Qwen3.8-27B-NVFP4-RTX5090",
+        "server_max_context_tokens": 131072,
+        "family": "Qwen3.8",
+        "architecture": "hybrid",
+        "parameter_class": "27B",
+        "quant": "NVFP4 W4A4 (NVIDIA ModelOpt, group 16), FP8 KV",
+        "source": "gittensor-model-hub/Qwen3.8-27B-NVFP4-RTX5090 rev 35fd99fb (pre-final branch, MTP head present)"
+      },
+      "serving": {
+        "route": "server",
+        "context_tokens": 8192,
+        "server_max_model_len": 131072,
+        "kv_cache_k": "fp8",
+        "kv_cache_v": "fp8",
+        "tensor_parallel": "2",
+        "speculation": {
+          "type": "mtp",
+          "draft_n": 2
+        },
+        "thinking": "on",
+        "reasoning_budget": 1024,
+        "notes": "reasoning_effort=medium via --default-chat-template-kwargs; CUDA graphs on (--max-cudagraph-capture-size 4); explicit --kv-cache-memory 3221225472; --enable-prefix-caching --mamba-cache-mode align (vLLM disables prefix caching by default on this Gated-DeltaNet hybrid); VLLM_USE_V2_MODEL_RUNNER=1 (required for multimodal + cudagraphs)"
+      },
+      "benchmark": {
+        "prompt_set": "code-generate",
+        "configured_context_tokens": 8192,
+        "actual_prompt_tokens": 51,
+        "generated_tokens": 1792,
+        "runs": 1,
+        "warmups": 1,
+        "stream": true,
+        "cache_policy": "no-reuse",
+        "server_max_context_tokens": 131072,
+        "prompt_calibration": {
+          "method": "server-reported usage.prompt_tokens",
+          "tolerance_tokens": 256
+        },
+        "tool_call_validated": false
+      },
+      "metrics": {
+        "end_to_end_tok_s": 86.675,
+        "wall_seconds": 20.675,
+        "client_ttft_seconds": 0.09,
+        "client_decode_tok_s": 87.055,
+        "client_end_to_end_tok_s": 86.675,
+        "server_prefill_tok_s": 728.573,
+        "server_decode_tok_s": 87.056,
+        "server_ttft_seconds": 0.089
+      },
+      "caveats": [],
+      "artifacts": [
+        "https://github.com/user-attachments/files/31840481/community-2x5060ti-qwen38-27b-nvfp4-mtp-vision-131k.json"
+      ],
+      "_source_file": "data/results/community-2x5060ti-qwen38-27b-nvfp4-mtp-vision-131k.json",
+      "_display_metrics": {
+        "decode_tok_s": 87.055,
+        "decode_source": "client",
+        "prompt_tok_s": 728.573,
+        "prompt_source": "server"
+      }
+    },
+    {
+      "schema_version": "1.0",
+      "id": "20260904-140529-qwen3.8-27b-nvfp4-rtx5090-code-generate-3",
+      "timestamp_utc": "2026-09-04T14:06:52.590222+00:00",
+      "source": {
+        "type": "community",
+        "label": "community-2x5060ti-rhambus",
+        "notes": "Generated by scripts/run_openai_bench.py; accepted community submission from @rhambus via GitHub issue #7",
+        "url": "https://github.com/5p00kyy/club-5060ti/issues/7"
+      },
+      "promotion_level": "benchmark",
+      "tier": "capable",
+      "hardware": {
+        "lane": "2x5060ti",
+        "gpu_count": 2,
+        "gpu_model": "RTX 5060 Ti",
+        "vram_per_gpu_gb": 16.0,
+        "driver": "595.84",
+        "cpu": "AMD Ryzen 7 7800X3D",
+        "host_ram_gb": 60.0,
+        "pcie": "PCIe 5.0 x8 per card (x16 physical, x8/x8 bifurcation), measured under load; PHB via CPU host bridge, no NVLink (NCCL_P2P_DISABLE=1)",
+        "motherboard": "ASRock X870 Taichi Creator",
+        "inference_ram_gb": 11.7,
+        "os": "Linux Mint 22.3 (Ubuntu 24.04 base), kernel 7.0.0-29-generic, bare metal"
+      },
+      "runtime": {
+        "engine": "vLLM",
+        "version": "0.27.1",
+        "notes": "Stock vLLM 0.27.1 plus two REQUIRED local patches: (1) sm_120 GDN prefill gate - vLLM enables the FlashInfer Gated-DeltaNet prefill kernel only for device family 100, so on sm_120 it falls back to a Triton/FLA kernel that HANGS at startup; (2) the DSpark drafter markov_head NVFP4 exclusion does not match vLLM prefixed layer names (only needed for the DSpark variant). Also NCCL_P2P_DISABLE=1 and PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True."
+      },
+      "model": {
+        "id": "Qwen3.8-27B-NVFP4-RTX5090",
+        "server_max_context_tokens": 131072,
+        "family": "Qwen3.8",
+        "architecture": "hybrid",
+        "parameter_class": "27B",
+        "quant": "NVFP4 W4A4 (NVIDIA ModelOpt, group 16), FP8 KV",
+        "source": "gittensor-model-hub/Qwen3.8-27B-NVFP4-RTX5090 rev 35fd99fb (pre-final branch, MTP head present)"
+      },
+      "serving": {
+        "route": "server",
+        "context_tokens": 8192,
+        "server_max_model_len": 131072,
+        "kv_cache_k": "fp8",
+        "kv_cache_v": "fp8",
+        "tensor_parallel": "2",
+        "speculation": {
+          "type": "mtp",
+          "draft_n": 2
+        },
+        "thinking": "on",
+        "reasoning_budget": 1024,
+        "notes": "reasoning_effort=medium via --default-chat-template-kwargs; CUDA graphs on (--max-cudagraph-capture-size 4); explicit --kv-cache-memory 3221225472; --enable-prefix-caching --mamba-cache-mode align (vLLM disables prefix caching by default on this Gated-DeltaNet hybrid); VLLM_USE_V2_MODEL_RUNNER=1 (required for multimodal + cudagraphs)"
+      },
+      "benchmark": {
+        "prompt_set": "code-generate",
+        "configured_context_tokens": 8192,
+        "actual_prompt_tokens": 51,
+        "generated_tokens": 1792,
+        "runs": 1,
+        "warmups": 1,
+        "stream": true,
+        "cache_policy": "no-reuse",
+        "server_max_context_tokens": 131072,
+        "prompt_calibration": {
+          "method": "server-reported usage.prompt_tokens",
+          "tolerance_tokens": 256
+        },
+        "tool_call_validated": false
+      },
+      "metrics": {
+        "end_to_end_tok_s": 86.698,
+        "wall_seconds": 20.669,
+        "client_ttft_seconds": 0.091,
+        "client_decode_tok_s": 87.081,
+        "client_end_to_end_tok_s": 86.698,
+        "server_prefill_tok_s": 729.174,
+        "server_decode_tok_s": 87.082,
+        "server_ttft_seconds": 0.09
+      },
+      "caveats": [],
+      "artifacts": [
+        "https://github.com/user-attachments/files/31840481/community-2x5060ti-qwen38-27b-nvfp4-mtp-vision-131k.json"
+      ],
+      "_source_file": "data/results/community-2x5060ti-qwen38-27b-nvfp4-mtp-vision-131k.json",
+      "_display_metrics": {
+        "decode_tok_s": 87.081,
+        "decode_source": "client",
+        "prompt_tok_s": 729.174,
+        "prompt_source": "server"
+      }
+    },
+    {
+      "schema_version": "1.0",
+      "id": "20260903-154304-qwen3.8-27b-nvfp4-rtx5090-long-retrieval-1",
+      "timestamp_utc": "2026-09-03T15:46:07.581719+00:00",
+      "source": {
+        "type": "community",
+        "label": "community-2x5060ti-rhambus",
+        "notes": "Generated by scripts/run_openai_bench.py; accepted community submission from @rhambus via GitHub issue #7",
+        "url": "https://github.com/5p00kyy/club-5060ti/issues/7"
+      },
+      "promotion_level": "benchmark",
+      "tier": "capable",
+      "hardware": {
+        "lane": "2x5060ti",
+        "gpu_count": 2,
+        "gpu_model": "RTX 5060 Ti",
+        "vram_per_gpu_gb": 16.0,
+        "driver": "595.84",
+        "cpu": "AMD Ryzen 7 7800X3D",
+        "host_ram_gb": 60.0,
+        "pcie": "PCIe 5.0 x8 per card (x16 physical, x8/x8 bifurcation), measured under load; PHB via CPU host bridge, no NVLink (NCCL_P2P_DISABLE=1)",
+        "motherboard": "ASRock X870 Taichi Creator",
+        "inference_ram_gb": 11.7,
+        "os": "Linux Mint 22.3 (Ubuntu 24.04 base), kernel 7.0.0-29-generic, bare metal"
+      },
+      "runtime": {
+        "engine": "vLLM",
+        "version": "0.27.1",
+        "notes": "Stock vLLM 0.27.1 plus a REQUIRED local patch: the sm_120 GDN prefill gate - vLLM enables the FlashInfer Gated-DeltaNet prefill kernel only for device family 100, so on sm_120 it falls back to a Triton/FLA kernel that HANGS at startup. Also NCCL_P2P_DISABLE=1 and PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True."
+      },
+      "model": {
+        "id": "Qwen3.8-27B-NVFP4-RTX5090",
+        "server_max_context_tokens": 131072,
+        "family": "Qwen3.8",
+        "architecture": "hybrid",
+        "parameter_class": "27B",
+        "quant": "NVFP4 W4A4 (NVIDIA ModelOpt, group 16), FP8 KV",
+        "source": "gittensor-model-hub/Qwen3.8-27B-NVFP4-RTX5090 rev 35fd99fb (pre-final branch, MTP head present)"
+      },
+      "serving": {
+        "route": "server",
+        "context_tokens": 131072,
+        "server_max_model_len": 131072,
+        "kv_cache_k": "fp8",
+        "kv_cache_v": "fp8",
+        "tensor_parallel": "2",
+        "speculation": {
+          "type": "mtp",
+          "draft_n": 2
+        },
+        "thinking": "on",
+        "reasoning_budget": 1024,
+        "notes": "reasoning_effort=medium via --default-chat-template-kwargs; CUDA graphs on (--max-cudagraph-capture-size 4); explicit --kv-cache-memory 3221225472; --enable-prefix-caching --mamba-cache-mode align (vLLM disables prefix caching by default on this Gated-DeltaNet hybrid); VLLM_USE_V2_MODEL_RUNNER=1 (required for multimodal + cudagraphs)"
+      },
+      "benchmark": {
+        "prompt_set": "long-retrieval",
+        "configured_context_tokens": 131072,
+        "actual_prompt_tokens": 129351,
+        "generated_tokens": 81,
+        "runs": 1,
+        "warmups": 1,
+        "stream": true,
+        "cache_policy": "no-reuse",
+        "run_nonce": "4f19288b9517c7a4",
+        "server_max_context_tokens": 131072,
+        "prompt_calibration": {
+          "method": "server-reported usage.prompt_tokens",
+          "tolerance_tokens": 256,
+          "filler_lines": 4309
+        },
+        "tool_call_validated": false
+      },
+      "metrics": {
+        "end_to_end_tok_s": 0.884,
+        "wall_seconds": 91.634,
+        "client_ttft_seconds": 90.517,
+        "client_decode_tok_s": 72.481,
+        "client_end_to_end_tok_s": 0.884,
+        "server_prefill_tok_s": 1431.755,
+        "server_decode_tok_s": 70.977,
+        "server_ttft_seconds": 90.489
+      },
+      "caveats": [],
+      "artifacts": [
+        "https://github.com/user-attachments/files/31840481/community-2x5060ti-qwen38-27b-nvfp4-mtp-vision-131k.json"
+      ],
+      "_source_file": "data/results/community-2x5060ti-qwen38-27b-nvfp4-mtp-vision-131k.json",
+      "_display_metrics": {
+        "decode_tok_s": 72.481,
+        "decode_source": "client",
+        "prompt_tok_s": 1431.755,
+        "prompt_source": "server"
+      },
+      "_repeat_prompt_key": "calibrated|server-reported usage.prompt_tokens||256|4309"
+    },
+    {
+      "schema_version": "1.0",
+      "id": "20260903-154304-qwen3.8-27b-nvfp4-rtx5090-long-retrieval-2",
+      "timestamp_utc": "2026-09-03T15:47:39.336034+00:00",
+      "source": {
+        "type": "community",
+        "label": "community-2x5060ti-rhambus",
+        "notes": "Generated by scripts/run_openai_bench.py; accepted community submission from @rhambus via GitHub issue #7",
+        "url": "https://github.com/5p00kyy/club-5060ti/issues/7"
+      },
+      "promotion_level": "benchmark",
+      "tier": "capable",
+      "hardware": {
+        "lane": "2x5060ti",
+        "gpu_count": 2,
+        "gpu_model": "RTX 5060 Ti",
+        "vram_per_gpu_gb": 16.0,
+        "driver": "595.84",
+        "cpu": "AMD Ryzen 7 7800X3D",
+        "host_ram_gb": 60.0,
+        "pcie": "PCIe 5.0 x8 per card (x16 physical, x8/x8 bifurcation), measured under load; PHB via CPU host bridge, no NVLink (NCCL_P2P_DISABLE=1)",
+        "motherboard": "ASRock X870 Taichi Creator",
+        "inference_ram_gb": 11.7,
+        "os": "Linux Mint 22.3 (Ubuntu 24.04 base), kernel 7.0.0-29-generic, bare metal"
+      },
+      "runtime": {
+        "engine": "vLLM",
+        "version": "0.27.1",
+        "notes": "Stock vLLM 0.27.1 plus a REQUIRED local patch: the sm_120 GDN prefill gate - vLLM enables the FlashInfer Gated-DeltaNet prefill kernel only for device family 100, so on sm_120 it falls back to a Triton/FLA kernel that HANGS at startup. Also NCCL_P2P_DISABLE=1 and PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True."
+      },
+      "model": {
+        "id": "Qwen3.8-27B-NVFP4-RTX5090",
+        "server_max_context_tokens": 131072,
+        "family": "Qwen3.8",
+        "architecture": "hybrid",
+        "parameter_class": "27B",
+        "quant": "NVFP4 W4A4 (NVIDIA ModelOpt, group 16), FP8 KV",
+        "source": "gittensor-model-hub/Qwen3.8-27B-NVFP4-RTX5090 rev 35fd99fb (pre-final branch, MTP head present)"
+      },
+      "serving": {
+        "route": "server",
+        "context_tokens": 131072,
+        "server_max_model_len": 131072,
+        "kv_cache_k": "fp8",
+        "kv_cache_v": "fp8",
+        "tensor_parallel": "2",
+        "speculation": {
+          "type": "mtp",
+          "draft_n": 2
+        },
+        "thinking": "on",
+        "reasoning_budget": 1024,
+        "notes": "reasoning_effort=medium via --default-chat-template-kwargs; CUDA graphs on (--max-cudagraph-capture-size 4); explicit --kv-cache-memory 3221225472; --enable-prefix-caching --mamba-cache-mode align (vLLM disables prefix caching by default on this Gated-DeltaNet hybrid); VLLM_USE_V2_MODEL_RUNNER=1 (required for multimodal + cudagraphs)"
+      },
+      "benchmark": {
+        "prompt_set": "long-retrieval",
+        "configured_context_tokens": 131072,
+        "actual_prompt_tokens": 129348,
+        "generated_tokens": 85,
+        "runs": 1,
+        "warmups": 1,
+        "stream": true,
+        "cache_policy": "no-reuse",
+        "run_nonce": "ee965cfe903a114a",
+        "server_max_context_tokens": 131072,
+        "prompt_calibration": {
+          "method": "server-reported usage.prompt_tokens",
+          "tolerance_tokens": 256,
+          "filler_lines": 4309
+        },
+        "tool_call_validated": false
+      },
+      "metrics": {
+        "end_to_end_tok_s": 0.926,
+        "wall_seconds": 91.746,
+        "client_ttft_seconds": 90.512,
+        "client_decode_tok_s": 68.853,
+        "client_end_to_end_tok_s": 0.926,
+        "server_prefill_tok_s": 1431.83,
+        "server_decode_tok_s": 67.503,
+        "server_ttft_seconds": 90.482
+      },
+      "caveats": [],
+      "artifacts": [
+        "https://github.com/user-attachments/files/31840481/community-2x5060ti-qwen38-27b-nvfp4-mtp-vision-131k.json"
+      ],
+      "_source_file": "data/results/community-2x5060ti-qwen38-27b-nvfp4-mtp-vision-131k.json",
+      "_display_metrics": {
+        "decode_tok_s": 68.853,
+        "decode_source": "client",
+        "prompt_tok_s": 1431.83,
+        "prompt_source": "server"
+      },
+      "_repeat_prompt_key": "calibrated|server-reported usage.prompt_tokens||256|4309"
+    },
+    {
+      "schema_version": "1.0",
+      "id": "20260903-154304-qwen3.8-27b-nvfp4-rtx5090-long-retrieval-3",
+      "timestamp_utc": "2026-09-03T15:49:11.050240+00:00",
+      "source": {
+        "type": "community",
+        "label": "community-2x5060ti-rhambus",
+        "notes": "Generated by scripts/run_openai_bench.py; accepted community submission from @rhambus via GitHub issue #7",
+        "url": "https://github.com/5p00kyy/club-5060ti/issues/7"
+      },
+      "promotion_level": "benchmark",
+      "tier": "capable",
+      "hardware": {
+        "lane": "2x5060ti",
+        "gpu_count": 2,
+        "gpu_model": "RTX 5060 Ti",
+        "vram_per_gpu_gb": 16.0,
+        "driver": "595.84",
+        "cpu": "AMD Ryzen 7 7800X3D",
+        "host_ram_gb": 60.0,
+        "pcie": "PCIe 5.0 x8 per card (x16 physical, x8/x8 bifurcation), measured under load; PHB via CPU host bridge, no NVLink (NCCL_P2P_DISABLE=1)",
+        "motherboard": "ASRock X870 Taichi Creator",
+        "inference_ram_gb": 11.7,
+        "os": "Linux Mint 22.3 (Ubuntu 24.04 base), kernel 7.0.0-29-generic, bare metal"
+      },
+      "runtime": {
+        "engine": "vLLM",
+        "version": "0.27.1",
+        "notes": "Stock vLLM 0.27.1 plus a REQUIRED local patch: the sm_120 GDN prefill gate - vLLM enables the FlashInfer Gated-DeltaNet prefill kernel only for device family 100, so on sm_120 it falls back to a Triton/FLA kernel that HANGS at startup. Also NCCL_P2P_DISABLE=1 and PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True."
+      },
+      "model": {
+        "id": "Qwen3.8-27B-NVFP4-RTX5090",
+        "server_max_context_tokens": 131072,
+        "family": "Qwen3.8",
+        "architecture": "hybrid",
+        "parameter_class": "27B",
+        "quant": "NVFP4 W4A4 (NVIDIA ModelOpt, group 16), FP8 KV",
+        "source": "gittensor-model-hub/Qwen3.8-27B-NVFP4-RTX5090 rev 35fd99fb (pre-final branch, MTP head present)"
+      },
+      "serving": {
+        "route": "server",
+        "context_tokens": 131072,
+        "server_max_model_len": 131072,
+        "kv_cache_k": "fp8",
+        "kv_cache_v": "fp8",
+        "tensor_parallel": "2",
+        "speculation": {
+          "type": "mtp",
+          "draft_n": 2
+        },
+        "thinking": "on",
+        "reasoning_budget": 1024,
+        "notes": "reasoning_effort=medium via --default-chat-template-kwargs; CUDA graphs on (--max-cudagraph-capture-size 4); explicit --kv-cache-memory 3221225472; --enable-prefix-caching --mamba-cache-mode align (vLLM disables prefix caching by default on this Gated-DeltaNet hybrid); VLLM_USE_V2_MODEL_RUNNER=1 (required for multimodal + cudagraphs)"
+      },
+      "benchmark": {
+        "prompt_set": "long-retrieval",
+        "configured_context_tokens": 131072,
+        "actual_prompt_tokens": 129351,
+        "generated_tokens": 81,
+        "runs": 1,
+        "warmups": 1,
+        "stream": true,
+        "cache_policy": "no-reuse",
+        "run_nonce": "54355699b2c5e22d",
+        "server_max_context_tokens": 131072,
+        "prompt_calibration": {
+          "method": "server-reported usage.prompt_tokens",
+          "tolerance_tokens": 256,
+          "filler_lines": 4309
+        },
+        "tool_call_validated": false
+      },
+      "metrics": {
+        "end_to_end_tok_s": 0.883,
+        "wall_seconds": 91.707,
+        "client_ttft_seconds": 90.511,
+        "client_decode_tok_s": 67.712,
+        "client_end_to_end_tok_s": 0.883,
+        "server_prefill_tok_s": 1431.743,
+        "server_decode_tok_s": 66.36,
+        "server_ttft_seconds": 90.483
+      },
+      "caveats": [],
+      "artifacts": [
+        "https://github.com/user-attachments/files/31840481/community-2x5060ti-qwen38-27b-nvfp4-mtp-vision-131k.json"
+      ],
+      "_source_file": "data/results/community-2x5060ti-qwen38-27b-nvfp4-mtp-vision-131k.json",
+      "_display_metrics": {
+        "decode_tok_s": 67.712,
+        "decode_source": "client",
+        "prompt_tok_s": 1431.743,
+        "prompt_source": "server"
+      },
+      "_repeat_prompt_key": "calibrated|server-reported usage.prompt_tokens||256|4309"
+    },
+    {
+      "schema_version": "1.0",
+      "id": "20260903-153958-qwen3.8-27b-nvfp4-rtx5090-long-retrieval-1",
+      "timestamp_utc": "2026-09-03T15:40:25.081756+00:00",
+      "source": {
+        "type": "community",
+        "label": "community-2x5060ti-rhambus",
+        "notes": "Generated by scripts/run_openai_bench.py; accepted community submission from @rhambus via GitHub issue #7",
+        "url": "https://github.com/5p00kyy/club-5060ti/issues/7"
+      },
+      "promotion_level": "benchmark",
+      "tier": "capable",
+      "hardware": {
+        "lane": "2x5060ti",
+        "gpu_count": 2,
+        "gpu_model": "RTX 5060 Ti",
+        "vram_per_gpu_gb": 16.0,
+        "driver": "595.84",
+        "cpu": "AMD Ryzen 7 7800X3D",
+        "host_ram_gb": 60.0,
+        "pcie": "PCIe 5.0 x8 per card (x16 physical, x8/x8 bifurcation), measured under load; PHB via CPU host bridge, no NVLink (NCCL_P2P_DISABLE=1)",
+        "motherboard": "ASRock X870 Taichi Creator",
+        "inference_ram_gb": 11.7,
+        "os": "Linux Mint 22.3 (Ubuntu 24.04 base), kernel 7.0.0-29-generic, bare metal"
+      },
+      "runtime": {
+        "engine": "vLLM",
+        "version": "0.27.1",
+        "notes": "Stock vLLM 0.27.1 plus a REQUIRED local patch: the sm_120 GDN prefill gate - vLLM enables the FlashInfer Gated-DeltaNet prefill kernel only for device family 100, so on sm_120 it falls back to a Triton/FLA kernel that HANGS at startup. Also NCCL_P2P_DISABLE=1 and PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True."
+      },
+      "model": {
+        "id": "Qwen3.8-27B-NVFP4-RTX5090",
+        "server_max_context_tokens": 131072,
+        "family": "Qwen3.8",
+        "architecture": "hybrid",
+        "parameter_class": "27B",
+        "quant": "NVFP4 W4A4 (NVIDIA ModelOpt, group 16), FP8 KV",
+        "source": "gittensor-model-hub/Qwen3.8-27B-NVFP4-RTX5090 rev 35fd99fb (pre-final branch, MTP head present)"
+      },
+      "serving": {
+        "route": "server",
+        "context_tokens": 32768,
+        "server_max_model_len": 131072,
+        "kv_cache_k": "fp8",
+        "kv_cache_v": "fp8",
+        "tensor_parallel": "2",
+        "speculation": {
+          "type": "mtp",
+          "draft_n": 2
+        },
+        "thinking": "on",
+        "reasoning_budget": 1024,
+        "notes": "reasoning_effort=medium via --default-chat-template-kwargs; CUDA graphs on (--max-cudagraph-capture-size 4); explicit --kv-cache-memory 3221225472; --enable-prefix-caching --mamba-cache-mode align (vLLM disables prefix caching by default on this Gated-DeltaNet hybrid); VLLM_USE_V2_MODEL_RUNNER=1 (required for multimodal + cudagraphs)"
+      },
+      "benchmark": {
+        "prompt_set": "long-retrieval",
+        "configured_context_tokens": 32768,
+        "actual_prompt_tokens": 32391,
+        "generated_tokens": 86,
+        "runs": 1,
+        "warmups": 1,
+        "stream": true,
+        "cache_policy": "no-reuse",
+        "run_nonce": "70480f448401b4b8",
+        "server_max_context_tokens": 131072,
+        "prompt_calibration": {
+          "method": "server-reported usage.prompt_tokens",
+          "tolerance_tokens": 256,
+          "filler_lines": 1077
+        },
+        "tool_call_validated": false
+      },
+      "metrics": {
+        "end_to_end_tok_s": 6.393,
+        "wall_seconds": 13.452,
+        "client_ttft_seconds": 12.439,
+        "client_decode_tok_s": 84.871,
+        "client_end_to_end_tok_s": 6.393,
+        "server_prefill_tok_s": 2613.551,
+        "server_decode_tok_s": 84.361,
+        "server_ttft_seconds": 12.431
+      },
+      "caveats": [],
+      "artifacts": [
+        "https://github.com/user-attachments/files/31840481/community-2x5060ti-qwen38-27b-nvfp4-mtp-vision-131k.json"
+      ],
+      "_source_file": "data/results/community-2x5060ti-qwen38-27b-nvfp4-mtp-vision-131k.json",
+      "_display_metrics": {
+        "decode_tok_s": 84.871,
+        "decode_source": "client",
+        "prompt_tok_s": 2613.551,
+        "prompt_source": "server"
+      },
+      "_repeat_prompt_key": "calibrated|server-reported usage.prompt_tokens||256|1077"
+    },
+    {
+      "schema_version": "1.0",
+      "id": "20260903-153958-qwen3.8-27b-nvfp4-rtx5090-long-retrieval-2",
+      "timestamp_utc": "2026-09-03T15:40:38.444446+00:00",
+      "source": {
+        "type": "community",
+        "label": "community-2x5060ti-rhambus",
+        "notes": "Generated by scripts/run_openai_bench.py; accepted community submission from @rhambus via GitHub issue #7",
+        "url": "https://github.com/5p00kyy/club-5060ti/issues/7"
+      },
+      "promotion_level": "benchmark",
+      "tier": "capable",
+      "hardware": {
+        "lane": "2x5060ti",
+        "gpu_count": 2,
+        "gpu_model": "RTX 5060 Ti",
+        "vram_per_gpu_gb": 16.0,
+        "driver": "595.84",
+        "cpu": "AMD Ryzen 7 7800X3D",
+        "host_ram_gb": 60.0,
+        "pcie": "PCIe 5.0 x8 per card (x16 physical, x8/x8 bifurcation), measured under load; PHB via CPU host bridge, no NVLink (NCCL_P2P_DISABLE=1)",
+        "motherboard": "ASRock X870 Taichi Creator",
+        "inference_ram_gb": 11.7,
+        "os": "Linux Mint 22.3 (Ubuntu 24.04 base), kernel 7.0.0-29-generic, bare metal"
+      },
+      "runtime": {
+        "engine": "vLLM",
+        "version": "0.27.1",
+        "notes": "Stock vLLM 0.27.1 plus a REQUIRED local patch: the sm_120 GDN prefill gate - vLLM enables the FlashInfer Gated-DeltaNet prefill kernel only for device family 100, so on sm_120 it falls back to a Triton/FLA kernel that HANGS at startup. Also NCCL_P2P_DISABLE=1 and PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True."
+      },
+      "model": {
+        "id": "Qwen3.8-27B-NVFP4-RTX5090",
+        "server_max_context_tokens": 131072,
+        "family": "Qwen3.8",
+        "architecture": "hybrid",
+        "parameter_class": "27B",
+        "quant": "NVFP4 W4A4 (NVIDIA ModelOpt, group 16), FP8 KV",
+        "source": "gittensor-model-hub/Qwen3.8-27B-NVFP4-RTX5090 rev 35fd99fb (pre-final branch, MTP head present)"
+      },
+      "serving": {
+        "route": "server",
+        "context_tokens": 32768,
+        "server_max_model_len": 131072,
+        "kv_cache_k": "fp8",
+        "kv_cache_v": "fp8",
+        "tensor_parallel": "2",
+        "speculation": {
+          "type": "mtp",
+          "draft_n": 2
+        },
+        "thinking": "on",
+        "reasoning_budget": 1024,
+        "notes": "reasoning_effort=medium via --default-chat-template-kwargs; CUDA graphs on (--max-cudagraph-capture-size 4); explicit --kv-cache-memory 3221225472; --enable-prefix-caching --mamba-cache-mode align (vLLM disables prefix caching by default on this Gated-DeltaNet hybrid); VLLM_USE_V2_MODEL_RUNNER=1 (required for multimodal + cudagraphs)"
+      },
+      "benchmark": {
+        "prompt_set": "long-retrieval",
+        "configured_context_tokens": 32768,
+        "actual_prompt_tokens": 32391,
+        "generated_tokens": 81,
+        "runs": 1,
+        "warmups": 1,
+        "stream": true,
+        "cache_policy": "no-reuse",
+        "run_nonce": "318150b8c0d2d554",
+        "server_max_context_tokens": 131072,
+        "prompt_calibration": {
+          "method": "server-reported usage.prompt_tokens",
+          "tolerance_tokens": 256,
+          "filler_lines": 1077
+        },
+        "tool_call_validated": false
+      },
+      "metrics": {
+        "end_to_end_tok_s": 6.065,
+        "wall_seconds": 13.355,
+        "client_ttft_seconds": 12.445,
+        "client_decode_tok_s": 89.009,
+        "client_end_to_end_tok_s": 6.065,
+        "server_prefill_tok_s": 2613.269,
+        "server_decode_tok_s": 87.897,
+        "server_ttft_seconds": 12.432
+      },
+      "caveats": [],
+      "artifacts": [
+        "https://github.com/user-attachments/files/31840481/community-2x5060ti-qwen38-27b-nvfp4-mtp-vision-131k.json"
+      ],
+      "_source_file": "data/results/community-2x5060ti-qwen38-27b-nvfp4-mtp-vision-131k.json",
+      "_display_metrics": {
+        "decode_tok_s": 89.009,
+        "decode_source": "client",
+        "prompt_tok_s": 2613.269,
+        "prompt_source": "server"
+      },
+      "_repeat_prompt_key": "calibrated|server-reported usage.prompt_tokens||256|1077"
+    },
+    {
+      "schema_version": "1.0",
+      "id": "20260903-153958-qwen3.8-27b-nvfp4-rtx5090-long-retrieval-3",
+      "timestamp_utc": "2026-09-03T15:40:51.905900+00:00",
+      "source": {
+        "type": "community",
+        "label": "community-2x5060ti-rhambus",
+        "notes": "Generated by scripts/run_openai_bench.py; accepted community submission from @rhambus via GitHub issue #7",
+        "url": "https://github.com/5p00kyy/club-5060ti/issues/7"
+      },
+      "promotion_level": "benchmark",
+      "tier": "capable",
+      "hardware": {
+        "lane": "2x5060ti",
+        "gpu_count": 2,
+        "gpu_model": "RTX 5060 Ti",
+        "vram_per_gpu_gb": 16.0,
+        "driver": "595.84",
+        "cpu": "AMD Ryzen 7 7800X3D",
+        "host_ram_gb": 60.0,
+        "pcie": "PCIe 5.0 x8 per card (x16 physical, x8/x8 bifurcation), measured under load; PHB via CPU host bridge, no NVLink (NCCL_P2P_DISABLE=1)",
+        "motherboard": "ASRock X870 Taichi Creator",
+        "inference_ram_gb": 11.7,
+        "os": "Linux Mint 22.3 (Ubuntu 24.04 base), kernel 7.0.0-29-generic, bare metal"
+      },
+      "runtime": {
+        "engine": "vLLM",
+        "version": "0.27.1",
+        "notes": "Stock vLLM 0.27.1 plus a REQUIRED local patch: the sm_120 GDN prefill gate - vLLM enables the FlashInfer Gated-DeltaNet prefill kernel only for device family 100, so on sm_120 it falls back to a Triton/FLA kernel that HANGS at startup. Also NCCL_P2P_DISABLE=1 and PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True."
+      },
+      "model": {
+        "id": "Qwen3.8-27B-NVFP4-RTX5090",
+        "server_max_context_tokens": 131072,
+        "family": "Qwen3.8",
+        "architecture": "hybrid",
+        "parameter_class": "27B",
+        "quant": "NVFP4 W4A4 (NVIDIA ModelOpt, group 16), FP8 KV",
+        "source": "gittensor-model-hub/Qwen3.8-27B-NVFP4-RTX5090 rev 35fd99fb (pre-final branch, MTP head present)"
+      },
+      "serving": {
+        "route": "server",
+        "context_tokens": 32768,
+        "server_max_model_len": 131072,
+        "kv_cache_k": "fp8",
+        "kv_cache_v": "fp8",
+        "tensor_parallel": "2",
+        "speculation": {
+          "type": "mtp",
+          "draft_n": 2
+        },
+        "thinking": "on",
+        "reasoning_budget": 1024,
+        "notes": "reasoning_effort=medium via --default-chat-template-kwargs; CUDA graphs on (--max-cudagraph-capture-size 4); explicit --kv-cache-memory 3221225472; --enable-prefix-caching --mamba-cache-mode align (vLLM disables prefix caching by default on this Gated-DeltaNet hybrid); VLLM_USE_V2_MODEL_RUNNER=1 (required for multimodal + cudagraphs)"
+      },
+      "benchmark": {
+        "prompt_set": "long-retrieval",
+        "configured_context_tokens": 32768,
+        "actual_prompt_tokens": 32388,
+        "generated_tokens": 85,
+        "runs": 1,
+        "warmups": 1,
+        "stream": true,
+        "cache_policy": "no-reuse",
+        "run_nonce": "49c721bdd161ef1b",
+        "server_max_context_tokens": 131072,
+        "prompt_calibration": {
+          "method": "server-reported usage.prompt_tokens",
+          "tolerance_tokens": 256,
+          "filler_lines": 1077
+        },
+        "tool_call_validated": false
+      },
+      "metrics": {
+        "end_to_end_tok_s": 6.318,
+        "wall_seconds": 13.454,
+        "client_ttft_seconds": 12.442,
+        "client_decode_tok_s": 83.96,
+        "client_end_to_end_tok_s": 6.318,
+        "server_prefill_tok_s": 2612.971,
+        "server_decode_tok_s": 83.414,
+        "server_ttft_seconds": 12.433
+      },
+      "caveats": [],
+      "artifacts": [
+        "https://github.com/user-attachments/files/31840481/community-2x5060ti-qwen38-27b-nvfp4-mtp-vision-131k.json"
+      ],
+      "_source_file": "data/results/community-2x5060ti-qwen38-27b-nvfp4-mtp-vision-131k.json",
+      "_display_metrics": {
+        "decode_tok_s": 83.96,
+        "decode_source": "client",
+        "prompt_tok_s": 2612.971,
+        "prompt_source": "server"
+      },
+      "_repeat_prompt_key": "calibrated|server-reported usage.prompt_tokens||256|1077"
+    },
+    {
+      "schema_version": "1.0",
+      "id": "20260903-154051-qwen3.8-27b-nvfp4-rtx5090-long-retrieval-1",
+      "timestamp_utc": "2026-09-03T15:41:58.054120+00:00",
+      "source": {
+        "type": "community",
+        "label": "community-2x5060ti-rhambus",
+        "notes": "Generated by scripts/run_openai_bench.py; accepted community submission from @rhambus via GitHub issue #7",
+        "url": "https://github.com/5p00kyy/club-5060ti/issues/7"
+      },
+      "promotion_level": "benchmark",
+      "tier": "capable",
+      "hardware": {
+        "lane": "2x5060ti",
+        "gpu_count": 2,
+        "gpu_model": "RTX 5060 Ti",
+        "vram_per_gpu_gb": 16.0,
+        "driver": "595.84",
+        "cpu": "AMD Ryzen 7 7800X3D",
+        "host_ram_gb": 60.0,
+        "pcie": "PCIe 5.0 x8 per card (x16 physical, x8/x8 bifurcation), measured under load; PHB via CPU host bridge, no NVLink (NCCL_P2P_DISABLE=1)",
+        "motherboard": "ASRock X870 Taichi Creator",
+        "inference_ram_gb": 11.7,
+        "os": "Linux Mint 22.3 (Ubuntu 24.04 base), kernel 7.0.0-29-generic, bare metal"
+      },
+      "runtime": {
+        "engine": "vLLM",
+        "version": "0.27.1",
+        "notes": "Stock vLLM 0.27.1 plus a REQUIRED local patch: the sm_120 GDN prefill gate - vLLM enables the FlashInfer Gated-DeltaNet prefill kernel only for device family 100, so on sm_120 it falls back to a Triton/FLA kernel that HANGS at startup. Also NCCL_P2P_DISABLE=1 and PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True."
+      },
+      "model": {
+        "id": "Qwen3.8-27B-NVFP4-RTX5090",
+        "server_max_context_tokens": 131072,
+        "family": "Qwen3.8",
+        "architecture": "hybrid",
+        "parameter_class": "27B",
+        "quant": "NVFP4 W4A4 (NVIDIA ModelOpt, group 16), FP8 KV",
+        "source": "gittensor-model-hub/Qwen3.8-27B-NVFP4-RTX5090 rev 35fd99fb (pre-final branch, MTP head present)"
+      },
+      "serving": {
+        "route": "server",
+        "context_tokens": 65536,
+        "server_max_model_len": 131072,
+        "kv_cache_k": "fp8",
+        "kv_cache_v": "fp8",
+        "tensor_parallel": "2",
+        "speculation": {
+          "type": "mtp",
+          "draft_n": 2
+        },
+        "thinking": "on",
+        "reasoning_budget": 1024,
+        "notes": "reasoning_effort=medium via --default-chat-template-kwargs; CUDA graphs on (--max-cudagraph-capture-size 4); explicit --kv-cache-memory 3221225472; --enable-prefix-caching --mamba-cache-mode align (vLLM disables prefix caching by default on this Gated-DeltaNet hybrid); VLLM_USE_V2_MODEL_RUNNER=1 (required for multimodal + cudagraphs)"
+      },
+      "benchmark": {
+        "prompt_set": "long-retrieval",
+        "configured_context_tokens": 65536,
+        "actual_prompt_tokens": 65148,
+        "generated_tokens": 79,
+        "runs": 1,
+        "warmups": 1,
+        "stream": true,
+        "cache_policy": "no-reuse",
+        "run_nonce": "6ed82bad17778513",
+        "server_max_context_tokens": 131072,
+        "prompt_calibration": {
+          "method": "server-reported usage.prompt_tokens",
+          "tolerance_tokens": 256,
+          "filler_lines": 2169
+        },
+        "tool_call_validated": false
+      },
+      "metrics": {
+        "end_to_end_tok_s": 2.391,
+        "wall_seconds": 33.038,
+        "client_ttft_seconds": 31.998,
+        "client_decode_tok_s": 76.02,
+        "client_end_to_end_tok_s": 2.391,
+        "server_prefill_tok_s": 2041.281,
+        "server_decode_tok_s": 75.124,
+        "server_ttft_seconds": 31.984
+      },
+      "caveats": [],
+      "artifacts": [
+        "https://github.com/user-attachments/files/31840481/community-2x5060ti-qwen38-27b-nvfp4-mtp-vision-131k.json"
+      ],
+      "_source_file": "data/results/community-2x5060ti-qwen38-27b-nvfp4-mtp-vision-131k.json",
+      "_display_metrics": {
+        "decode_tok_s": 76.02,
+        "decode_source": "client",
+        "prompt_tok_s": 2041.281,
+        "prompt_source": "server"
+      },
+      "_repeat_prompt_key": "calibrated|server-reported usage.prompt_tokens||256|2169"
+    },
+    {
+      "schema_version": "1.0",
+      "id": "20260903-154051-qwen3.8-27b-nvfp4-rtx5090-long-retrieval-2",
+      "timestamp_utc": "2026-09-03T15:42:31.103855+00:00",
+      "source": {
+        "type": "community",
+        "label": "community-2x5060ti-rhambus",
+        "notes": "Generated by scripts/run_openai_bench.py; accepted community submission from @rhambus via GitHub issue #7",
+        "url": "https://github.com/5p00kyy/club-5060ti/issues/7"
+      },
+      "promotion_level": "benchmark",
+      "tier": "capable",
+      "hardware": {
+        "lane": "2x5060ti",
+        "gpu_count": 2,
+        "gpu_model": "RTX 5060 Ti",
+        "vram_per_gpu_gb": 16.0,
+        "driver": "595.84",
+        "cpu": "AMD Ryzen 7 7800X3D",
+        "host_ram_gb": 60.0,
+        "pcie": "PCIe 5.0 x8 per card (x16 physical, x8/x8 bifurcation), measured under load; PHB via CPU host bridge, no NVLink (NCCL_P2P_DISABLE=1)",
+        "motherboard": "ASRock X870 Taichi Creator",
+        "inference_ram_gb": 11.7,
+        "os": "Linux Mint 22.3 (Ubuntu 24.04 base), kernel 7.0.0-29-generic, bare metal"
+      },
+      "runtime": {
+        "engine": "vLLM",
+        "version": "0.27.1",
+        "notes": "Stock vLLM 0.27.1 plus a REQUIRED local patch: the sm_120 GDN prefill gate - vLLM enables the FlashInfer Gated-DeltaNet prefill kernel only for device family 100, so on sm_120 it falls back to a Triton/FLA kernel that HANGS at startup. Also NCCL_P2P_DISABLE=1 and PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True."
+      },
+      "model": {
+        "id": "Qwen3.8-27B-NVFP4-RTX5090",
+        "server_max_context_tokens": 131072,
+        "family": "Qwen3.8",
+        "architecture": "hybrid",
+        "parameter_class": "27B",
+        "quant": "NVFP4 W4A4 (NVIDIA ModelOpt, group 16), FP8 KV",
+        "source": "gittensor-model-hub/Qwen3.8-27B-NVFP4-RTX5090 rev 35fd99fb (pre-final branch, MTP head present)"
+      },
+      "serving": {
+        "route": "server",
+        "context_tokens": 65536,
+        "server_max_model_len": 131072,
+        "kv_cache_k": "fp8",
+        "kv_cache_v": "fp8",
+        "tensor_parallel": "2",
+        "speculation": {
+          "type": "mtp",
+          "draft_n": 2
+        },
+        "thinking": "on",
+        "reasoning_budget": 1024,
+        "notes": "reasoning_effort=medium via --default-chat-template-kwargs; CUDA graphs on (--max-cudagraph-capture-size 4); explicit --kv-cache-memory 3221225472; --enable-prefix-caching --mamba-cache-mode align (vLLM disables prefix caching by default on this Gated-DeltaNet hybrid); VLLM_USE_V2_MODEL_RUNNER=1 (required for multimodal + cudagraphs)"
+      },
+      "benchmark": {
+        "prompt_set": "long-retrieval",
+        "configured_context_tokens": 65536,
+        "actual_prompt_tokens": 65150,
+        "generated_tokens": 85,
+        "runs": 1,
+        "warmups": 1,
+        "stream": true,
+        "cache_policy": "no-reuse",
+        "run_nonce": "5cd27034b3064a2a",
+        "server_max_context_tokens": 131072,
+        "prompt_calibration": {
+          "method": "server-reported usage.prompt_tokens",
+          "tolerance_tokens": 256,
+          "filler_lines": 2169
+        },
+        "tool_call_validated": false
+      },
+      "metrics": {
+        "end_to_end_tok_s": 2.572,
+        "wall_seconds": 33.042,
+        "client_ttft_seconds": 32.004,
+        "client_decode_tok_s": 81.873,
+        "client_end_to_end_tok_s": 2.572,
+        "server_prefill_tok_s": 2040.969,
+        "server_decode_tok_s": 80.908,
+        "server_ttft_seconds": 31.989
+      },
+      "caveats": [],
+      "artifacts": [
+        "https://github.com/user-attachments/files/31840481/community-2x5060ti-qwen38-27b-nvfp4-mtp-vision-131k.json"
+      ],
+      "_source_file": "data/results/community-2x5060ti-qwen38-27b-nvfp4-mtp-vision-131k.json",
+      "_display_metrics": {
+        "decode_tok_s": 81.873,
+        "decode_source": "client",
+        "prompt_tok_s": 2040.969,
+        "prompt_source": "server"
+      },
+      "_repeat_prompt_key": "calibrated|server-reported usage.prompt_tokens||256|2169"
+    },
+    {
+      "schema_version": "1.0",
+      "id": "20260903-154051-qwen3.8-27b-nvfp4-rtx5090-long-retrieval-3",
+      "timestamp_utc": "2026-09-03T15:43:04.082942+00:00",
+      "source": {
+        "type": "community",
+        "label": "community-2x5060ti-rhambus",
+        "notes": "Generated by scripts/run_openai_bench.py; accepted community submission from @rhambus via GitHub issue #7",
+        "url": "https://github.com/5p00kyy/club-5060ti/issues/7"
+      },
+      "promotion_level": "benchmark",
+      "tier": "capable",
+      "hardware": {
+        "lane": "2x5060ti",
+        "gpu_count": 2,
+        "gpu_model": "RTX 5060 Ti",
+        "vram_per_gpu_gb": 16.0,
+        "driver": "595.84",
+        "cpu": "AMD Ryzen 7 7800X3D",
+        "host_ram_gb": 60.0,
+        "pcie": "PCIe 5.0 x8 per card (x16 physical, x8/x8 bifurcation), measured under load; PHB via CPU host bridge, no NVLink (NCCL_P2P_DISABLE=1)",
+        "motherboard": "ASRock X870 Taichi Creator",
+        "inference_ram_gb": 11.7,
+        "os": "Linux Mint 22.3 (Ubuntu 24.04 base), kernel 7.0.0-29-generic, bare metal"
+      },
+      "runtime": {
+        "engine": "vLLM",
+        "version": "0.27.1",
+        "notes": "Stock vLLM 0.27.1 plus a REQUIRED local patch: the sm_120 GDN prefill gate - vLLM enables the FlashInfer Gated-DeltaNet prefill kernel only for device family 100, so on sm_120 it falls back to a Triton/FLA kernel that HANGS at startup. Also NCCL_P2P_DISABLE=1 and PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True."
+      },
+      "model": {
+        "id": "Qwen3.8-27B-NVFP4-RTX5090",
+        "server_max_context_tokens": 131072,
+        "family": "Qwen3.8",
+        "architecture": "hybrid",
+        "parameter_class": "27B",
+        "quant": "NVFP4 W4A4 (NVIDIA ModelOpt, group 16), FP8 KV",
+        "source": "gittensor-model-hub/Qwen3.8-27B-NVFP4-RTX5090 rev 35fd99fb (pre-final branch, MTP head present)"
+      },
+      "serving": {
+        "route": "server",
+        "context_tokens": 65536,
+        "server_max_model_len": 131072,
+        "kv_cache_k": "fp8",
+        "kv_cache_v": "fp8",
+        "tensor_parallel": "2",
+        "speculation": {
+          "type": "mtp",
+          "draft_n": 2
+        },
+        "thinking": "on",
+        "reasoning_budget": 1024,
+        "notes": "reasoning_effort=medium via --default-chat-template-kwargs; CUDA graphs on (--max-cudagraph-capture-size 4); explicit --kv-cache-memory 3221225472; --enable-prefix-caching --mamba-cache-mode align (vLLM disables prefix caching by default on this Gated-DeltaNet hybrid); VLLM_USE_V2_MODEL_RUNNER=1 (required for multimodal + cudagraphs)"
+      },
+      "benchmark": {
+        "prompt_set": "long-retrieval",
+        "configured_context_tokens": 65536,
+        "actual_prompt_tokens": 65149,
+        "generated_tokens": 81,
+        "runs": 1,
+        "warmups": 1,
+        "stream": true,
+        "cache_policy": "no-reuse",
+        "run_nonce": "92afde142c01c72e",
+        "server_max_context_tokens": 131072,
+        "prompt_calibration": {
+          "method": "server-reported usage.prompt_tokens",
+          "tolerance_tokens": 256,
+          "filler_lines": 2169
+        },
+        "tool_call_validated": false
+      },
+      "metrics": {
+        "end_to_end_tok_s": 2.457,
+        "wall_seconds": 32.972,
+        "client_ttft_seconds": 32.003,
+        "client_decode_tok_s": 83.626,
+        "client_end_to_end_tok_s": 2.457,
+        "server_prefill_tok_s": 2040.982,
+        "server_decode_tok_s": 82.566,
+        "server_ttft_seconds": 31.988
+      },
+      "caveats": [],
+      "artifacts": [
+        "https://github.com/user-attachments/files/31840481/community-2x5060ti-qwen38-27b-nvfp4-mtp-vision-131k.json"
+      ],
+      "_source_file": "data/results/community-2x5060ti-qwen38-27b-nvfp4-mtp-vision-131k.json",
+      "_display_metrics": {
+        "decode_tok_s": 83.626,
+        "decode_source": "client",
+        "prompt_tok_s": 2040.982,
+        "prompt_source": "server"
+      },
+      "_repeat_prompt_key": "calibrated|server-reported usage.prompt_tokens||256|2169"
+    },
+    {
+      "schema_version": "1.0",
+      "id": "20260904-140449-qwen3.8-27b-nvfp4-rtx5090-short-chat-1",
+      "timestamp_utc": "2026-09-04T14:05:09.832972+00:00",
+      "source": {
+        "type": "community",
+        "label": "community-2x5060ti-rhambus",
+        "notes": "Generated by scripts/run_openai_bench.py; accepted community submission from @rhambus via GitHub issue #7",
+        "url": "https://github.com/5p00kyy/club-5060ti/issues/7"
+      },
+      "promotion_level": "benchmark",
+      "tier": "capable",
+      "hardware": {
+        "lane": "2x5060ti",
+        "gpu_count": 2,
+        "gpu_model": "RTX 5060 Ti",
+        "vram_per_gpu_gb": 16.0,
+        "driver": "595.84",
+        "cpu": "AMD Ryzen 7 7800X3D",
+        "host_ram_gb": 60.0,
+        "pcie": "PCIe 5.0 x8 per card (x16 physical, x8/x8 bifurcation), measured under load; PHB via CPU host bridge, no NVLink (NCCL_P2P_DISABLE=1)",
+        "motherboard": "ASRock X870 Taichi Creator",
+        "inference_ram_gb": 11.7,
+        "os": "Linux Mint 22.3 (Ubuntu 24.04 base), kernel 7.0.0-29-generic, bare metal"
+      },
+      "runtime": {
+        "engine": "vLLM",
+        "version": "0.27.1",
+        "notes": "Stock vLLM 0.27.1 plus two REQUIRED local patches: (1) sm_120 GDN prefill gate - vLLM enables the FlashInfer Gated-DeltaNet prefill kernel only for device family 100, so on sm_120 it falls back to a Triton/FLA kernel that HANGS at startup; (2) the DSpark drafter markov_head NVFP4 exclusion does not match vLLM prefixed layer names (only needed for the DSpark variant). Also NCCL_P2P_DISABLE=1 and PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True."
+      },
+      "model": {
+        "id": "Qwen3.8-27B-NVFP4-RTX5090",
+        "server_max_context_tokens": 131072,
+        "family": "Qwen3.8",
+        "architecture": "hybrid",
+        "parameter_class": "27B",
+        "quant": "NVFP4 W4A4 (NVIDIA ModelOpt, group 16), FP8 KV",
+        "source": "gittensor-model-hub/Qwen3.8-27B-NVFP4-RTX5090 rev 35fd99fb (pre-final branch, MTP head present)"
+      },
+      "serving": {
+        "route": "server",
+        "context_tokens": 8192,
+        "server_max_model_len": 131072,
+        "kv_cache_k": "fp8",
+        "kv_cache_v": "fp8",
+        "tensor_parallel": "2",
+        "speculation": {
+          "type": "mtp",
+          "draft_n": 2
+        },
+        "thinking": "on",
+        "reasoning_budget": 1024,
+        "notes": "reasoning_effort=medium via --default-chat-template-kwargs; CUDA graphs on (--max-cudagraph-capture-size 4); explicit --kv-cache-memory 3221225472; --enable-prefix-caching --mamba-cache-mode align (vLLM disables prefix caching by default on this Gated-DeltaNet hybrid); VLLM_USE_V2_MODEL_RUNNER=1 (required for multimodal + cudagraphs)"
+      },
+      "benchmark": {
+        "prompt_set": "short-chat",
+        "configured_context_tokens": 8192,
+        "actual_prompt_tokens": 29,
+        "generated_tokens": 800,
+        "runs": 1,
+        "warmups": 1,
+        "stream": true,
+        "cache_policy": "no-reuse",
+        "server_max_context_tokens": 131072,
+        "prompt_calibration": {
+          "method": "server-reported usage.prompt_tokens",
+          "tolerance_tokens": 256
+        },
+        "tool_call_validated": false
+      },
+      "metrics": {
+        "end_to_end_tok_s": 80.041,
+        "wall_seconds": 9.995,
+        "client_ttft_seconds": 0.088,
+        "client_decode_tok_s": 80.751,
+        "client_end_to_end_tok_s": 80.041,
+        "server_prefill_tok_s": 416.308,
+        "server_decode_tok_s": 80.753,
+        "server_ttft_seconds": 0.087
+      },
+      "caveats": [],
+      "artifacts": [
+        "https://github.com/user-attachments/files/31840481/community-2x5060ti-qwen38-27b-nvfp4-mtp-vision-131k.json"
+      ],
+      "_source_file": "data/results/community-2x5060ti-qwen38-27b-nvfp4-mtp-vision-131k.json",
+      "_display_metrics": {
+        "decode_tok_s": 80.751,
+        "decode_source": "client",
+        "prompt_tok_s": 416.308,
+        "prompt_source": "server"
+      }
+    },
+    {
+      "schema_version": "1.0",
+      "id": "20260904-140449-qwen3.8-27b-nvfp4-rtx5090-short-chat-2",
+      "timestamp_utc": "2026-09-04T14:05:19.839742+00:00",
+      "source": {
+        "type": "community",
+        "label": "community-2x5060ti-rhambus",
+        "notes": "Generated by scripts/run_openai_bench.py; accepted community submission from @rhambus via GitHub issue #7",
+        "url": "https://github.com/5p00kyy/club-5060ti/issues/7"
+      },
+      "promotion_level": "benchmark",
+      "tier": "capable",
+      "hardware": {
+        "lane": "2x5060ti",
+        "gpu_count": 2,
+        "gpu_model": "RTX 5060 Ti",
+        "vram_per_gpu_gb": 16.0,
+        "driver": "595.84",
+        "cpu": "AMD Ryzen 7 7800X3D",
+        "host_ram_gb": 60.0,
+        "pcie": "PCIe 5.0 x8 per card (x16 physical, x8/x8 bifurcation), measured under load; PHB via CPU host bridge, no NVLink (NCCL_P2P_DISABLE=1)",
+        "motherboard": "ASRock X870 Taichi Creator",
+        "inference_ram_gb": 11.7,
+        "os": "Linux Mint 22.3 (Ubuntu 24.04 base), kernel 7.0.0-29-generic, bare metal"
+      },
+      "runtime": {
+        "engine": "vLLM",
+        "version": "0.27.1",
+        "notes": "Stock vLLM 0.27.1 plus two REQUIRED local patches: (1) sm_120 GDN prefill gate - vLLM enables the FlashInfer Gated-DeltaNet prefill kernel only for device family 100, so on sm_120 it falls back to a Triton/FLA kernel that HANGS at startup; (2) the DSpark drafter markov_head NVFP4 exclusion does not match vLLM prefixed layer names (only needed for the DSpark variant). Also NCCL_P2P_DISABLE=1 and PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True."
+      },
+      "model": {
+        "id": "Qwen3.8-27B-NVFP4-RTX5090",
+        "server_max_context_tokens": 131072,
+        "family": "Qwen3.8",
+        "architecture": "hybrid",
+        "parameter_class": "27B",
+        "quant": "NVFP4 W4A4 (NVIDIA ModelOpt, group 16), FP8 KV",
+        "source": "gittensor-model-hub/Qwen3.8-27B-NVFP4-RTX5090 rev 35fd99fb (pre-final branch, MTP head present)"
+      },
+      "serving": {
+        "route": "server",
+        "context_tokens": 8192,
+        "server_max_model_len": 131072,
+        "kv_cache_k": "fp8",
+        "kv_cache_v": "fp8",
+        "tensor_parallel": "2",
+        "speculation": {
+          "type": "mtp",
+          "draft_n": 2
+        },
+        "thinking": "on",
+        "reasoning_budget": 1024,
+        "notes": "reasoning_effort=medium via --default-chat-template-kwargs; CUDA graphs on (--max-cudagraph-capture-size 4); explicit --kv-cache-memory 3221225472; --enable-prefix-caching --mamba-cache-mode align (vLLM disables prefix caching by default on this Gated-DeltaNet hybrid); VLLM_USE_V2_MODEL_RUNNER=1 (required for multimodal + cudagraphs)"
+      },
+      "benchmark": {
+        "prompt_set": "short-chat",
+        "configured_context_tokens": 8192,
+        "actual_prompt_tokens": 29,
+        "generated_tokens": 800,
+        "runs": 1,
+        "warmups": 1,
+        "stream": true,
+        "cache_policy": "no-reuse",
+        "server_max_context_tokens": 131072,
+        "prompt_calibration": {
+          "method": "server-reported usage.prompt_tokens",
+          "tolerance_tokens": 256
+        },
+        "tool_call_validated": false
+      },
+      "metrics": {
+        "end_to_end_tok_s": 80.034,
+        "wall_seconds": 9.996,
+        "client_ttft_seconds": 0.088,
+        "client_decode_tok_s": 80.742,
+        "client_end_to_end_tok_s": 80.034,
+        "server_prefill_tok_s": 417.863,
+        "server_decode_tok_s": 80.743,
+        "server_ttft_seconds": 0.086
+      },
+      "caveats": [],
+      "artifacts": [
+        "https://github.com/user-attachments/files/31840481/community-2x5060ti-qwen38-27b-nvfp4-mtp-vision-131k.json"
+      ],
+      "_source_file": "data/results/community-2x5060ti-qwen38-27b-nvfp4-mtp-vision-131k.json",
+      "_display_metrics": {
+        "decode_tok_s": 80.742,
+        "decode_source": "client",
+        "prompt_tok_s": 417.863,
+        "prompt_source": "server"
+      }
+    },
+    {
+      "schema_version": "1.0",
+      "id": "20260904-140449-qwen3.8-27b-nvfp4-rtx5090-short-chat-3",
+      "timestamp_utc": "2026-09-04T14:05:29.850145+00:00",
+      "source": {
+        "type": "community",
+        "label": "community-2x5060ti-rhambus",
+        "notes": "Generated by scripts/run_openai_bench.py; accepted community submission from @rhambus via GitHub issue #7",
+        "url": "https://github.com/5p00kyy/club-5060ti/issues/7"
+      },
+      "promotion_level": "benchmark",
+      "tier": "capable",
+      "hardware": {
+        "lane": "2x5060ti",
+        "gpu_count": 2,
+        "gpu_model": "RTX 5060 Ti",
+        "vram_per_gpu_gb": 16.0,
+        "driver": "595.84",
+        "cpu": "AMD Ryzen 7 7800X3D",
+        "host_ram_gb": 60.0,
+        "pcie": "PCIe 5.0 x8 per card (x16 physical, x8/x8 bifurcation), measured under load; PHB via CPU host bridge, no NVLink (NCCL_P2P_DISABLE=1)",
+        "motherboard": "ASRock X870 Taichi Creator",
+        "inference_ram_gb": 11.7,
+        "os": "Linux Mint 22.3 (Ubuntu 24.04 base), kernel 7.0.0-29-generic, bare metal"
+      },
+      "runtime": {
+        "engine": "vLLM",
+        "version": "0.27.1",
+        "notes": "Stock vLLM 0.27.1 plus two REQUIRED local patches: (1) sm_120 GDN prefill gate - vLLM enables the FlashInfer Gated-DeltaNet prefill kernel only for device family 100, so on sm_120 it falls back to a Triton/FLA kernel that HANGS at startup; (2) the DSpark drafter markov_head NVFP4 exclusion does not match vLLM prefixed layer names (only needed for the DSpark variant). Also NCCL_P2P_DISABLE=1 and PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True."
+      },
+      "model": {
+        "id": "Qwen3.8-27B-NVFP4-RTX5090",
+        "server_max_context_tokens": 131072,
+        "family": "Qwen3.8",
+        "architecture": "hybrid",
+        "parameter_class": "27B",
+        "quant": "NVFP4 W4A4 (NVIDIA ModelOpt, group 16), FP8 KV",
+        "source": "gittensor-model-hub/Qwen3.8-27B-NVFP4-RTX5090 rev 35fd99fb (pre-final branch, MTP head present)"
+      },
+      "serving": {
+        "route": "server",
+        "context_tokens": 8192,
+        "server_max_model_len": 131072,
+        "kv_cache_k": "fp8",
+        "kv_cache_v": "fp8",
+        "tensor_parallel": "2",
+        "speculation": {
+          "type": "mtp",
+          "draft_n": 2
+        },
+        "thinking": "on",
+        "reasoning_budget": 1024,
+        "notes": "reasoning_effort=medium via --default-chat-template-kwargs; CUDA graphs on (--max-cudagraph-capture-size 4); explicit --kv-cache-memory 3221225472; --enable-prefix-caching --mamba-cache-mode align (vLLM disables prefix caching by default on this Gated-DeltaNet hybrid); VLLM_USE_V2_MODEL_RUNNER=1 (required for multimodal + cudagraphs)"
+      },
+      "benchmark": {
+        "prompt_set": "short-chat",
+        "configured_context_tokens": 8192,
+        "actual_prompt_tokens": 29,
+        "generated_tokens": 800,
+        "runs": 1,
+        "warmups": 1,
+        "stream": true,
+        "cache_policy": "no-reuse",
+        "server_max_context_tokens": 131072,
+        "prompt_calibration": {
+          "method": "server-reported usage.prompt_tokens",
+          "tolerance_tokens": 256
+        },
+        "tool_call_validated": false
+      },
+      "metrics": {
+        "end_to_end_tok_s": 79.98,
+        "wall_seconds": 10.003,
+        "client_ttft_seconds": 0.091,
+        "client_decode_tok_s": 80.711,
+        "client_end_to_end_tok_s": 79.98,
+        "server_prefill_tok_s": 418.676,
+        "server_decode_tok_s": 80.713,
+        "server_ttft_seconds": 0.09
+      },
+      "caveats": [],
+      "artifacts": [
+        "https://github.com/user-attachments/files/31840481/community-2x5060ti-qwen38-27b-nvfp4-mtp-vision-131k.json"
+      ],
+      "_source_file": "data/results/community-2x5060ti-qwen38-27b-nvfp4-mtp-vision-131k.json",
+      "_display_metrics": {
+        "decode_tok_s": 80.711,
+        "decode_source": "client",
+        "prompt_tok_s": 418.676,
+        "prompt_source": "server"
+      }
+    },
+    {
+      "schema_version": "1.0",
+      "id": "20260904-140812-qwen3.8-27b-nvfp4-rtx5090-tool-call-1",
+      "timestamp_utc": "2026-09-04T14:08:14.345736+00:00",
+      "source": {
+        "type": "community",
+        "label": "community-2x5060ti-rhambus",
+        "notes": "Generated by scripts/run_openai_bench.py; accepted community submission from @rhambus via GitHub issue #7",
+        "url": "https://github.com/5p00kyy/club-5060ti/issues/7"
+      },
+      "promotion_level": "benchmark",
+      "tier": "capable",
+      "hardware": {
+        "lane": "2x5060ti",
+        "gpu_count": 2,
+        "gpu_model": "RTX 5060 Ti",
+        "vram_per_gpu_gb": 16.0,
+        "driver": "595.84",
+        "cpu": "AMD Ryzen 7 7800X3D",
+        "host_ram_gb": 60.0,
+        "pcie": "PCIe 5.0 x8 per card (x16 physical, x8/x8 bifurcation), measured under load; PHB via CPU host bridge, no NVLink (NCCL_P2P_DISABLE=1)",
+        "motherboard": "ASRock X870 Taichi Creator",
+        "inference_ram_gb": 11.7,
+        "os": "Linux Mint 22.3 (Ubuntu 24.04 base), kernel 7.0.0-29-generic, bare metal"
+      },
+      "runtime": {
+        "engine": "vLLM",
+        "version": "0.27.1",
+        "notes": "Stock vLLM 0.27.1 plus two REQUIRED local patches: (1) sm_120 GDN prefill gate - vLLM enables the FlashInfer Gated-DeltaNet prefill kernel only for device family 100, so on sm_120 it falls back to a Triton/FLA kernel that HANGS at startup; (2) the DSpark drafter markov_head NVFP4 exclusion does not match vLLM prefixed layer names (only needed for the DSpark variant). Also NCCL_P2P_DISABLE=1 and PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True."
+      },
+      "model": {
+        "id": "Qwen3.8-27B-NVFP4-RTX5090",
+        "server_max_context_tokens": 131072,
+        "family": "Qwen3.8",
+        "architecture": "hybrid",
+        "parameter_class": "27B",
+        "quant": "NVFP4 W4A4 (NVIDIA ModelOpt, group 16), FP8 KV",
+        "source": "gittensor-model-hub/Qwen3.8-27B-NVFP4-RTX5090 rev 35fd99fb (pre-final branch, MTP head present)"
+      },
+      "serving": {
+        "route": "server",
+        "context_tokens": 8192,
+        "server_max_model_len": 131072,
+        "kv_cache_k": "fp8",
+        "kv_cache_v": "fp8",
+        "tensor_parallel": "2",
+        "speculation": {
+          "type": "mtp",
+          "draft_n": 2
+        },
+        "thinking": "on",
+        "reasoning_budget": 1024,
+        "notes": "reasoning_effort=medium via --default-chat-template-kwargs; CUDA graphs on (--max-cudagraph-capture-size 4); explicit --kv-cache-memory 3221225472; --enable-prefix-caching --mamba-cache-mode align (vLLM disables prefix caching by default on this Gated-DeltaNet hybrid); VLLM_USE_V2_MODEL_RUNNER=1 (required for multimodal + cudagraphs)"
+      },
+      "benchmark": {
+        "prompt_set": "tool-call",
+        "configured_context_tokens": 8192,
+        "actual_prompt_tokens": 266,
+        "generated_tokens": 80,
+        "runs": 1,
+        "warmups": 1,
+        "stream": true,
+        "cache_policy": "no-reuse",
+        "server_max_context_tokens": 131072,
+        "prompt_calibration": {
+          "method": "server-reported usage.prompt_tokens",
+          "tolerance_tokens": 256
+        },
+        "tool_call_validated": true
+      },
+      "metrics": {
+        "end_to_end_tok_s": 82.899,
+        "wall_seconds": 0.965,
+        "client_ttft_seconds": 0.109,
+        "client_decode_tok_s": 93.407,
+        "client_end_to_end_tok_s": 82.899,
+        "server_prefill_tok_s": 2996.733,
+        "server_decode_tok_s": 93.396,
+        "server_ttft_seconds": 0.107
+      },
+      "caveats": [],
+      "artifacts": [
+        "https://github.com/user-attachments/files/31840481/community-2x5060ti-qwen38-27b-nvfp4-mtp-vision-131k.json"
+      ],
+      "_source_file": "data/results/community-2x5060ti-qwen38-27b-nvfp4-mtp-vision-131k.json",
+      "_display_metrics": {
+        "decode_tok_s": 93.407,
+        "decode_source": "client",
+        "prompt_tok_s": 2996.733,
+        "prompt_source": "server"
+      }
+    },
+    {
+      "schema_version": "1.0",
+      "id": "20260904-140812-qwen3.8-27b-nvfp4-rtx5090-tool-call-2",
+      "timestamp_utc": "2026-09-04T14:08:15.321392+00:00",
+      "source": {
+        "type": "community",
+        "label": "community-2x5060ti-rhambus",
+        "notes": "Generated by scripts/run_openai_bench.py; accepted community submission from @rhambus via GitHub issue #7",
+        "url": "https://github.com/5p00kyy/club-5060ti/issues/7"
+      },
+      "promotion_level": "benchmark",
+      "tier": "capable",
+      "hardware": {
+        "lane": "2x5060ti",
+        "gpu_count": 2,
+        "gpu_model": "RTX 5060 Ti",
+        "vram_per_gpu_gb": 16.0,
+        "driver": "595.84",
+        "cpu": "AMD Ryzen 7 7800X3D",
+        "host_ram_gb": 60.0,
+        "pcie": "PCIe 5.0 x8 per card (x16 physical, x8/x8 bifurcation), measured under load; PHB via CPU host bridge, no NVLink (NCCL_P2P_DISABLE=1)",
+        "motherboard": "ASRock X870 Taichi Creator",
+        "inference_ram_gb": 11.7,
+        "os": "Linux Mint 22.3 (Ubuntu 24.04 base), kernel 7.0.0-29-generic, bare metal"
+      },
+      "runtime": {
+        "engine": "vLLM",
+        "version": "0.27.1",
+        "notes": "Stock vLLM 0.27.1 plus two REQUIRED local patches: (1) sm_120 GDN prefill gate - vLLM enables the FlashInfer Gated-DeltaNet prefill kernel only for device family 100, so on sm_120 it falls back to a Triton/FLA kernel that HANGS at startup; (2) the DSpark drafter markov_head NVFP4 exclusion does not match vLLM prefixed layer names (only needed for the DSpark variant). Also NCCL_P2P_DISABLE=1 and PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True."
+      },
+      "model": {
+        "id": "Qwen3.8-27B-NVFP4-RTX5090",
+        "server_max_context_tokens": 131072,
+        "family": "Qwen3.8",
+        "architecture": "hybrid",
+        "parameter_class": "27B",
+        "quant": "NVFP4 W4A4 (NVIDIA ModelOpt, group 16), FP8 KV",
+        "source": "gittensor-model-hub/Qwen3.8-27B-NVFP4-RTX5090 rev 35fd99fb (pre-final branch, MTP head present)"
+      },
+      "serving": {
+        "route": "server",
+        "context_tokens": 8192,
+        "server_max_model_len": 131072,
+        "kv_cache_k": "fp8",
+        "kv_cache_v": "fp8",
+        "tensor_parallel": "2",
+        "speculation": {
+          "type": "mtp",
+          "draft_n": 2
+        },
+        "thinking": "on",
+        "reasoning_budget": 1024,
+        "notes": "reasoning_effort=medium via --default-chat-template-kwargs; CUDA graphs on (--max-cudagraph-capture-size 4); explicit --kv-cache-memory 3221225472; --enable-prefix-caching --mamba-cache-mode align (vLLM disables prefix caching by default on this Gated-DeltaNet hybrid); VLLM_USE_V2_MODEL_RUNNER=1 (required for multimodal + cudagraphs)"
+      },
+      "benchmark": {
+        "prompt_set": "tool-call",
+        "configured_context_tokens": 8192,
+        "actual_prompt_tokens": 266,
+        "generated_tokens": 80,
+        "runs": 1,
+        "warmups": 1,
+        "stream": true,
+        "cache_policy": "no-reuse",
+        "server_max_context_tokens": 131072,
+        "prompt_calibration": {
+          "method": "server-reported usage.prompt_tokens",
+          "tolerance_tokens": 256
+        },
+        "tool_call_validated": true
+      },
+      "metrics": {
+        "end_to_end_tok_s": 82.593,
+        "wall_seconds": 0.969,
+        "client_ttft_seconds": 0.112,
+        "client_decode_tok_s": 93.421,
+        "client_end_to_end_tok_s": 82.593,
+        "server_prefill_tok_s": 3000.912,
+        "server_decode_tok_s": 93.391,
+        "server_ttft_seconds": 0.111
+      },
+      "caveats": [],
+      "artifacts": [
+        "https://github.com/user-attachments/files/31840481/community-2x5060ti-qwen38-27b-nvfp4-mtp-vision-131k.json"
+      ],
+      "_source_file": "data/results/community-2x5060ti-qwen38-27b-nvfp4-mtp-vision-131k.json",
+      "_display_metrics": {
+        "decode_tok_s": 93.421,
+        "decode_source": "client",
+        "prompt_tok_s": 3000.912,
+        "prompt_source": "server"
+      }
+    },
+    {
+      "schema_version": "1.0",
+      "id": "20260904-140812-qwen3.8-27b-nvfp4-rtx5090-tool-call-3",
+      "timestamp_utc": "2026-09-04T14:08:16.296196+00:00",
+      "source": {
+        "type": "community",
+        "label": "community-2x5060ti-rhambus",
+        "notes": "Generated by scripts/run_openai_bench.py; accepted community submission from @rhambus via GitHub issue #7",
+        "url": "https://github.com/5p00kyy/club-5060ti/issues/7"
+      },
+      "promotion_level": "benchmark",
+      "tier": "capable",
+      "hardware": {
+        "lane": "2x5060ti",
+        "gpu_count": 2,
+        "gpu_model": "RTX 5060 Ti",
+        "vram_per_gpu_gb": 16.0,
+        "driver": "595.84",
+        "cpu": "AMD Ryzen 7 7800X3D",
+        "host_ram_gb": 60.0,
+        "pcie": "PCIe 5.0 x8 per card (x16 physical, x8/x8 bifurcation), measured under load; PHB via CPU host bridge, no NVLink (NCCL_P2P_DISABLE=1)",
+        "motherboard": "ASRock X870 Taichi Creator",
+        "inference_ram_gb": 11.7,
+        "os": "Linux Mint 22.3 (Ubuntu 24.04 base), kernel 7.0.0-29-generic, bare metal"
+      },
+      "runtime": {
+        "engine": "vLLM",
+        "version": "0.27.1",
+        "notes": "Stock vLLM 0.27.1 plus two REQUIRED local patches: (1) sm_120 GDN prefill gate - vLLM enables the FlashInfer Gated-DeltaNet prefill kernel only for device family 100, so on sm_120 it falls back to a Triton/FLA kernel that HANGS at startup; (2) the DSpark drafter markov_head NVFP4 exclusion does not match vLLM prefixed layer names (only needed for the DSpark variant). Also NCCL_P2P_DISABLE=1 and PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True."
+      },
+      "model": {
+        "id": "Qwen3.8-27B-NVFP4-RTX5090",
+        "server_max_context_tokens": 131072,
+        "family": "Qwen3.8",
+        "architecture": "hybrid",
+        "parameter_class": "27B",
+        "quant": "NVFP4 W4A4 (NVIDIA ModelOpt, group 16), FP8 KV",
+        "source": "gittensor-model-hub/Qwen3.8-27B-NVFP4-RTX5090 rev 35fd99fb (pre-final branch, MTP head present)"
+      },
+      "serving": {
+        "route": "server",
+        "context_tokens": 8192,
+        "server_max_model_len": 131072,
+        "kv_cache_k": "fp8",
+        "kv_cache_v": "fp8",
+        "tensor_parallel": "2",
+        "speculation": {
+          "type": "mtp",
+          "draft_n": 2
+        },
+        "thinking": "on",
+        "reasoning_budget": 1024,
+        "notes": "reasoning_effort=medium via --default-chat-template-kwargs; CUDA graphs on (--max-cudagraph-capture-size 4); explicit --kv-cache-memory 3221225472; --enable-prefix-caching --mamba-cache-mode align (vLLM disables prefix caching by default on this Gated-DeltaNet hybrid); VLLM_USE_V2_MODEL_RUNNER=1 (required for multimodal + cudagraphs)"
+      },
+      "benchmark": {
+        "prompt_set": "tool-call",
+        "configured_context_tokens": 8192,
+        "actual_prompt_tokens": 266,
+        "generated_tokens": 80,
+        "runs": 1,
+        "warmups": 1,
+        "stream": true,
+        "cache_policy": "no-reuse",
+        "server_max_context_tokens": 131072,
+        "prompt_calibration": {
+          "method": "server-reported usage.prompt_tokens",
+          "tolerance_tokens": 256
+        },
+        "tool_call_validated": true
+      },
+      "metrics": {
+        "end_to_end_tok_s": 82.638,
+        "wall_seconds": 0.968,
+        "client_ttft_seconds": 0.113,
+        "client_decode_tok_s": 93.536,
+        "client_end_to_end_tok_s": 82.638,
+        "server_prefill_tok_s": 2995.261,
+        "server_decode_tok_s": 93.505,
+        "server_ttft_seconds": 0.112
+      },
+      "caveats": [],
+      "artifacts": [
+        "https://github.com/user-attachments/files/31840481/community-2x5060ti-qwen38-27b-nvfp4-mtp-vision-131k.json"
+      ],
+      "_source_file": "data/results/community-2x5060ti-qwen38-27b-nvfp4-mtp-vision-131k.json",
+      "_display_metrics": {
+        "decode_tok_s": 93.536,
+        "decode_source": "client",
+        "prompt_tok_s": 2995.261,
+        "prompt_source": "server"
+      }
+    },
+    {
+      "schema_version": "1.0",
+      "id": "20260903-155017-qwen3.8-27b-nvfp4-rtx5090-vision-smoke-1",
+      "timestamp_utc": "2026-09-03T15:50:17.760629+00:00",
+      "source": {
+        "type": "community",
+        "label": "community-2x5060ti-rhambus",
+        "notes": "vision-smoke row built by hand: scripts/run_openai_bench.py has no image support (PROMPT_SET_CHOICES omits vision-smoke and there is no image_url handling), though scripts/validate_results.py accepts the set. Metrics taken from the same vLLM Prometheus counters the script uses.; accepted community submission from @rhambus via GitHub issue #7",
+        "url": "https://github.com/5p00kyy/club-5060ti/issues/7"
+      },
+      "promotion_level": "benchmark",
+      "tier": "capable",
+      "hardware": {
+        "lane": "2x5060ti",
+        "gpu_count": 2,
+        "gpu_model": "RTX 5060 Ti",
+        "vram_per_gpu_gb": 16.0,
+        "driver": "595.84",
+        "cpu": "AMD Ryzen 7 7800X3D",
+        "host_ram_gb": 60.0,
+        "pcie": "PCIe 5.0 x8 per card (x16 physical, x8/x8 bifurcation), measured under load; PHB via CPU host bridge, no NVLink (NCCL_P2P_DISABLE=1)",
+        "motherboard": "ASRock X870 Taichi Creator",
+        "inference_ram_gb": 11.7,
+        "os": "Linux Mint 22.3 (Ubuntu 24.04 base), kernel 7.0.0-29-generic, bare metal"
+      },
+      "runtime": {
+        "engine": "vLLM",
+        "version": "0.27.1",
+        "notes": "Stock vLLM 0.27.1 plus a REQUIRED local patch: the sm_120 GDN prefill gate - vLLM enables the FlashInfer Gated-DeltaNet prefill kernel only for device family 100, so on sm_120 it falls back to a Triton/FLA kernel that HANGS at startup. Multimodal additionally REQUIRES VLLM_USE_V2_MODEL_RUNNER=1: under the V1 runner the compiled language-model forward dies with AttributeError: NoneType has no attribute size (torch dynamo, None multimodal input). Also PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True."
+      },
+      "model": {
+        "id": "Qwen3.8-27B-NVFP4-RTX5090",
+        "family": "Qwen3.8",
+        "architecture": "hybrid",
+        "parameter_class": "27B",
+        "quant": "NVFP4 W4A4 (NVIDIA ModelOpt, group 16), FP8 KV",
+        "source": "gittensor-model-hub/Qwen3.8-27B-NVFP4-RTX5090 rev 35fd99fb (pre-final branch, MTP head present)"
+      },
+      "serving": {
+        "route": "server",
+        "context_tokens": 131072,
+        "server_max_model_len": 131072,
+        "kv_cache_k": "fp8",
+        "kv_cache_v": "fp8",
+        "tensor_parallel": "2",
+        "speculation": {
+          "type": "mtp",
+          "draft_n": 2
+        },
+        "thinking": "on",
+        "notes": "reasoning_effort=medium; CUDA graphs on (--max-cudagraph-capture-size 4); explicit --kv-cache-memory 3221225472; --max-num-seqs 8; --enable-prefix-caching --mamba-cache-mode align; vision enabled (no --limit-mm-per-prompt)."
+      },
+      "benchmark": {
+        "prompt_set": "vision-smoke",
+        "configured_context_tokens": 131072,
+        "actual_prompt_tokens": 248,
+        "generated_tokens": 169,
+        "runs": 3,
+        "warmups": 1,
+        "stream": true,
+        "cache_policy": "no-reuse",
+        "server_max_context_tokens": 131072,
+        "tool_call_validated": false,
+        "notes": "448x400 PNG: red circle, blue rectangle, green triangle, plus the exact string CLUB-5060TI-VISION-72 at 34px DejaVuSans-Bold. Model must list shapes+colours AND read the string back. All 3 runs identified every shape and colour and read the string exactly. NOTE: an earlier probe using PIL's ~11px default font was misread as CLUB-5001-ASION-72 - small-text OCR is a genuine limit, so the probe uses a legible font."
+      },
+      "metrics": {
+        "end_to_end_tok_s": 82.164,
+        "wall_seconds": 2.057,
+        "client_ttft_seconds": 1.598,
+        "server_ttft_seconds": 0.1,
+        "client_end_to_end_tok_s": 82.164
+      },
+      "artifacts": [
+        "https://github.com/user-attachments/files/31840481/community-2x5060ti-qwen38-27b-nvfp4-mtp-vision-131k.json"
+      ],
+      "_source_file": "data/results/community-2x5060ti-qwen38-27b-nvfp4-mtp-vision-131k.json"
+    },
+    {
+      "schema_version": "1.0",
       "id": "20260818-203502-pt-qwen3.8-27b-mtp-q8_0-204k-latest-short-chat-1",
       "timestamp_utc": "2026-08-18T20:36:07.231780+00:00",
       "source": {
@@ -369,6 +3458,360 @@
         "prompt_source": "client-ttft-derived"
       },
       "_repeat_prompt_key": "calibrated|server-reported usage.prompt_tokens||256|5850"
+    },
+    {
+      "schema_version": "1.0",
+      "id": "20260820-010625-pt-qwen3.8-27b-mtp-bf16-102k-23toks-latest-short-chat-1",
+      "timestamp_utc": "2026-08-20T01:08:37.774087+00:00",
+      "source": {
+        "type": "community",
+        "label": "community-4x5060ti-mixed2070-mvdevnull",
+        "notes": "Generated by scripts/run_openai_bench.py; accepted community submission from @mvdevnull via GitHub issue #6",
+        "url": "https://github.com/5p00kyy/club-5060ti/issues/6"
+      },
+      "promotion_level": "benchmark",
+      "tier": "capable",
+      "hardware": {
+        "lane": "mixed-5060ti-cuda",
+        "gpu_count": 5,
+        "gpu_model": "4x RTX 5060 Ti 16GB + 1x RTX 2070 8GB",
+        "vram_per_gpu_gb": 16.0,
+        "driver": "610.43.02",
+        "cpu": "Intel Core i7-8700",
+        "host_ram_gb": 61.0,
+        "pcie": "GPU0 5060Ti x8 gen3, GPU1 5060Ti x8 gen3, GPU2 5060Ti x4 gen3, GPU3 RTX2070 x1 gen3, GPU4 5060Ti x4 gen3 - all PHB, no NVLink",
+        "notes": "RTX 2070 is load-bearing, not excluded: removing it forced bf16 weights to spill onto system CPU RAM. With the 2070 present, ollama ps confirms 100% GPU residency across all 5 devices (60GB total resident). 2070 negotiates only PCIe x1 gen3, the narrowest link in the topology."
+      },
+      "runtime": {
+        "engine": "other",
+        "version": "0.32.14"
+      },
+      "model": {
+        "id": "PT-qwen3.8-27b-mtp-bf16-102k-23toks:latest",
+        "family": "Qwen3.8",
+        "architecture": "dense",
+        "parameter_class": "27B",
+        "quant": "bf16",
+        "source": "local Ollama tag PT-qwen3.8-27b-mtp-bf16-102k-23toks, built FROM stock qwen3.8:27b-mtp-bf16 weights, num_ctx pinned to 102400"
+      },
+      "serving": {
+        "route": "server",
+        "context_tokens": 102400,
+        "batch_size": 512,
+        "ubatch_size": 512,
+        "kv_cache_k": "q8_0",
+        "kv_cache_v": "q8_0",
+        "split_mode": "layer",
+        "speculation": {
+          "type": "draft-mtp",
+          "draft_n": 4
+        },
+        "thinking": "on",
+        "reasoning_budget": 1024,
+        "notes": "Ollama automatic layer placement across all 5 visible GPUs, not explicitly pinned tensor-split."
+      },
+      "benchmark": {
+        "prompt_set": "short-chat",
+        "configured_context_tokens": 102400,
+        "actual_prompt_tokens": 366,
+        "generated_tokens": 968,
+        "runs": 1,
+        "warmups": 1,
+        "stream": true,
+        "cache_policy": "no-reuse",
+        "prompt_calibration": {
+          "method": "server-reported usage.prompt_tokens",
+          "tolerance_tokens": 256
+        },
+        "tool_call_validated": false,
+        "notes": "First bf16 (unquantized weights) submission to this repo; all other published presets are quantized."
+      },
+      "metrics": {
+        "end_to_end_tok_s": 15.061,
+        "wall_seconds": 64.271,
+        "client_ttft_seconds": 0.935,
+        "client_decode_tok_s": 15.284,
+        "client_end_to_end_tok_s": 15.061
+      },
+      "caveats": [
+        "2070 required to avoid CPU offload at this weight precision; PCIe x1 link on 2070 may bottleneck whatever layers/KV it holds"
+      ],
+      "artifacts": [
+        "https://github.com/user-attachments/files/31245717/community-4x5060ti-mixed2070-qwen38-27b-bf16-102k.json"
+      ],
+      "_source_file": "data/results/community-4x5060ti-mixed2070-qwen38-27b-bf16-102k.json",
+      "_display_metrics": {
+        "decode_tok_s": 15.284,
+        "decode_source": "client"
+      }
+    },
+    {
+      "schema_version": "1.0",
+      "id": "20260820-010625-pt-qwen3.8-27b-mtp-bf16-102k-23toks-latest-short-chat-2",
+      "timestamp_utc": "2026-08-20T01:09:41.803698+00:00",
+      "source": {
+        "type": "community",
+        "label": "community-4x5060ti-mixed2070-mvdevnull",
+        "notes": "Generated by scripts/run_openai_bench.py; accepted community submission from @mvdevnull via GitHub issue #6",
+        "url": "https://github.com/5p00kyy/club-5060ti/issues/6"
+      },
+      "promotion_level": "benchmark",
+      "tier": "capable",
+      "hardware": {
+        "lane": "mixed-5060ti-cuda",
+        "gpu_count": 5,
+        "gpu_model": "4x RTX 5060 Ti 16GB + 1x RTX 2070 8GB",
+        "vram_per_gpu_gb": 16.0,
+        "driver": "610.43.02",
+        "cpu": "Intel Core i7-8700",
+        "host_ram_gb": 61.0,
+        "pcie": "GPU0 5060Ti x8 gen3, GPU1 5060Ti x8 gen3, GPU2 5060Ti x4 gen3, GPU3 RTX2070 x1 gen3, GPU4 5060Ti x4 gen3 - all PHB, no NVLink",
+        "notes": "RTX 2070 is load-bearing, not excluded: removing it forced bf16 weights to spill onto system CPU RAM. With the 2070 present, ollama ps confirms 100% GPU residency across all 5 devices (60GB total resident). 2070 negotiates only PCIe x1 gen3, the narrowest link in the topology."
+      },
+      "runtime": {
+        "engine": "other",
+        "version": "0.32.14"
+      },
+      "model": {
+        "id": "PT-qwen3.8-27b-mtp-bf16-102k-23toks:latest",
+        "family": "Qwen3.8",
+        "architecture": "dense",
+        "parameter_class": "27B",
+        "quant": "bf16",
+        "source": "local Ollama tag PT-qwen3.8-27b-mtp-bf16-102k-23toks, built FROM stock qwen3.8:27b-mtp-bf16 weights, num_ctx pinned to 102400"
+      },
+      "serving": {
+        "route": "server",
+        "context_tokens": 102400,
+        "batch_size": 512,
+        "ubatch_size": 512,
+        "kv_cache_k": "q8_0",
+        "kv_cache_v": "q8_0",
+        "split_mode": "layer",
+        "speculation": {
+          "type": "draft-mtp",
+          "draft_n": 4
+        },
+        "thinking": "on",
+        "reasoning_budget": 1024,
+        "notes": "Ollama automatic layer placement across all 5 visible GPUs, not explicitly pinned tensor-split."
+      },
+      "benchmark": {
+        "prompt_set": "short-chat",
+        "configured_context_tokens": 102400,
+        "actual_prompt_tokens": 366,
+        "generated_tokens": 968,
+        "runs": 1,
+        "warmups": 1,
+        "stream": true,
+        "cache_policy": "no-reuse",
+        "prompt_calibration": {
+          "method": "server-reported usage.prompt_tokens",
+          "tolerance_tokens": 256
+        },
+        "tool_call_validated": false,
+        "notes": "First bf16 (unquantized weights) submission to this repo; all other published presets are quantized."
+      },
+      "metrics": {
+        "end_to_end_tok_s": 15.12,
+        "wall_seconds": 64.022,
+        "client_ttft_seconds": 0.701,
+        "client_decode_tok_s": 15.287,
+        "client_end_to_end_tok_s": 15.12
+      },
+      "caveats": [
+        "2070 required to avoid CPU offload at this weight precision; PCIe x1 link on 2070 may bottleneck whatever layers/KV it holds"
+      ],
+      "artifacts": [
+        "https://github.com/user-attachments/files/31245717/community-4x5060ti-mixed2070-qwen38-27b-bf16-102k.json"
+      ],
+      "_source_file": "data/results/community-4x5060ti-mixed2070-qwen38-27b-bf16-102k.json",
+      "_display_metrics": {
+        "decode_tok_s": 15.287,
+        "decode_source": "client"
+      }
+    },
+    {
+      "schema_version": "1.0",
+      "id": "20260820-010625-pt-qwen3.8-27b-mtp-bf16-102k-23toks-latest-long-retrieval-1",
+      "timestamp_utc": "2026-08-20T01:18:41.157909+00:00",
+      "source": {
+        "type": "community",
+        "label": "community-4x5060ti-mixed2070-mvdevnull",
+        "notes": "Generated by scripts/run_openai_bench.py; accepted community submission from @mvdevnull via GitHub issue #6",
+        "url": "https://github.com/5p00kyy/club-5060ti/issues/6"
+      },
+      "promotion_level": "benchmark",
+      "tier": "capable",
+      "hardware": {
+        "lane": "mixed-5060ti-cuda",
+        "gpu_count": 5,
+        "gpu_model": "4x RTX 5060 Ti 16GB + 1x RTX 2070 8GB",
+        "vram_per_gpu_gb": 16.0,
+        "driver": "610.43.02",
+        "cpu": "Intel Core i7-8700",
+        "host_ram_gb": 61.0,
+        "pcie": "GPU0 5060Ti x8 gen3, GPU1 5060Ti x8 gen3, GPU2 5060Ti x4 gen3, GPU3 RTX2070 x1 gen3, GPU4 5060Ti x4 gen3 - all PHB, no NVLink",
+        "notes": "RTX 2070 is load-bearing, not excluded: removing it forced bf16 weights to spill onto system CPU RAM. With the 2070 present, ollama ps confirms 100% GPU residency across all 5 devices (60GB total resident). 2070 negotiates only PCIe x1 gen3, the narrowest link in the topology."
+      },
+      "runtime": {
+        "engine": "other",
+        "version": "0.32.14"
+      },
+      "model": {
+        "id": "PT-qwen3.8-27b-mtp-bf16-102k-23toks:latest",
+        "family": "Qwen3.8",
+        "architecture": "dense",
+        "parameter_class": "27B",
+        "quant": "bf16",
+        "source": "local Ollama tag PT-qwen3.8-27b-mtp-bf16-102k-23toks, built FROM stock qwen3.8:27b-mtp-bf16 weights, num_ctx pinned to 102400"
+      },
+      "serving": {
+        "route": "server",
+        "context_tokens": 102400,
+        "batch_size": 512,
+        "ubatch_size": 512,
+        "kv_cache_k": "q8_0",
+        "kv_cache_v": "q8_0",
+        "split_mode": "layer",
+        "speculation": {
+          "type": "draft-mtp",
+          "draft_n": 4
+        },
+        "thinking": "on",
+        "reasoning_budget": 1024,
+        "notes": "Ollama automatic layer placement across all 5 visible GPUs, not explicitly pinned tensor-split."
+      },
+      "benchmark": {
+        "prompt_set": "long-retrieval",
+        "configured_context_tokens": 102400,
+        "actual_prompt_tokens": 86217,
+        "generated_tokens": 71,
+        "runs": 1,
+        "warmups": 1,
+        "stream": true,
+        "cache_policy": "no-reuse",
+        "run_nonce": "66c3ebc3c5338d63",
+        "prompt_calibration": {
+          "method": "server-reported usage.prompt_tokens",
+          "tolerance_tokens": 256,
+          "filler_lines": 2860
+        },
+        "tool_call_validated": false,
+        "notes": "First bf16 (unquantized weights) submission to this repo; all other published presets are quantized."
+      },
+      "metrics": {
+        "end_to_end_tok_s": 0.262,
+        "wall_seconds": 271.495,
+        "client_ttft_seconds": 267.217,
+        "client_decode_tok_s": 16.595,
+        "client_end_to_end_tok_s": 0.262
+      },
+      "caveats": [
+        "2070 required to avoid CPU offload at this weight precision; PCIe x1 link on 2070 may bottleneck whatever layers/KV it holds"
+      ],
+      "artifacts": [
+        "https://github.com/user-attachments/files/31245717/community-4x5060ti-mixed2070-qwen38-27b-bf16-102k.json"
+      ],
+      "_source_file": "data/results/community-4x5060ti-mixed2070-qwen38-27b-bf16-102k.json",
+      "_display_metrics": {
+        "decode_tok_s": 16.595,
+        "decode_source": "client",
+        "prompt_tok_s": 322.648,
+        "prompt_source": "client-ttft-derived"
+      },
+      "_repeat_prompt_key": "calibrated|server-reported usage.prompt_tokens||256|2860"
+    },
+    {
+      "schema_version": "1.0",
+      "id": "20260820-010625-pt-qwen3.8-27b-mtp-bf16-102k-23toks-latest-long-retrieval-2",
+      "timestamp_utc": "2026-08-20T01:23:12.713822+00:00",
+      "source": {
+        "type": "community",
+        "label": "community-4x5060ti-mixed2070-mvdevnull",
+        "notes": "Generated by scripts/run_openai_bench.py; accepted community submission from @mvdevnull via GitHub issue #6",
+        "url": "https://github.com/5p00kyy/club-5060ti/issues/6"
+      },
+      "promotion_level": "benchmark",
+      "tier": "capable",
+      "hardware": {
+        "lane": "mixed-5060ti-cuda",
+        "gpu_count": 5,
+        "gpu_model": "4x RTX 5060 Ti 16GB + 1x RTX 2070 8GB",
+        "vram_per_gpu_gb": 16.0,
+        "driver": "610.43.02",
+        "cpu": "Intel Core i7-8700",
+        "host_ram_gb": 61.0,
+        "pcie": "GPU0 5060Ti x8 gen3, GPU1 5060Ti x8 gen3, GPU2 5060Ti x4 gen3, GPU3 RTX2070 x1 gen3, GPU4 5060Ti x4 gen3 - all PHB, no NVLink",
+        "notes": "RTX 2070 is load-bearing, not excluded: removing it forced bf16 weights to spill onto system CPU RAM. With the 2070 present, ollama ps confirms 100% GPU residency across all 5 devices (60GB total resident). 2070 negotiates only PCIe x1 gen3, the narrowest link in the topology."
+      },
+      "runtime": {
+        "engine": "other",
+        "version": "0.32.14"
+      },
+      "model": {
+        "id": "PT-qwen3.8-27b-mtp-bf16-102k-23toks:latest",
+        "family": "Qwen3.8",
+        "architecture": "dense",
+        "parameter_class": "27B",
+        "quant": "bf16",
+        "source": "local Ollama tag PT-qwen3.8-27b-mtp-bf16-102k-23toks, built FROM stock qwen3.8:27b-mtp-bf16 weights, num_ctx pinned to 102400"
+      },
+      "serving": {
+        "route": "server",
+        "context_tokens": 102400,
+        "batch_size": 512,
+        "ubatch_size": 512,
+        "kv_cache_k": "q8_0",
+        "kv_cache_v": "q8_0",
+        "split_mode": "layer",
+        "speculation": {
+          "type": "draft-mtp",
+          "draft_n": 4
+        },
+        "thinking": "on",
+        "reasoning_budget": 1024,
+        "notes": "Ollama automatic layer placement across all 5 visible GPUs, not explicitly pinned tensor-split."
+      },
+      "benchmark": {
+        "prompt_set": "long-retrieval",
+        "configured_context_tokens": 102400,
+        "actual_prompt_tokens": 86216,
+        "generated_tokens": 71,
+        "runs": 1,
+        "warmups": 1,
+        "stream": true,
+        "cache_policy": "no-reuse",
+        "run_nonce": "a436a0a10d3b89be",
+        "prompt_calibration": {
+          "method": "server-reported usage.prompt_tokens",
+          "tolerance_tokens": 256,
+          "filler_lines": 2860
+        },
+        "tool_call_validated": false,
+        "notes": "First bf16 (unquantized weights) submission to this repo; all other published presets are quantized."
+      },
+      "metrics": {
+        "end_to_end_tok_s": 0.261,
+        "wall_seconds": 271.555,
+        "client_ttft_seconds": 267.299,
+        "client_decode_tok_s": 16.68,
+        "client_end_to_end_tok_s": 0.261
+      },
+      "caveats": [
+        "2070 required to avoid CPU offload at this weight precision; PCIe x1 link on 2070 may bottleneck whatever layers/KV it holds"
+      ],
+      "artifacts": [
+        "https://github.com/user-attachments/files/31245717/community-4x5060ti-mixed2070-qwen38-27b-bf16-102k.json"
+      ],
+      "_source_file": "data/results/community-4x5060ti-mixed2070-qwen38-27b-bf16-102k.json",
+      "_display_metrics": {
+        "decode_tok_s": 16.68,
+        "decode_source": "client",
+        "prompt_tok_s": 322.545,
+        "prompt_source": "client-ttft-derived"
+      },
+      "_repeat_prompt_key": "calibrated|server-reported usage.prompt_tokens||256|2860"
     },
     {
       "schema_version": "1.0",
