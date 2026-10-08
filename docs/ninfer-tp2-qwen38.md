@@ -9,6 +9,7 @@ All numbers come from one machine. Treat them as a starting point, not a guarant
 - 2x RTX 5060 Ti 16GB, each on PCIe Gen3 x8, no P2P (the fork's pinned-host mailbox all-reduce handles this), driver 595.58.03, CUDA 13.2, power limits 170/180 W.
 - Engine: [ValerioDolci/ninfer-tp2](https://github.com/ValerioDolci/ninfer-tp2) at `be178778` (v0.4.7+1).
 - Weights: [Feyd89/Qwen3.8-27B-QUASAR-QAT-nvfp4-NInfer](https://huggingface.co/Feyd89/Qwen3.8-27B-QUASAR-QAT-nvfp4-NInfer), about 8.7 GiB per rank.
+- Preset: `ninfer-tp2-qwen38-27b-quasar-2x5060ti` (alternative). Evidence: [`data/evidence/ninfer-tp2-qwen38-27b-quasar-2x5060ti-262k.json`](../data/evidence/ninfer-tp2-qwen38-27b-quasar-2x5060ti-262k.json).
 - Launcher: [`examples/ninfer-tp2-qwen38-27b.sh`](../examples/ninfer-tp2-qwen38-27b.sh). int8 KV, MTP with 3 draft tokens, vision on, 262,144 context, 2 concurrent requests, 8 device state slots, 16K default thinking cap.
 
 ### Why QUASAR rather than the official NVFP4
@@ -45,6 +46,17 @@ An earlier matched run against vLLM (same QUASAR checkpoint, TP2, MTP 3) found N
 | 64K, 4 concurrent, 262K pooled KV, 8 slots | 14.3 GB | starts in 16 to 25 s; 211 tok/s total decode at 4 streams |
 
 The fork's README says vision plus 8 slots does not fit at 196,608 with MTP3. On these cards with int8 KV it fit at the full 262,144, with about 1.8 GB spare on the vision card. Recall at that length works but costs minutes of prefill.
+
+### High-context profile
+
+The repo's `scripts/run_high_context_profile.py` at 262,144 (uncached, unique nonce per request, 3,072-token sustained budget):
+
+| Run | Retrieval at ~230.8K | Sustained at ~183.6K | Decode | Prefill |
+| --- | --- | --- | ---: | ---: |
+| Thinking off | 2/2 passed | 2/2 passed, ~7K visible characters each | 63.0 tok/s | 863 tok/s at 230.8K, 986 at 183.6K |
+| Thinking on (diagnostic) | 2/2 passed | 1/2 passed; the failed run spent all 3,072 tokens reasoning and returned no visible text | 60.4 tok/s | same |
+
+The published evidence uses the thinking-off run. With thinking on at very long context, the model can exhaust a small output budget before answering. The server's 16K thinking cap does not help when `max_tokens` is below it, so give long-context thinking requests at least 20K output tokens.
 
 The TP2 fork rejects Qwen3.6-35B-A3B (MoE) at startup, and the 21 GB MoE does not fit on a single 16 GB card for single-GPU NInfer. Use llama.cpp or vLLM for that model on this hardware.
 

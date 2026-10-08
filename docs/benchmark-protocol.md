@@ -22,6 +22,7 @@ Primary engine lanes:
 - ik_llama.cpp;
 - BeeLlama;
 - vLLM;
+- NInfer (CUDA engine for NVFP4 `.ninfer` artifacts; dual-card via community TP2 forks);
 - Ollama (including its bundled llama.cpp backend; keep it distinct from raw llama.cpp CLI/server rows).
 
 ## Required Fields

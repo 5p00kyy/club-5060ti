@@ -24,7 +24,7 @@
         "notes": "RTX 2070 is load-bearing, not excluded: removing it forced bf16 weights to spill onto system CPU RAM. With the 2070 present, ollama ps confirms 100% GPU residency across all 5 devices (60GB total resident). 2070 negotiates only PCIe x1 gen3, the narrowest link in the topology."
       },
       "runtime": {
-        "engine": "other",
+        "engine": "Ollama",
         "version": "0.32.14"
       },
       "model": {
@@ -105,7 +105,7 @@
         "notes": "RTX 2070 is load-bearing, not excluded: removing it forced bf16 weights to spill onto system CPU RAM. With the 2070 present, ollama ps confirms 100% GPU residency across all 5 devices (60GB total resident). 2070 negotiates only PCIe x1 gen3, the narrowest link in the topology."
       },
       "runtime": {
-        "engine": "other",
+        "engine": "Ollama",
         "version": "0.32.14"
       },
       "model": {
@@ -186,7 +186,7 @@
         "notes": "RTX 2070 is load-bearing, not excluded: removing it forced bf16 weights to spill onto system CPU RAM. With the 2070 present, ollama ps confirms 100% GPU residency across all 5 devices (60GB total resident). 2070 negotiates only PCIe x1 gen3, the narrowest link in the topology."
       },
       "runtime": {
-        "engine": "other",
+        "engine": "Ollama",
         "version": "0.32.14"
       },
       "model": {
@@ -269,7 +269,7 @@
         "notes": "RTX 2070 is load-bearing, not excluded: removing it forced bf16 weights to spill onto system CPU RAM. With the 2070 present, ollama ps confirms 100% GPU residency across all 5 devices (60GB total resident). 2070 negotiates only PCIe x1 gen3, the narrowest link in the topology."
       },
       "runtime": {
-        "engine": "other",
+        "engine": "Ollama",
         "version": "0.32.14"
       },
       "model": {

@@ -33,7 +33,7 @@ labels: result
 
 ## Runtime
 
-- Runtime/engine: (llama.cpp / ik_llama.cpp / BeeLlama / vLLM / SGLang / Ollama / other)
+- Runtime/engine: (llama.cpp / ik_llama.cpp / BeeLlama / vLLM / SGLang / Ollama / NInfer / other)
 - Runtime version/commit:
 - Build flags (if known):
 - Model:
