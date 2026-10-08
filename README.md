@@ -23,6 +23,7 @@ The seed system covers 1x and 2x RTX 5060 Ti lanes. The project also welcomes 3x
 | Hardware lanes | You want to understand how 1x, 2x, 3x+, and other CUDA GPU results are separated. | docs/hardware-lanes.md |
 | 1x RTX 5060 Ti | You want the best single-card fits and conservative starter configs. | docs/single-5060ti.md |
 | 2x RTX 5060 Ti | You want dual-16GB GGUF or OpenAI-compatible vLLM recipes for 27B-class and long-context models. | docs/vllm-qwen38.md |
+| 2x RTX 5060 Ti, NInfer TP2 | You want the fastest measured Qwen3.8 27B route on two cards, plus thinking-cap and reasoning-effort results. | docs/ninfer-tp2-qwen38.md |
 | Other CUDA GPUs | You want to adapt the recipes to non-5060 Ti or mixed-architecture NVIDIA setups. | docs/gpu-compatibility.md |
 | Results explorer | You want to compare benchmark receipts, filter by tier, and inspect serving configs. | https://5p00kyy.github.io/club-5060ti/ |
 | Benchmark protocol | You want to submit or compare a result without mixing methods. | docs/benchmark-protocol.md |
@@ -48,6 +49,7 @@ The homepage starts with published presets and retains the results explorer for 
 | 2x RTX 5060 Ti | [Muse Glimmer 30B dynamic Q4](examples/llamacpp-muse-glimmer-30b-dual-5060ti.ini) | 131K effective-context tier, two uncached 115K-token retrieval checks, and two ~92K-token sustained visible-answer generations with DFlash. | [Evidence bundle](data/evidence/muse-glimmer-30b-q4-dynamic-2x5060ti-131k.json) |
 | 2x RTX 5060 Ti | [Qwen3.8 27B Q6_K](examples/llamacpp-qwen38-27b-dual-5060ti.ini) | **Recommended dual-card dense GGUF route.** 131K single-slot tier, two uncached ~115.4K-token retrieval checks, and two ~91.8K-token sustained runs that generated 3,072 tokens and reached visible answers with built-in MTP. | [Evidence bundle](data/evidence/qwen38-27b-q6-2x5060ti-131k.json) |
 | 2x RTX 5060 Ti | [Qwen3.8 27B NVFP4 vLLM](examples/vllm-qwen38-27b-nvfp4.sh) | **Recommended OpenAI-compatible serving route.** 122,880-token single-slot tier, exact tool-call JSON, 49.1K-token marker retrieval, and three 118.7K-token streamed generations. Median: **952.50 tok/s prefill**, **67.29 tok/s decode**. | [Evidence bundle](data/evidence/qwen38-27b-nvfp4-vllm-2x5060ti-122k.json) |
+| 2x RTX 5060 Ti | [Qwen3.8 27B QUASAR NVFP4 NInfer TP2](examples/ninfer-tp2-qwen38-27b.sh) | Alternative high-speed route. Full 262K tier with vision on, two uncached ~230.8K-token retrieval checks and two ~183.6K-token sustained visible-answer generations (thinking off): 63 tok/s decode, ~925 tok/s prefill. Thinking on at that length needs a large output budget. | [Evidence bundle](data/evidence/ninfer-tp2-qwen38-27b-quasar-2x5060ti-262k.json) |
 | 2x RTX 5060 Ti | [ThinkingCap Qwen3.6 27B Q6_K](examples/llamacpp-thinkingcap-qwen36-27b-dual-5060ti.ini) | Alternative 131K single-slot route, with two uncached 115K-token retrieval checks and two ~92K-token sustained visible-answer generations using built-in MTP. | [Evidence bundle](data/evidence/thinkingcap-qwen36-27b-q6-2x5060ti-131k.json) |
 | 1x RTX 5060 Ti | [ThinkingCap Qwen3.6 27B IQ3_M](examples/llamacpp-thinkingcap-qwen36-27b-single-5060ti.ini) | 64K tier, two uncached ~57.7K-token retrieval checks, and two ~45.9K-token sustained visible-answer generations with q8 KV and built-in MTP. | [Evidence bundle](data/evidence/thinkingcap-qwen36-27b-iq3m-1x5060ti-64k.json) |
 | 1x RTX 5060 Ti | [Qwen3.8 27B IQ3_XXS](examples/llamacpp-qwen38-27b-single-5060ti.ini) | 64K tier, two uncached ~57.7K-token retrieval checks, and two ~45.9K-token sustained visible-answer generations with q8 KV and built-in MTP. | [Evidence bundle](data/evidence/qwen38-27b-iq3xxs-1x5060ti-64k.json) |
@@ -95,6 +97,7 @@ These older routes are useful source material while they are re-run or mapped to
 | upstream llama.cpp | Qwopus3.6 27B / 35B-A3B | Seed recipe | Fine-tune merge results. Capable tier; interesting alternative but not primary recs. |
 | BeeLlama | Qwen3.6 27B / 35B-A3B DFlash | Exploratory seed rows | Single-card 27B Q3_K_XL 8K DFlash works; single-card 35B-A3B DFlash improves code-shaped output. Alternative engine, capable tier. |
 | ik_llama.cpp | Qwen3.6 27B IQ4/IQ5 | Exploratory fit check | Single-card 105k q4-KV shape fits; clean benchmark rows need chat-template/no-thinking cleanup. |
+| NInfer TP2 | Qwen3.8 27B QUASAR NVFP4 | Seed preset + community Windows rows | Fastest measured dual-card Qwen3.8 27B route: ~67 tok/s decode, ~1,900 tok/s prefill, 262K with vision. See docs/ninfer-tp2-qwen38.md. |
 | Ollama | Qwen3.8 27B Q8_0 | Community benchmark submission | 3x RTX 5060 Ti, 204K context, 100% GPU-resident community lane; published as benchmark/capable data, not independently verified or recommended. |
 
 ## Results And Data

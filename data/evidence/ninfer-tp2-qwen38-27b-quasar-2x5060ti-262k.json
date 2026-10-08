@@ -1,0 +1,48 @@
+{
+  "schema_version": "1.0",
+  "id": "ninfer-tp2-qwen38-27b-quasar-2x5060ti-262k",
+  "preset": "ninfer-tp2-qwen38-27b-quasar-2x5060ti",
+  "status": "published",
+  "provenance": "seed-tested",
+  "context": {
+    "highest_useful_tokens": 262144,
+    "server_effective_tokens": 262144,
+    "server_configured_tokens": 262144,
+    "actual_prompt_tokens": {
+      "retrieval": 230754,
+      "sustained_generation": 183575
+    },
+    "validated_for": "Long-context marker retrieval and sustained generation with thinking disabled per request"
+  },
+  "evidence": {
+    "checks": {
+      "retrieval_repeats": 2,
+      "sustained_generation_repeats": 2,
+      "prompt_cache_disabled": true,
+      "unique_leading_request_nonce": true,
+      "thinking_disabled_explicitly": true,
+      "visible_final_content_required": true,
+      "sustained_output_tokens": 3072,
+      "minimum_generated_tokens": 1076
+    },
+    "metrics": {
+      "median_prefill_tok_s": 924.652,
+      "median_sustained_prefill_tok_s": 985.938,
+      "median_retrieval_prefill_tok_s": 863.061,
+      "median_decode_tok_s": 63.045,
+      "median_wall_seconds": 211.258,
+      "median_draft_acceptance_rate": 0.527,
+      "vram_used_mb_per_gpu": 14479
+    }
+  },
+  "source_receipts": [
+    "data/evidence/receipts/ninfer-tp2-qwen38-27b-quasar-2x5060ti-262k-20261008-nothink.json",
+    "data/evidence/receipts/ninfer-tp2-qwen38-27b-quasar-2x5060ti-262k-20261008-thinking-diagnostic.json"
+  ],
+  "caveats": [
+    "Validated with thinking disabled per request. The same profile with thinking on retrieved correctly at 230K but failed sustained generation: at 147K and 183K prompt tokens the model spent the full 3,072-token output budget reasoning and returned no visible text in 2 of 3 attempts. The 16,384 server thinking cap is larger than that output budget, so give thinking-on requests at very long context a much larger max_tokens.",
+    "Prefill is serialised across requests: a 230K-token prompt takes about 4.5 minutes before the first token (~860 tok/s), and ~985 tok/s at 183K.",
+    "Measured with vision and 8 device state slots enabled; 14.5 / 14.1 GB per card. Two concurrent requests are configured, but this profile measured one request at a time.",
+    "Single machine. MTP draft acceptance at long context was ~0.52 on generated prose, lower than on short prompts."
+  ]
+}

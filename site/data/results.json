@@ -24,7 +24,7 @@
         "notes": "MSI PRO Z690-A; native Windows 11 x64 under WDDM."
       },
       "runtime": {
-        "engine": "other",
+        "engine": "NInfer",
         "version": "NInfer Windows-TP2 experiment",
         "commit": "eb01f69c5880ca20658e9fd0645ed20d18cc0e05",
         "notes": "NInfer TP2 with CUDA-graph decode and pinned write-back host-memory peer mailbox; canonical post-revert binary."
@@ -104,7 +104,7 @@
         "notes": "MSI PRO Z690-A; native Windows 11 x64 under WDDM."
       },
       "runtime": {
-        "engine": "other",
+        "engine": "NInfer",
         "version": "NInfer Windows-TP2 experiment",
         "commit": "eb01f69c5880ca20658e9fd0645ed20d18cc0e05",
         "notes": "NInfer TP2 with CUDA-graph decode and pinned write-back host-memory peer mailbox; canonical post-revert binary."
@@ -184,7 +184,7 @@
         "notes": "MSI PRO Z690-A; native Windows 11 x64 under WDDM."
       },
       "runtime": {
-        "engine": "other",
+        "engine": "NInfer",
         "version": "NInfer Windows-TP2 experiment",
         "commit": "eb01f69c5880ca20658e9fd0645ed20d18cc0e05",
         "notes": "NInfer TP2 with CUDA-graph decode and pinned write-back host-memory peer mailbox; canonical post-revert binary."
@@ -265,7 +265,7 @@
         "notes": "MSI PRO Z690-A; native Windows 11 x64 under WDDM."
       },
       "runtime": {
-        "engine": "other",
+        "engine": "NInfer",
         "version": "NInfer Windows-TP2 experiment",
         "commit": "eb01f69c5880ca20658e9fd0645ed20d18cc0e05",
         "notes": "NInfer TP2 with CUDA-graph decode and pinned write-back host-memory peer mailbox; canonical post-revert binary."
@@ -346,7 +346,7 @@
         "notes": "MSI PRO Z690-A; native Windows 11 x64 under WDDM."
       },
       "runtime": {
-        "engine": "other",
+        "engine": "NInfer",
         "version": "NInfer Windows-TP2 experiment",
         "commit": "eb01f69c5880ca20658e9fd0645ed20d18cc0e05",
         "notes": "NInfer TP2 with CUDA-graph decode and pinned write-back host-memory peer mailbox; canonical post-revert binary."
@@ -426,7 +426,7 @@
         "notes": "MSI PRO Z690-A; native Windows 11 x64 under WDDM."
       },
       "runtime": {
-        "engine": "other",
+        "engine": "NInfer",
         "version": "NInfer Windows-TP2 experiment",
         "commit": "eb01f69c5880ca20658e9fd0645ed20d18cc0e05",
         "notes": "NInfer TP2 with CUDA-graph decode and pinned write-back host-memory peer mailbox; canonical post-revert binary."
@@ -507,7 +507,7 @@
         "notes": "MSI PRO Z690-A; native Windows 11 x64 under WDDM."
       },
       "runtime": {
-        "engine": "other",
+        "engine": "NInfer",
         "version": "NInfer Windows-TP2 experiment",
         "commit": "eb01f69c5880ca20658e9fd0645ed20d18cc0e05",
         "notes": "NInfer TP2 with CUDA-graph decode and pinned write-back host-memory peer mailbox; canonical post-revert binary."
@@ -587,7 +587,7 @@
         "notes": "MSI PRO Z690-A; native Windows 11 x64 under WDDM."
       },
       "runtime": {
-        "engine": "other",
+        "engine": "NInfer",
         "version": "NInfer Windows-TP2 experiment",
         "commit": "eb01f69c5880ca20658e9fd0645ed20d18cc0e05",
         "notes": "NInfer TP2 with CUDA-graph decode and pinned write-back host-memory peer mailbox; canonical post-revert binary."
@@ -668,7 +668,7 @@
         "notes": "MSI PRO Z690-A; native Windows 11 x64 under WDDM."
       },
       "runtime": {
-        "engine": "other",
+        "engine": "NInfer",
         "version": "NInfer Windows-TP2 experiment",
         "commit": "eb01f69c5880ca20658e9fd0645ed20d18cc0e05",
         "notes": "NInfer TP2 with CUDA-graph decode and pinned write-back host-memory peer mailbox; canonical post-revert binary."
@@ -749,7 +749,7 @@
         "notes": "MSI PRO Z690-A; native Windows 11 x64 under WDDM."
       },
       "runtime": {
-        "engine": "other",
+        "engine": "NInfer",
         "version": "NInfer Windows-TP2 experiment",
         "commit": "eb01f69c5880ca20658e9fd0645ed20d18cc0e05",
         "notes": "NInfer TP2 with CUDA-graph decode and pinned write-back host-memory peer mailbox; canonical post-revert binary."
@@ -832,7 +832,7 @@
         "notes": "MSI PRO Z690-A; native Windows 11 x64 under WDDM."
       },
       "runtime": {
-        "engine": "other",
+        "engine": "NInfer",
         "version": "NInfer Windows-TP2 experiment",
         "commit": "eb01f69c5880ca20658e9fd0645ed20d18cc0e05",
         "notes": "NInfer TP2 with CUDA-graph decode and pinned write-back host-memory peer mailbox; canonical post-revert binary."
@@ -914,7 +914,7 @@
         "notes": "MSI PRO Z690-A; native Windows 11 x64 under WDDM."
       },
       "runtime": {
-        "engine": "other",
+        "engine": "NInfer",
         "version": "NInfer Windows-TP2 experiment",
         "commit": "eb01f69c5880ca20658e9fd0645ed20d18cc0e05",
         "notes": "NInfer TP2 with CUDA-graph decode and pinned write-back host-memory peer mailbox; canonical post-revert binary."
@@ -994,7 +994,7 @@
         "notes": "MSI PRO Z690-A; native Windows 11 x64 under WDDM."
       },
       "runtime": {
-        "engine": "other",
+        "engine": "NInfer",
         "version": "NInfer Windows-TP2 experiment",
         "commit": "eb01f69c5880ca20658e9fd0645ed20d18cc0e05",
         "notes": "NInfer TP2 with CUDA-graph decode and pinned write-back host-memory peer mailbox; canonical post-revert binary."
@@ -3483,7 +3483,7 @@
         "notes": "RTX 2070 is load-bearing, not excluded: removing it forced bf16 weights to spill onto system CPU RAM. With the 2070 present, ollama ps confirms 100% GPU residency across all 5 devices (60GB total resident). 2070 negotiates only PCIe x1 gen3, the narrowest link in the topology."
       },
       "runtime": {
-        "engine": "other",
+        "engine": "Ollama",
         "version": "0.32.14"
       },
       "model": {
@@ -3569,7 +3569,7 @@
         "notes": "RTX 2070 is load-bearing, not excluded: removing it forced bf16 weights to spill onto system CPU RAM. With the 2070 present, ollama ps confirms 100% GPU residency across all 5 devices (60GB total resident). 2070 negotiates only PCIe x1 gen3, the narrowest link in the topology."
       },
       "runtime": {
-        "engine": "other",
+        "engine": "Ollama",
         "version": "0.32.14"
       },
       "model": {
@@ -3655,7 +3655,7 @@
         "notes": "RTX 2070 is load-bearing, not excluded: removing it forced bf16 weights to spill onto system CPU RAM. With the 2070 present, ollama ps confirms 100% GPU residency across all 5 devices (60GB total resident). 2070 negotiates only PCIe x1 gen3, the narrowest link in the topology."
       },
       "runtime": {
-        "engine": "other",
+        "engine": "Ollama",
         "version": "0.32.14"
       },
       "model": {
@@ -3746,7 +3746,7 @@
         "notes": "RTX 2070 is load-bearing, not excluded: removing it forced bf16 weights to spill onto system CPU RAM. With the 2070 present, ollama ps confirms 100% GPU residency across all 5 devices (60GB total resident). 2070 negotiates only PCIe x1 gen3, the narrowest link in the topology."
       },
       "runtime": {
-        "engine": "other",
+        "engine": "Ollama",
         "version": "0.32.14"
       },
       "model": {

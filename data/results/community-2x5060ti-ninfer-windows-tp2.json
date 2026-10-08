@@ -23,7 +23,7 @@
       "notes": "MSI PRO Z690-A; native Windows 11 x64 under WDDM."
     },
     "runtime": {
-      "engine": "other",
+      "engine": "NInfer",
       "version": "NInfer Windows-TP2 experiment",
       "commit": "eb01f69c5880ca20658e9fd0645ed20d18cc0e05",
       "notes": "NInfer TP2 with CUDA-graph decode and pinned write-back host-memory peer mailbox; canonical post-revert binary."
@@ -102,7 +102,7 @@
       "notes": "MSI PRO Z690-A; native Windows 11 x64 under WDDM."
     },
     "runtime": {
-      "engine": "other",
+      "engine": "NInfer",
       "version": "NInfer Windows-TP2 experiment",
       "commit": "eb01f69c5880ca20658e9fd0645ed20d18cc0e05",
       "notes": "NInfer TP2 with CUDA-graph decode and pinned write-back host-memory peer mailbox; canonical post-revert binary."
@@ -181,7 +181,7 @@
       "notes": "MSI PRO Z690-A; native Windows 11 x64 under WDDM."
     },
     "runtime": {
-      "engine": "other",
+      "engine": "NInfer",
       "version": "NInfer Windows-TP2 experiment",
       "commit": "eb01f69c5880ca20658e9fd0645ed20d18cc0e05",
       "notes": "NInfer TP2 with CUDA-graph decode and pinned write-back host-memory peer mailbox; canonical post-revert binary."
@@ -261,7 +261,7 @@
       "notes": "MSI PRO Z690-A; native Windows 11 x64 under WDDM."
     },
     "runtime": {
-      "engine": "other",
+      "engine": "NInfer",
       "version": "NInfer Windows-TP2 experiment",
       "commit": "eb01f69c5880ca20658e9fd0645ed20d18cc0e05",
       "notes": "NInfer TP2 with CUDA-graph decode and pinned write-back host-memory peer mailbox; canonical post-revert binary."
@@ -341,7 +341,7 @@
       "notes": "MSI PRO Z690-A; native Windows 11 x64 under WDDM."
     },
     "runtime": {
-      "engine": "other",
+      "engine": "NInfer",
       "version": "NInfer Windows-TP2 experiment",
       "commit": "eb01f69c5880ca20658e9fd0645ed20d18cc0e05",
       "notes": "NInfer TP2 with CUDA-graph decode and pinned write-back host-memory peer mailbox; canonical post-revert binary."
@@ -420,7 +420,7 @@
       "notes": "MSI PRO Z690-A; native Windows 11 x64 under WDDM."
     },
     "runtime": {
-      "engine": "other",
+      "engine": "NInfer",
       "version": "NInfer Windows-TP2 experiment",
       "commit": "eb01f69c5880ca20658e9fd0645ed20d18cc0e05",
       "notes": "NInfer TP2 with CUDA-graph decode and pinned write-back host-memory peer mailbox; canonical post-revert binary."
@@ -500,7 +500,7 @@
       "notes": "MSI PRO Z690-A; native Windows 11 x64 under WDDM."
     },
     "runtime": {
-      "engine": "other",
+      "engine": "NInfer",
       "version": "NInfer Windows-TP2 experiment",
       "commit": "eb01f69c5880ca20658e9fd0645ed20d18cc0e05",
       "notes": "NInfer TP2 with CUDA-graph decode and pinned write-back host-memory peer mailbox; canonical post-revert binary."
@@ -579,7 +579,7 @@
       "notes": "MSI PRO Z690-A; native Windows 11 x64 under WDDM."
     },
     "runtime": {
-      "engine": "other",
+      "engine": "NInfer",
       "version": "NInfer Windows-TP2 experiment",
       "commit": "eb01f69c5880ca20658e9fd0645ed20d18cc0e05",
       "notes": "NInfer TP2 with CUDA-graph decode and pinned write-back host-memory peer mailbox; canonical post-revert binary."
@@ -659,7 +659,7 @@
       "notes": "MSI PRO Z690-A; native Windows 11 x64 under WDDM."
     },
     "runtime": {
-      "engine": "other",
+      "engine": "NInfer",
       "version": "NInfer Windows-TP2 experiment",
       "commit": "eb01f69c5880ca20658e9fd0645ed20d18cc0e05",
       "notes": "NInfer TP2 with CUDA-graph decode and pinned write-back host-memory peer mailbox; canonical post-revert binary."
@@ -739,7 +739,7 @@
       "notes": "MSI PRO Z690-A; native Windows 11 x64 under WDDM."
     },
     "runtime": {
-      "engine": "other",
+      "engine": "NInfer",
       "version": "NInfer Windows-TP2 experiment",
       "commit": "eb01f69c5880ca20658e9fd0645ed20d18cc0e05",
       "notes": "NInfer TP2 with CUDA-graph decode and pinned write-back host-memory peer mailbox; canonical post-revert binary."
@@ -821,7 +821,7 @@
       "notes": "MSI PRO Z690-A; native Windows 11 x64 under WDDM."
     },
     "runtime": {
-      "engine": "other",
+      "engine": "NInfer",
       "version": "NInfer Windows-TP2 experiment",
       "commit": "eb01f69c5880ca20658e9fd0645ed20d18cc0e05",
       "notes": "NInfer TP2 with CUDA-graph decode and pinned write-back host-memory peer mailbox; canonical post-revert binary."
@@ -902,7 +902,7 @@
       "notes": "MSI PRO Z690-A; native Windows 11 x64 under WDDM."
     },
     "runtime": {
-      "engine": "other",
+      "engine": "NInfer",
       "version": "NInfer Windows-TP2 experiment",
       "commit": "eb01f69c5880ca20658e9fd0645ed20d18cc0e05",
       "notes": "NInfer TP2 with CUDA-graph decode and pinned write-back host-memory peer mailbox; canonical post-revert binary."
@@ -981,7 +981,7 @@
       "notes": "MSI PRO Z690-A; native Windows 11 x64 under WDDM."
     },
     "runtime": {
-      "engine": "other",
+      "engine": "NInfer",
       "version": "NInfer Windows-TP2 experiment",
       "commit": "eb01f69c5880ca20658e9fd0645ed20d18cc0e05",
       "notes": "NInfer TP2 with CUDA-graph decode and pinned write-back host-memory peer mailbox; canonical post-revert binary."
