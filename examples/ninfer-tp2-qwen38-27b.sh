@@ -10,7 +10,7 @@ NINFER_SERVE="${NINFER_SERVE:-./build/apps/ninfer-serve}"
 MODEL="${MODEL:-$HOME/models/qwen3_8_27b_quasar_nvfp4.ninfer}"
 PORT="${PORT:-8092}"
 API_KEY="${API_KEY:?set API_KEY}"
-CTX="${CTX:-196608}"              # verified with vision and 8 state slots
+CTX="${CTX:-262144}"              # verified with vision and 8 state slots (14.5 GB/card)
 THINK_CAP="${THINK_CAP:-16384}"   # default thinking budget; stops runaway reasoning
 
 exec "$NINFER_SERVE" "$MODEL" \

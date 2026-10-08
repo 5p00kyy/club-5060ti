@@ -9,7 +9,7 @@ All numbers come from one machine. Treat them as a starting point, not a guarant
 - 2x RTX 5060 Ti 16GB, each on PCIe Gen3 x8, no P2P (the fork's pinned-host mailbox all-reduce handles this), driver 595.58.03, CUDA 13.2, power limits 170/180 W.
 - Engine: [ValerioDolci/ninfer-tp2](https://github.com/ValerioDolci/ninfer-tp2) at `be178778` (v0.4.7+1).
 - Weights: [Feyd89/Qwen3.8-27B-QUASAR-QAT-nvfp4-NInfer](https://huggingface.co/Feyd89/Qwen3.8-27B-QUASAR-QAT-nvfp4-NInfer), about 8.7 GiB per rank.
-- Launcher: [`examples/ninfer-tp2-qwen38-27b.sh`](../examples/ninfer-tp2-qwen38-27b.sh). int8 KV, MTP with 3 draft tokens, vision on, 196,608 context, 2 concurrent requests, 8 device state slots.
+- Launcher: [`examples/ninfer-tp2-qwen38-27b.sh`](../examples/ninfer-tp2-qwen38-27b.sh). int8 KV, MTP with 3 draft tokens, vision on, 262,144 context, 2 concurrent requests, 8 device state slots, 16K default thinking cap.
 
 ### Why QUASAR rather than the official NVFP4
 
@@ -27,10 +27,11 @@ The QUASAR model card compares it directly against the official NVFP4 weights: M
 | Prefill, uncached, 1.5K / 6K / 24K / 48K / 90K / 150K | 1,900 / 2,050 / 1,900 / 1,650 / 1,370 / 1,100 tok/s |
 | Two 24K prompts at once | finished at 12.8 s and 25.4 s (prefill is serialised) |
 | Two 90K prompts at once | one returned HTTP 503 |
+| 64K context, 4 concurrent: decode 1 / 2 / 4 streams | 73 / 67 / 53 tok/s per stream (73 / 134 / 211 total) |
 | Stop service, GPUs free | under 1 s |
 | Cold start to first response | 16.5 to 25.5 s |
 
-More concurrency raises total decode throughput but not prefill. Prefill already saturates both cards, so a second long prompt waits for the first.
+Speed rows above are from the 196K production config except the 64K x 4 row, measured in a separate restart. More concurrency raises total decode throughput (211 tok/s with 4 streams) but not prefill. Prefill already saturates both cards, so a second long prompt waits for the first.
 
 An earlier matched run against vLLM (same QUASAR checkpoint, TP2, MTP 3) found NInfer 31 to 34% faster on decode and about 15% faster on 12.7K prefill, with no measurable quality difference on GSM8K (1,319 items) or MMLU-Pro (420 items).
 
@@ -38,11 +39,12 @@ An earlier matched run against vLLM (same QUASAR checkpoint, TP2, MTP 3) found N
 
 | Config | VRAM per card | Result |
 | --- | ---: | --- |
-| 196K, vision, 8 state slots, 2 concurrent | 13.4 / 13.0 GB | runs, used for everything below |
-| 262K, no vision, 4 state slots, 2 concurrent | 13.8 GB | starts in 17 s; recalled an updated fact correctly at 171K prompt tokens (168 s, nearly all prefill) |
-| 64K, 4 concurrent, 262K pooled KV, 8 slots | 14.3 GB | starts in 25 s; speed not yet measured |
+| 196K, vision, 8 state slots, 2 concurrent | 13.4 / 13.0 GB | runs; used for all accuracy tests below |
+| 262K, vision, 8 state slots, 2 concurrent, 16K cap | 14.5 / 14.1 GB | starts in 14.5 s; read a chart image correctly; recalled an updated fact at 171K (169 s) and 238K (284 s) prompt tokens |
+| 262K, no vision, 4 state slots, 2 concurrent | 13.8 GB | starts in 17 s; recall correct at 171K |
+| 64K, 4 concurrent, 262K pooled KV, 8 slots | 14.3 GB | starts in 16 to 25 s; 211 tok/s total decode at 4 streams |
 
-262K with vision on has not been tested yet.
+The fork's README says vision plus 8 slots does not fit at 196,608 with MTP3. On these cards with int8 KV it fit at the full 262,144, with about 1.8 GB spare on the vision card. Recall at that length works but costs minutes of prefill.
 
 The TP2 fork rejects Qwen3.6-35B-A3B (MoE) at startup, and the 21 GB MoE does not fit on a single 16 GB card for single-GPU NInfer. Use llama.cpp or vLLM for that model on this hardware.
 
@@ -96,5 +98,5 @@ A 4K cap throttles hard reasoning. At 16K, effort level changes the result by a 
 
 - Single machine, one run per setting, modest sample sizes. Differences of a few problems are noise.
 - Benchmarks ran with 2 concurrent requests on a live server, so per-problem times include some queueing.
-- The per-request cap was tested; the server-wide `--default-thinking-budget` flag in the launcher was not yet benchmarked separately.
+- The accuracy runs used per-request caps. The server-wide `--default-thinking-budget` was checked separately: with a 1,024 default and no per-request settings, a hard AIME problem stopped thinking and still produced an answer (1,526 output tokens). Accuracy under the server default was not rerun.
 - Algorithmic problems are not repository work. These tests say nothing about multi-file edits or agent loops.
