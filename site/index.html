@@ -992,6 +992,7 @@
                   <th>Rows</th>
                   <th>Best Decode</th>
                   <th>Best Context</th>
+                  <th>Preset Evidence</th>
                 </tr>
               </thead>
               <tbody id="engine-summary-body"></tbody>
@@ -1079,6 +1080,29 @@
       const count = get(item, 'hardware.gpu_count', '');
       const model = normalizeGpuModel(get(item, 'hardware.gpu_model', 'GPU'));
       return String(count || '?') + 'x ' + model;
+    };
+
+    // Published preset evidence per engine. Maintainer runs live in preset evidence bundles,
+    // not result rows, so the engine table shows them as a separate, labelled column.
+    const presetEvidenceByEngine = (cards) => {
+      const map = new Map();
+      for (const card of cards || []) {
+        const engine = get(card, 'preset.runtime.engine', '');
+        if (!engine) continue;
+        for (const evidence of card.published_evidence || []) {
+          const decode = Number(get(evidence, 'evidence.metrics.median_decode_tok_s', 0)) || 0;
+          const context = Number(get(evidence, 'context.highest_useful_tokens', 0)) || 0;
+          const entry = map.get(engine) || { presets: new Set(), bestDecode: 0, bestContext: 0 };
+          entry.presets.add(get(card, 'preset.id', ''));
+          // Report one real bundle: the highest validated context, then the faster at that tier.
+          if (context > entry.bestContext || (context === entry.bestContext && decode > entry.bestDecode)) {
+            entry.bestContext = context;
+            entry.bestDecode = decode;
+          }
+          map.set(engine, entry);
+        }
+      }
+      return map;
     };
 
     const escapeHtml = (value) => String(value ?? '').replace(/[&<>"']/g, (char) => ({
@@ -1423,10 +1447,10 @@
         return Array.from(map.values()).sort((a, b) => b.rows - a.rows || b.bestDecode - a.bestDecode);
       };
 
-      const renderRows = (rows, targetId) => {
+      const renderRows = (rows, targetId, presetMap) => {
         const target = document.getElementById(targetId);
         if (!rows.length) {
-          target.innerHTML = '<tr><td colspan="4" class="muted">No rows in current view.</td></tr>';
+          target.innerHTML = '<tr><td colspan="' + (presetMap ? 5 : 4) + '" class="muted">No rows in current view.</td></tr>';
           return;
         }
         target.innerHTML = rows.slice(0, 10).map((row) => (
@@ -1435,13 +1459,21 @@
           '<td class="num">' + row.rows + '</td>' +
           '<td class="num">' + (row.bestDecode ? formatNumber(row.bestDecode, 1) + ' tok/s' : 'n/a') + '</td>' +
           '<td class="num">' + (row.bestContext ? formatNumber(row.bestContext, 0) : 'n/a') + '</td>' +
+          (presetMap ? '<td class="num">' + presetCell(presetMap.get(row.key)) + '</td>' : '') +
           '</tr>'
         )).join('');
       };
 
+      const presetCell = (entry) => {
+        if (!entry) return '<span class="muted">none</span>';
+        const count = entry.presets.size;
+        return '<a href="#presets" title="median sustained decode of the published preset with the highest validated context">' +
+          formatNumber(entry.bestDecode, 1) + ' tok/s @ ' + formatNumber(entry.bestContext, 0) +
+          '</a> <span class="muted">(' + count + ' preset' + (count === 1 ? '' : 's') + ')</span>';
+      };
       const engines = buildGroup('runtime.engine');
       const families = buildGroup('model.family');
-      renderRows(engines, 'engine-summary-body');
+      renderRows(engines, 'engine-summary-body', presetEvidenceByEngine(allPresetCards));
       renderRows(families, 'family-summary-body');
 
       document.getElementById('engine-summary-meta').textContent = engines.length + ' lane' + (engines.length === 1 ? '' : 's');
@@ -1722,7 +1754,7 @@
 
     boot().catch((error) => {
       document.getElementById('results-list').innerHTML = '<div class="model-card"><div class="model-head"><div>Failed to load site data: ' + escapeHtml(error.message || error) + '</div></div></div>';
-      document.getElementById('engine-summary-body').innerHTML = '<tr><td colspan="4" class="muted">No data.</td></tr>';
+      document.getElementById('engine-summary-body').innerHTML = '<tr><td colspan="5" class="muted">No data.</td></tr>';
       document.getElementById('family-summary-body').innerHTML = '<tr><td colspan="4" class="muted">No data.</td></tr>';
     });
   </script>
