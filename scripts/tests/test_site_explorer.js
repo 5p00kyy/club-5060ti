@@ -12,6 +12,7 @@ const fullScript = html.slice(scriptStart, scriptEnd);
 new Function(fullScript);
 
 const allRows = JSON.parse(fs.readFileSync(path.join(root, 'site/data/results.json'), 'utf8')).results;
+const presetCards = JSON.parse(fs.readFileSync(path.join(root, 'site/data/presets.json'), 'utf8')).presets;
 const communityRows = allRows.filter((row) => row.source?.label === 'community-3x5060ti-mvdevnull');
 
 const slice = (start, end) => {
@@ -49,6 +50,14 @@ eval(code + `
   if (!closeEnough(long._avg_prompt_tok_s, 479.5625)) throw new Error('long prompt average mismatch');
   if (!closeEnough(decodeTokS(short), 30.465)) throw new Error('selected short decode metric mismatch');
   if (!closeEnough(promptTokS(long), 479.541)) throw new Error('selected long prompt metric mismatch');
+
+  const presetMap = presetEvidenceByEngine(presetCards);
+  const ninfer = presetMap.get('NInfer');
+  if (!ninfer || ninfer.bestContext !== 262144) throw new Error('NInfer preset evidence missing from engine summary');
+  for (const [engine, entry] of presetMap) {
+    if (!(entry.bestDecode > 0) || !(entry.bestContext > 0) || !entry.presets.size) throw new Error('bad preset evidence entry for ' + engine);
+  }
+  if (presetEvidenceByEngine([]).size !== 0) throw new Error('empty preset list should give empty map');
 `);
 
 console.log('site explorer contribution presentation test passed');
