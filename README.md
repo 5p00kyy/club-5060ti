@@ -23,6 +23,7 @@ The seed system covers 1x and 2x RTX 5060 Ti lanes. The project also welcomes 3x
 | Hardware lanes | You want to understand how 1x, 2x, 3x+, and other CUDA GPU results are separated. | docs/hardware-lanes.md |
 | 1x RTX 5060 Ti | You want the best single-card fits and conservative starter configs. | docs/single-5060ti.md |
 | 2x RTX 5060 Ti | You want dual-16GB GGUF or OpenAI-compatible vLLM recipes for 27B-class and long-context models. | docs/vllm-qwen38.md |
+| 2x RTX 5060 Ti, NInfer TP2 | You want the fastest measured Qwen3.8 27B route on two cards, plus thinking-cap and reasoning-effort results. | docs/ninfer-tp2-qwen38.md |
 | Other CUDA GPUs | You want to adapt the recipes to non-5060 Ti or mixed-architecture NVIDIA setups. | docs/gpu-compatibility.md |
 | Results explorer | You want to compare benchmark receipts, filter by tier, and inspect serving configs. | https://5p00kyy.github.io/club-5060ti/ |
 | Benchmark protocol | You want to submit or compare a result without mixing methods. | docs/benchmark-protocol.md |
